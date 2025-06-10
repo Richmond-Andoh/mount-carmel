@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Hospital Info */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-4">Mount Carmel</h3>
-            <p className="text-gray-400 mb-4">
+            <h3 className="text-2xl font-bold text-white mb-4">Mount Carmel Hospital And Fertility Center</h3>
+            <p className="text-white/80 mb-4">
               Providing exceptional healthcare services with compassion and excellence.
             </p>
             <div className="flex space-x-4">
@@ -126,7 +126,7 @@ const Footer = () => {
       </div>
       </div>
       <div className="container mx-auto px-4 text-center">
-        <p>&copy; 2023 Mount Carmel Hospital. All rights reserved.</p>
+        <p>&copy; {currentYear} Mount Carmel Hospital And Fertility Center. All rights reserved.</p>
       </div>
     </footer>
   );

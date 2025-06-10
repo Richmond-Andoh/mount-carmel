@@ -1,16 +1,20 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import defaultTheme from 'tailwindcss/defaultTheme'
+
+export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        'wine': '#722F37', // Mount Carmel Hospital's wine color
-        'white': '#FFFFFF',
+        primary: '#8B0000',
+        accent: '#E74C3C', 
+      },
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
     },
   },
   plugins: [],
-} 
+}
