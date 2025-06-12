@@ -1,43 +1,33 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import Footer from './components/Footer'
+import Home from './components/Home'
 import About from './components/About'
 import Services from './components/Services'
-import Departments from './components/Departments'
-import Doctors from './components/Doctors'
-import Gallery from './components/Gallery'
-import Appointment from './components/Appointment'
+import Facilities from './components/Facilities'
 import Contact from './components/Contact'
-import Footer from './components/Footer'
+import Appointment from './components/Appointment'
+import Testimonies from './components/Testimonies'
+import FAQ from './components/FAQ'
+import Partners from './components/Partners'
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main>
+        <main className="flex-grow">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Hero />
-                  <About />
-                  <Services />
-                  <Departments />
-                  <Doctors />
-                  <Contact />
-                </>
-              }
-            />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/departments" element={<Departments />} />
-            <Route path="/doctors" element={<Doctors />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/appointment" element={<Appointment />} />
+            <Route path="/facilities" element={<Facilities />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/appointment" element={<Appointment />} />
+            <Route path="/testimonies" element={<Testimonies />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/partners" element={<Partners />} />
           </Routes>
         </main>
         <Footer />

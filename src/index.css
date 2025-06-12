@@ -23,11 +23,19 @@
 /* Components layer */
 @layer components {
   .container-custom {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium hover:text-[#6f2248] transition-colors;
+  }
+
+  .mobile-nav-link {
+    @apply block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors;
   }
 
   .btn-primary {
-    @apply bg-primary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+    @apply bg-[#6f2248] text-white px-6 py-2 rounded-lg hover:bg-[#6f2248]/90 transition-colors;
   }
 
   .btn-secondary {
