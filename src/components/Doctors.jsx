@@ -14,17 +14,6 @@ const Doctors = () => {
       }
     },
     {
-      name: "Dr. Michael Chen",
-      specialization: "Neurology",
-      image: "/images/doctor2.jpg",
-      description: "Expert in neurological disorders and advanced treatment methods.",
-      social: {
-        twitter: "#",
-        facebook: "#",
-        linkedin: "#"
-      }
-    },
-    {
       name: "Dr. Emily Rodriguez",
       specialization: "Pediatrics",
       image: "/images/doctor3.jpg",

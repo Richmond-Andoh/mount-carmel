@@ -22,7 +22,6 @@ const Appointment = () => {
     'Pediatrics',
     'Orthopedics',
     'Gynecology',
-    'Neurology',
     'Dental',
     'Ophthalmology'
   ];
@@ -58,7 +57,7 @@ const Appointment = () => {
       <div className="container-custom">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-[var(--primary-color)] mb-4">
+          <h1 className="text-5xl font-bold text-[#6f2248] mb-4">
             Book an Appointment
           </h1>
           <p className="text-xl text-gray-800 max-w-2xl mx-auto font-medium leading-relaxed">
@@ -82,7 +81,7 @@ const Appointment = () => {
                   value="new"
                   checked={formData.patientType === 'new'}
                   onChange={handleChange}
-                  className="form-radio h-6 w-6 text-[var(--primary-color)]"
+                  className="form-radio h-6 w-6 text-[#6f2248]"
                 />
                 <span className="ml-3 text-lg text-gray-900 font-semibold">New Patient</span>
               </label>
@@ -93,7 +92,7 @@ const Appointment = () => {
                   value="existing"
                   checked={formData.patientType === 'existing'}
                   onChange={handleChange}
-                  className="form-radio h-6 w-6 text-[var(--primary-color)]"
+                  className="form-radio h-6 w-6 text-[#6f2248]"
                 />
                 <span className="ml-3 text-lg text-gray-900 font-semibold">Existing Patient</span>
               </label>
@@ -101,14 +100,14 @@ const Appointment = () => {
 
             {/* Section Title */}
             <div className="border-b border-gray-200 pb-2 mb-6">
-              <h2 className="text-xl font-bold text-[var(--primary-color)]">Personal Information</h2>
+              <h2 className="text-xl font-bold text-[#6f2248]">Personal Information</h2>
             </div>
 
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Full Name <span className="text-[var(--primary-color)]">*</span>
+                  Full Name <span className="text-[#6f2248]">*</span>
                 </label>
                 <input
                   type="text"
@@ -116,13 +115,13 @@ const Appointment = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900 placeholder-gray-500"
                   placeholder="Enter your full name"
                 />
               </div>
               <div>
                 <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Phone Number <span className="text-[var(--primary-color)]">*</span>
+                  Phone Number <span className="text-[#6f2248]">*</span>
                 </label>
                 <input
                   type="tel"
@@ -130,7 +129,7 @@ const Appointment = () => {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900 placeholder-gray-500"
                   placeholder="Enter your phone number"
                 />
               </div>
@@ -141,13 +140,13 @@ const Appointment = () => {
               <>
                 {/* Section Title */}
                 <div className="border-b border-gray-200 pb-2 mb-6">
-                  <h2 className="text-xl font-bold text-[var(--primary-color)]">Additional Information</h2>
+                  <h2 className="text-xl font-bold text-[#6f2248]">Additional Information</h2>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
                     <label className="block text-base font-semibold text-gray-900 mb-2">
-                      Date of Birth <span className="text-[var(--primary-color)]">*</span>
+                      Date of Birth <span className="text-[#6f2248]">*</span>
                     </label>
                     <input
                       type="date"
@@ -156,19 +155,19 @@ const Appointment = () => {
                       value={formData.dateOfBirth}
                       onChange={handleChange}
                       max={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900"
+                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900"
                     />
                   </div>
                   <div>
                     <label className="block text-base font-semibold text-gray-900 mb-2">
-                      Gender <span className="text-[var(--primary-color)]">*</span>
+                      Gender <span className="text-[#6f2248]">*</span>
                     </label>
                     <select
                       name="gender"
                       required
                       value={formData.gender}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900"
+                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900"
                     >
                       <option value="">Select Gender</option>
                       <option value="male">Male</option>
@@ -178,7 +177,7 @@ const Appointment = () => {
                   </div>
                   <div>
                     <label className="block text-base font-semibold text-gray-900 mb-2">
-                      Residence <span className="text-[var(--primary-color)]">*</span>
+                      Residence <span className="text-[#6f2248]">*</span>
                     </label>
                     <input
                       type="text"
@@ -186,7 +185,7 @@ const Appointment = () => {
                       required
                       value={formData.residence}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900 placeholder-gray-500"
+                      className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900 placeholder-gray-500"
                       placeholder="Enter your residence"
                     />
                   </div>
@@ -196,14 +195,14 @@ const Appointment = () => {
 
             {/* Section Title */}
             <div className="border-b border-gray-200 pb-2 mb-6">
-              <h2 className="text-xl font-bold text-[var(--primary-color)]">Appointment Details</h2>
+              <h2 className="text-xl font-bold text-[#6f2248]">Appointment Details</h2>
             </div>
 
             {/* Appointment Details */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
                 <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Preferred Date <span className="text-[var(--primary-color)]">*</span>
+                  Preferred Date <span className="text-[#6f2248]">*</span>
                 </label>
                 <input
                   type="date"
@@ -212,19 +211,19 @@ const Appointment = () => {
                   value={formData.date}
                   onChange={handleChange}
                   min={new Date().toISOString().split('T')[0]}
-                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900"
+                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900"
                 />
               </div>
               <div>
                 <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Preferred Time <span className="text-[var(--primary-color)]">*</span>
+                  Preferred Time <span className="text-[#6f2248]">*</span>
                 </label>
                 <select
                   name="time"
                   required
                   value={formData.time}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900"
+                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900"
                 >
                   <option value="">Select Time</option>
                   {getTimeSlots().map(time => (
@@ -234,14 +233,14 @@ const Appointment = () => {
               </div>
               <div>
                 <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Department <span className="text-[var(--primary-color)]">*</span>
+                  Department <span className="text-[#6f2248]">*</span>
                 </label>
                 <select
                   name="department"
                   required
                   value={formData.department}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900"
+                  className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900"
                 >
                   <option value="">Select Department</option>
                   {departments.map(dept => (
@@ -251,31 +250,29 @@ const Appointment = () => {
               </div>
             </div>
 
-            {/* Message */}
+            {/* Message Field */}
             <div>
               <label className="block text-base font-semibold text-gray-900 mb-2">
-                Additional Notes
+                Additional Message
               </label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows="4"
-                className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition-colors text-gray-900 placeholder-gray-500"
-                placeholder="Please share any specific concerns or requirements"
+                className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] transition-colors text-gray-900 placeholder-gray-500"
+                placeholder="Please provide any additional information or specific concerns..."
               ></textarea>
             </div>
 
             {/* Submit Button */}
-            <div className="flex justify-center pt-4">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+            <div className="text-center">
+              <button
                 type="submit"
-                className="px-10 py-4 bg-[var(--primary-color)] text-white rounded-lg hover:bg-[var(--primary-color)]/90 transition-colors font-semibold text-lg shadow-md hover:shadow-lg"
+                className="bg-[#6f2248] text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors shadow-lg hover:shadow-xl"
               >
                 Schedule Appointment
-              </motion.button>
+              </button>
             </div>
           </form>
         </motion.div>
@@ -286,7 +283,7 @@ const Appointment = () => {
             For emergency cases, please call
             <a
               href="tel:+1234567890"
-              className="text-[var(--primary-color)] font-bold ml-2 hover:underline"
+              className="text-[#6f2248] font-bold ml-2 hover:underline"
             >
               123-456-7890
             </a>

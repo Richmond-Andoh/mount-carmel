@@ -89,9 +89,10 @@ const Contact = () => {
   ]
 
   const departments = [
+    'Fertility Center',
+    'Reproductive Medicine',
     'General Medicine',
     'Cardiology',
-    'Neurology',
     'Pediatrics',
     'Orthopedics',
     'Gynecology'
