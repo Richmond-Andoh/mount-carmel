@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import logo from '../assets/gallery/logo.jpg'
 
 const Footer = () => {
   const links = {
@@ -30,7 +31,7 @@ const Footer = () => {
           {/* Hospital Info */}
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <img src="/images/logo.png" alt="Logo" className="w-12 h-12" />
+              <img src={logo} alt="Logo" className="w-12 h-12" />
               <div>
                 <h3 className="font-bold">Mount Carmel</h3>
                 <p className="text-sm text-gray-400">Hospital & Fertility Center</p>
@@ -47,7 +48,7 @@ const Footer = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                123 Healthcare Street, Accra, Ghana
+                Ashfoam Junction,Tema Com.25, Accra, Ghana
               </p>
               <p className="flex items-center text-gray-400">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

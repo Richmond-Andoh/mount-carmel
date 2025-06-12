@@ -74,7 +74,7 @@ const Contact = () => {
     },
     {
       title: 'Working Hours',
-      details: ['Monday - Friday: 8:00 AM - 8:00 PM', 'Saturday: 9:00 AM - 5:00 PM'],
+      details: ['Monday - Sunday', '24/7'],
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
