@@ -11,6 +11,7 @@ import Appointment from './components/Appointment'
 import Testimonies from './components/Testimonies'
 import FAQ from './components/FAQ'
 import Partners from './components/Partners'
+import PartnerForm from './components/PartnerForm'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/testimonies" element={<Testimonies />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/partner-form" element={<PartnerForm />} />
           </Routes>
         </main>
 

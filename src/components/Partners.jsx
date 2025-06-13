@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import SectionHeader from './SectionHeader';
+import { Link } from 'react-router-dom';
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpwrdbyr';
 
 const Partners = () => {
   return (
@@ -102,9 +105,12 @@ const Partners = () => {
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             Join our network of healthcare partners and help us provide better healthcare services to our community.
           </p>
-          <button className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors">
+          <Link
+            to="/partner-form"
+            className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors inline-block"
+          >
             Become a Partner
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

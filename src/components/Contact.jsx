@@ -26,7 +26,7 @@ const Contact = () => {
   const contactInfo = [
     {
       title: 'Our Location',
-      details: ['123 Medical Center Drive', 'Healthcare City, HC 12345'],
+      details: ['Ashfoam Junction,Tema Com.25', 'Before RAHA International School'],
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -46,7 +46,7 @@ const Contact = () => {
     },
     {
       title: 'Contact Numbers',
-      details: ['Emergency: (123) 456-7890', 'Appointment: (123) 456-7891'],
+      details: ['Emergency: 0303939896, 0242160557', 'Appointment: 0592411108'],
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -176,7 +176,7 @@ const Contact = () => {
                 <div>
                   <p className="text-sm text-gray-600">Emergency Hotline</p>
                   <p className="text-2xl font-bold text-[var(--primary-color)]">
-                    (123) 456-7890
+                    0303939896, 0592411108, 0242160557
                   </p>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { sendWhatsAppNotification, sendSMSNotification } from '../services/notifications';
 
 const Appointment = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,9 @@ const Appointment = () => {
     residence: '',
     message: '',
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const departments = [
     'General Medicine',
@@ -34,12 +38,42 @@ const Appointment = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    // Add your API call here
-    alert('Appointment request submitted successfully! We will contact you shortly.');
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Send notifications
+      const [whatsappSuccess, smsSuccess] = await Promise.all([
+        sendWhatsAppNotification(formData),
+        sendSMSNotification(formData)
+      ]);
+
+      if (whatsappSuccess && smsSuccess) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          patientType: 'new',
+          name: '',
+          phone: '',
+          date: '',
+          time: '',
+          department: '',
+          dateOfBirth: '',
+          gender: '',
+          residence: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting appointment:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Get available time slots (9 AM to 5 PM, 30-minute intervals)
@@ -71,6 +105,22 @@ const Appointment = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-8 border border-gray-100"
         >
+          {submitStatus === 'success' && (
+            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-green-700">
+                Appointment request submitted successfully! We will contact you shortly.
+              </p>
+            </div>
+          )}
+
+          {submitStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700">
+                There was an error submitting your appointment request. Please try again or contact us directly.
+              </p>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Patient Type Selection */}
             <div className="flex justify-center space-x-8 mb-8">
@@ -269,9 +319,12 @@ const Appointment = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-[#6f2248] text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors shadow-lg hover:shadow-xl"
+                disabled={isSubmitting}
+                className={`bg-[#6f2248] text-white px-12 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg hover:shadow-xl ${
+                  isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:bg-[#6f2248]/90'
+                }`}
               >
-                Schedule Appointment
+                {isSubmitting ? 'Submitting...' : 'Schedule Appointment'}
               </button>
             </div>
           </form>
@@ -282,10 +335,10 @@ const Appointment = () => {
           <p className="text-lg text-gray-800 font-medium">
             For emergency cases, please call
             <a
-              href="tel:+1234567890"
+              href="tel:+233597328517"
               className="text-[#6f2248] font-bold ml-2 hover:underline"
             >
-              123-456-7890
+              0592411108, 0303939896
             </a>
           </p>
         </div>
