@@ -11,13 +11,16 @@ import Appointment from './components/Appointment'
 import Testimonies from './components/Testimonies'
 import FAQ from './components/FAQ'
 import Partners from './components/Partners'
+import PartnerForm from './components/PartnerForm'
 
 function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow">
+
+        {/* Padding wrapper to avoid content hiding behind Navbar */}
+        <main className="flex-grow pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -28,8 +31,10 @@ function App() {
             <Route path="/testimonies" element={<Testimonies />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/partner-form" element={<PartnerForm />} />
           </Routes>
         </main>
+
         <Footer />
       </div>
     </Router>

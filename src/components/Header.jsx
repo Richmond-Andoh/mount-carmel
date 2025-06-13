@@ -40,6 +40,9 @@ const Header = () => {
         </div>
       </div>
     </div>
+    <div className="flex justify-center py-4 bg-white">
+      <img src="/partners.png" alt="Partners and Health Insurers" className="max-w-full h-auto" />
+    </div>
   );
 };
 
