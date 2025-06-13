@@ -8,9 +8,9 @@ const SectionHeader = ({ subtitle, title, description }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="text-[#6f2248] text-sm md:text-base font-semibold mb-3 block"
+        className="text-[#6f2248] text-sm md:text-base font-semibold mb-2 block"
       >
-        {title}
+        {subtitle}
       </motion.span>
       
       <motion.h2
@@ -20,7 +20,7 @@ const SectionHeader = ({ subtitle, title, description }) => {
         viewport={{ once: true }}
         className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-5 leading-tight"
       >
-        {subtitle}
+        {title}
       </motion.h2>
       
       {description && (
