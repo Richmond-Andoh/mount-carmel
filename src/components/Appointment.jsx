@@ -94,7 +94,7 @@ const Appointment = () => {
                   onChange={handleChange}
                   className="form-radio h-6 w-6 text-[#6f2248]"
                 />
-                <span className="ml-3 text-lg text-gray-900 font-semibold">Existing Patient</span>
+                <span className="ml-3 text-lg text-gray-900 font-semibold">Old Patient</span>
               </label>
             </div>
 
@@ -294,4 +294,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment; 
+export default Appointment;

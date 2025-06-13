@@ -1,74 +1,25 @@
-import { motion } from 'framer-motion'
-import SectionHeader from './SectionHeader'
+import React from 'react';
+import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
 
 const Partners = () => {
-  const partners = [
-    {
-      name: "Medical Research Institute",
-      logo: "/images/partners/partner1.png",
-      description: "Collaborating on advanced fertility research and treatment methods."
-    },
-    {
-      name: "International Fertility Association",
-      logo: "/images/partners/partner2.png",
-      description: "Certified member ensuring international standards in fertility care."
-    },
-    {
-      name: "Healthcare Excellence Network",
-      logo: "/images/partners/partner3.png",
-      description: "Partnership for continuous improvement in healthcare delivery."
-    },
-    {
-      name: "Medical Insurance Provider",
-      logo: "/images/partners/partner4.png",
-      description: "Ensuring accessible healthcare through insurance coverage."
-    },
-    {
-      name: "Pharmaceutical Research Lab",
-      logo: "/images/partners/partner5.png",
-      description: "Supporting advanced medical treatments and research."
-    },
-    {
-      name: "Medical Equipment Supplier",
-      logo: "/images/partners/partner6.png",
-      description: "Providing state-of-the-art medical equipment and technology."
-    }
-  ]
-
   return (
     <section className="pt-8 pb-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
+        {/* Section Header */}
         <SectionHeader
           title="Our Partners"
           subtitle="Working Together for Better Healthcare"
           description="We collaborate with leading healthcare organizations and institutions to provide the best possible care for our patients."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {partners.map((partner, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all"
-            >
-              <div className="h-32 flex items-center justify-center mb-6">
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">
-                {partner.name}
-              </h3>
-              <p className="text-gray-600 text-center">
-                {partner.description}
-              </p>
-            </motion.div>
-          ))}
+        {/* Image Below Header */}
+        <div className="my-12">
+          <img
+            src="/images/gallery/partners-insurance.jpg"
+            alt="Partners Insurance"
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+          />
         </div>
 
         {/* Partnership Benefits */}
@@ -157,7 +108,7 @@ const Partners = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Partners 
+export default Partners;

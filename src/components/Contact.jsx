@@ -99,7 +99,7 @@ const Contact = () => {
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-8 bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -108,7 +108,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="text-[var(--primary-color)] font-semibold text-lg mb-4 block">
+          <span className="text-[var(--primary-color)] font-semibold text-lg mb-3 block">
             Get in Touch
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">

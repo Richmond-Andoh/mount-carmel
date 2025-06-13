@@ -1,10 +1,8 @@
 // src/components/WhyChooseUs.jsx
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const WhyChooseUs = () => {
-  const navigate = useNavigate();
-
 
   const reasons = [
     {
@@ -100,15 +98,14 @@ const WhyChooseUs = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <motion.button
-            type='button'
-            onClick={navigate("/appointment")}
+         <Link
+           to="/appointment"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors"
           >
             Schedule a Consultation
-          </motion.button>
+         </Link> 
         </div>
       </div>
     </section>

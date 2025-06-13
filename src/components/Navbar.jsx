@@ -189,9 +189,9 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t"
+            className="fixed inset-0 z-50 md:hidden bg-white/70 backdrop-blur overflow-y-auto max-h-screen border-t"
           >
-            <div className="container-custom py-4 space-y-2">
+            <div className="container-custom py-2 space-y-2">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.path}
@@ -208,6 +208,31 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
+              {/* Others Dropdown Links for Mobile */}
+              <div className="pt-2">
+                <div className="text-xs font-semibold text-gray-500 px-4 pb-1">Others</div>
+                <Link 
+                  to="/testimonies" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors ${location.pathname === '/testimonies' ? 'text-[#6f2248]' : ''}`}
+                >
+                  Testimonies
+                </Link>
+                <Link 
+                  to="/faq" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors ${location.pathname === '/faq' ? 'text-[#6f2248]' : ''}`}
+                >
+                  FAQ
+                </Link>
+                <Link 
+                  to="/partners" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors ${location.pathname === '/partners' ? 'text-[#6f2248]' : ''}`}
+                >
+                  Partners
+                </Link>
+              </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}

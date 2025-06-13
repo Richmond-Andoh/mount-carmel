@@ -17,7 +17,9 @@ function App() {
     <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-grow">
+
+        {/* Padding wrapper to avoid content hiding behind Navbar */}
+        <main className="flex-grow pt-24 px-4 sm:pt-28 sm:px-6 md:pt-32 md:px-8 lg:pt-36 lg:px-10 xl:pt-40 xl:px-16">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -30,6 +32,7 @@ function App() {
             <Route path="/partners" element={<Partners />} />
           </Routes>
         </main>
+
         <Footer />
       </div>
     </Router>
