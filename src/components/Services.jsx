@@ -174,7 +174,12 @@ const Services = () => {
             description="As a leading fertility center and general hospital, we offer comprehensive medical services including advanced reproductive treatments and general healthcare, delivered by experienced professionals using cutting-edge technology."
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+          >
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -217,7 +222,7 @@ const Services = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Service Modal */}
           {selectedService && (

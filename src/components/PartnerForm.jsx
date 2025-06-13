@@ -1,10 +1,53 @@
 import React, { useState } from 'react';
 
 // TODO: Set up your Formspree form with the recipient email marksspe.20@gmail.com and use the endpoint below:
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/yourformid'; // Replace with your actual Formspree endpoint for marksspe.20@gmail.com
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpwrdbyr'; // Replace with your actual Formspree endpoint for marksspe.20@gmail.com
 
 const PartnerForm = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [debugInfo, setDebugInfo] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setDebugInfo(null);
+
+    try {
+      const formData = new FormData(e.target);
+      const formDataObj = {};
+      formData.forEach((value, key) => {
+        formDataObj[key] = value;
+      });
+      
+      setDebugInfo('Sending data: ' + JSON.stringify(formDataObj));
+      
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      const responseData = await response.json();
+      setDebugInfo(prev => prev + '\nResponse: ' + JSON.stringify(responseData));
+
+      if (response.ok) {
+        setSubmitted(true);
+        e.target.reset();
+      } else {
+        throw new Error(responseData.error || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError(err.message);
+      setDebugInfo(prev => prev + '\nError: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="py-20 bg-gray-50 min-h-screen">
@@ -16,11 +59,19 @@ const PartnerForm = () => {
           </div>
         ) : (
           <form
-            action={FORMSPREE_ENDPOINT}
-            method="POST"
-            onSubmit={() => setSubmitted(true)}
+            onSubmit={handleSubmit}
             className="space-y-6"
           >
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                {error}
+              </div>
+            )}
+            {debugInfo && (
+              <div className="bg-gray-50 border border-gray-200 text-gray-700 px-4 py-3 rounded-lg whitespace-pre-wrap text-sm">
+                {debugInfo}
+              </div>
+            )}
             <div>
               <label className="block text-base font-semibold text-gray-900 mb-2">Full Name *</label>
               <input
@@ -72,9 +123,12 @@ const PartnerForm = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors shadow-lg hover:shadow-xl"
+              disabled={loading}
+              className={`w-full bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors shadow-lg hover:shadow-xl ${
+                loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#6f2248]/90'
+              }`}
             >
-              Submit Partnership Request
+              {loading ? 'Submitting...' : 'Submit Partnership Request'}
             </button>
           </form>
         )}
