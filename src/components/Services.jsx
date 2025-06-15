@@ -1,9 +1,54 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import SectionHeader from './SectionHeader'
+import Gallery from './Gallery'
+import gallery1 from '../assets/gallery/gallery-1.jpg'
+import gallery2 from '../assets/gallery/gallery-2.jpg'
+import gallery3 from '../assets/gallery/gallery-3.jpg'
+import gallery4 from '../assets/gallery/gallery-4.jpg'
+import gallery5 from '../assets/gallery/gallery-5.jpg'
+import gallery6 from '../assets/gallery/gallery-6.jpg'
+import gallery7 from '../assets/gallery/gallery-7.jpg'
+import gallery8 from '../assets/gallery/gallery-8.jpg'
+
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null)
+
+  const galleryImages = [
+    {
+      url: gallery1,
+      caption: ''
+    },
+    {
+      url: gallery2,
+      caption: ''
+    },
+    {
+      url: gallery3,
+      caption: ''
+    },
+    {
+      url: gallery4,
+      caption: ''
+    },
+    {
+      url: gallery5,
+      caption: ''
+    },
+    {
+      url: gallery6,
+      caption: ''
+    },
+    {
+      url: gallery7,
+      caption: ''
+    },
+    {
+      url: gallery8,
+      caption: ''
+    },
+  ]
 
   const services = [
     {
@@ -120,39 +165,102 @@ const Services = () => {
   ]
 
   return (
-    <section className="pt-8 pb-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container-custom">
-        <SectionHeader
-          title="Our Medical Services"
-          subtitle="Specialized Fertility Care & Healthcare Solutions"
-          description="As a leading fertility center and general hospital, we offer comprehensive medical services including advanced reproductive treatments and general healthcare, delivered by experienced professionals using cutting-edge technology."
-        />
+    <>
+      <section className="pt-8 pb-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container-custom">
+          <SectionHeader
+            title="Our Medical Services"
+            subtitle="Specialized Fertility Care & Healthcare Solutions"
+            description="As a leading fertility center and general hospital, we offer comprehensive medical services including advanced reproductive treatments and general healthcare, delivered by experienced professionals using cutting-edge technology."
+          />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+                onClick={() => setSelectedService(service)}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <h3 className="absolute bottom-4 left-4 text-white text-xl font-bold">{service.title}</h3>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.slice(0, 3).map((feature, i) => (
+                      <li key={i} className="flex items-center text-gray-600">
+                        <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className="mt-6 text-[#6f2248] font-semibold hover:text-[#6f2248]/80 transition-colors flex items-center"
+                  >
+                    Learn More
+                    <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Service Modal */}
+          {selectedService && (
             <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
-              onClick={() => setSelectedService(service)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+              onClick={() => setSelectedService(null)}
             >
-              <div className="relative h-48 overflow-hidden">
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                onClick={e => e.stopPropagation()}
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900">{selectedService.title}</h3>
+                  <button
+                    onClick={() => setSelectedService(null)}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
                 <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  className="w-full h-64 object-cover rounded-lg mb-6"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <h3 className="absolute bottom-4 left-4 text-white text-xl font-bold">{service.title}</h3>
-              </div>
-              <div className="p-6">
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.slice(0, 3).map((feature, i) => (
-                    <li key={i} className="flex items-center text-gray-600">
+                <p className="text-gray-600 mb-6">{selectedService.description}</p>
+                <h4 className="font-semibold text-lg mb-4">Key Features:</h4>
+                <ul className="space-y-3">
+                  {selectedService.features.map((feature, index) => (
+                    <li key={index} className="flex items-center text-gray-600">
                       <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
@@ -160,68 +268,15 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-                <button
-                  className="mt-6 text-[#6f2248] font-semibold hover:text-[#6f2248]/80 transition-colors flex items-center"
-                >
-                  Learn More
-                  <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
+              </motion.div>
             </motion.div>
-          ))}
+          )}
         </div>
+      </section>
 
-        {/* Service Modal */}
-        {selectedService && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-            onClick={() => setSelectedService(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">{selectedService.title}</h3>
-                <button
-                  onClick={() => setSelectedService(null)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <img
-                src={selectedService.image}
-                alt={selectedService.title}
-                className="w-full h-64 object-cover rounded-lg mb-6"
-              />
-              <p className="text-gray-600 mb-6">{selectedService.description}</p>
-              <h4 className="font-semibold text-lg mb-4">Key Features:</h4>
-              <ul className="space-y-3">
-                {selectedService.features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-gray-600">
-                    <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
-        )}
-      </div>
-    </section>
+      {/* Gallery Section */}
+      <Gallery images={galleryImages} />
+    </>
   )
 }
 

@@ -55,7 +55,7 @@ const Facilities = () => {
     },
     {
       name: "Patient Facilities",
-      image: "/images/gallery/02.jpg",
+      image: "/images/gallery/room-facility.jpg",
       description: "Comfortable patient areas designed for recovery and healing.",
       features: [
         "Private Rooms",

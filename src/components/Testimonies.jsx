@@ -1,30 +1,41 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion'
 import SectionHeader from './SectionHeader'
 
 const Testimonies = () => {
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ name: '', role: '', content: '' });
   const testimonials = [
     {
       name: "Sarah Johnson",
       role: "IVF Patient",
-      image: "/images/testimonials/patient1.jpg",
       content: "Mount Carmel's fertility treatment changed our lives. The staff was incredibly supportive throughout our journey, and now we have our beautiful twins.",
       rating: 5
     },
     {
       name: "Michael & Rebecca",
       role: "Fertility Treatment Patients",
-      image: "/images/testimonials/patient2.jpg",
       content: "The personalized care and attention we received was exceptional. Dr. Smith and the team made us feel confident and supported every step of the way.",
       rating: 5
     },
     {
       name: "Grace Mensah",
       role: "Maternity Patient",
-      image: "/images/testimonials/patient3.jpg",
       content: "The maternity ward staff was amazing. They provided excellent care during my pregnancy and delivery. I couldn't have asked for a better experience.",
       rating: 5
     }
   ]
+
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted testimony:', form);
+    setShowForm(false);
+    setForm({ name: '', role: '', content: '' });
+  };
 
   return (
     <section className="pt-8 pb-20 bg-gradient-to-b from-gray-50 to-white">
@@ -46,13 +57,6 @@ const Testimonies = () => {
               className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
                   <p className="text-[#6f2248] text-sm">{testimonial.role}</p>
@@ -91,9 +95,48 @@ const Testimonies = () => {
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
             We'd love to hear about your experience at Mount Carmel Hospital. Your story could inspire and help others on their healthcare journey.
           </p>
-          <button className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors">
+          <button className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors" onClick={() => setShowForm(true)}>
             Submit Your Testimony
           </button>
+          {showForm && (
+            <form onSubmit={handleFormSubmit} className="mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4">
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleFormChange}
+                placeholder="Your Name"
+                className="border border-gray-300 rounded px-4 py-2"
+                required
+              />
+              <input
+                type="text"
+                name="role"
+                value={form.role}
+                onChange={handleFormChange}
+                placeholder="Your Role (e.g. IVF Patient)"
+                className="border border-gray-300 rounded px-4 py-2"
+                required
+              />
+              <textarea
+                name="content"
+                value={form.content}
+                onChange={handleFormChange}
+                placeholder="Your Testimony"
+                className="border border-gray-300 rounded px-4 py-2"
+                rows={4}
+                required
+              />
+              <div className="flex justify-end gap-2">
+                <button type="button" className="px-4 py-2 rounded bg-gray-200 text-gray-700" onClick={() => setShowForm(false)}>
+                  Cancel
+                </button>
+                <button type="submit" className="px-4 py-2 rounded bg-[#6f2248] text-white font-semibold">
+                  Submit
+                </button>
+              </div>
+            </form>
+          )}
         </motion.div>
       </div>
     </section>

@@ -23,7 +23,6 @@ const Navbar = () => {
     { path: '/about', label: 'About' },
     { path: '/services', label: 'Services' },
     { path: '/facilities', label: 'Facilities' },
-    { path: '/doctors', label: 'Doctors' },
     { path: '/contact', label: 'Contact' },
   ]
 
@@ -54,19 +53,19 @@ const Navbar = () => {
                   Mount Carmel Hospital And Fertility Center
                 </h1>
                 <div className="flex items-center space-x-6 text-sm text-gray-600">
-                  <a href="mailto:contact@example.com" className="flex items-center hover:text-[#6f2248] transition-colors">
+                  <a href="mailto:mountcarmelhospital@outlook.com" className="flex items-center hover:text-[#6f2248] transition-colors">
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    contact@example.com
+                    mountcarmelhospital@outlook.com
                   </a>
                   <a href="tel:+15589554885" className="flex items-center hover:text-[#6f2248] transition-colors">
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    +1 (558) 955-4885
+                    0303939896, 0592411108
                   </a>
                 </div>
               </div>
@@ -94,14 +93,6 @@ const Navbar = () => {
                 onMouseLeave={() => setShowOthersDropdown(false)}
               >
                 Others
-                <svg 
-                  className={`w-4 h-4 ml-1 transform transition-transform ${showOthersDropdown ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
               </button>
               <AnimatePresence>
                 {showOthersDropdown && (
@@ -190,9 +181,9 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t"
+            className="fixed inset-0 z-50 md:hidden bg-white/70 backdrop-blur overflow-y-auto max-h-screen border-t"
           >
-            <div className="container-custom py-4 space-y-2">
+            <div className="container-custom py-2 space-y-2">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.path}
@@ -209,6 +200,31 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
+              {/* Others Dropdown Links for Mobile */}
+              <div className="pt-2">
+                <div className="text-xs font-semibold text-gray-500 px-4 pb-1">Others</div>
+                <Link 
+                  to="/testimonies" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors ${location.pathname === '/testimonies' ? 'text-[#6f2248]' : ''}`}
+                >
+                  Testimonies
+                </Link>
+                <Link 
+                  to="/faq" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors ${location.pathname === '/faq' ? 'text-[#6f2248]' : ''}`}
+                >
+                  FAQ
+                </Link>
+                <Link 
+                  to="/partners" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 text-gray-700 hover:text-[#6f2248] transition-colors ${location.pathname === '/partners' ? 'text-[#6f2248]' : ''}`}
+                >
+                  Partners
+                </Link>
+              </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
