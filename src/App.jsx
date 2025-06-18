@@ -20,7 +20,7 @@ function App() {
         <Navbar />
 
         {/* Padding wrapper to avoid content hiding behind Navbar */}
-        <main className="flex-grow pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16">
+        <main className="flex-grow sm:pt-20 md:pt-24 xl:pt-32 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
