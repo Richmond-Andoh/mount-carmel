@@ -31,7 +31,7 @@ const Footer = () => {
           {/* Hospital Info */}
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <img src={logo} alt="Logo" className="w-12 h-12" />
+              <img src={logo} alt="Logo" className="w-12 h-12 rounded-logo" />
               <div>
                 <h3 className="font-bold">Mount Carmel</h3>
                 <p className="text-sm text-gray-400">Hospital & Fertility Center</p>
