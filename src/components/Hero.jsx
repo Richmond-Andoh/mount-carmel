@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="min-h-screen">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
