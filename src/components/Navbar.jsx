@@ -31,8 +31,8 @@ const Navbar = () => {
   }
 
   return (
-    <nav className={`fixed w-full z-50 bg-white shadow-md transition-all duration-300 ${scrolled ? 'py-2' : 'py-3'}`}>
-      <div className="container-custom">
+    <nav className={`fixed w-full z-50 py-5 bg-white shadow-md transition-all duration-300 ${scrolled ? 'py-2' : 'py-3'}`}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3">
             <div className="w-[3.5rem] h-[3.5rem]">
