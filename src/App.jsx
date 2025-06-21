@@ -1,5 +1,4 @@
-// src/App.jsx
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
@@ -18,9 +17,8 @@ function App() {
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
         <Navbar />
+        <main className="flex-grow pt-32 px-4 sm:px-6 lg:px-8">
 
-        {/* Padding wrapper to avoid content hiding behind Navbar */}
-        <main className="flex-grow sm:pt-20 sm:px-6">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -34,7 +32,6 @@ function App() {
             <Route path="/partner-form" element={<PartnerForm />} />
           </Routes>
         </main>
-
         <Footer />
       </div>
     </BrowserRouter>
