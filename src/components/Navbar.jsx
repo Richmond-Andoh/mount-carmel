@@ -102,13 +102,13 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="mobile-nav-wrapper"
           >
-            <div className="mobile-close-btn">
+            {/* <div className="mobile-close-btn">
               <button onClick={() => setIsOpen(false)} aria-label="Close Menu">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-            </div>
+            </div> */}
             <div className="px-4 py-4 space-y-3">
               {navLinks.map(link => (
                 <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="mobile-nav-link">
