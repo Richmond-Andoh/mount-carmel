@@ -8,9 +8,10 @@ import Facilities from './components/Facilities'
 import Contact from './components/Contact'
 import Appointment from './components/Appointment'
 import Testimonies from './components/Testimonies'
-import Faq from './components/FAQ'
+import FAQ from './components/FAQ'
 import Partners from './components/Partners'
 import PartnerForm from './components/PartnerForm'
+import VisitationForm from './components/VisitationForm'
 
 function App() {
   return (
@@ -24,10 +25,11 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/facilities" element={<Facilities />} />
+            <Route path='/visitation-form' element={<VisitationForm />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/appointment" element={<Appointment />} />
             <Route path="/testimonies" element={<Testimonies />} />
-            <Route path="/faq" element={<Faq />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/partner-form" element={<PartnerForm />} />
           </Routes>

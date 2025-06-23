@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import SectionHeader from './SectionHeader'
+import { Link } from 'react-router-dom'
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjkraazj';
 
 const Facilities = () => {
   const [activeTab, setActiveTab] = useState('departments')
@@ -191,12 +194,12 @@ const Facilities = () => {
 
         {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center bg-[var(--primary-color)]/5 rounded-2xl p-12"
-        >
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="mt-20 text-center"
+                >
           <h3 className="text-3xl font-bold text-gray-900 mb-4">
             Experience Our Facilities
           </h3>
@@ -204,13 +207,12 @@ const Facilities = () => {
             Schedule a visit to our hospital and experience our world-class facilities firsthand.
             Our team is ready to provide you with exceptional care.
           </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[var(--primary-color)] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[var(--primary-color)]/90 transition-colors"
-          >
-            Schedule a Visit
-          </motion.button>
+          <Link
+                      to="/visitation-form"
+                      className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors inline-block"
+                    >
+                      Schedule a visit
+                    </Link>
         </motion.div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpwrdbyr';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjkraazj';
 
-const PartnerForm = () => {
+const VisitationForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,16 +11,15 @@ const PartnerForm = () => {
     message: ''
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [debugInfo, setDebugInfo] = useState(null);
-  const [isFormValid, setIsFormValid] = useState(false);
 
-  // Enable submit only when all required fields are filled
+  // Check if all fields are filled
   useEffect(() => {
-    const requiredFields = ['name', 'email', 'organization', 'phone'];
-    const allFilled = requiredFields.every(key => formData[key].trim() !== '');
+    const allFilled = Object.values(formData).every(value => value.trim() !== '');
     setIsFormValid(allFilled);
   }, [formData]);
 
@@ -51,13 +50,7 @@ const PartnerForm = () => {
       if (response.ok) {
         setSubmitted(true);
         e.target.reset();
-        setFormData({
-          name: '',
-          email: '',
-          organization: '',
-          phone: '',
-          message: ''
-        });
+        setFormData({ name: '', email: '', organization: '', phone: '', message: '' });
       } else {
         throw new Error(responseData.error || 'Something went wrong. Please try again.');
       }
@@ -71,7 +64,7 @@ const PartnerForm = () => {
   return (
     <section className="py-20 bg-gray-50 min-h-screen">
       <div className="container-custom max-w-xl mx-auto bg-white rounded-xl shadow-xl p-8 border border-gray-100">
-        <h1 className="text-3xl font-bold text-[#6f2248] mb-6 text-center">Become a Partner</h1>
+        <h1 className="text-3xl font-bold text-[#6f2248] mb-6 text-center">Visit our Facility</h1>
         {submitted ? (
           <div className="text-center text-green-700 font-semibold text-lg">
             Thank you for your interest! We will contact you soon.
@@ -108,14 +101,16 @@ const PartnerForm = () => {
               />
             </div>
             <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Organization </label>
+              <label className="block text-base font-semibold text-gray-900 mb-2">
+                Are you an organization, individual, or family?
+              </label>
               <input
                 type="text"
                 name="organization"
                 required
                 value={formData.organization}
                 onChange={handleChange}
-                placeholder="Enter your organization name"
+                placeholder="Enter your organization/family/individual name"
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
               />
             </div>
@@ -132,15 +127,16 @@ const PartnerForm = () => {
               />
             </div>
             <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Message</label>
+              <label className="block text-base font-semibold text-gray-900 mb-2">Purpose of visit</label>
               <textarea
                 name="message"
                 rows="4"
+                required
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell us more about your partnership interest..."
+                placeholder="Tell us more about your visitation interest..."
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
-              ></textarea>
+              />
             </div>
             <button
               type="submit"
@@ -149,7 +145,7 @@ const PartnerForm = () => {
                 (!isFormValid || loading) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#6f2248]/90'
               }`}
             >
-              {loading ? 'Submitting...' : 'Submit Partnership Request'}
+              {loading ? 'Submitting...' : 'Submit Visitation Request'}
             </button>
           </form>
         )}
@@ -158,4 +154,4 @@ const PartnerForm = () => {
   );
 };
 
-export default PartnerForm;
+export default VisitationForm;
