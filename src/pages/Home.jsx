@@ -1,8 +1,8 @@
-import Hero from './Hero'
+import Hero from '../components/Hero'
 import About from './About'
-import WhyChooseUs from './WhyChooseUs'
-import Services from './Services'
-import Facilities from './Facilities'
+import WhyChooseUs from '../components/WhyChooseUs'
+import Services from '../components/Services'
+import Facilities from "./Facilities";
 import Contact from './Contact'
 
 const Home = () => {

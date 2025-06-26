@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import SectionHeader from './SectionHeader'
+import SectionHeader from '../components/SectionHeader'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null)

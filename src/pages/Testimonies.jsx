@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion'
-import SectionHeader from './SectionHeader'
+import SectionHeader from '../components/SectionHeader'
 
 const Testimonies = () => {
   const [showForm, setShowForm] = useState(false);

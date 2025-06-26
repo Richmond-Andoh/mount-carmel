@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import SectionHeader from './SectionHeader'
+import SectionHeader from  "../components/SectionHeader"
 
 const Facilities = () => {
   const [activeTab, setActiveTab] = useState('departments')
