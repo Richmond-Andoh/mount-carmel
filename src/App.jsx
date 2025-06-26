@@ -12,6 +12,8 @@ import Faq from "./pages/FAQ";
 import Partners from "./pages/Partners";
 import PartnerForm from "./pages/PartnerForm";
 import ScrollToTop from "./ScrollToTop";
+import VisitationForm from "./pages/VisitationForm";
+import AppointmentSuccess from "./pages/AppointmentSuccess";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/faq" element={<Faq />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/partner-form" element={<PartnerForm />} />
+            <Route path="/visitation-form" element={<VisitationForm />} />
+            <Route path='/appointment-success' element={<AppointmentSuccess/>} />
           </Routes>
         </main>
         <Footer />
