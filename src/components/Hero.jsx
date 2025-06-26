@@ -12,7 +12,6 @@ const Hero = () => {
           backgroundImage: `url('/images/mount background image.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
         }}
       >
         {/* Dark overlay for better text readability */}

@@ -57,6 +57,7 @@ const Navbar = () => {
                   </svg>
                   0303939896, 0592411108
                 </a>
+                
               </div>
             </div>
           </Link>
