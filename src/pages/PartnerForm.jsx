@@ -54,9 +54,17 @@ const PartnerForm = () => {
       <div className="container-custom max-w-xl mx-auto bg-white rounded-xl shadow-xl p-8 border border-gray-100">
         <h1 className="text-3xl font-bold text-[#6f2248] mb-6 text-center">Become a Partner</h1>
         {submitted ? (
-          <div className="text-center text-green-700 font-semibold text-lg">
-            Thank you for your interest! We will contact you soon.
-          </div>
+          <div className="bg-white p-10 rounded-lg shadow-xl text-center max-w-xl">
+                  <h1 className="text-3xl font-bold text-[#6f2248] mb-4">Thank You!</h1>
+                  <p className="text-lg text-gray-700 mb-6">
+                  Thank you for your interest! We will contact you soon.        </p>
+                  <Link
+                    to="/"
+                    className="inline-block bg-[#6f2248] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#6f2248]/90 transition-colors"
+                  >
+                    Go Back to Home
+                  </Link>
+                </div>
         ) : (
           <form
             onSubmit={handleSubmit}
