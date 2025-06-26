@@ -1,21 +1,17 @@
-// src/components/Hero.jsx
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center"
         style={{
-          backgroundImage: `url('/images/mount background image.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundImage: `url('/images/mount-background-image.jpg')`
         }}
       >
-        {/* Dark overlay for better text readability */}
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
 

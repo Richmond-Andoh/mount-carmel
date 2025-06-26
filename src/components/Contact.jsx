@@ -49,7 +49,10 @@ const Contact = () => {
       title: 'Contact Numbers',
       details: ['Emergency: 0303939896, 0242160557', 'Appointment: 0592411108'],
       icon: (
-        <AiFillPhone />
+        <svg className="w-8 h-8 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
       )
     },
     {
@@ -102,7 +105,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="text-[var(--primary-color)] font-semibold text-lg mb-3 block">
+          <span className="text-[#6f2248] font-semibold text-lg mb-3 block">
             Get in Touch
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -161,17 +164,20 @@ const Contact = () => {
                 Our emergency department is available 24/7. For medical emergencies,
                 please call our emergency hotline or visit our emergency room immediately.
               </p>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-[var(--primary-color)] rounded-lg flex items-center justify-center text-white">
-                  <AiFillPhone />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Emergency Hotline</p>
-                  <p className="text-2xl font-bold text-[var(--primary-color)]">
-                    0303939896, 0592411108, 0242160557
-                  </p>
-                </div>
+              <div className="flex items-start space-x-4">
+            <div>
+              <h4 className="text-lg font-bold text-gray-600 mb-1">Emergency Hotline</h4>
+              <div className="flex items-center space-x-2">
+                <svg className="w-6 h-6 text-[var(--primary-color)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <p className="text-xl font-bold text-[var(--primary-color)]">
+                  0592411108, 0242160557, 0303939896
+                </p>
               </div>
+            </div>
+          </div>
             </motion.div>
           </div>
 
