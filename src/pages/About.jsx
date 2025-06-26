@@ -4,7 +4,7 @@ const About = () => {
   return (
     <section className="pt-12 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="container-custom">
-        <h2 className="text-5xl font-bold text-gray-900 mb-10">
+        <h2 className="text-4xl sm:text-2xl font-bold text-gray-900 mb-10">
               About Mount Carmel Hospital and Fertility Centre
         </h2>
         {/* About Section */}
