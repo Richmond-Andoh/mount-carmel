@@ -57,7 +57,7 @@ const Contact = () => {
     },
     {
       title: 'Email Address',
-      details: ['info@mountcarmel.com', 'appointments@mountcarmel.com'],
+      details: ['mountcarmelhospital@outlook.com'],
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path

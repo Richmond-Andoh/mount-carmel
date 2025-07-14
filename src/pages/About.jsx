@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 
 const About = () => {
   return (
-    <section className="pt-12 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section className="pt-4 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="container-custom">
-        <h2 className="text-5xl font-bold text-gray-900 mb-10">
-              About Mount Carmel Hospital and Fertility Centre
+        <h2 className="text-5xl font-bold text-center text-gray-900 mb-10">
+              About Our Facility
         </h2>
         {/* About Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -23,7 +23,7 @@ const About = () => {
               viewport={{ once: true }}
               className="absolute -left-4 top-0 w-20 h-20 bg-[#6f2248]/10 rounded-full blur-xl"
             />
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Providing Quality Healthcare
               <span className="text-[#6f2248]"> Since 2015</span>
             </h2>
