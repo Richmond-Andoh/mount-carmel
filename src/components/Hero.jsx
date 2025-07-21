@@ -12,7 +12,7 @@ const Hero = () => {
           backgroundImage: `url('/images/mount-background-image.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          height: "120vh"
         }}
       >
         {/* Dark overlay for better text readability */}
@@ -27,7 +27,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="max-w-3xl px-4 sm:px-6 md:px-8"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg text-white">
+          <h1 className="text-4xl sm:text-3xl md:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg text-white">
             Welcome to Mount Carmel Hospital And Fertility Center
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 font-medium drop-shadow-lg text-white">

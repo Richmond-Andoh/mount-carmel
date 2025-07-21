@@ -4,8 +4,12 @@ const About = () => {
   return (
     <section className="pt-4 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="container-custom">
+
         <h2 className="text-5xl font-bold text-center text-gray-900 mb-10">
               About Our Facility
+
+        <h2 className="text-4xl sm:text-2xl font-bold text-gray-900 mb-10">
+              About Mount Carmel Hospital and Fertility Cent
         </h2>
         {/* About Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
