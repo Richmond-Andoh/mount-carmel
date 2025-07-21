@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-// TODO: Set up your Formspree form with the recipient email marksspe.20@gmail.com and use the endpoint below:
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpwrdbyr'; // Replace with your actual Formspree endpoint for marksspe.20@gmail.com
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpwrdbyr';
 
 const PartnerForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    organization: '',
+    phone: '',
+    message: ''
+  });
+
+  const [isFormValid, setIsFormValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [debugInfo, setDebugInfo] = useState(null);
+
+  // Check if all fields are filled
+  useEffect(() => {
+    const allFilled = Object.values(formData).every(value => value.trim() !== '');
+    setIsFormValid(allFilled);
+  }, [formData]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,124 +35,123 @@ const PartnerForm = () => {
     setDebugInfo(null);
 
     try {
-      const formData = new FormData(e.target);
-      const formDataObj = {};
-      formData.forEach((value, key) => {
-        formDataObj[key] = value;
-      });
-      
-      setDebugInfo('Sending data: ' + JSON.stringify(formDataObj));
-      
+      const data = new FormData(e.target);
+
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        body: formData,
+        body: data,
         headers: {
           'Accept': 'application/json'
         }
       });
 
       const responseData = await response.json();
-      setDebugInfo(prev => prev + '\nResponse: ' + JSON.stringify(responseData));
+      setDebugInfo(JSON.stringify(responseData));
 
       if (response.ok) {
         setSubmitted(true);
         e.target.reset();
+        setFormData({ name: '', email: '', organization: '', phone: '', message: '' });
       } else {
         throw new Error(responseData.error || 'Something went wrong. Please try again.');
       }
     } catch (err) {
       setError(err.message);
-      setDebugInfo(prev => prev + '\nError: ' + err.message);
     } finally {
       setLoading(false);
     }
   };
 
-  return (
+
+ return (
     <section className="py-20 bg-gray-50 min-h-screen">
       <div className="container-custom max-w-xl mx-auto bg-white rounded-xl shadow-xl p-8 border border-gray-100">
         <h1 className="text-3xl font-bold text-[#6f2248] mb-6 text-center">Become a Partner</h1>
         {submitted ? (
-          <div className="bg-white p-10 rounded-lg shadow-xl text-center max-w-xl">
-                  <h1 className="text-3xl font-bold text-[#6f2248] mb-4">Thank You!</h1>
-                  <p className="text-lg text-gray-700 mb-6">
-                  Thank you for your interest! We will contact you soon.        </p>
-                  <Link
-                    to="/"
-                    className="inline-block bg-[#6f2248] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#6f2248]/90 transition-colors"
-                  >
-                    Go Back to Home
-                  </Link>
-                </div>
+           <div className="bg-white p-10 rounded-lg shadow-xl text-center max-w-xl">
+        <h1 className="text-3xl font-bold text-[#6f2248] mb-4">Thank You!</h1>
+        <p className="text-lg text-gray-700 mb-6">
+        Thank you for your interest! We will contact you soon. </p>
+        <Link
+          to="/"
+          className="inline-block bg-[#6f2248] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#6f2248]/90 transition-colors"
+        >
+          Go Back to Home
+        </Link>
+      </div>
+
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                 {error}
               </div>
             )}
-            {debugInfo && (
-              <div className="bg-gray-50 border border-gray-200 text-gray-700 px-4 py-3 rounded-lg whitespace-pre-wrap text-sm">
-                {debugInfo}
-              </div>
-            )}
             <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Full Name *</label>
+              <label className="block text-base font-semibold text-gray-900 mb-2">Full Name</label>
               <input
                 type="text"
                 name="name"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] text-gray-900 placeholder-gray-500"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Enter your full name"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
               />
             </div>
             <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Email Address *</label>
+              <label className="block text-base font-semibold text-gray-900 mb-2">Email Address</label>
               <input
                 type="email"
                 name="email"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] text-gray-900 placeholder-gray-500"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email address"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
               />
             </div>
             <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Organization *</label>
+              <label className="block text-base font-semibold text-gray-900 mb-2">Organization or Company </label>
               <input
                 type="text"
                 name="organization"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] text-gray-900 placeholder-gray-500"
-                placeholder="Enter your organization name"
+                value={formData.organization}
+                onChange={handleChange}
+                placeholder="Enter your Crganization or Company's name"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
               />
             </div>
             <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Phone Number *</label>
+              <label className="block text-base font-semibold text-gray-900 mb-2">Phone Number</label>
               <input
                 type="tel"
                 name="phone"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] text-gray-900 placeholder-gray-500"
-                placeholder="Enter your phone number"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your company/organization's phone number"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
               />
             </div>
             <div>
               <label className="block text-base font-semibold text-gray-900 mb-2">Message</label>
               <textarea
                 name="message"
-                rows="4"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248] text-gray-900 placeholder-gray-500"
-                placeholder="Tell us more about your partnership interest..."
-              ></textarea>
+                rows="5"
+                required
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell us more about your partnership goals..."
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f2248] focus:border-[#6f2248]"
+              />
             </div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={!isFormValid || loading}
               className={`w-full bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors shadow-lg hover:shadow-xl ${
-                loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#6f2248]/90'
+                (!isFormValid || loading) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#6f2248]/90'
               }`}
             >
               {loading ? 'Submitting...' : 'Submit Partnership Request'}
