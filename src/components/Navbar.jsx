@@ -39,9 +39,9 @@ const Navbar = () => {
               <img src={logo} alt="Mount Carmel Logo" className="w-full h-full rounded-logo" />
             </div>
             <div>
-              <h1 className="text-lg xs:text-xl font-bold text-[#6f2248] mb-1.5 leading-tight">
+              <h3 className="text-lg xs:text-xl font-bold text-[#6f2248] mb-1.5 leading-tight">
                 Mount Carmel Hospital And Fertility Center
-              </h1>
+              </h3>
               {/* Contact info only on sm+ */}
               <div className="hidden sm:flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 text-sm text-gray-600">
                 <a href="mailto:mountcarmelhospital@outlook.com" className="flex items-center hover:text-[#6f2248]">
@@ -103,14 +103,14 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="mobile-nav-wrapper"
           >
-            {/* Close button for mobile nav */}
-            <div className="mobile-close-btn">
+            {/* Only one close button here, remove any other close button in mobile nav */}
+            {/* <div className="flex justify-end mb-2">
               <button onClick={toggleMenu} aria-label="Close menu">
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-            </div>
+            </div> */}
             <div className="px-4 py-4 space-y-3">
               {navLinks.map(link => (
                 <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="mobile-nav-link">
@@ -129,7 +129,7 @@ const Navbar = () => {
       </AnimatePresence>
 
       {/* Show contact info on mobile below logo */}
-      <div className="flex flex-col sm:hidden mt-2 text-sm text-gray-600">
+      {/* <div className="flex flex-col sm:hidden mt-2 text-sm text-gray-600">
         <a href="mailto:mountcarmelhospital@outlook.com" className="flex items-center hover:text-[#6f2248] mb-1">
           <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -144,7 +144,7 @@ const Navbar = () => {
           </svg>
           0592411108
         </a>
-      </div>
+      </div> */}
     </nav>
   )
 }
