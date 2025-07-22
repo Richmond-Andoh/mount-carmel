@@ -156,7 +156,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           
           {/* Hospital Info */}
           <div className="flex flex-col">
@@ -164,7 +164,7 @@ const Footer = () => {
               <img src={logo} alt="Logo" className="w-12 h-12 rounded-logo" />
               <div>
                 <h3 className="font-bold">Mount Carmel</h3>
-                <p className="text-sm text-gray-400">Hospital & Fertility Center</p>
+                <h3 className="text-gray-400">Hospital & Fertility Center</h3>
               </div>
             </div>
             <p className="text-gray-400 mb-6">

@@ -43,7 +43,7 @@ const Navbar = () => {
                 Mount Carmel Hospital And Fertility Center
               </h3>
               {/* Contact info only on sm+ */}
-              <div className="hidden sm:flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 text-sm text-gray-600">
+              <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 text-sm text-gray-600">
                 <a href="mailto:mountcarmelhospital@outlook.com" className="flex items-center hover:text-[#6f2248]">
                   <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -63,7 +63,7 @@ const Navbar = () => {
           </Link>
 
           {/* Mobile menu button - now inline with logo/text */}
-          <div className="md:hidden flex items-center ml-2">
+          <div className="xl:hidden flex items-center ml-2">
             <button onClick={toggleMenu} className="text-gray-700 hover:text-[#6f2248] focus:outline-none">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isOpen ? (
@@ -75,8 +75,8 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8 md:space-x-4">
+          {/* Desktop Nav */}   
+          <div className="max-xl:hidden flex items-center space-x-8 md:space-x-4">
             {navLinks.map(link => (
               <Link
                 key={link.path}
@@ -103,14 +103,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="mobile-nav-wrapper"
           >
-            {/* Only one close button here, remove any other close button in mobile nav */}
-            {/* <div className="flex justify-end mb-2">
-              <button onClick={toggleMenu} aria-label="Close menu">
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div> */}
+            
             <div className="px-4 py-4 space-y-3">
               {navLinks.map(link => (
                 <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="mobile-nav-link">
