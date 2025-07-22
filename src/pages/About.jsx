@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 
 const About = () => {
   return (
-    <section className="pt-4 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section className="pt-4 mt-20 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       <div className="container-custom">
 
-        <h2 className="text-5xl font-bold text-center text-gray-900 mb-10">
+        <h2 className="text-5xl mt-10 font-bold text-center text-gray-900 mb-10">
               About Our Facility
         </h2>
 

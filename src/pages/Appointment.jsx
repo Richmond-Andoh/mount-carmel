@@ -85,6 +85,7 @@ const handleSubmit = async (e) => {
     });
 
     if (res.ok) {
+      sessionStorage.setItem('appointmentSuccess', 'true'); // Set flag for success
       navigate('/appointment-success'); // Custom success page
     } else {
       setSubmitStatus('error');

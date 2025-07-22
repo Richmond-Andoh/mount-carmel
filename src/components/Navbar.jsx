@@ -32,17 +32,18 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed w-full z-50 py-5 bg-white shadow-md transition-all duration-300 ${scrolled ? 'py-2' : 'py-3'}`}>
-      <div className="w-full max-w-none px-2 mx-0">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-3">
+      <div className="w-full max-w-none px-2 sm:px-4 mx-0">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-0">
+          <Link to="/" className="flex items-center gap-2 xs:gap-3 text-left">
             <div className="w-[3.5rem] h-[3.5rem]">
               <img src={logo} alt="Mount Carmel Logo" className="w-full h-full rounded-logo" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-[#6f2248] mb-1.5">
+              <h1 className="text-lg xs:text-xl font-bold text-[#6f2248] mb-1.5 leading-tight">
                 Mount Carmel Hospital And Fertility Center
               </h1>
-              <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 text-sm text-gray-600">
+              {/* Contact info only on sm+ */}
+              <div className="hidden sm:flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 text-sm text-gray-600">
                 <a href="mailto:mountcarmelhospital@outlook.com" className="flex items-center hover:text-[#6f2248]">
                   <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -57,7 +58,6 @@ const Navbar = () => {
                   </svg>
                   0592411108
                 </a>
-                
               </div>
             </div>
           </Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center justify-end mt-2 md:mt-0">
             <button onClick={toggleMenu} className="text-gray-700 hover:text-[#6f2248] focus:outline-none">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isOpen ? (
@@ -103,7 +103,14 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="mobile-nav-wrapper"
           >
-      
+            {/* Close button for mobile nav */}
+            <div className="mobile-close-btn">
+              <button onClick={toggleMenu} aria-label="Close menu">
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
             <div className="px-4 py-4 space-y-3">
               {navLinks.map(link => (
                 <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="mobile-nav-link">

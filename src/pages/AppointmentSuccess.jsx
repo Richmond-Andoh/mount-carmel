@@ -1,6 +1,17 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 const AppointmentSuccess = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (sessionStorage.getItem('appointmentSuccess') !== 'true') {
+      navigate('/appointment', { replace: true });
+    } else {
+      sessionStorage.removeItem('appointmentSuccess'); // Remove flag after access
+    }
+  }, [navigate]);
+
   return (
     <div className="my-8 flex items-center justify-center bg-gray-50 px-4">
       <div className="bg-white p-10 rounded-lg shadow-xl text-center max-w-xl">

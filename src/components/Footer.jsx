@@ -26,10 +26,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="container-custom">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Hospital Info */}
-          <div>
+          <div className='ml-5'>
             <div className="flex items-center space-x-3 mb-6">
               <img src={logo} alt="Logo" className="w-12 h-12 rounded-logo" />
               <div>
