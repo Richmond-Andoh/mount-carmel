@@ -1,293 +1,318 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { AiFillPhone } from "react-icons/ai";
+import { useEffect, useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    department: '',
+    subject: '',
     message: ''
-  })
+  });
+
+  useEffect(() => {
+    // Initialize WOW.js for animations
+    if (window.WOW) {
+      new window.WOW().init();
+    }
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log(formData)
-  }
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const contactInfo = [
-    {
-      title: 'Our Location',
-      details: ['Ashfoam Junction,Tema Com.25', 'Before RAHA International School'],
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
-      )
-    },
-    {
-      title: 'Contact Numbers',
-      details: ['Emergency: 0303939896, 0242160557', 'Appointment: 0592411108'],
-      icon: (
-        <svg className="w-8 h-8 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Email Address',
-      details: ['mountcarmelhospital@outlook.com'],
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-          />
-        </svg>
-      )
-    },
-    {
-      title: 'Working Hours',
-      details: ['Monday - Sunday', '24/7'],
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      )
-    }
-  ]
-
-  const departments = [
-    'Fertility Center',
-    'Reproductive Medicine',
-    'General Medicine',
-    'Cardiology',
-    'Pediatrics',
-    'Orthopedics',
-    'Gynecology'
-  ]
+    e.preventDefault();
+    // Handle form submission
+    console.log('Form submitted:', formData);
+    alert('Thank you for your message. We will get back to you soon!');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
 
   return (
-    <section className="py-8 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <span className="text-[#6f2248] font-semibold text-lg mb-3 block">
-            Get in Touch
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            We're Here to Help You
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Have questions or need to schedule an appointment? We're here to help.
-            Reach out to us using the contact information below or fill out the form.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-12 h-12 bg-[var(--primary-color)] bg-opacity-10 rounded-lg flex items-center justify-center text-[var(--primary-color)]">
-                      {info.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900">
-                      {info.title}
-                    </h3>
-                  </div>
-                  <div className="space-y-2">
-                    {info.details.map((detail, i) => (
-                      <p key={i} className="text-gray-600">
-                        {detail}
-                      </p>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Map or Additional Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-[var(--primary-color)]/5 p-8 rounded-xl"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Emergency Services
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Our emergency department is available 24/7. For medical emergencies,
-                please call our emergency hotline or visit our emergency room immediately.
-              </p>
-              <div className="flex items-start space-x-4">
-            <div>
-              <h4 className="text-lg font-bold text-gray-600 mb-1">Emergency Hotline</h4>
-              <div className="flex items-center space-x-2">
-                <svg className="w-6 h-6 text-[var(--primary-color)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <p className="text-xl font-bold text-[var(--primary-color)]">
-                  0592411108, 0242160557, 0303939896
-                </p>
-              </div>
-            </div>
-          </div>
-            </motion.div>
-          </div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-xl shadow-xl p-8 md:p-10"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Send Us a Message
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-colors"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-colors"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-colors"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">
-                    Department
-                  </label>
-                  <select
-                    id="department"
-                    name="department"
-                    value={formData.department}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-colors"
-                  >
-                    <option value="">Select Department</option>
-                    {departments.map((dept) => (
-                      <option key={dept} value={dept}>
-                        {dept}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="4"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-colors resize-none"
-                  required
-                />
-              </div>
-
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="w-full btn-primary"
-              >
-                Send Message
-              </motion.button>
-            </form>
-          </motion.div>
+    <>
+      <Header />
+      
+      {/* Page Header */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5">
+          <h1 className="display-3 text-white animated slideInDown">Contact Us</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
+              <li className="breadcrumb-item text-white active" aria-current="page">Contact</li>
+            </ol>
+          </nav>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default Contact 
+      {/* Contact Information */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">Contact Us</h6>
+            <h1 className="display-6 mb-4">Get In Touch With Us</h1>
+            <p className="mb-0">We're here to help and answer any questions you might have. We look forward to hearing from you.</p>
+          </div>
+          <div className="row g-4">
+            <div className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-map-marker-alt text-primary mb-4"></i>
+                  <h5 className="mb-3">Our Location</h5>
+                  <p>Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-phone text-primary mb-4"></i>
+                  <h5 className="mb-3">Call Us</h5>
+                  <p>+233 30 393 9896</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-envelope text-primary mb-4"></i>
+                  <h5 className="mb-3">Email Us</h5>
+                  <p>mountcarmelhospital@outlook.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Form & Map */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Contact Us</h6>
+                <h1 className="display-6 mb-4">Send Us A Message</h1>
+                <p>Have a question or need to schedule an appointment? Fill out the form below and we'll get back to you as soon as possible.</p>
+                <form onSubmit={handleSubmit}>
+                  <div className="row g-3">
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input 
+                          type="text" 
+                          className="form-control border-0 bg-light px-4" 
+                          id="name" 
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Your Name" 
+                          required
+                        />
+                        <label htmlFor="name">Your Name</label>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input 
+                          type="email" 
+                          className="form-control border-0 bg-light px-4" 
+                          id="email" 
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Your Email" 
+                          required
+                        />
+                        <label htmlFor="email">Your Email</label>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="form-floating">
+                        <input 
+                          type="text" 
+                          className="form-control border-0 bg-light px-4" 
+                          id="subject" 
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleInputChange}
+                          placeholder="Subject" 
+                          required
+                        />
+                        <label htmlFor="subject">Subject</label>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="form-floating">
+                        <textarea 
+                          className="form-control border-0 bg-light px-4 py-3" 
+                          id="message" 
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          placeholder="Leave a message here" 
+                          style={{height: '150px'}}
+                          required
+                        ></textarea>
+                        <label htmlFor="message">Message</label>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <button className="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Our Location</h6>
+                <h1 className="display-6 mb-4">Find Us On Map</h1>
+                <p>Visit us at our convenient location in Tema, Accra. We're easily accessible and provide ample parking for our patients.</p>
+                <div className="position-relative rounded overflow-hidden h-100" style={{minHeight: '400px'}}>
+                  <iframe 
+                    className="position-absolute w-100 h-100" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.5!2d0.0167!3d5.6167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzcnMDAuMCJOIDDCsDAxJzAwLjAiRQ!5e0!3m2!1sen!2sgh!4v1234567890"
+                    style={{border: 0}} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Business Hours */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Business Hours</h6>
+                <h1 className="display-6 mb-4">When We're Open</h1>
+                <p>We understand that healthcare needs don't follow a 9-to-5 schedule. That's why we offer flexible hours to accommodate our patients' busy lives.</p>
+                <div className="row g-4">
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <i className="fa fa-clock text-primary"></i>
+                      </div>
+                      <div className="ms-3">
+                        <h6 className="mb-0">Monday - Saturday</h6>
+                        <span>08:00 AM - 06:00 PM</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <i className="fa fa-clock text-primary"></i>
+                      </div>
+                      <div className="ms-3">
+                        <h6 className="mb-0">Sunday</h6>
+                        <span>09:00 AM - 03:00 PM</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <i className="fa fa-ambulance text-primary"></i>
+                      </div>
+                      <div className="ms-3">
+                        <h6 className="mb-0">Emergency Care</h6>
+                        <span>24/7 Available</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <i className="fa fa-calendar text-primary"></i>
+                      </div>
+                      <div className="ms-3">
+                        <h6 className="mb-0">Appointments</h6>
+                        <span>Call to Schedule</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Emergency Contact</h6>
+                <h1 className="display-6 mb-4">24/7 Emergency Services</h1>
+                <p>For medical emergencies, please call our emergency hotline immediately. Our emergency department is staffed 24/7 with experienced medical professionals.</p>
+                <div className="bg-light p-4 rounded">
+                  <div className="d-flex align-items-center mb-3">
+                    <i className="fa fa-phone fa-2x text-primary me-3"></i>
+                    <div>
+                      <h5 className="mb-0">Emergency Hotline</h5>
+                      <h3 className="mb-0">+233 30 393 9896</h3>
+                    </div>
+                  </div>
+                  <p className="mb-0">Our emergency team is ready to respond to your medical needs at any time of day or night.</p>
+                </div>
+                <div className="mt-4">
+                  <h6>What to do in an emergency:</h6>
+                  <ul className="list-unstyled">
+                    <li><i className="fa fa-check text-primary me-2"></i>Call our emergency number immediately</li>
+                    <li><i className="fa fa-check text-primary me-2"></i>Stay calm and follow instructions</li>
+                    <li><i className="fa fa-check text-primary me-2"></i>Provide clear location and symptoms</li>
+                    <li><i className="fa fa-check text-primary me-2"></i>Our team will guide you through next steps</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5 pt-lg-0">
+          <div className="row gx-0">
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-calendar text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>Book Appointment</h4>
+                    <span>Schedule your visit today</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-phone text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>Call Us Now</h4>
+                    <span>+233 30 393 9896</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
+export default Contact; 

@@ -1,119 +1,255 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import SectionHeader from '../components/SectionHeader'
+import { useState, useEffect } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null)
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  useEffect(() => {
+    // Initialize WOW.js for animations
+    if (window.WOW) {
+      new window.WOW().init();
+    }
+  }, []);
 
   const faqs = [
     {
-      question: "What fertility treatments do you offer?",
-      answer: "We offer a comprehensive range of fertility treatments including IVF, IUI, fertility preservation, hormone therapy, and genetic testing. Our specialists will work with you to determine the most appropriate treatment plan based on your individual circumstances."
+      question: "What services does Mount Carmel Hospital offer?",
+      answer: "Mount Carmel Hospital offers comprehensive healthcare services including fertility treatment, maternity care, general medicine, gynecology, pediatrics, emergency care, laboratory services, and specialized medical care. We provide both outpatient and inpatient services with state-of-the-art facilities."
     },
     {
-      question: "How long does the fertility treatment process take?",
-      answer: "The duration of fertility treatment varies depending on the specific treatment and individual response. A typical IVF cycle takes about 2-3 weeks, while other treatments may take longer. During your consultation, our doctors will provide a detailed timeline based on your treatment plan."
+      question: "How do I book an appointment?",
+      answer: "You can book an appointment by calling us at +233 30 393 9896, visiting our hospital in person, or using our online appointment booking system. We recommend booking in advance to ensure availability with your preferred doctor."
     },
     {
-      question: "What are your success rates for fertility treatments?",
-      answer: "Our success rates are consistently above the national average. However, success rates vary based on factors such as age, medical history, and type of treatment. We'll discuss your individual chances of success during your consultation."
+      question: "What are your operating hours?",
+      answer: "Our regular operating hours are Monday to Saturday from 8:00 AM to 6:00 PM, and Sundays from 9:00 AM to 3:00 PM. Our emergency department is open 24/7 for urgent medical care."
     },
     {
-      question: "Do you offer payment plans or financial assistance?",
-      answer: "Yes, we understand that fertility treatments can be a significant investment. We offer various payment plans and work with several insurance providers. Our financial counselors can help you understand your options and create a plan that works for you."
+      question: "Do you accept health insurance?",
+      answer: "Yes, we accept most major health insurance plans. Please contact our billing department to verify your specific insurance coverage and benefits. We also offer flexible payment plans for patients without insurance."
     },
     {
-      question: "What support services do you provide during treatment?",
-      answer: "We provide comprehensive support including counseling services, support groups, nutritional guidance, and stress management programs. Our goal is to support you both physically and emotionally throughout your treatment journey."
+      question: "What should I bring for my first appointment?",
+      answer: "For your first appointment, please bring your ID, insurance card (if applicable), list of current medications, medical history, and any relevant medical records or test results from previous healthcare providers."
     },
     {
-      question: "How do I schedule an initial consultation?",
-      answer: "You can schedule a consultation by calling our office, using our online appointment booking system, or filling out the contact form on our website. Our team will get back to you within 24 hours to arrange a convenient time."
+      question: "How successful are your fertility treatments?",
+      answer: "Our fertility treatments have high success rates, with IVF success rates averaging 60-70% depending on various factors including age and medical conditions. We provide personalized treatment plans and comprehensive support throughout the fertility journey."
+    },
+    {
+      question: "Do you provide emergency care?",
+      answer: "Yes, our emergency department is staffed 24/7 with experienced emergency medicine specialists. We handle all types of medical emergencies and provide rapid response care. For emergencies, call +233 30 393 9896 immediately."
+    },
+    {
+      question: "What makes Mount Carmel Hospital different?",
+      answer: "Mount Carmel Hospital stands out for our patient-centered approach, experienced medical team, modern facilities, and commitment to excellence. We combine advanced medical technology with compassionate care to provide the best healthcare experience for our patients."
+    },
+    {
+      question: "Can I get laboratory tests done without a doctor's appointment?",
+      answer: "Yes, we offer walk-in laboratory services for many common tests. However, some specialized tests may require a doctor's referral. Please contact our laboratory department to confirm test requirements and availability."
+    },
+    {
+      question: "Do you provide pediatric care?",
+      answer: "Yes, we have a dedicated pediatric department with experienced pediatricians who provide comprehensive care for children from birth through adolescence. Our child-friendly environment ensures a comfortable experience for young patients."
     }
-  ]
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
-    <section className="pt-8 pb-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container-custom">
-        <SectionHeader
-          title="Frequently Asked Questions"
-          subtitle="Get Answers to Common Questions"
-          description="Find answers to commonly asked questions about our fertility treatments, procedures, and services."
-        />
-
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="mb-4"
-            >
-              <button
-                className={`w-full text-left p-6 rounded-lg bg-white shadow-md hover:shadow-lg transition-all ${
-                  openIndex === index ? 'ring-2 ring-[#6f2248]' : ''
-                }`}
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              >
-                <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
-                  <svg
-                    className={`w-6 h-6 text-[#6f2248] transform transition-transform ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </div>
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="mt-4"
-                    >
-                      <p className="text-gray-600">{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </button>
-            </motion.div>
-          ))}
+    <>
+      <Header />
+      
+      {/* Page Header */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5">
+          <h1 className="display-3 text-white animated slideInDown">Frequently Asked Questions</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
+              <li className="breadcrumb-item text-white active" aria-current="page">FAQ</li>
+            </ol>
+          </nav>
         </div>
-
-        {/* Contact Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Still Have Questions?
-          </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Can't find the answer you're looking for? Please contact our friendly team.
-          </p>
-          <button className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors">
-            Contact Us
-          </button>
-        </motion.div>
       </div>
-    </section>
-  )
-}
 
-export default FAQ 
+      {/* FAQ Introduction */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">FAQ</h6>
+            <h1 className="display-6 mb-4">Frequently Asked Questions</h1>
+            <p className="mb-0">Find answers to common questions about our services, appointments, and healthcare procedures. If you don't find what you're looking for, please contact us directly.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="accordion" id="faqAccordion">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="accordion-item">
+                    <h2 className="accordion-header" id={`heading${index}`}>
+                      <button 
+                        className={`accordion-button ${activeIndex === index ? '' : 'collapsed'}`}
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target={`#collapse${index}`}
+                        aria-expanded={activeIndex === index ? 'true' : 'false'}
+                        aria-controls={`collapse${index}`}
+                        onClick={() => toggleFAQ(index)}
+                      >
+                        {faq.question}
+                      </button>
+                    </h2>
+                    <div 
+                      id={`collapse${index}`} 
+                      className={`accordion-collapse collapse ${activeIndex === index ? 'show' : ''}`}
+                      aria-labelledby={`heading${index}`}
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div className="accordion-body">
+                        {faq.answer}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="bg-light rounded p-5">
+                <h4 className="mb-4">Still Have Questions?</h4>
+                <p className="mb-4">If you couldn't find the answer to your question in our FAQ, we're here to help. Contact us directly and we'll get back to you as soon as possible.</p>
+                
+                <div className="d-flex align-items-center mb-3">
+                  <i className="fa fa-phone fa-2x text-primary me-3"></i>
+                  <div>
+                    <h6 className="mb-0">Call Us</h6>
+                    <p className="mb-0">+233 30 393 9896</p>
+                  </div>
+                </div>
+                
+                <div className="d-flex align-items-center mb-3">
+                  <i className="fa fa-envelope fa-2x text-primary me-3"></i>
+                  <div>
+                    <h6 className="mb-0">Email Us</h6>
+                    <p className="mb-0">mountcarmelhospital@outlook.com</p>
+                  </div>
+                </div>
+                
+                <div className="d-flex align-items-center mb-4">
+                  <i className="fa fa-clock fa-2x text-primary me-3"></i>
+                  <div>
+                    <h6 className="mb-0">Business Hours</h6>
+                    <p className="mb-0">Mon-Sat: 8:00 AM - 6:00 PM<br/>Sun: 9:00 AM - 3:00 PM</p>
+                  </div>
+                </div>
+                
+                <a className="btn btn-primary w-100 py-3" href="/contact">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Links Section */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">Quick Links</h6>
+            <h1 className="display-6 mb-4">Find What You Need</h1>
+            <p className="mb-0">Explore our services and resources to get the information you need about your healthcare journey.</p>
+          </div>
+          
+          <div className="row g-4">
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-calendar text-primary mb-4"></i>
+                  <h5 className="mb-3">Book Appointment</h5>
+                  <p>Schedule your visit with our expert medical team for comprehensive healthcare services.</p>
+                  <a className="btn btn-primary py-2 px-4" href="/appointment">Book Now</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-user-md text-primary mb-4"></i>
+                  <h5 className="mb-3">Our Team</h5>
+                  <p>Meet our experienced medical professionals dedicated to providing exceptional care.</p>
+                  <a className="btn btn-primary py-2 px-4" href="/team">Meet Team</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-stethoscope text-primary mb-4"></i>
+                  <h5 className="mb-3">Our Services</h5>
+                  <p>Explore our comprehensive range of medical services and specialized treatments.</p>
+                  <a className="btn btn-primary py-2 px-4" href="/services">View Services</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-map-marker-alt text-primary mb-4"></i>
+                  <h5 className="mb-3">Visit Us</h5>
+                  <p>Find our location and get directions to Mount Carmel Hospital for your appointment.</p>
+                  <a className="btn btn-primary py-2 px-4" href="/contact">Get Directions</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5 pt-lg-0">
+          <div className="row gx-0">
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-calendar text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>Book Appointment</h4>
+                    <span>Schedule your visit today</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-phone text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>Call Us Now</h4>
+                    <span>+233 30 393 9896</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
+export default FAQ; 

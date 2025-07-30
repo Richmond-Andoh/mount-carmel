@@ -1,256 +1,128 @@
-// import { Link } from 'react-router-dom';
-// import logo from '../assets/gallery/logo.jpg'
-
-// const Footer = () => {
-//   const links = {
-//     quickLinks: [
-//       { name: 'Home', path: '/' },
-//       { name: 'About', path: '/about' },
-//       { name: 'Services', path: '/services' },
-//       { name: 'Facilities', path: '/facilities' },
-//       { name: 'Contact', path: '/contact' }
-//     ],
-//     others: [
-//       { name: 'Testimonies', path: '/testimonies' },
-//       { name: 'FAQ', path: '/faq' },
-//       { name: 'Partners', path: '/partners' }
-//     ],
-//     services: [
-//       'Fertility Treatment',
-//       'Maternity Care',
-//       'Gynecology',
-//       'Pediatrics',
-//       'Laboratory Services'
-//     ]
-//   }
-
-//   return (
-//     <footer className="bg-gray-900 text-white pt-16 pb-8">
-//       <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-//           {/* Hospital Info */}
-//           <div className='ml-5'>
-//             <div className="flex items-center space-x-3 mb-6">
-//               <img src={logo} alt="Logo" className="w-12 h-12 rounded-logo" />
-//               <div>
-//                 <h3 className="font-bold">Mount Carmel</h3>
-//                 <p className="text-sm text-gray-400">Hospital & Fertility Center</p>
-//               </div>
-//             </div>
-//             <p className="text-gray-400 mb-6">
-//               Providing quality healthcare services with a focus on fertility treatments and comprehensive medical care.
-//             </p>
-//             <div className="space-y-2">
-//               <p className="flex items-center text-gray-400">
-//                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-//                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-//                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-//                 </svg>
-//                 Ashfoam Junction,Tema Com.25, Accra, Ghana
-//               </p>
-//               <p className="flex items-center text-gray-400">
-//                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-//                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-//                 </svg>
-//                 0303939896, 0592411108, 0242160557
-//               </p>
-//               <p className="flex items-center text-gray-400">
-//                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-//                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-//                 </svg>
-//                 mountcarmelhospital@outlook.com
-//               </p>
-//             </div>
-//           </div>
-
-//           {/* Quick Links */}
-//           <div className='ml-10'>
-//             <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-//             <ul className="space-y-3">
-//               {links.quickLinks.map((link) => (
-//                 <li key={link.name}>
-//                   <Link 
-//                     to={link.path}
-//                     className="text-gray-400 hover:text-white transition-colors"
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
-//           {/* Others */}
-//           <div>
-//             <h3 className="text-lg font-semibold mb-6">Others</h3>
-//             <ul className="space-y-3">
-//               {links.others.map((link) => (
-//                 <li key={link.name}>
-//                   <Link 
-//                     to={link.path}
-//                     className="text-gray-400 hover:text-white transition-colors"
-//                   >
-//                     {link.name}
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-
-//           {/* Services */}
-//           <div>
-//             <h3 className="text-lg font-semibold mb-6">Our Services</h3>
-//             <ul className="space-y-3">
-//               {links.services.map((service) => (
-//                 <li key={service} className="text-gray-400">
-//                   {service}
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-//         </div>
-
-//         <div className="border-t border-gray-800 mt-12 pt-8">
-//           <p className="text-center text-gray-400">
-//             © {new Date().getFullYear()} Mount Carmel Hospital and Fertility Center. All rights reserved.
-//           </p>
-//         </div>
-//       </div>
-//     </footer>
-//   )
-// }
-
-// export default Footer 
-
-
 import { Link } from 'react-router-dom';
-import logo from '../assets/gallery/logo.jpg';
 
 const Footer = () => {
-  const links = {
-    quickLinks: [
-      { name: 'Home', path: '/' },
-      { name: 'About', path: '/about' },
-      { name: 'Services', path: '/services' },
-      { name: 'Facilities', path: '/facilities' },
-      { name: 'Contact', path: '/contact' }
-    ],
-    others: [
-      { name: 'Testimonies', path: '/testimonies' },
-      { name: 'FAQ', path: '/faq' },
-      { name: 'Partners', path: '/partners' }
-    ],
-    services: [
-      'Fertility Treatment',
-      'Maternity Care',
-      'Gynecology',
-      'Pediatrics',
-      'Laboratory Services'
-    ]
-  };
+  const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { name: 'About Us', path: '/about' },
+    { name: 'Contact Us', path: '/contact' },
+    { name: 'Our Services', path: '/services' },
+    { name: 'Terms & Condition', path: '/terms' },
+    { name: 'Support', path: '/support' }
+  ];
+
+  const popularLinks = [
+    { name: 'Fertility Treatment', path: '/services/fertility' },
+    { name: 'Maternity Care', path: '/services/maternity' },
+    { name: 'Emergency Care', path: '/services/emergency' },
+    { name: 'Laboratory Services', path: '/services/laboratory' },
+    { name: 'Book Appointment', path: '/appointment' }
+  ];
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:grid-cols-[2fr_1fr_1fr_1fr]">
-          
-          {/* Hospital Info */}
-          <div className="flex flex-col">
-            <div className="flex items-center space-x-3 mb-6">
-              <img src={logo} alt="Logo" className="w-12 h-12 rounded-logo" />
-              <div>
-                <h3 className="font-bold">Mount Carmel</h3>
-                <h3 className="text-gray-400">Hospital & Fertility Center</h3>
+    <>
+      {/* Footer */}
+      <div className="container-fluid footer position-relative py-5 wow fadeIn" data-wow-delay="0.1s" style={{backgroundColor: '#003366'}}>
+        <div className="container">
+          <div className="row g-5 py-5">
+            <div className="col-lg-6 pe-lg-5">
+              <Link to="/" className="navbar-brand">
+                <div className="d-flex align-items-center">
+                  <img 
+                    src="/images/logo.jpg" 
+                    alt="Mount Carmel Hospital Logo" 
+                    style={{width: '50px', height: '50px', borderRadius: '50%', marginRight: '15px'}}
+                  />
+                  <h1 className="h1 mb-0">
+                    <span style={{color: '#FFFFFF'}}>Mount </span>
+                    <span style={{color: '#F8FBFF'}}>Carmel</span>
+                  </h1>
+                </div>
+              </Link>
+              <p className="fs-5 mb-4" style={{color: '#F8FBFF'}}>
+                Mount Carmel Hospital and Fertility Center is committed to providing exceptional healthcare 
+                with compassion and excellence. Our state-of-the-art facilities and expert medical team 
+                ensure the highest quality care for our patients.
+              </p>
+              <p style={{color: '#F8FBFF'}}><i className="fa fa-map-marker-alt me-2" style={{color: '#FFFFFF'}}></i>Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
+              <p style={{color: '#F8FBFF'}}><i className="fa fa-phone-alt me-2" style={{color: '#FFFFFF'}}></i>+233 30 393 9896</p>
+              <p style={{color: '#F8FBFF'}}><i className="fa fa-envelope me-2" style={{color: '#FFFFFF'}}></i>mountcarmelhospital@outlook.com</p>
+              <div className="d-flex mt-4">
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                  <i className="fab fa-facebook-f" style={{color: 'white'}}></i>
+                </a>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                  <i className="fab fa-twitter" style={{color: 'white'}}></i>
+                </a>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                  <i className="fab fa-linkedin-in" style={{color: 'white'}}></i>
+                </a>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                  <i className="fab fa-instagram" style={{color: 'white'}}></i>
+                </a>
               </div>
             </div>
-            <p className="text-gray-400 mb-6">
-              Providing quality healthcare services with a focus on fertility treatments and comprehensive medical care.
-            </p>
-            <div className="space-y-2">
-              <p className="flex items-center text-gray-400">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Ashfoam Junction, Tema Com.25, Accra, Ghana
+            <div className="col-lg-6 ps-lg-5">
+              <div className="row g-5">
+                <div className="col-sm-6">
+                  <h4 className="text-light mb-4" style={{color: '#FFFFFF'}}>Quick Links</h4>
+                  {quickLinks.map((link, index) => (
+                    <Link key={index} className="btn btn-link" to={link.path} style={{color: '#F8FBFF', textDecoration: 'none'}}>
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+                <div className="col-sm-6">
+                  <h4 className="text-light mb-4" style={{color: '#FFFFFF'}}>Popular Services</h4>
+                  {popularLinks.map((link, index) => (
+                    <Link key={index} className="btn btn-link" to={link.path} style={{color: '#F8FBFF', textDecoration: 'none'}}>
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+                <div className="col-sm-12">
+                  <h4 className="text-light mb-4" style={{color: '#FFFFFF'}}>Newsletter</h4>
+                  <div className="w-100">
+                    <div className="input-group">
+                      <input 
+                        type="text" 
+                        className="form-control border-0 py-3 px-4" 
+                        style={{ background: 'rgba(255, 255, 255, .1)', color: '#F8FBFF' }} 
+                        placeholder="Your Email Address"
+                      />
+                      <button className="btn px-4" style={{backgroundColor: '#0066CC', borderColor: '#0066CC', color: 'white'}}>Sign Up</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="container-fluid copyright py-4" style={{backgroundColor: '#001122'}}>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 text-center text-md-start">
+              <p className="mb-0" style={{color: '#F8FBFF'}}>
+                &copy; <a href="#" style={{color: '#FFFFFF'}}>Mount Carmel Hospital</a>. All Rights Reserved. {currentYear}
               </p>
-              <p className="flex items-center text-gray-400">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                0303939896, 0592411108, 0242160557
-              </p>
-              <p className="flex items-center text-gray-400">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                mountcarmelhospital@outlook.com
+            </div>
+            <div className="col-md-6 text-center text-md-end">
+              <p className="mb-0" style={{color: '#F8FBFF'}}>
+                Designed by <a href="https://htmlcodex.com" style={{color: '#FFFFFF'}}>HTML Codex</a>
               </p>
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {links.quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Others */}
-          <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-6">Others</h3>
-            <ul className="space-y-3">
-              {links.others.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-6">Our Services</h3>
-            <ul className="space-y-3">
-              {links.services.map((service) => (
-                <li key={service} className="text-gray-400">
-                  {service}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-800 mt-12 pt-8">
-          <p className="text-center text-gray-400">
-            © {new Date().getFullYear()} Mount Carmel Hospital and Fertility Center. All rights reserved.
-          </p>
         </div>
       </div>
-    </footer>
+
+      {/* Back to Top */}
+      <a href="#" className="btn btn-lg btn-lg-square rounded-circle back-to-top" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+        <i className="bi bi-arrow-up" style={{color: 'white'}}></i>
+      </a>
+    </>
   );
 };
 

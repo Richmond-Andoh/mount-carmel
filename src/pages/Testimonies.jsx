@@ -1,146 +1,252 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion'
-import SectionHeader from '../components/SectionHeader'
+import { useEffect } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Testimonies = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: '', role: '', content: '' });
+  useEffect(() => {
+    // Initialize WOW.js for animations
+    if (window.WOW) {
+      new window.WOW().init();
+    }
+  }, []);
+
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "IVF Patient",
-      content: "Mount Carmel's fertility treatment changed our lives. The staff was incredibly supportive throughout our journey, and now we have our beautiful twins.",
+      name: 'Sarah and John Mensah',
+      role: 'Fertility Treatment Success',
+      image: '/images/testimonial-1.jpg',
+      content: 'After years of trying to conceive, Mount Carmel Hospital gave us hope. The fertility treatment was successful and we now have beautiful twins. The doctors and staff were incredibly supportive throughout our journey.',
       rating: 5
     },
     {
-      name: "Michael & Rebecca",
-      role: "Fertility Treatment Patients",
-      content: "The personalized care and attention we received was exceptional. Dr. Smith and the team made us feel confident and supported every step of the way.",
+      name: 'Grace Addo',
+      role: 'Maternity Care Patient',
+      image: '/images/testimonial-2.jpg',
+      content: 'My experience at Mount Carmel Hospital during my pregnancy was exceptional. The prenatal care was comprehensive, and the delivery was smooth. The postnatal care was also excellent. I highly recommend their maternity services.',
       rating: 5
     },
     {
-      name: "Grace Mensah",
-      role: "Maternity Patient",
-      content: "The maternity ward staff was amazing. They provided excellent care during my pregnancy and delivery. I couldn't have asked for a better experience.",
+      name: 'Kwame Osei',
+      role: 'General Medicine Patient',
+      image: '/images/testimonial-3.jpg',
+      content: 'The medical team at Mount Carmel Hospital is professional and caring. They took the time to understand my health concerns and provided effective treatment. The facilities are modern and the staff is very friendly.',
+      rating: 5
+    },
+    {
+      name: 'Ama Kufuor',
+      role: 'Pediatric Care Parent',
+      image: '/images/testimonial-4.jpg',
+      content: 'As a parent, I appreciate the child-friendly environment and the expertise of the pediatric team. My children feel comfortable during their visits, and the doctors are excellent with kids.',
+      rating: 5
+    },
+    {
+      name: 'Michael Asante',
+      role: 'Emergency Care Patient',
+      image: '/images/testimonial-5.jpg',
+      content: 'When I had a medical emergency, Mount Carmel Hospital responded quickly and professionally. The emergency team was efficient and the care I received was outstanding. Thank you for saving my life.',
+      rating: 5
+    },
+    {
+      name: 'Elizabeth Boateng',
+      role: 'Laboratory Services Patient',
+      image: '/images/testimonial-6.jpg',
+      content: 'The laboratory services at Mount Carmel Hospital are top-notch. The tests were done quickly and the results were accurate. The staff was professional and made the process comfortable.',
       rating: 5
     }
-  ]
+  ];
 
-  const handleFormChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted testimony:', form);
-    setShowForm(false);
-    setForm({ name: '', role: '', content: '' });
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <i 
+        key={index} 
+        className={`fa fa-star ${index < rating ? 'text-warning' : 'text-muted'}`}
+      ></i>
+    ));
   };
 
   return (
-    <section className="pt-8 pb-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container-custom">
-        <SectionHeader
-          title="Patient Testimonials"
-          subtitle="Real Stories from Real Patients"
-          description="Hear from our patients about their experiences and successful treatments at Mount Carmel Hospital And Fertility Center."
-        />
+    <>
+      <Header />
+      
+      {/* Page Header */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5">
+          <h1 className="display-3 text-white animated slideInDown">Patient Testimonials</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
+              <li className="breadcrumb-item text-white active" aria-current="page">Testimonials</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <div className="flex items-center mb-6">
-                <div>
-                  <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
-                  <p className="text-[#6f2248] text-sm">{testimonial.role}</p>
+      {/* Testimonials Introduction */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">Testimonials</h6>
+            <h1 className="display-6 mb-4">What Our Patients Say</h1>
+            <p className="mb-0">Hear from our patients about their experiences at Mount Carmel Hospital. Their stories reflect our commitment to providing exceptional healthcare with compassion and excellence.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Grid */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-4">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
+                <div className="testimonial-item bg-light rounded p-4">
+                  <div className="d-flex align-items-center mb-4">
+                    <img 
+                      className="flex-shrink-0 rounded-circle me-3" 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      style={{width: '60px', height: '60px', objectFit: 'cover'}}
+                    />
+                    <div>
+                      <h5 className="mb-1">{testimonial.name}</h5>
+                      <small className="text-primary">{testimonial.role}</small>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    {renderStars(testimonial.rating)}
+                  </div>
+                  <p className="mb-0">"{testimonial.content}"</p>
                 </div>
               </div>
-              <div className="mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="w-5 h-5 text-yellow-400 inline-block"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                    />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-gray-600 italic">"{testimonial.content}"</p>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Share Your Story
-          </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            We'd love to hear about your experience at Mount Carmel Hospital. Your story could inspire and help others on their healthcare journey.
-          </p>
-          <button className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors" onClick={() => setShowForm(true)}>
-            Submit Your Testimony
-          </button>
-          {showForm && (
-            <form onSubmit={handleFormSubmit} className="mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4">
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleFormChange}
-                placeholder="Your Name"
-                className="border border-gray-300 rounded px-4 py-2"
-                required
-              />
-              <input
-                type="text"
-                name="role"
-                value={form.role}
-                onChange={handleFormChange}
-                placeholder="Your Role (e.g. IVF Patient)"
-                className="border border-gray-300 rounded px-4 py-2"
-                required
-              />
-              <textarea
-                name="content"
-                value={form.content}
-                onChange={handleFormChange}
-                placeholder="Your Testimony"
-                className="border border-gray-300 rounded px-4 py-2"
-                rows={4}
-                required
-              />
-              <div className="flex justify-end gap-2">
-                <button type="button" className="px-4 py-2 rounded bg-gray-200 text-gray-700" onClick={() => setShowForm(false)}>
-                  Cancel
-                </button>
-                <button type="submit" className="px-4 py-2 rounded bg-[#6f2248] text-white font-semibold">
-                  Submit
-                </button>
-              </div>
-            </form>
-          )}
-        </motion.div>
       </div>
-    </section>
-  )
-}
 
-export default Testimonies 
+      {/* Success Stories Section */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Success Stories</h6>
+                <h1 className="display-6 mb-4">Transforming Lives Through Healthcare</h1>
+                <p>At Mount Carmel Hospital, we believe in the power of healthcare to transform lives. Our success stories are a testament to our commitment to excellence and the trust our patients place in us.</p>
+                <div className="row g-4 mb-4">
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">High Success Rates</h6>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Patient Satisfaction</h6>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Expert Care</h6>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Modern Technology</h6>
+                    </div>
+                  </div>
+                </div>
+                <a className="btn btn-primary py-3 px-5" href="/appointment">Book Your Appointment</a>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="img-border">
+                <img className="img-fluid" src="/images/success-stories.jpg" alt="Success Stories" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Statistics Section */}
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5 pt-lg-0">
+          <div className="row gx-0">
+            <div className="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-heart text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>98%</h4>
+                    <span>Patient Satisfaction</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-baby text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>1000+</h4>
+                    <span>Successful Births</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-users text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>5000+</h4>
+                    <span>Happy Patients</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-star text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>4.9/5</h4>
+                    <span>Average Rating</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">Join Our Success Stories</h6>
+            <h1 className="display-6 mb-4">Experience Exceptional Healthcare</h1>
+            <p className="mb-4">Join thousands of satisfied patients who have experienced the Mount Carmel difference. Book your appointment today and start your journey to better health.</p>
+            <div className="d-flex justify-content-center gap-3">
+              <a className="btn btn-primary py-3 px-5" href="/appointment">Book Appointment</a>
+              <a className="btn btn-outline-primary py-3 px-5" href="/contact">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
+export default Testimonies; 

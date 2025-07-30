@@ -1,145 +1,210 @@
-import { motion } from 'framer-motion'
+import { useEffect } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const About = () => {
+  useEffect(() => {
+    // Initialize WOW.js for animations
+    if (window.WOW) {
+      new window.WOW().init();
+    }
+  }, []);
+
   return (
-    <section className="pt-4 mt-20 pb-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      <div className="container-custom">
-
-        <h2 className="text-5xl mt-10 font-bold text-center text-gray-900 mb-10">
-              About Our Facility
-        </h2>
-
-        {/* About Section */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="absolute -left-4 top-0 w-20 h-20 bg-[#6f2248]/10 rounded-full blur-xl"
-            />
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Providing Quality Healthcare
-              <span className="text-[#6f2248]"> Since 2015</span>
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Mount Carmel Hospital And Fertility Center has been at the forefront of medical excellence for over three decades. 
-              Our commitment to providing exceptional healthcare services is reflected in our state-of-the-art 
-              facilities, expert medical staff, and patient-centered approach to care.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#6f2248] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#6f2248]/90 transition-colors"
-            >
-              Learn More About Us
-            </motion.button>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative h-[400px] md:h-[500px]"
-          >
-            <img
-              src="/images/gallery/01.jpg"
-              alt="Mount Carmel Hospital And Fertility Center Building"
-              className="rounded-2xl shadow-2xl w-full h-full object-cover"
-              onError={(e) => {
-                console.error('Image failed to load:', e);
-                e.target.style.backgroundColor = '#f3f4f6';
-              }}
-            />
-          </motion.div>
-        </div>
-
-        {/* Vision & Mission Section */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
-          {/* Vision */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-[#6f2248]/10 rounded-full flex items-center justify-center mr-4">
-                <svg className="w-6 h-6 text-[#6f2248]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
-            </div>
-            <p className="text-gray-600 leading-relaxed">
-              To be the leading healthcare institution in providing comprehensive medical services with a special focus on fertility care, 
-              recognized for excellence, innovation, and compassionate patient care. We envision a future where advanced medical technology 
-              meets personalized care, making quality healthcare accessible to all.
-            </p>
-          </motion.div>
-
-          {/* Mission */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-[#6f2248]/10 rounded-full flex items-center justify-center mr-4">
-                <svg className="w-6 h-6 text-[#6f2248]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                    d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
-            </div>
-            <p className="text-gray-600 leading-relaxed">
-              To deliver exceptional healthcare services through:
-            </p>
-            <ul className="mt-4 space-y-2">
-              <li className="flex items-center text-gray-600">
-                <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Advanced medical treatments and technologies
-              </li>
-              <li className="flex items-center text-gray-600">
-                <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Comprehensive fertility care programs
-              </li>
-              <li className="flex items-center text-gray-600">
-                <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Patient-centered approach to healthcare
-              </li>
-              <li className="flex items-center text-gray-600">
-                <svg className="w-5 h-5 text-[#6f2248] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Continuous medical education and research
-              </li>
-            </ul>
-          </motion.div>
+    <>
+      <Header />
+      
+      {/* Page Header */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5">
+          <h1 className="display-3 text-white animated slideInDown">About Us</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
+              <li className="breadcrumb-item text-white active" aria-current="page">About</li>
+            </ol>
+          </nav>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default About 
+        {/* About Section */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="img-border">
+                <img className="img-fluid" src="/images/about.jpg" alt="Mount Carmel Hospital" />
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                <h1 className="display-6 mb-4">Mount Carmel Hospital & Fertility Center</h1>
+                <p>Mount Carmel Hospital and Fertility Center is a leading healthcare institution in Ghana, dedicated to providing exceptional medical care with compassion and excellence. Established with a vision to transform healthcare delivery, we have been serving our community with state-of-the-art medical facilities and expert healthcare professionals.</p>
+                <p>Our commitment to excellence extends beyond traditional healthcare services. We specialize in fertility treatments, maternity care, and comprehensive medical services, ensuring that every patient receives personalized care in a comfortable and supportive environment.</p>
+                <a className="btn btn-primary py-3 px-5" href="/services">Explore More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mission & Vision */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Our Mission</h6>
+                <h1 className="display-6 mb-4">Providing Exceptional Healthcare</h1>
+                <p>Our mission is to provide comprehensive, high-quality healthcare services that improve the health and well-being of our patients and communities. We are committed to:</p>
+                <ul className="mb-4">
+                  <li>Delivering patient-centered care with compassion and respect</li>
+                  <li>Utilizing advanced medical technology and evidence-based practices</li>
+                  <li>Maintaining the highest standards of medical excellence</li>
+                  <li>Supporting families through their healthcare journey</li>
+                  <li>Contributing to the advancement of medical knowledge</li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Our Vision</h6>
+                <h1 className="display-6 mb-4">Leading Healthcare Innovation</h1>
+                <p>We envision Mount Carmel Hospital as the premier healthcare institution in Ghana, recognized for:</p>
+                <ul className="mb-4">
+                  <li>Excellence in medical care and patient outcomes</li>
+                  <li>Innovation in healthcare delivery and technology</li>
+                  <li>Leadership in fertility and reproductive medicine</li>
+                  <li>Community health improvement and education</li>
+                  <li>Partnerships that advance healthcare in Africa</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Values Section */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">Our Values</h6>
+            <h1 className="display-6 mb-4">The Foundation of Our Care</h1>
+          </div>
+          <div className="row g-4">
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-heart text-primary mb-4"></i>
+                  <h5 className="mb-3">Compassion</h5>
+                  <p>We treat every patient with kindness, empathy, and understanding, recognizing the emotional aspects of healthcare.</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-star text-primary mb-4"></i>
+                  <h5 className="mb-3">Excellence</h5>
+                  <p>We maintain the highest standards of medical care, continuously improving our practices and outcomes.</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-shield-alt text-primary mb-4"></i>
+                  <h5 className="mb-3">Integrity</h5>
+                  <p>We conduct ourselves with honesty, transparency, and ethical behavior in all our interactions.</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+              <div className="service-item text-center pt-3">
+                <div className="p-4">
+                  <i className="fa fa-3x fa-users text-primary mb-4"></i>
+                  <h5 className="mb-3">Teamwork</h5>
+                  <p>We collaborate effectively as a team, valuing each member's contribution to patient care.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      {/* History Section */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Our History</h6>
+                <h1 className="display-6 mb-4">A Legacy of Care</h1>
+                <p>Mount Carmel Hospital was founded with a vision to provide exceptional healthcare services to the people of Ghana. Our journey began with a simple yet powerful mission: to make quality healthcare accessible to all.</p>
+                <p>Over the years, we have grown from a small medical facility to a comprehensive healthcare institution, expanding our services to include specialized fertility treatments, advanced maternity care, and a wide range of medical specialties.</p>
+                <p>Today, we continue to build on our legacy of excellence, embracing new technologies and medical advancements while maintaining the compassionate care that has defined us from the beginning.</p>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="img-border">
+                <img className="img-fluid" src="/images/hospital-building.jpg" alt="Mount Carmel Hospital Building" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5 pt-lg-0">
+          <div className="row gx-0">
+            <div className="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-users text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>5000+</h4>
+                    <span>Happy Patients</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-baby text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>1000+</h4>
+                    <span>Successful Births</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
+                <div className="d-flex">
+                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                    <i className="fa fa-user-md text-primary"></i>
+                  </div>
+                  <div className="ps-3">
+                    <h4>50+</h4>
+                    <span>Expert Doctors</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
+export default About; 

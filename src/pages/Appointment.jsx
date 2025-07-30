@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Appointment = () => {
   const [formData, setFormData] = useState({
@@ -21,14 +22,22 @@ const Appointment = () => {
   const navigate = useNavigate();
 
   const departments = [
+    'Fertility Treatment',
+    'Maternity Care',
     'General Medicine',
     'Gynecology',
     'Pediatrics',
-    'Physician',
-    'Postnatal/Antenatal',
-    'Dietician',
-    'General Surgery'
+    'Emergency Care',
+    'Laboratory Services',
+    'Specialized Care'
   ];
+
+  useEffect(() => {
+    // Initialize WOW.js for animations
+    if (window.WOW) {
+      new window.WOW().init();
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,300 +56,322 @@ const Appointment = () => {
     return slots;
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-// Inside the component
+    const endpoint =
+      formData.patientType === 'New Patient'
+        ? 'https://formspree.io/f/xqabgoyl'
+        : 'https://formspree.io/f/xldnokpw';
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSubmitStatus(null);
+    const payload = new FormData();
 
-  const endpoint =
-    formData.patientType === 'New Patient'
-      ? 'https://formspree.io/f/xqabgoyl'
-      : 'https://formspree.io/f/xldnokpw';
-
-  const payload = new FormData();
-
-  payload.append('Patient Type', formData.patientType === 'New Patient' ? 'New Patient' : 'Old Patient');
-  payload.append('Full Name', formData.name);
-  payload.append('Phone Number', formData.phone);
-  payload.append('Preferred Date', formData.date);
-  payload.append('Preferred Time', formData.time);
-  payload.append('Department', formData.department);
-  if (formData.patientType === 'New Patient') {
-    payload.append('Date of Birth', formData.dateOfBirth);
-    payload.append('Gender', formData.gender);
-    payload.append('Residence', formData.residence);
-  }
-  payload.append('Additional Message', formData.message || 'None');
-
-  try {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      body: payload,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-
-    if (res.ok) {
-      sessionStorage.setItem('appointmentSuccess', 'true'); // Set flag for success
-      navigate('/appointment-success'); // Custom success page
-    } else {
-      setSubmitStatus('error');
+    payload.append('Patient Type', formData.patientType === 'New Patient' ? 'New Patient' : 'Old Patient');
+    payload.append('Full Name', formData.name);
+    payload.append('Phone Number', formData.phone);
+    payload.append('Preferred Date', formData.date);
+    payload.append('Preferred Time', formData.time);
+    payload.append('Department', formData.department);
+    if (formData.patientType === 'New Patient') {
+      payload.append('Date of Birth', formData.dateOfBirth);
+      payload.append('Gender', formData.gender);
+      payload.append('Residence', formData.residence);
     }
-  } catch (err) {
-    console.error(err);
-    setSubmitStatus('error');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+    payload.append('Additional Message', formData.message || 'None');
 
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (res.ok) {
+        sessionStorage.setItem('appointmentSuccess', 'true');
+        navigate('/appointment-success');
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div className="py-20 bg-gray-50">
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-[#6f2248] mb-4">Book an Appointment</h1>
-          <p className="text-xl text-gray-800 max-w-2xl mx-auto font-medium leading-relaxed">
-            Schedule your visit with our experienced medical professionals. We're here to provide you with the best care possible.
-          </p>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-8 border border-gray-100"
-        >
-          {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-green-700">
-                Appointment request submitted successfully! We will contact you shortly.
-              </p>
-            </div>
-          )}
-
-          {submitStatus === 'error' && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700">
-                There was an error submitting your appointment request. Please try again or contact us directly.
-              </p>
-            </div>
-          )}
-
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-8"
-          >
-            {/* Patient Type Selection */}
-            <div className="flex justify-center space-x-8 mb-8">
-              <label className="inline-flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="patientType"
-                  value="New Patient"
-                  checked={formData.patientType === 'New Patient'}
-                  onChange={handleChange}
-                  className="form-radio h-6 w-6 text-[#6f2248]"
-                  required
-                />
-                <span className="ml-3 text-lg text-gray-900 font-semibold">New Patient</span>
-              </label>
-              <label className="inline-flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="patientType"
-                  value="Old Patient"
-                  checked={formData.patientType === 'Old Patient'}
-                  onChange={handleChange}
-                  className="form-radio h-6 w-6 text-[#6f2248]"
-                />
-                <span className="ml-3 text-lg text-gray-900 font-semibold">Old Patient</span>
-              </label>
-            </div>
-
-            <div className="border-b border-gray-200 pb-2 mb-6">
-              <h2 className="text-xl font-bold text-[#6f2248]">Personal Information</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Full Name <span className="text-[#6f2248]"></span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your full name"
-                  className="w-full px-4 py-3 border-2 rounded-lg"
-                />
-              </div>
-              <div>
-                <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Phone Number <span className="text-[#6f2248]"></span>
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your phone number"
-                  className="w-full px-4 py-3 border-2 rounded-lg"
-                />
-              </div>
-            </div>
-
-            {formData.patientType === 'New Patient' && (
-              <>
-                <div className="border-b border-gray-200 pb-2 mb-6">
-                  <h2 className="text-xl font-bold text-[#6f2248]">Additional Information</h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div>
-                    <label className="block text-base font-semibold text-gray-900 mb-2">
-                      Date of Birth <span className="text-[#6f2248]">*</span>
-                    </label>
-                    <input
-                      type="date"
-                      name="dateOfBirth"
-                      value={formData.dateOfBirth}
-                      onChange={handleChange}
-                      required
-                      max={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-3 border-2 rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-base font-semibold text-gray-900 mb-2">
-                      Gender <span className="text-[#6f2248]">*</span>
-                    </label>
-                    <select
-                      name="gender"
-                      value={formData.gender}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border-2 rounded-lg"
-                    >
-                      <option value="">Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-base font-semibold text-gray-900 mb-2">
-                      Residence <span className="text-[#6f2248]"></span>
-                    </label>
-                    <input
-                      type="text"
-                      name="residence"
-                      value={formData.residence}
-                      onChange={handleChange}
-                      required
-                      placeholder="Enter your residence"
-                      className="w-full px-4 py-3 border-2 rounded-lg"
-                    />
-                  </div>
-                </div>
-              </>
-            )}
-
-            <div className="border-b border-gray-200 pb-2 mb-6">
-              <h2 className="text-xl font-bold text-[#6f2248]">Appointment Details</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Preferred Date <span className="text-[#6f2248]"></span>
-                </label>
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleChange}
-                  required
-                  min={new Date().toISOString().split('T')[0]}
-                  className="w-full px-4 py-3 border-2 rounded-lg"
-                />
-              </div>
-              <div>
-                <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Preferred Time <span className="text-[#6f2248]"></span>
-                </label>
-                <select
-                  name="time"
-                  value={formData.time}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border-2 rounded-lg"
-                >
-                  <option value="">Select Time</option>
-                  {getTimeSlots().map((time) => (
-                    <option key={time} value={time}>{time}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block text-base font-semibold text-gray-900 mb-2">
-                  Department <span className="text-[#6f2248]"></span>
-                </label>
-                <select
-                  name="department"
-                  value={formData.department}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border-2 rounded-lg"
-                >
-                  <option value="">Select Department</option>
-                  {departments.map(dept => (
-                    <option key={dept} value={dept}>{dept}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-base font-semibold text-gray-900 mb-2">Additional Message</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows="4"
-                placeholder="Provide any additional information"
-                className="w-full px-4 py-3 border-2 rounded-lg"
-              ></textarea>
-            </div>
-
-
-            <div className="text-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-[#6f2248] text-white px-12 py-4 rounded-lg text-lg font-semibold shadow-lg hover:bg-[#6f2248]/90"
-              >
-                {isSubmitting ? 'Submitting...' : 'Schedule Appointment'}
-              </button>
-            </div>
-          </form>
-        </motion.div>
-
-        <div className="mt-12 text-center">
-          <p className="text-lg text-gray-800 font-medium">
-            For emergency cases, please call
-            <a href="tel:+233597328517" className="text-[#6f2248] font-bold ml-2 hover:underline">
-              0592411108, 0303939896
-            </a>
-          </p>
+    <>
+      <Header />
+      
+      {/* Page Header */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+        <div className="container py-5">
+          <h1 className="display-3 text-white animated slideInDown">Book Appointment</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
+              <li className="breadcrumb-item text-white active" aria-current="page">Appointment</li>
+            </ol>
+          </nav>
         </div>
       </div>
-    </div>
+
+      {/* Appointment Form */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
+            <h6 className="section-title bg-white text-center text-primary px-3">Appointment</h6>
+            <h1 className="display-6 mb-4">Schedule Your Visit</h1>
+            <p className="mb-0">Book an appointment with our expert medical team. We're here to provide you with the best healthcare experience.</p>
+          </div>
+          
+          <div className="row g-5">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div className="h-100">
+                <h6 className="section-title bg-white text-start text-primary pe-3">Why Choose Us</h6>
+                <h1 className="display-6 mb-4">Expert Medical Care</h1>
+                <p>At Mount Carmel Hospital, we provide comprehensive healthcare services with a focus on patient comfort and medical excellence.</p>
+                <div className="row g-4 mb-4">
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Expert Doctors</h6>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Modern Facilities</h6>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Patient-Centered Care</h6>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="d-flex align-items-center">
+                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <h6 className="mb-0">Affordable Care</h6>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-light p-4 rounded">
+                  <div className="d-flex align-items-center mb-3">
+                    <i className="fa fa-clock fa-2x text-primary me-3"></i>
+                    <div>
+                      <h5 className="mb-0">Business Hours</h5>
+                      <p className="mb-0">Mon-Sat: 8:00 AM - 6:00 PM | Sun: 9:00 AM - 3:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <i className="fa fa-phone fa-2x text-primary me-3"></i>
+                    <div>
+                      <h5 className="mb-0">Emergency Contact</h5>
+                      <p className="mb-0">+233 30 393 9896 (24/7)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+              <div className="bg-light rounded p-5">
+                <form onSubmit={handleSubmit}>
+                  <div className="row g-3">
+                    <div className="col-12">
+                      <div className="form-floating">
+                        <select 
+                          className="form-select border-0 bg-white px-4" 
+                          id="patientType" 
+                          name="patientType"
+                          value={formData.patientType}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="New Patient">New Patient</option>
+                          <option value="Old Patient">Returning Patient</option>
+                        </select>
+                        <label htmlFor="patientType">Patient Type</label>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input 
+                          type="text" 
+                          className="form-control border-0 bg-white px-4" 
+                          id="name" 
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Your Name" 
+                          required
+                        />
+                        <label htmlFor="name">Full Name</label>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input 
+                          type="tel" 
+                          className="form-control border-0 bg-white px-4" 
+                          id="phone" 
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="Phone Number" 
+                          required
+                        />
+                        <label htmlFor="phone">Phone Number</label>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input 
+                          type="date" 
+                          className="form-control border-0 bg-white px-4" 
+                          id="date" 
+                          name="date"
+                          value={formData.date}
+                          onChange={handleChange}
+                          required
+                        />
+                        <label htmlFor="date">Preferred Date</label>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <select 
+                          className="form-select border-0 bg-white px-4" 
+                          id="time" 
+                          name="time"
+                          value={formData.time}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Select Time</option>
+                          {getTimeSlots().map((slot, index) => (
+                            <option key={index} value={slot}>{slot}</option>
+                          ))}
+                        </select>
+                        <label htmlFor="time">Preferred Time</label>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="form-floating">
+                        <select 
+                          className="form-select border-0 bg-white px-4" 
+                          id="department" 
+                          name="department"
+                          value={formData.department}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Select Department</option>
+                          {departments.map((dept, index) => (
+                            <option key={index} value={dept}>{dept}</option>
+                          ))}
+                        </select>
+                        <label htmlFor="department">Department</label>
+                      </div>
+                    </div>
+                    
+                    {formData.patientType === 'New Patient' && (
+                      <>
+                        <div className="col-md-6">
+                          <div className="form-floating">
+                            <input 
+                              type="date" 
+                              className="form-control border-0 bg-white px-4" 
+                              id="dateOfBirth" 
+                              name="dateOfBirth"
+                              value={formData.dateOfBirth}
+                              onChange={handleChange}
+                              required
+                            />
+                            <label htmlFor="dateOfBirth">Date of Birth</label>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-floating">
+                            <select 
+                              className="form-select border-0 bg-white px-4" 
+                              id="gender" 
+                              name="gender"
+                              value={formData.gender}
+                              onChange={handleChange}
+                              required
+                            >
+                              <option value="">Select Gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                            <label htmlFor="gender">Gender</label>
+                          </div>
+                        </div>
+                        <div className="col-12">
+                          <div className="form-floating">
+                            <input 
+                              type="text" 
+                              className="form-control border-0 bg-white px-4" 
+                              id="residence" 
+                              name="residence"
+                              value={formData.residence}
+                              onChange={handleChange}
+                              placeholder="Residence" 
+                              required
+                            />
+                            <label htmlFor="residence">Residence</label>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    
+                    <div className="col-12">
+                      <div className="form-floating">
+                        <textarea 
+                          className="form-control border-0 bg-white px-4 py-3" 
+                          id="message" 
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          placeholder="Additional Message" 
+                          style={{height: '100px'}}
+                        ></textarea>
+                        <label htmlFor="message">Additional Message (Optional)</label>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <button 
+                        className="btn btn-primary w-100 py-3" 
+                        type="submit"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Booking Appointment...' : 'Book Appointment'}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                
+                {submitStatus === 'error' && (
+                  <div className="alert alert-danger mt-3" role="alert">
+                    There was an error submitting your appointment. Please try again or contact us directly.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
   );
 };
 

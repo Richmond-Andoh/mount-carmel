@@ -8,8 +8,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#8B0000',
-        accent: '#E74C3C', 
+        primary: '#6f2248', // Mount Carmel logo color
+        accent: '#DAA520',  // Gold accent
+        secondary: '#FFF8DC', // Light cream
+        dark: '#4B1438', // Darker shade for contrast
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
