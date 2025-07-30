@@ -4,14 +4,14 @@
 
 /* Custom CSS for Mount Carmel Hospital */
 :root {
-    --primary-color: #0066CC; /* Mount Carmel Blue - Primary */
-    --secondary-color: #003366; /* Darker Blue - Secondary */
-    --accent-color: #0099FF; /* Light Blue - Accent */
-    --dark-color: #001122; /* Very Dark Blue */
-    --light-color: #F8FBFF; /* Very Light Blue */
+    --primary-color: #6f2248; /* Mount Carmel Maroon - Primary */
+    --secondary-color: #DAA520; /* Golden Rod - Secondary */
+    --accent-color: #B8860B; /* Dark Golden Rod */
+    --dark-color: #4B1438; /* Very Dark Maroon */
+    --light-color: #FFF8DC; /* Cornsilk - Light background */
     --white-color: #FFFFFF;
-    --text-dark: #001122;
-    --text-light: #F8FBFF;
+    --text-dark: #2C1810;
+    --text-light: #FFF8DC;
 }
 
 /* Force Bootstrap navbar to display properly - override Tailwind */

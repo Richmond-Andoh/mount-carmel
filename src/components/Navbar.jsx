@@ -31,7 +31,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className={`fixed w-full z-50 py-5 bg-white shadow-md transition-all duration-300 ${scrolled ? 'py-2' : 'py-3'}`}>
+    <nav className={`fixed w-full z-50 py-5 shadow-md transition-all duration-300 ${scrolled ? 'py-2' : 'py-3'} bg-primary`}> 
       <div className="w-full max-w-none px-2 sm:px-4 mx-0">
         <div className="flex flex-row items-center justify-between gap-2 md:gap-0">
           <Link to="/" className="flex items-center gap-2 xs:gap-3 text-left">

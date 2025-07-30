@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <>
       {/* Footer */}
-      <div className="container-fluid footer position-relative py-5 wow fadeIn" data-wow-delay="0.1s" style={{backgroundColor: '#003366'}}>
+      <div className="container-fluid footer position-relative py-5 wow fadeIn" data-wow-delay="0.1s" style={{backgroundColor: '#6f2248'}}>
         <div className="container">
           <div className="row g-5 py-5">
             <div className="col-lg-6 pe-lg-5">
