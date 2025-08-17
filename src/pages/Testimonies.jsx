@@ -96,7 +96,7 @@ const Testimonies = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-4">
-            {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
               <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
                 <div className="testimonial-item bg-light rounded p-4">
                   <div className="d-flex align-items-center mb-4">
@@ -106,7 +106,7 @@ const Testimonies = () => {
                       alt={testimonial.name}
                       style={{width: '60px', height: '60px', objectFit: 'cover'}}
                     />
-                    <div>
+                <div>
                       <h5 className="mb-1">{testimonial.name}</h5>
                       <small className="text-primary">{testimonial.role}</small>
                     </div>
@@ -167,7 +167,7 @@ const Testimonies = () => {
             </div>
           </div>
         </div>
-      </div>
+        </div>
 
       {/* Statistics Section */}
       <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>

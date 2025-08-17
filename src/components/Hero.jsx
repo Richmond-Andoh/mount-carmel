@@ -10,26 +10,53 @@ const Hero = () => {
       id: 1,
       image: "/images/carousel-1.jpg",
       title: "Award Winning Hospital & Fertility Center",
+      subtitle: "Excellence in Healthcare",
       description: "Providing exceptional healthcare with compassion and excellence. Advanced fertility treatments and comprehensive medical care in a state-of-the-art facility.",
       buttonText: "Explore More",
       buttonLink: "/about",
-      alignment: "start"
+      alignment: "start",
+      stats: [
+        { number: "5000+", label: "Happy Patients" },
+        { number: "50+", label: "Expert Doctors" },
+        { number: "15+", label: "Years Experience" }
+      ]
     },
     {
       id: 2,
       image: "/images/carousel-2.jpg",
       title: "Expert Doctors & Medical Professionals",
+      subtitle: "World-Class Care",
       description: "Our team of experienced healthcare professionals is dedicated to providing the highest quality medical care with personalized treatment plans.",
       buttonText: "Meet Our Team",
       buttonLink: "/team",
-      alignment: "end"
+      alignment: "end",
+      stats: [
+        { number: "98%", label: "Success Rate" },
+        { number: "24/7", label: "Emergency Care" },
+        { number: "100+", label: "Medical Services" }
+      ]
+    },
+    {
+      id: 3,
+      image: "/images/carousel-3.jpg",
+      title: "State-of-the-Art Medical Facilities",
+      subtitle: "Modern Technology",
+      description: "Experience healthcare at its finest with cutting-edge medical technology and world-class facilities designed for your comfort and recovery.",
+      buttonText: "View Facilities",
+      buttonLink: "/facilities",
+      alignment: "start",
+      stats: [
+        { number: "100%", label: "Modern Equipment" },
+        { number: "5", label: "Specialized Units" },
+        { number: "200+", label: "Medical Staff" }
+      ]
     }
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, [slides.length]);
 
@@ -46,58 +73,186 @@ const Hero = () => {
   };
 
   return (
-    <div className="container-fluid header-carousel px-0 mb-5">
-      <div className="carousel slide carousel-fade" style={{ position: 'relative' }}>
+    <div className="container-fluid header-carousel px-0 mb-5 position-relative">
+      {/* Background Pattern */}
+      <div className="position-absolute w-100 h-100" style={{
+        background: 'linear-gradient(135deg, rgba(111, 51, 72, 0.1) 0%, rgba(218, 165, 32, 0.1) 100%)',
+        zIndex: 1
+      }}></div>
+      
+      <div className="carousel slide carousel-fade position-relative" style={{ zIndex: 2 }}>
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div 
               key={slide.id}
               className={`carousel-item ${index === currentSlide ? 'active' : ''}`}
-              style={{ transition: 'opacity 0.6s ease-in-out' }}
+              style={{ 
+                transition: 'opacity 0.8s ease-in-out',
+                position: 'relative'
+              }}
             >
-              <img 
-                className="w-100" 
-                src={slide.image} 
-                alt={`Slide ${index + 1}`}
-                style={{ height: '600px', objectFit: 'cover' }}
-              />
-              <div className="carousel-caption">
-                <div className="container">
-                  <div className={`row justify-content-${slide.alignment}`}>
-                    <div className="col-lg-7 text-start">
-                      <h1 className="display-1 text-white mb-3" style={{ 
-                        animation: index === currentSlide ? 'slideInRight 1s ease-out' : 'none' 
-                      }}>
-                        {slide.title}
-                      </h1>
-                      <p className="mb-5" style={{ 
-                        animation: index === currentSlide ? 'slideInRight 1s ease-out 0.2s both' : 'none' 
-                      }}>
-                        {slide.description}
-                      </p>
-                      <Link 
-                        to={slide.buttonLink}
-                        className="btn btn-primary py-3 px-5" 
-        style={{
-                          animation: index === currentSlide ? 'slideInRight 1s ease-out 0.4s both' : 'none' 
-        }}
-      >
-                        {slide.buttonText}
-                      </Link>
+              {/* Background Image with Overlay */}
+              <div 
+                className="w-100 position-relative"
+                style={{ 
+                  height: '80vh',
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+                {/* Floating Elements */}
+                <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden">
+                  <div className="position-absolute" style={{
+                    top: '20%',
+                    left: '10%',
+                    width: '100px',
+                    height: '100px',
+                    background: 'rgba(111, 51, 72, 0.1)',
+                    borderRadius: '50%',
+                    animation: 'float 6s ease-in-out infinite'
+                  }}></div>
+                  <div className="position-absolute" style={{
+                    top: '60%',
+                    right: '15%',
+                    width: '150px',
+                    height: '150px',
+                    background: 'rgba(218, 165, 32, 0.1)',
+                    borderRadius: '50%',
+                    animation: 'float 8s ease-in-out infinite reverse'
+                  }}></div>
+                </div>
+
+                {/* Content */}
+                <div className="carousel-caption d-flex align-items-center h-100">
+                  <div className="container">
+                    <div className={`row justify-content-${slide.alignment}`}>
+                      <div className="col-lg-8 col-xl-7 text-start">
+                        {/* Subtitle */}
+                        <div className="mb-3" style={{
+                          animation: index === currentSlide ? 'slideInRight 1s ease-out 0.2s both' : 'none'
+                        }}>
+                          <span className="badge bg-primary px-3 py-2 mb-2" style={{
+                            backgroundColor: '#6f3348',
+                            fontSize: '0.9rem',
+                            fontWeight: '500'
+                          }}>
+                            {slide.subtitle}
+                          </span>
+                        </div>
+
+                        {/* Main Title */}
+                        <h1 className="display-3 text-white mb-4 fw-bold" style={{ 
+                          animation: index === currentSlide ? 'slideInRight 1s ease-out 0.4s both' : 'none',
+                          textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                        }}>
+                          {slide.title}
+                        </h1>
+
+                        {/* Description */}
+                        <p className="lead mb-5 text-white-50" style={{ 
+                          animation: index === currentSlide ? 'slideInRight 1s ease-out 0.6s both' : 'none',
+                          fontSize: '1.2rem',
+                          lineHeight: '1.8'
+                        }}>
+                          {slide.description}
+                        </p>
+
+                        {/* Stats */}
+                        <div className="row mb-5" style={{
+                          animation: index === currentSlide ? 'slideInRight 1s ease-out 0.8s both' : 'none'
+                        }}>
+                          {slide.stats.map((stat, statIndex) => (
+                            <div key={statIndex} className="col-md-4 mb-3">
+                              <div className="text-center p-3 rounded" style={{
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                backdropFilter: 'blur(10px)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)'
+                              }}>
+                                <div className="h3 text-white mb-1 fw-bold" style={{color: '#DAA520'}}>
+                                  {stat.number}
+                                </div>
+                                <div className="text-white-50 small">
+                                  {stat.label}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div className="d-flex flex-wrap gap-3" style={{
+                          animation: index === currentSlide ? 'slideInRight 1s ease-out 1s both' : 'none'
+                        }}>
+                          <Link 
+                            to={slide.buttonLink}
+                            className="btn btn-primary btn-lg px-5 py-3 fw-bold" 
+                            style={{
+                              backgroundColor: '#6f3348',
+                              borderColor: '#6f3348',
+                              borderRadius: '50px',
+                              transition: 'all 0.3s ease',
+                              boxShadow: '0 4px 15px rgba(111, 51, 72, 0.3)'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.target.style.transform = 'translateY(-2px)';
+                              e.target.style.boxShadow = '0 6px 20px rgba(111, 51, 72, 0.4)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.target.style.transform = 'translateY(0)';
+                              e.target.style.boxShadow = '0 4px 15px rgba(111, 51, 72, 0.3)';
+                            }}
+                          >
+                            {slide.buttonText}
+                          </Link>
+                          <Link 
+                            to="/appointment"
+                            className="btn btn-outline-light btn-lg px-5 py-3 fw-bold"
+                            style={{
+                              borderRadius: '50px',
+                              borderWidth: '2px',
+                              transition: 'all 0.3s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.target.style.backgroundColor = '#6f3348';
+                              e.target.style.borderColor = '#6f3348';
+                              e.target.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.target.style.backgroundColor = 'transparent';
+                              e.target.style.borderColor = 'white';
+                              e.target.style.transform = 'translateY(0)';
+                            }}
+                          >
+                            Book Appointment
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-      </div>
+        </div>
 
-        {/* Carousel Controls */}
+        {/* Enhanced Carousel Controls */}
         <button 
           className="carousel-control-prev" 
           type="button" 
           onClick={goToPrevSlide}
-          style={{ width: '5%' }}
+          style={{ 
+            width: '5%',
+            background: 'rgba(111, 51, 72, 0.8)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            top: '50%',
+            left: '20px',
+            transform: 'translateY(-50%)'
+          }}
         >
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
@@ -106,14 +261,24 @@ const Hero = () => {
           className="carousel-control-next" 
           type="button" 
           onClick={goToNextSlide}
-          style={{ width: '5%' }}
+          style={{ 
+            width: '5%',
+            background: 'rgba(111, 51, 72, 0.8)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            top: '50%',
+            right: '20px',
+            transform: 'translateY(-50%)'
+          }}
         >
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </button>
 
-        {/* Carousel Indicators */}
-        <div className="carousel-indicators" style={{ bottom: '20px' }}>
+        {/* Enhanced Carousel Indicators */}
+        <div className="carousel-indicators" style={{ bottom: '30px' }}>
           {slides.map((_, index) => (
             <button
               key={index}
@@ -121,23 +286,36 @@ const Hero = () => {
               className={index === currentSlide ? 'active' : ''}
               onClick={() => goToSlide(index)}
               style={{ 
-                width: '12px', 
-                height: '12px', 
+                width: '16px', 
+                height: '16px', 
                 borderRadius: '50%',
-                margin: '0 5px',
-                border: '2px solid white',
-                backgroundColor: index === currentSlide ? 'white' : 'transparent'
+                margin: '0 8px',
+                border: '3px solid white',
+                backgroundColor: index === currentSlide ? '#6f3348' : 'transparent',
+                transition: 'all 0.3s ease'
               }}
             ></button>
           ))}
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3" style={{zIndex: 3}}>
+        <div className="text-center text-white">
+          <div className="mb-2">Scroll Down</div>
+          <div className="d-flex justify-content-center">
+            <div className="w-1 h-8 bg-white rounded-full" style={{
+              animation: 'scrollIndicator 2s ease-in-out infinite'
+            }}></div>
           </div>
+        </div>
       </div>
 
       <style jsx>{`
         @keyframes slideInRight {
           from {
             opacity: 0;
-            transform: translateX(30px);
+            transform: translateX(50px);
           }
           to {
             opacity: 1;
@@ -145,14 +323,49 @@ const Hero = () => {
           }
         }
         
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+        
+        @keyframes scrollIndicator {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scaleY(0.5);
+          }
+          50% {
+            opacity: 1;
+            transform: scaleY(1);
+          }
+        }
+        
         .carousel-item {
-          transition: opacity 0.6s ease-in-out;
+          transition: opacity 0.8s ease-in-out;
         }
         
         .carousel-caption {
-          background: rgba(0, 0, 0, 0.4);
-          padding: 2rem;
-          border-radius: 10px;
+          background: transparent;
+          padding: 0;
+        }
+        
+        @media (max-width: 768px) {
+          .display-3 {
+            font-size: 2.5rem;
+          }
+          
+          .lead {
+            font-size: 1rem;
+          }
+          
+          .carousel-control-prev,
+          .carousel-control-next {
+            width: 50px !important;
+            height: 50px !important;
+          }
         }
       `}</style>
     </div>

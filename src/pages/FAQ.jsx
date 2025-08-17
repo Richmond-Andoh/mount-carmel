@@ -93,10 +93,10 @@ const FAQ = () => {
           <div className="row g-5">
             <div className="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
               <div className="accordion" id="faqAccordion">
-                {faqs.map((faq, index) => (
+          {faqs.map((faq, index) => (
                   <div key={index} className="accordion-item">
                     <h2 className="accordion-header" id={`heading${index}`}>
-                      <button 
+              <button
                         className={`accordion-button ${activeIndex === index ? '' : 'collapsed'}`}
                         type="button" 
                         data-bs-toggle="collapse" 
@@ -166,8 +166,8 @@ const FAQ = () => {
             <h6 className="section-title bg-white text-center text-primary px-3">Quick Links</h6>
             <h1 className="display-6 mb-4">Find What You Need</h1>
             <p className="mb-0">Explore our services and resources to get the information you need about your healthcare journey.</p>
-          </div>
-          
+        </div>
+
           <div className="row g-4">
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="service-item text-center pt-3">

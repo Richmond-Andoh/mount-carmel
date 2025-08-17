@@ -155,8 +155,8 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </div>
-
+            </div>
+            
       {/* Maternity Care Section */}
       <div className="container-xxl py-5">
         <div className="container">
@@ -202,8 +202,8 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </div>
-
+            </div>
+            
       {/* Emergency Care Section */}
       <div className="container-xxl py-5">
         <div className="container">
@@ -255,8 +255,8 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </div>
-
+            </div>
+            
       {/* Call to Action */}
       <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
         <div className="container py-5 pt-lg-0">
@@ -290,7 +290,7 @@ const Services = () => {
           </div>
         </div>
       </div>
-
+      
       <Footer />
     </>
   );

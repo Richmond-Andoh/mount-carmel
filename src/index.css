@@ -4,7 +4,7 @@
 
 /* Custom CSS for Mount Carmel Hospital */
 :root {
-    --primary-color: #6f2248; /* Mount Carmel Maroon - Primary */
+    --primary-color: #6f3348; /* Mount Carmel Maroon - Primary */
     --secondary-color: #DAA520; /* Golden Rod - Secondary */
     --accent-color: #B8860B; /* Dark Golden Rod */
     --dark-color: #4B1438; /* Very Dark Maroon */
@@ -71,23 +71,59 @@
   .navbar-nav {
     flex-direction: column !important;
     width: 100% !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    box-shadow: 0 8px 32px rgba(111, 51, 72, 0.1) !important;
   }
   
   .navbar-nav .nav-item {
     margin-right: 0 !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 8px !important;
+    width: 100% !important;
   }
   
   .navbar-nav .nav-link {
-    padding: 10px 0 !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    margin: 2px 0 !important;
+    width: 100% !important;
+    text-align: left !important;
   }
   
   .navbar-toggler {
     display: block !important;
+    border: none !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    background: rgba(111, 51, 72, 0.1) !important;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none !important;
   }
   
   .navbar-collapse:not(.show) {
     display: none !important;
+  }
+  
+  .dropdown-menu {
+    position: static !important;
+    float: none !important;
+    width: 100% !important;
+    background: rgba(248, 251, 255, 0.95) !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-top: 0 !important;
+    border-radius: 8px !important;
+  }
+  
+  .dropdown-item {
+    padding: 10px 20px !important;
+    border-radius: 6px !important;
+    margin: 2px 8px !important;
   }
 }
 
@@ -271,7 +307,7 @@
     }
 }
 
-@keyframes float {
+  @keyframes float {
     0%, 100% {
         transform: translateY(0px);
     }
@@ -295,11 +331,11 @@
 
 .animate-pulse {
     animation: pulse 2s infinite;
-}
+  }
 
-.animate-float {
+  .animate-float {
     animation: float 3s ease-in-out infinite;
-}
+  }
 
 /* Smooth Transitions */
 .transition-all {
