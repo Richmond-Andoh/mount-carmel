@@ -50,7 +50,7 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Contact Information */}
+          {/* Contact Information */}
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
@@ -67,15 +67,15 @@ const Contact = () => {
                   <p>Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
                 </div>
               </div>
-            </div>
+                    </div>
             <div className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
               <div className="service-item text-center pt-3">
                 <div className="p-4">
                   <i className="fa fa-3x fa-phone text-primary mb-4"></i>
                   <h5 className="mb-3">Call Us</h5>
                   <p>+233 30 393 9896</p>
-                </div>
-              </div>
+                  </div>
+                  </div>
             </div>
             <div className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="service-item text-center pt-3">
@@ -88,7 +88,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </div>
+          </div>
 
       {/* Contact Form & Map */}
       <div className="container-xxl py-5">
@@ -103,27 +103,27 @@ const Contact = () => {
                   <div className="row g-3">
                     <div className="col-md-6">
                       <div className="form-floating">
-                        <input 
-                          type="text" 
+                  <input
+                    type="text"
                           className="form-control border-0 bg-light px-4" 
-                          id="name" 
-                          name="name"
-                          value={formData.name}
+                    id="name"
+                    name="name"
+                    value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Your Name" 
-                          required
-                        />
+                    required
+                  />
                         <label htmlFor="name">Your Name</label>
                       </div>
-                    </div>
+                </div>
                     <div className="col-md-6">
                       <div className="form-floating">
-                        <input 
-                          type="email" 
+                  <input
+                    type="email"
                           className="form-control border-0 bg-light px-4" 
-                          id="email" 
-                          name="email"
-                          value={formData.email}
+                    id="email"
+                    name="email"
+                    value={formData.email}
                           onChange={handleInputChange}
                           placeholder="Your Email" 
                           required
@@ -141,8 +141,8 @@ const Contact = () => {
                           value={formData.subject}
                           onChange={handleInputChange}
                           placeholder="Subject" 
-                          required
-                        />
+                    required
+                  />
                         <label htmlFor="subject">Subject</label>
                       </div>
                     </div>
@@ -186,8 +186,8 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+                </div>
+              </div>
 
       {/* Business Hours */}
       <div className="container-xxl py-5">
@@ -254,7 +254,7 @@ const Contact = () => {
                 <div className="bg-light p-4 rounded">
                   <div className="d-flex align-items-center mb-3">
                     <i className="fa fa-phone fa-2x text-primary me-3"></i>
-                    <div>
+                <div>
                       <h5 className="mb-0">Emergency Hotline</h5>
                       <h3 className="mb-0">+233 30 393 9896</h3>
                     </div>
@@ -273,8 +273,8 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+                </div>
+              </div>
 
       {/* Call to Action */}
       <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
