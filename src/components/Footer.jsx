@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <>
       {/* Footer */}
-      <div className="container-fluid footer position-relative py-5 wow fadeIn" data-wow-delay="0.1s" style={{backgroundColor: '#6f2248'}}>
+      <div className="container-fluid footer position-relative py-5 wow fadeIn" data-wow-delay="0.1s" style={{backgroundColor: '#6f3348'}}>
         <div className="container">
           <div className="row g-5 py-5">
             <div className="col-lg-6 pe-lg-5">
@@ -48,16 +48,16 @@ const Footer = () => {
               <p style={{color: '#F8FBFF'}}><i className="fa fa-phone-alt me-2" style={{color: '#FFFFFF'}}></i>+233 30 393 9896</p>
               <p style={{color: '#F8FBFF'}}><i className="fa fa-envelope me-2" style={{color: '#FFFFFF'}}></i>mountcarmelhospital@outlook.com</p>
               <div className="d-flex mt-4">
-                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#4B1438', borderColor: '#4B1438'}}>
                   <i className="fab fa-facebook-f" style={{color: 'white'}}></i>
                 </a>
-                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#4B1438', borderColor: '#4B1438'}}>
                   <i className="fab fa-twitter" style={{color: 'white'}}></i>
                 </a>
-                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#4B1438', borderColor: '#4B1438'}}>
                   <i className="fab fa-linkedin-in" style={{color: 'white'}}></i>
                 </a>
-                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+                <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#4B1438', borderColor: '#4B1438'}}>
                   <i className="fab fa-instagram" style={{color: 'white'}}></i>
                 </a>
               </div>
@@ -90,7 +90,7 @@ const Footer = () => {
                         style={{ background: 'rgba(255, 255, 255, .1)', color: '#F8FBFF' }} 
                         placeholder="Your Email Address"
                       />
-                      <button className="btn px-4" style={{backgroundColor: '#0066CC', borderColor: '#0066CC', color: 'white'}}>Sign Up</button>
+                      <button className="btn px-4" style={{backgroundColor: '#4B1438', borderColor: '#4B1438', color: 'white'}}>Sign Up</button>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ const Footer = () => {
       </div>
 
       {/* Back to Top */}
-      <a href="#" className="btn btn-lg btn-lg-square rounded-circle back-to-top" style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
+      <a href="#" className="btn btn-lg btn-lg-square rounded-circle back-to-top" style={{backgroundColor: '#6f3348', borderColor: '#6f3348'}}>
         <i className="bi bi-arrow-up" style={{color: 'white'}}></i>
       </a>
     </>

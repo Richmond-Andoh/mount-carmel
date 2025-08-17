@@ -78,7 +78,7 @@ const Header = () => {
       </div>
 
       {/* Brand Section */}
-      <div className="container-fluid pt-4 pb-5 d-none d-lg-flex" style={{backgroundColor: '#0066CC'}}>
+      <div className="container-fluid pt-4 pb-5 d-none d-lg-flex" style={{backgroundColor: '#6f3348'}}>
         <div className="container pb-2">
           <div className="d-flex align-items-center justify-content-between">
             <div className="d-flex">
@@ -123,10 +123,10 @@ const Header = () => {
             ? 'rgba(255, 255, 255, 0.95)' 
             : 'rgba(255, 255, 255, 0.85)',
           backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(0, 102, 204, 0.1)',
+          borderBottom: '1px solid rgba(111, 51, 72, 0.1)',
           boxShadow: isScrolled 
-            ? '0 8px 32px rgba(0, 102, 204, 0.1)' 
-            : '0 4px 16px rgba(0, 102, 204, 0.05)'
+            ? '0 8px 32px rgba(111, 51, 72, 0.1)' 
+            : '0 4px 16px rgba(111, 51, 72, 0.05)'
         }}
       >
         <div className="container">
@@ -139,8 +139,8 @@ const Header = () => {
                   style={{width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px'}}
                 />
                 <h1 className="m-0">
-                  <span style={{color: '#0066CC'}}>Mount </span>
-                  <span style={{color: '#003366'}}>Carmel</span>
+                  <span style={{color: '#6f3348'}}>Mount </span>
+                  <span style={{color: '#4B1438'}}>Carmel</span>
                 </h1>
               </div>
             </Link>
@@ -154,7 +154,14 @@ const Header = () => {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarCollapse">
-              <div className="navbar-nav mx-auto" style={{display: 'flex', flexDirection: 'row', listStyle: 'none', margin: 0, padding: 0}}>
+              <div className="navbar-nav mx-auto" style={{
+                display: 'flex', 
+                flexDirection: window.innerWidth <= 991 ? 'column' : 'row', 
+                listStyle: 'none', 
+                margin: 0, 
+                padding: 0,
+                width: '100%'
+              }}>
                 {navLinks.map((link, index) => (
                   <div key={link.path} className="nav-item position-relative me-4">
                     {link.dropdown ? (
@@ -177,10 +184,10 @@ const Header = () => {
                           onMouseEnter={(e) => {
                             setActiveDropdown(index);
                             e.target.style.padding = '16px 20px';
-                            e.target.style.background = 'rgba(0, 102, 204, 0.1)';
-                            e.target.style.color = '#0066CC';
+                            e.target.style.background = 'rgba(111, 51, 72, 0.1)';
+                            e.target.style.color = '#6f3348';
                             e.target.style.transform = 'translateY(-2px)';
-                            e.target.style.boxShadow = '0 4px 12px rgba(0, 102, 204, 0.15)';
+                            e.target.style.boxShadow = '0 4px 12px rgba(111, 51, 72, 0.15)';
                           }}
                           onMouseLeave={(e) => {
                             setActiveDropdown(null);
@@ -202,9 +209,9 @@ const Header = () => {
                           style={{
                             background: 'rgba(255, 255, 255, 0.95)',
                             backdropFilter: 'blur(20px)',
-                            border: '1px solid rgba(0, 102, 204, 0.1)',
+                            border: '1px solid rgba(111, 51, 72, 0.1)',
                             borderRadius: '12px',
-                            boxShadow: '0 8px 32px rgba(0, 102, 204, 0.15)',
+                            boxShadow: '0 8px 32px rgba(111, 51, 72, 0.15)',
                             padding: '8px 0',
                             marginTop: '8px',
                             minWidth: '200px',
@@ -226,8 +233,8 @@ const Header = () => {
                                 padding: '8px 16px'
                               }}
                               onMouseEnter={(e) => {
-                                e.target.style.background = 'rgba(0, 102, 204, 0.1)';
-                                e.target.style.color = '#0066CC';
+                                e.target.style.background = 'rgba(111, 51, 72, 0.1)';
+                                e.target.style.color = '#6f3348';
                                 e.target.style.padding = '12px 20px';
                                 e.target.style.transform = 'translateX(4px)';
                               }}
@@ -258,11 +265,11 @@ const Header = () => {
                           overflow: 'hidden'
                         }}
                         onMouseEnter={(e) => {
-                          e.target.style.background = 'rgba(0, 102, 204, 0.1)';
-                          e.target.style.color = '#0066CC';
+                          e.target.style.background = 'rgba(111, 51, 72, 0.1)';
+                          e.target.style.color = '#6f3348';
                           e.target.style.padding = '16px 20px';
                           e.target.style.transform = 'translateY(-2px)';
-                          e.target.style.boxShadow = '0 4px 12px rgba(0, 102, 204, 0.15)';
+                          e.target.style.boxShadow = '0 4px 12px rgba(111, 51, 72, 0.15)';
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.background = 'transparent';
@@ -289,20 +296,20 @@ const Header = () => {
                   className="btn btn-sm-square ms-2" 
                   href="#" 
                   style={{
-                    backgroundColor: '#0066CC', 
-                    borderColor: '#0066CC',
+                    backgroundColor: '#6f3348', 
+                    borderColor: '#6f3348',
                     transition: 'all 0.3s ease',
                     transform: 'scale(1)',
                     padding: '8px'
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'scale(1.1)';
-                    e.target.style.backgroundColor = '#003366';
+                    e.target.style.backgroundColor = '#4B1438';
                     e.target.style.padding = '12px';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'scale(1)';
-                    e.target.style.backgroundColor = '#0066CC';
+                    e.target.style.backgroundColor = '#6f3348';
                     e.target.style.padding = '8px';
                   }}
                 >
@@ -312,20 +319,20 @@ const Header = () => {
                   className="btn btn-sm-square ms-2" 
                   href="#" 
                   style={{
-                    backgroundColor: '#0066CC', 
-                    borderColor: '#0066CC',
+                    backgroundColor: '#6f3348', 
+                    borderColor: '#6f3348',
                     transition: 'all 0.3s ease',
                     transform: 'scale(1)',
                     padding: '8px'
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'scale(1.1)';
-                    e.target.style.backgroundColor = '#003366';
+                    e.target.style.backgroundColor = '#4B1438';
                     e.target.style.padding = '12px';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'scale(1)';
-                    e.target.style.backgroundColor = '#0066CC';
+                    e.target.style.backgroundColor = '#6f3348';
                     e.target.style.padding = '8px';
                   }}
                 >
@@ -335,20 +342,20 @@ const Header = () => {
                   className="btn btn-sm-square ms-2" 
                   href="#" 
                   style={{
-                    backgroundColor: '#0066CC', 
-                    borderColor: '#0066CC',
+                    backgroundColor: '#6f3348', 
+                    borderColor: '#6f3348',
                     transition: 'all 0.3s ease',
                     transform: 'scale(1)',
                     padding: '8px'
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'scale(1.1)';
-                    e.target.style.backgroundColor = '#003366';
+                    e.target.style.backgroundColor = '#4B1438';
                     e.target.style.padding = '12px';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'scale(1)';
-                    e.target.style.backgroundColor = '#0066CC';
+                    e.target.style.backgroundColor = '#6f3348';
                     e.target.style.padding = '8px';
                   }}
                 >
@@ -358,20 +365,20 @@ const Header = () => {
                   className="btn btn-sm-square ms-2" 
                   href="#" 
                   style={{
-                    backgroundColor: '#0066CC', 
-                    borderColor: '#0066CC',
+                    backgroundColor: '#6f3348', 
+                    borderColor: '#6f3348',
                     transition: 'all 0.3s ease',
                     transform: 'scale(1)',
                     padding: '8px'
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'scale(1.1)';
-                    e.target.style.backgroundColor = '#003366';
+                    e.target.style.backgroundColor = '#4B1438';
                     e.target.style.padding = '12px';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'scale(1)';
-                    e.target.style.backgroundColor = '#0066CC';
+                    e.target.style.backgroundColor = '#6f3348';
                     e.target.style.padding = '8px';
                   }}
                 >
