@@ -8,6 +8,7 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import AppointmentSection from '../components/AppointmentSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import GallerySection from '../components/GallerySection';
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Header />
       <Hero />
       <AboutSection />
+      <GallerySection />
       <FeaturesSection />
       <ServicesSection />
       <TeamSection />
@@ -26,4 +28,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;
