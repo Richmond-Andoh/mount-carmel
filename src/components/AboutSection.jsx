@@ -42,15 +42,29 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <div className="container-fluid py-5 position-relative overflow-hidden">
+    <div className="container-fluid pb-3 position-relative overflow-hidden" style={{ minHeight: '800px' }}>
+      {/* Parallax Background Image */}
+      <div className="position-absolute top-0 start-0 w-100 h-100" style={{
+        backgroundImage: "url('/public/images/about-bg.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        opacity: 0.18,
+        zIndex: 0
+      }}></div>
+      {/* Dark Overlay for readability */}
+      <div className="position-absolute top-0 start-0 w-100 h-100" style={{
+        background: 'linear-gradient(135deg, rgba(111, 51, 72, 0.9) 0%, rgba(75, 20, 56, 0.8) 100%)',
+        zIndex: 1
+      }}></div>
       {/* Background Pattern */}
       <div className="position-absolute top-0 start-0 w-100 h-100" style={{
         background: 'linear-gradient(135deg, rgba(111, 51, 72, 0.05) 0%, rgba(218, 165, 32, 0.05) 100%)',
-        zIndex: 1
+        zIndex: 2
       }}></div>
-      
       {/* Floating Elements */}
-      <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style={{zIndex: 1}}>
+      <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style={{zIndex: 3}}>
         <div className="position-absolute" style={{
           top: '10%',
           right: '5%',
@@ -71,7 +85,7 @@ const AboutSection = () => {
         }}></div>
       </div>
 
-      <div className="container position-relative" style={{zIndex: 2}}>
+      <div className="container position-relative" style={{zIndex: 4}}>
         {/* Section Header */}
         <div className="row justify-content-center mb-5">
           <div className="col-lg-8 text-center">
@@ -79,15 +93,16 @@ const AboutSection = () => {
               <span className="badge bg-primary px-3 py-2 mb-2" style={{
                 backgroundColor: '#6f3348',
                 fontSize: '0.9rem',
-                fontWeight: '500'
+                fontWeight: '500',
+                color: 'white'
               }}>
                 About Us
               </span>
             </div>
-            <h1 className="display-4 fw-bold mb-4" style={{color: '#6f3348'}}>
+            <h1 className="display-4 fw-bold mb-4" style={{color: 'white'}}>
               Trusted Healthcare Experts and Latest Medical Technologies
             </h1>
-            <p className="lead text-muted">
+            <p className="lead text-white mb-0">
               Mount Carmel Hospital and Fertility Center has been at the forefront of medical excellence for over 15 years. 
               Our commitment to providing exceptional healthcare services is reflected in our state-of-the-art facilities, 
               expert medical staff, and patient-centered approach to care.
