@@ -24,7 +24,7 @@ const Gallery = ({ images = [] }) => {
         initial={{ opacity: 0, y: -30 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.7 }}
-        className="text-3xl sm:text-4xl font-bold text-center text-primary mb-8"
+        className="text-9xl sm:text-4xl font-bold text-center pt-5 text-primary mb-8"
       >
         Our Success Stories
       </motion.h2>
@@ -32,7 +32,7 @@ const Gallery = ({ images = [] }) => {
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="text-center text-gray-600 mb-12 max-w-2xl mx-auto"
+        className="text-center text-gray-600 mb-12 max-w-2xl mx-auto container"
       >
         Witness the joy of successful fertility treatments at Mount Carmel Hospital. These precious moments represent the dreams we've helped make reality for countless families through our advanced fertility treatments.
       </motion.p>
