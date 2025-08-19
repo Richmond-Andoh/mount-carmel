@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { motion } from 'framer-motion';
 
 const Services = () => {
   useEffect(() => {
@@ -9,6 +10,9 @@ const Services = () => {
       new window.WOW().init();
     }
   }, []);
+
+  const MAIN_COLOR = '#6f3348';
+  const HERO_BG = '/images/about-bg.jpg';
 
   const services = [
     {
@@ -64,140 +68,219 @@ const Services = () => {
   return (
     <>
       <Header />
-      
-      {/* Page Header */}
-      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
-        <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown">Our Services</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-              <li className="breadcrumb-item text-white active" aria-current="page">Services</li>
-            </ol>
-          </nav>
+      {/* Page Hero Section */}
+      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+        <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s"
+          style={{
+            backgroundImage: `linear-gradient(rgba(111, 51, 72, 0.7), rgba(75, 20, 56, 0.7)), url(${HERO_BG})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            height: '600px',
+            minHeight: '600px',
+            color: 'white',
+            border: 'none'
+          }}>
+          <div className="container h-100 d-flex flex-column justify-content-center align-items-center">
+            <h1 className="display-3 text-white animated slideInDown" style={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Our Services</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+              <ol className="breadcrumb" style={{ background: 'transparent', color: 'white' }}>
+                <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
+                <li className="breadcrumb-item text-white active" aria-current="page">Services</li>
+              </ol>
+            </nav>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Services Overview */}
       <div className="container-xxl py-5">
         <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Services</h6>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="text-center mx-auto mb-5 fw-bold" style={{ color: MAIN_COLOR, maxWidth: '600px' }}>
+            <h6 className="section-title bg-white text-center" style={{ color: MAIN_COLOR }}>Services</h6>
             <h1 className="display-6 mb-4">Comprehensive Healthcare Services</h1>
             <p className="mb-0">Mount Carmel Hospital offers a wide range of medical services designed to meet all your healthcare needs. From fertility treatment to emergency care, we provide expert medical care with compassion and excellence.</p>
-          </div>
+          </motion.div>
           <div className="row g-4">
             {services.map((service, index) => (
-              <div key={index} className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
-                <div className="service-item text-center pt-3">
+              <motion.div key={index} className="col-lg-4 col-sm-6" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} whileHover={{ scale: 1.05, y: -6 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.05 }}>
+                <div className="service-item text-center pt-3" style={{ background: 'transparent', transition: 'background 0.3s, color 0.3s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = MAIN_COLOR; e.currentTarget.style.color = 'white'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'inherit'; }}>
                   <div className="p-4">
-                    <i className={`${service.icon} fa-3x text-primary mb-4`}></i>
+                    <i className={`${service.icon} fa-3x mb-4`} style={{ color: '#DAA520' }}></i>
                     <h5 className="mb-3">{service.title}</h5>
                     <p>{service.description}</p>
                     <ul className="list-unstyled text-start">
                       {service.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="mb-2">
-                          <i className="fa fa-check text-primary me-2"></i>
+                          <i className="fa fa-check me-2" style={{ color: '#DAA520' }}></i>
                           {feature}
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
 
       {/* Featured Services */}
-      <div className="container-xxl py-5">
-        <div className="container">
+      <div className="w-100 py-5" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Parallax Background Image & Main Color Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: "linear-gradient(rgba(111, 51, 72, 0.85), rgba(75, 20, 56, 0.8)), url('https://images.unsplash.com/photo-1511174511562-5f7f18b874f8')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          zIndex: 0
+        }}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="row g-5">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Fertility Treatment</h6>
-                <h1 className="display-6 mb-4">Advanced Fertility Care</h1>
-                <p>Our fertility center is equipped with the latest technology and staffed by experienced reproductive medicine specialists. We offer comprehensive fertility treatments with personalized care plans.</p>
+                <h6 className="section-title bg-white text-start" style={{ color: MAIN_COLOR }}>Fertility Treatment</h6>
+                <h1 className="display-6 mb-4" style={{ color: 'white', textShadow: '2px 2px 6px rgba(0,0,0,0.5)' }}>Advanced Fertility Care</h1>
+                <p style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Our fertility center is equipped with the latest technology and staffed by experienced reproductive medicine specialists. We offer comprehensive fertility treatments with personalized care plans.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">IVF Treatment</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>IVF Treatment</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">IUI Procedures</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>IUI Procedures</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Fertility Assessment</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Fertility Assessment</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Hormone Therapy</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Hormone Therapy</h6>
                     </div>
                   </div>
                 </div>
-                <a className="btn btn-primary py-3 px-5" href="/appointment">Book Consultation</a>
+                <a className="btn btn-primary py-3 px-5" style={{ backgroundColor: MAIN_COLOR, borderColor: MAIN_COLOR }} href="/appointment">Book Consultation</a>
               </div>
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="img-border">
-                <img className="img-fluid" src="/images/fertility-treatment.jpg" alt="Fertility Treatment" />
-              </div>
+              <motion.div
+                className="img-border d-flex flex-column flex-md-row gap-4 justify-content-center align-items-center"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 30 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                whileHover={{ scale: 1.05, rotateY: 10, boxShadow: '0 8px 32px rgba(111,51,72,0.25)' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ perspective: '800px', minHeight: '340px' }}
+              >
+                <img
+                  className="img-fluid rounded-4 shadow-lg"
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+                  alt="Doctor with patient"
+                  style={{ height: '320px', width: '48%', objectFit: 'cover', background: '#fff', minWidth: '220px' }}
+                />
+                <img
+                  className="img-fluid rounded-4 shadow-lg"
+                  src="https://images.unsplash.com/photo-1511174511562-5f7f18b874f8"
+                  alt="Ultrasound scan"
+                  style={{ height: '320px', width: '48%', objectFit: 'cover', background: '#fff', minWidth: '220px' }}
+                />
+              </motion.div>
             </div>
           </div>
         </div>
             </div>
             
       {/* Maternity Care Section */}
-      <div className="container-xxl py-5">
-        <div className="container">
+      <div className="w-100 py-5" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Parallax Background Image & Main Color Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: "linear-gradient(rgba(111, 51, 72, 0.85), rgba(75, 20, 56, 0.8)), url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          zIndex: 0
+        }}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="row g-5">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="img-border">
-                <img className="img-fluid" src="/images/maternity-care.jpg" alt="Maternity Care" />
-              </div>
+              <motion.div
+                className="img-border d-flex flex-column flex-md-row gap-4 justify-content-center align-items-center"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 30 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                whileHover={{ scale: 1.05, rotateY: 10, boxShadow: '0 8px 32px rgba(111,51,72,0.25)' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ perspective: '800px', minHeight: '340px' }}
+              >
+                <img
+                  className="img-fluid rounded-4 shadow-lg"
+                  src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c"
+                  alt="Pregnant woman"
+                  style={{ height: '320px', width: '48%', objectFit: 'cover', background: '#fff', minWidth: '220px' }}
+                />
+                <img
+                  className="img-fluid rounded-4 shadow-lg"
+                  src="https://images.unsplash.com/photo-1464983953574-0892a716854b"
+                  alt="Mother and baby"
+                  style={{ height: '320px', width: '48%', objectFit: 'cover', background: '#fff', minWidth: '220px' }}
+                />
+              </motion.div>
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Maternity Care</h6>
-                <h1 className="display-6 mb-4">Complete Maternity Services</h1>
-                <p>Experience the joy of motherhood with our comprehensive maternity care services. From prenatal care to safe delivery and postnatal support, we ensure the best care for you and your baby.</p>
+                <h6 className="section-title bg-white text-start" style={{ color: MAIN_COLOR }}>Maternity Care</h6>
+                <h1 className="display-6 mb-4" style={{ color: 'white', textShadow: '2px 2px 6px rgba(0,0,0,0.5)' }}>Complete Maternity Services</h1>
+                <p style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Experience the joy of motherhood with our comprehensive maternity care services. From prenatal care to safe delivery and postnatal support, we ensure the best care for you and your baby.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Prenatal Care</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Prenatal Care</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Safe Delivery</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Safe Delivery</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Postnatal Care</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Postnatal Care</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Neonatal Care</h6>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
+                      <h6 className="mb-0" style={{ color: 'white', textShadow: '1px 1px 4px rgba(0,0,0,0.4)' }}>Neonatal Care</h6>
                     </div>
                   </div>
                 </div>
-                <a className="btn btn-primary py-3 px-5" href="/appointment">Schedule Visit</a>
+                <a className="btn btn-primary py-3 px-5" style={{ backgroundColor: MAIN_COLOR, borderColor: MAIN_COLOR }} href="/appointment">Schedule Visit</a>
               </div>
             </div>
           </div>
@@ -210,37 +293,37 @@ const Services = () => {
           <div className="row g-5">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Emergency Care</h6>
-                <h1 className="display-6 mb-4">24/7 Emergency Services</h1>
+                <h6 className="section-title bg-white text-start" style={{ color: MAIN_COLOR }}>Emergency Care</h6>
+                <h1 className="display-6 mb-4" style={{ color: MAIN_COLOR }}>24/7 Emergency Services</h1>
                 <p>Our emergency department is staffed 24/7 with experienced emergency medicine specialists and equipped with state-of-the-art facilities to handle all types of medical emergencies.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
                       <h6 className="mb-0">Rapid Response</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
                       <h6 className="mb-0">Critical Care</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
                       <h6 className="mb-0">Trauma Care</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{ color: '#DAA520' }}></i>
                       <h6 className="mb-0">Emergency Surgery</h6>
                     </div>
                   </div>
                 </div>
                 <div className="d-flex align-items-center">
-                  <i className="fa fa-phone fa-2x text-primary me-3"></i>
+                  <i className="fa fa-phone fa-2x me-3" style={{ color: '#DAA520' }}></i>
                   <div>
                     <h6 className="mb-0">Emergency Hotline</h6>
                     <h4 className="mb-0">+233 30 393 9896</h4>
@@ -249,16 +332,35 @@ const Services = () => {
               </div>
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="img-border">
-                <img className="img-fluid" src="/images/emergency-care.jpg" alt="Emergency Care" />
-              </div>
+              <motion.div
+                className="img-border d-flex flex-column flex-md-row gap-4 justify-content-center align-items-center"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 30 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                whileHover={{ scale: 1.05, rotateY: 10, boxShadow: '0 8px 32px rgba(111,51,72,0.25)' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ perspective: '800px', minHeight: '340px' }}
+              >
+                <img
+                  className="img-fluid rounded-4 shadow-lg"
+                  src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+                  alt="Ambulance"
+                  style={{ height: '320px', width: '48%', objectFit: 'cover', background: '#fff', minWidth: '220px' }}
+                />
+                <img
+                  className="img-fluid rounded-4 shadow-lg"
+                  src="https://images.unsplash.com/photo-1504439468489-c8920d796a29"
+                  alt="Hospital emergency room"
+                  style={{ height: '320px', width: '48%', objectFit: 'cover', background: '#fff', minWidth: '220px' }}
+                />
+              </motion.div>
             </div>
           </div>
         </div>
             </div>
             
       {/* Call to Action */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+  <div className="container-fluid fact py-5 pt-lg-0" style={{background: MAIN_COLOR}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
