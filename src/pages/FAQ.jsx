@@ -3,10 +3,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const FAQ = () => {
+  const MAIN_COLOR = '#6f3348';
+  const HERO_BG = '/images/about-bg.jpg';
   const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
-    // Initialize WOW.js for animations
     if (window.WOW) {
       new window.WOW().init();
     }
@@ -62,13 +63,22 @@ const FAQ = () => {
   return (
     <>
       <Header />
-      
-      {/* Page Header */}
-      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
-        <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown">Frequently Asked Questions</h1>
+      {/* Parallax Page Header */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn position-relative" data-wow-delay="0.1s"
+        style={{
+          backgroundImage: `linear-gradient(rgba(111, 51, 72, 0.7), rgba(75, 20, 56, 0.7)), url(${HERO_BG})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          minHeight: '400px',
+          color: 'white',
+          border: 'none'
+        }}>
+        <div className="container py-5 d-flex flex-column justify-content-center align-items-center h-100">
+          <h1 className="display-3 text-white animated slideInDown" style={{ color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Frequently Asked Questions</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            <ol className="breadcrumb" style={{ background: 'transparent', color: 'white' }}>
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">FAQ</li>
             </ol>
@@ -93,28 +103,29 @@ const FAQ = () => {
           <div className="row g-5">
             <div className="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
               <div className="accordion" id="faqAccordion">
-          {faqs.map((faq, index) => (
+                {faqs.map((faq, index) => (
                   <div key={index} className="accordion-item">
                     <h2 className="accordion-header" id={`heading${index}`}>
-              <button
+                      <button
                         className={`accordion-button ${activeIndex === index ? '' : 'collapsed'}`}
-                        type="button" 
-                        data-bs-toggle="collapse" 
+                        type="button"
+                        data-bs-toggle="collapse"
                         data-bs-target={`#collapse${index}`}
                         aria-expanded={activeIndex === index ? 'true' : 'false'}
                         aria-controls={`collapse${index}`}
                         onClick={() => toggleFAQ(index)}
+                        style={{ color: MAIN_COLOR, fontWeight: 'bold', fontSize: '1.1rem', background: activeIndex === index ? 'rgba(111,51,72,0.08)' : 'white', boxShadow: activeIndex === index ? `0 2px 8px ${MAIN_COLOR}22` : 'none' }}
                       >
                         {faq.question}
                       </button>
                     </h2>
-                    <div 
-                      id={`collapse${index}`} 
+                    <div
+                      id={`collapse${index}`}
                       className={`accordion-collapse collapse ${activeIndex === index ? 'show' : ''}`}
                       aria-labelledby={`heading${index}`}
                       data-bs-parent="#faqAccordion"
                     >
-                      <div className="accordion-body">
+                      <div className="accordion-body" style={{ color: '#333', fontSize: '1rem', background: 'white', borderLeft: `3px solid ${MAIN_COLOR}` }}>
                         {faq.answer}
                       </div>
                     </div>
@@ -122,37 +133,32 @@ const FAQ = () => {
                 ))}
               </div>
             </div>
-            
             <div className="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="bg-light rounded p-5">
-                <h4 className="mb-4">Still Have Questions?</h4>
+              <div className="bg-white rounded-4 shadow-lg p-5" style={{ border: `2px solid ${MAIN_COLOR}` }}>
+                <h4 className="mb-4" style={{ color: MAIN_COLOR }}>Still Have Questions?</h4>
                 <p className="mb-4">If you couldn't find the answer to your question in our FAQ, we're here to help. Contact us directly and we'll get back to you as soon as possible.</p>
-                
                 <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-phone fa-2x text-primary me-3"></i>
+                  <i className="fa fa-phone fa-2x me-3" style={{ color: MAIN_COLOR }}></i>
                   <div>
-                    <h6 className="mb-0">Call Us</h6>
+                    <h6 className="mb-0" style={{ color: MAIN_COLOR }}>Call Us</h6>
                     <p className="mb-0">+233 30 393 9896</p>
                   </div>
                 </div>
-                
                 <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-envelope fa-2x text-primary me-3"></i>
+                  <i className="fa fa-envelope fa-2x me-3" style={{ color: MAIN_COLOR }}></i>
                   <div>
-                    <h6 className="mb-0">Email Us</h6>
+                    <h6 className="mb-0" style={{ color: MAIN_COLOR }}>Email Us</h6>
                     <p className="mb-0">mountcarmelhospital@outlook.com</p>
                   </div>
                 </div>
-                
                 <div className="d-flex align-items-center mb-4">
-                  <i className="fa fa-clock fa-2x text-primary me-3"></i>
+                  <i className="fa fa-clock fa-2x me-3" style={{ color: MAIN_COLOR }}></i>
                   <div>
-                    <h6 className="mb-0">Business Hours</h6>
+                    <h6 className="mb-0" style={{ color: MAIN_COLOR }}>Business Hours</h6>
                     <p className="mb-0">Mon-Sat: 8:00 AM - 6:00 PM<br/>Sun: 9:00 AM - 3:00 PM</p>
                   </div>
                 </div>
-                
-                <a className="btn btn-primary w-100 py-3" href="/contact">Contact Us</a>
+                <a className="btn btn-primary w-100 py-3" style={{ backgroundColor: MAIN_COLOR, borderColor: MAIN_COLOR }} href="/contact">Contact Us</a>
               </div>
             </div>
           </div>
@@ -214,7 +220,7 @@ const FAQ = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: '#6f3348'}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
