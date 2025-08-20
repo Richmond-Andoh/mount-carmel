@@ -357,7 +357,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-            </div>
+      </div>
             
       {/* Call to Action */}
   <div className="container-fluid fact py-5 pt-lg-0" style={{background: MAIN_COLOR}}>
@@ -397,5 +397,4 @@ const Services = () => {
     </>
   );
 };
-
-export default Services; 
+export default Services;

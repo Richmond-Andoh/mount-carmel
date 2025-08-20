@@ -314,7 +314,7 @@ const Team = () => {
       </div>
 
       {/* Call to Action */}
-  <div className="container-fluid fact py-5 pt-lg-0" style={{background: MAIN_COLOR}}>
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: MAIN_COLOR}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
