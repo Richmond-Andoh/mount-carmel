@@ -195,8 +195,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            {/* Add spacing between map and emergency section */}
-            <div className="col-12 d-lg-none mb-4"></div>
             <div className="col-lg-6">
               <div className="rounded-4 shadow-lg p-4 h-100" style={{
                 background: 'rgba(255,255,255,0.20)',
@@ -258,6 +256,9 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* Add margin between Map & Hours and Emergency Contact section */}
+      <div style={{ marginBottom: '2.5rem' }}></div>
 
       {/* Emergency Contact Section */}
       <section
