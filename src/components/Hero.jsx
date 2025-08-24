@@ -73,7 +73,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="container-fluid header-carousel px-0 position-relative">
+    <div className="container-fluid header-carousel px-0 mb-5 position-relative">
       {/* Background Pattern */}
       <div className="position-absolute w-100 h-100" style={{
         background: 'linear-gradient(135deg, rgba(111, 51, 72, 0.1) 0%, rgba(218, 165, 32, 0.1) 100%)',
@@ -182,7 +182,7 @@ const Hero = () => {
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className="d-flex flex-wrap gap-3 mb-2" style={{
+                        <div className="d-flex flex-wrap gap-3" style={{
                           animation: index === currentSlide ? 'slideInRight 1s ease-out 1s both' : 'none'
                         }}>
                           <Link 
