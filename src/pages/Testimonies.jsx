@@ -68,10 +68,19 @@ const Testimonies = () => {
     <>
       <Header />
       
-      {/* Page Header */}
-      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+      {/* Parallax Hero Section with Overlay */}
+      <div className="w-100 mb-5" style={{
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/testimonial.jpg') center/cover no-repeat`,
+        backgroundAttachment: 'fixed',
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: '0 0 32px 32px',
+        height: '400px'
+      }}>
         <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown">Patient Testimonials</h1>
+          <h1 className="display-3 text-white animated slideInDown" style={{textShadow: '0 2px 16px #000'}}>Patient Testimonials</h1>
           <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
@@ -92,23 +101,38 @@ const Testimonies = () => {
         </div>
       </div>
 
-      {/* Testimonials Grid */}
+      {/* Testimonials Grid - Modernized */}
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-4">
           {testimonials.map((testimonial, index) => (
               <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
-                <div className="testimonial-item bg-light rounded p-4">
+                <div className="testimonial-item rounded-4 p-4 shadow-lg bg-white" style={{
+                  backdropFilter: 'blur(8px)',
+                  background: 'rgba(255,255,255,0.85)',
+                  border: '1px solid #e0e0e0',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  boxShadow: '0 4px 24px rgba(111,34,72,0.08)',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.03)';
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(111,34,72,0.18)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'none';
+                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(111,34,72,0.08)';
+                }}>
                   <div className="d-flex align-items-center mb-4">
                     <img 
-                      className="flex-shrink-0 rounded-circle me-3" 
+                      className="flex-shrink-0 rounded-circle me-3 border border-3" 
                       src={testimonial.image} 
                       alt={testimonial.name}
-                      style={{width: '60px', height: '60px', objectFit: 'cover'}}
+                      style={{width: '60px', height: '60px', objectFit: 'cover', borderColor: '#6f2248'}}
                     />
-                <div>
-                      <h5 className="mb-1">{testimonial.name}</h5>
-                      <small className="text-primary">{testimonial.role}</small>
+                    <div>
+                      <h5 className="mb-1" style={{color: '#6f2248'}}>{testimonial.name}</h5>
+                      <small style={{color: '#a85c7a'}}>{testimonial.role}</small>
                     </div>
                   </div>
                   <div className="mb-3">
@@ -122,37 +146,46 @@ const Testimonies = () => {
         </div>
       </div>
 
-      {/* Success Stories Section */}
-      <div className="container-xxl py-5">
+
+      {/* Success Stories Section with Parallax and Overlay */}
+      <div className="w-100 py-5" style={{
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/success-stories/gallery-1.jpg') center/cover no-repeat, url('/images/success-stories.jpg') center/cover no-repeat`,
+        backgroundAttachment: 'fixed',
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: '32px'
+      }}>
         <div className="container">
-          <div className="row g-5">
+          <div className="row g-5 align-items-center">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Success Stories</h6>
+              <div className="h-100" style={{color: '#fff'}}>
+                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f2248'}}>Success Stories</h6>
                 <h1 className="display-6 mb-4">Transforming Lives Through Healthcare</h1>
                 <p>At Mount Carmel Hospital, we believe in the power of healthcare to transform lives. Our success stories are a testament to our commitment to excellence and the trust our patients place in us.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
                       <h6 className="mb-0">High Success Rates</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
                       <h6 className="mb-0">Patient Satisfaction</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
                       <h6 className="mb-0">Expert Care</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
                       <h6 className="mb-0">Modern Technology</h6>
                     </div>
                   </div>
@@ -162,15 +195,15 @@ const Testimonies = () => {
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="img-border">
-                <img className="img-fluid" src="/images/success-stories.jpg" alt="Success Stories" />
+                <img className="img-fluid rounded-4 shadow-lg" src="/images/success-stories.jpg" alt="Success Stories" />
               </div>
             </div>
           </div>
         </div>
-        </div>
+      </div>
 
       {/* Statistics Section */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(#6f2248)'}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
