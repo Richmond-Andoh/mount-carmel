@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Team = () => {
   useEffect(() => {
@@ -107,12 +110,19 @@ const Team = () => {
     <>
       <Header />
       
-      {/* Page Header */}
-      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
-        <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown">Our Team</h1>
+      {/* Hero Section with Parallax Background Image, Overlay, and Glassmorphism */}
+      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{
+        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/hospital-background.jpg') center/cover no-repeat`,
+        position: 'relative',
+        borderRadius: '0 0 32px 32px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+        backgroundAttachment: 'fixed',
+        overflow: 'hidden'
+      }}>
+        <div className="container py-5" style={{backdropFilter: 'blur(6px)', background: 'rgba(255,255,255,0.08)', borderRadius: '24px'}}>
+          <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px', textShadow: '0 2px 16px rgba(0,0,0,0.18)'}}>Our Team</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            <ol className="breadcrumb" style={{background: 'rgba(255,255,255,0.12)', borderRadius: '12px'}}>
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Team</li>
             </ol>
@@ -120,16 +130,15 @@ const Team = () => {
         </div>
       </div>
 
-      {/* Team Introduction */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Our Team</h6>
-            <h1 className="display-6 mb-4">Meet Our Expert Medical Professionals</h1>
-            <p className="mb-0">Our team of experienced healthcare professionals is dedicated to providing you with the highest quality medical care. Each member brings unique expertise and a commitment to excellence in patient care.</p>
-          </div>
+
+      {/* Jumbotron Section - Glassmorphism & Animation */}
+      <section className="jumbotron-section py-5" style={{background: 'linear-gradient(90deg, #6f2248 0%, #a85c7a 100%)', color: '#fff', position: 'relative'}}>
+        <div className="container text-center" style={{backdropFilter: 'blur(8px)', background: 'rgba(255,255,255,0.10)', borderRadius: '24px', boxShadow: '0 4px 32px rgba(111,34,72,0.12)'}}>
+          <h1 className="display-4 fw-bold mb-3 wow fadeInDown" data-wow-delay="0.1s" style={{textShadow: '0 2px 16px rgba(0,0,0,0.18)'}}>Meet Our World-Class Medical Team</h1>
+          <p className="lead mb-4 wow fadeInUp" data-wow-delay="0.2s">Compassionate, innovative, and dedicated to your health and well-being.</p>
+          <a href="/appointment" className="btn btn-light btn-lg px-5 py-3 rounded-pill shadow wow fadeInUp" data-wow-delay="0.3s" style={{color: '#6f2248', fontWeight: 'bold', boxShadow: '0 2px 12px #a85c7a33'}}>Book an Appointment</a>
         </div>
-      </div>
+      </section>
 
       {/* Featured Doctor */}
       <div className="container-xxl py-5">
@@ -180,93 +189,121 @@ const Team = () => {
         </div>
       </div>
 
-      {/* Team Members Grid */}
-      <div className="container-xxl py-5">
+
+      {/* Team Members Carousel - Modern Auto-Scrolling, Glassmorphism, Hover Effects */}
+      <section className="py-5" style={{background: 'linear-gradient(135deg, #f8f9fa, #fff)'}}>
         <div className="container">
-          <div className="row g-4">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
-                <div className="team-item">
-                  <div className="position-relative overflow-hidden">
-                    <img className="img-fluid" src={member.image} alt={member.name} />
-                    <div className="team-social">
-                      <a className="btn btn-square mx-1" href={member.social.facebook} style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
-                        <i className="fab fa-facebook-f" style={{color: 'white'}}></i>
-                      </a>
-                      <a className="btn btn-square mx-1" href={member.social.twitter} style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
-                        <i className="fab fa-twitter" style={{color: 'white'}}></i>
-                      </a>
-                      <a className="btn btn-square mx-1" href={member.social.linkedin} style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
-                        <i className="fab fa-linkedin-in" style={{color: 'white'}}></i>
-                      </a>
-                      <a className="btn btn-square mx-1" href={member.social.instagram} style={{backgroundColor: '#0066CC', borderColor: '#0066CC'}}>
-                        <i className="fab fa-instagram" style={{color: 'white'}}></i>
-                      </a>
-                    </div>
+          <div className="text-center mb-5">
+            <h2 className="display-5 fw-bold" style={{color: '#6f2248'}}>Meet Our Team</h2>
+            <p className="lead">Our dedicated professionals are here to serve you.</p>
+          </div>
+          <Slider
+            dots={true}
+            infinite={true}
+            speed={800}
+            slidesToShow={3}
+            slidesToScroll={1}
+            autoplay={true}
+            autoplaySpeed={2500}
+            cssEase="ease-in-out"
+            responsive={[{ breakpoint: 1024, settings: { slidesToShow: 2 } }, { breakpoint: 600, settings: { slidesToShow: 1 } }]}
+          >
+            {teamMembers.map((member, idx) => (
+              <div key={idx} style={{padding: '24px 12px'}}>
+                <div className="card border-0 shadow-lg rounded-4 text-center p-4 team-card" style={{background: 'rgba(255,255,255,0.85)', transition: 'transform 0.3s, box-shadow 0.3s'}}>
+                  <img src={member.image} alt={member.name} className="rounded-circle mx-auto mb-3" style={{width: '120px', height: '120px', objectFit: 'cover', boxShadow: '0 4px 24px #a85c7a22'}} />
+                  <h5 className="mb-1" style={{color: '#6f2248'}}>{member.name}</h5>
+                  <span className="text-muted mb-2">{member.position}</span>
+                  <p className="mb-2">{member.specialty}</p>
+                  <p className="text-muted small">{member.description}</p>
+                  <div className="d-flex justify-content-center mb-2">
+                    <small className="text-muted me-3">
+                      <i className="fa fa-graduation-cap me-1"></i>
+                      {member.education}
+                    </small>
+                    <small className="text-muted">
+                      <i className="fa fa-clock me-1"></i>
+                      {member.experience}
+                    </small>
                   </div>
-                  <div className="text-center p-4">
-                    <h5 className="mb-0">{member.name}</h5>
-                    <small className="text-primary">{member.position}</small>
-                    <p className="mb-2">{member.specialty}</p>
-                    <p className="text-muted small">{member.description}</p>
-                    <div className="d-flex justify-content-center">
-                      <small className="text-muted me-3">
-                        <i className="fa fa-graduation-cap me-1"></i>
-                        {member.education}
-                      </small>
-                      <small className="text-muted">
-                        <i className="fa fa-clock me-1"></i>
-                        {member.experience}
-                      </small>
-                    </div>
+                  <div className="d-flex justify-content-center">
+                    <a className="btn btn-square mx-1" href={member.social.facebook} style={{backgroundColor: '#6f2248', borderColor: '#6f2248', transition: 'background 0.3s'}}>
+                      <i className="fab fa-facebook-f" style={{color: 'white'}}></i>
+                    </a>
+                    <a className="btn btn-square mx-1" href={member.social.twitter} style={{backgroundColor: '#6f2248', borderColor: '#6f2248', transition: 'background 0.3s'}}>
+                      <i className="fab fa-twitter" style={{color: 'white'}}></i>
+                    </a>
+                    <a className="btn btn-square mx-1" href={member.social.linkedin} style={{backgroundColor: '#6f2248', borderColor: '#6f2248', transition: 'background 0.3s'}}>
+                      <i className="fab fa-linkedin-in" style={{color: 'white'}}></i>
+                    </a>
+                    <a className="btn btn-square mx-1" href={member.social.instagram} style={{backgroundColor: '#6f2248', borderColor: '#6f2248', transition: 'background 0.3s'}}>
+                      <i className="fab fa-instagram" style={{color: 'white'}}></i>
+                    </a>
                   </div>
                 </div>
+                <style>{`
+                  .team-card:hover {
+                    transform: translateY(-8px) scale(1.03);
+                    box-shadow: 0 8px 32px #6f224866;
+                  }
+                  .team-card .btn-square:hover {
+                    background: #a85c7a !important;
+                  }
+                `}</style>
               </div>
             ))}
-          </div>
+          </Slider>
         </div>
-      </div>
+      </section>
 
-      {/* Support Staff Section */}
-      <div className="container-xxl py-5">
+
+      {/* Support Staff Section with Parallax and Overlay */}
+      <div className="w-100 py-5" style={{
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/about-bg.jpg') center/cover no-repeat`,
+        backgroundAttachment: 'fixed',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
         <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Support Team</h6>
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px', color: '#fff'}}>
+            <h6 className="section-title bg-white text-center px-3" style={{color: '#6f2248'}}>Support Team</h6>
             <h1 className="display-6 mb-4">Dedicated Healthcare Support</h1>
             <p className="mb-0">Behind every successful medical team is a dedicated support staff committed to ensuring smooth operations and excellent patient care.</p>
           </div>
           <div className="row g-4">
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="service-item text-center pt-3">
+              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-user-nurse text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-user-nurse" style={{color: '#6f2248'}}></i>
                   <h5 className="mb-3">Nursing Staff</h5>
                   <p>Experienced nurses providing compassionate care and support to patients throughout their healthcare journey.</p>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-              <div className="service-item text-center pt-3">
+              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-user-tie text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-user-tie" style={{color: '#6f2248'}}></i>
                   <h5 className="mb-3">Administrative Staff</h5>
                   <p>Professional administrative team ensuring smooth operations and excellent patient service.</p>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="service-item text-center pt-3">
+              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-cogs text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-cogs" style={{color: '#6f2248'}}></i>
                   <h5 className="mb-3">Technical Staff</h5>
                   <p>Skilled technicians maintaining our advanced medical equipment and ensuring optimal performance.</p>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-              <div className="service-item text-center pt-3">
+              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-hands-helping text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-hands-helping" style={{color: '#6f2248'}}></i>
                   <h5 className="mb-3">Support Services</h5>
                   <p>Dedicated support staff providing essential services to maintain a comfortable patient environment.</p>
                 </div>
@@ -277,7 +314,7 @@ const Team = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(#6f2248)'}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
