@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -17,7 +22,7 @@ const Facilities = () => {
   const departments = [
     {
       name: "Fertility Center",
-      image: "/images/gallery/fertility-center.jpg",
+      image: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=600&q=80",
       description: "State-of-the-art fertility treatment center with advanced reproductive technology.",
       features: [
         "IVF Treatment",
@@ -28,7 +33,7 @@ const Facilities = () => {
     },
     {
       name: "Emergency Department",
-      image: "/images/gallery/emergency.jpg",
+      image: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=600&q=80",
       description: "24/7 emergency care facility equipped to handle all medical emergencies.",
       features: [
         "24/7 Emergency Services",
@@ -39,7 +44,7 @@ const Facilities = () => {
     },
     {
       name: "Diagnostic Center",
-      image: "/images/gallery/diagnostic.jpeg",
+      image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80",
       description: "Comprehensive diagnostic services with modern imaging technology.",
       features: [
         "Advanced Imaging",
@@ -53,7 +58,7 @@ const Facilities = () => {
   const infrastructure = [
     {
       name: "Operation Theaters",
-      image: "/images/gallery/surgical.jpeg",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
       description: "Modern operation theaters equipped with latest surgical technology.",
       features: [
         "Advanced Medical Equipment",
@@ -64,7 +69,7 @@ const Facilities = () => {
     },
     {
       name: "Patient Facilities",
-      image: "/images/gallery/room-facility.jpg",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
       description: "Comfortable patient areas designed for recovery and healing.",
       features: [
         "Private Rooms",
@@ -75,7 +80,7 @@ const Facilities = () => {
     },
     {
       name: "Hospital Infrastructure",
-      image: "/images/gallery/01.jpg",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
       description: "Modern hospital building with state-of-the-art facilities.",
       features: [
         "Modern Architecture",
@@ -84,6 +89,18 @@ const Facilities = () => {
         "Parking Facilities"
       ]
     }
+  ];
+
+  // Facility images for carousel
+  const facilityImages = [
+    { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", caption: "Main Building" },
+    { src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd2e?auto=format&fit=crop&w=600&q=80", caption: "Reception Area" },
+    { src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80", caption: "Patient Room" },
+    { src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80", caption: "Diagnostic Center" },
+    { src: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=600&q=80", caption: "Emergency Department" },
+    { src: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=600&q=80", caption: "Fertility Center" },
+    { src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80", caption: "Patient Facilities" },
+    { src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", caption: "Surgical Theater" }
   ];
 
   return (
@@ -192,9 +209,110 @@ const Facilities = () => {
           opacity: 1;
         }
 
+        /* Carousel buttons */
+        .carousel-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 4;
+          background: rgba(0,0,0,0.35);
+          color: #fff;
+          border: none;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          cursor: pointer;
+        }
+
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+
+        .carousel-btn:hover { background: rgba(111,34,72,0.85); }
+
         /* Override bootstrap primary color on this page to match About palette */
         .bg-primary { background: linear-gradient(90deg, #6f2248, #a85c7a) !important; }
       `}</style>
+    {/* Modern Swiper styles for gallery */}
+    <style>{`
+      .carousel-wrap {
+        overflow: visible;
+        padding-bottom: 32px;
+      }
+      .swiper {
+        padding-bottom: 48px !important;
+      }
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        height: 320px;
+      }
+      .gallery-item {
+        position: relative;
+        width: 100%;
+        max-width: 340px;
+        height: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 6px 32px rgba(111,34,72,0.12), 0 1.5px 6px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: #fff;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s;
+      }
+      .gallery-item:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 12px 40px rgba(111,34,72,0.18), 0 2px 8px rgba(0,0,0,0.10);
+      }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg,rgba(111,34,72,0.0),rgba(111,34,72,0.85));
+        color: #fff;
+        display: flex;
+        align-items: flex-end;
+        padding: 1.2rem;
+        border-radius: 18px;
+        pointer-events: none;
+      }
+      .gallery-overlay h5 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      }
+      /* Swiper navigation buttons */
+      .swiper-button-next, .swiper-button-prev {
+        color: #fff;
+        background: rgba(111,34,72,0.65);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        transition: background 0.2s;
+      }
+      .swiper-button-next:hover, .swiper-button-prev:hover {
+        background: rgba(111,34,72,0.85);
+      }
+      .swiper-pagination-bullet {
+        background: #6f2248;
+        opacity: 0.7;
+      }
+      .swiper-pagination-bullet-active {
+        background: #fff;
+        opacity: 1;
+        border: 2px solid #6f2248;
+      }
+    `}</style>
 
       {/* Page Header - match About page styling with background image + overlay */}
       <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
@@ -257,12 +375,10 @@ const Facilities = () => {
                     transition={{ duration: 0.5, delay: index * 0.08 }}
                   >
                     <div className="service-item d-flex h-100 p-5" tabIndex={0}>
-                      <div className="flex-shrink-0">
-                        <div className="bg-primary rounded-3" style={{width: '60px', height: '60px'}}>
-                          <i className="fa fa-hospital text-white fa-2x"></i>
-                        </div>
+                      <div className="flex-shrink-0 me-4">
+                        <img src={dept.image} alt={dept.name} style={{width:'80px',height:'80px',objectFit:'cover',borderRadius:'12px',boxShadow:'0 2px 12px rgba(111,34,72,0.10)'}} />
                       </div>
-                      <div className="ms-4">
+                      <div className="ms-2">
                         <h4 className="mb-3">{dept.name}</h4>
                         <p className="mb-4">{dept.description}</p>
                         <ul className="list-unstyled">
@@ -288,12 +404,10 @@ const Facilities = () => {
                     transition={{ duration: 0.5, delay: index * 0.08 }}
                   >
                     <div className="service-item d-flex h-100 p-5" tabIndex={0}>
-                      <div className="flex-shrink-0">
-                        <div className="bg-primary rounded-3" style={{width: '60px', height: '60px'}}>
-                          <i className="fa fa-building text-white fa-2x"></i>
-                        </div>
+                      <div className="flex-shrink-0 me-4">
+                        <img src={item.image} alt={item.name} style={{width:'80px',height:'80px',objectFit:'cover',borderRadius:'12px',boxShadow:'0 2px 12px rgba(111,34,72,0.10)'}} />
                       </div>
-                      <div className="ms-4">
+                      <div className="ms-2">
                         <h4 className="mb-3">{item.name}</h4>
                         <p className="mb-4">{item.description}</p>
                         <ul className="list-unstyled">
@@ -358,34 +472,41 @@ const Facilities = () => {
             </div>
           </motion.section>
 
-          {/* Gallery Section */}
+          {/* Gallery Section - Swiper Carousel */}
           <div className="mt-5">
             <div className="text-center mb-4">
               <h3>Facilities Gallery</h3>
               <p className="mb-0">Explore our hospital through recent images showcasing care, comfort, and technology.</p>
             </div>
-            <div className="carousel-wrap">
-              <div className="carousel-track" aria-hidden="false">
-                {["01.jpg","02.jpg","04.jpg","diagnostic.jpeg","emergency.jpg","fertility-center.jpg","room-facility.jpg","surgical.jpeg"].concat(["01.jpg","02.jpg","04.jpg","diagnostic.jpeg","emergency.jpg","fertility-center.jpg","room-facility.jpg","surgical.jpeg"]).map((img, i) => (
-                  <div key={i} className="carousel-item">
-                    <motion.div whileHover={{scale:1.02}} transition={{duration:0.28}} className="gallery-item">
-                      <img src={`/images/gallery/${img}`} alt={`gallery-${i}`} loading="lazy" />
-                      <div className="gallery-overlay">
-                        <div className="text-center">
-                          <h5 className="mb-1">{i % 2 === 0 ? 'Medical Care' : 'Patient Comfort'}</h5>
-                          <small>View Details</small>
-                        </div>
+            <div className="carousel-wrap position-relative">
+              <Swiper
+                modules={[Autoplay, Pagination, Navigation]}
+                spaceBetween={24}
+                slidesPerView={1}
+                breakpoints={{
+                  576: { slidesPerView: 2 },
+                  992: { slidesPerView: 3 },
+                  1200: { slidesPerView: 4 }
+                }}
+                loop={true}
+                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                pagination={{ clickable: true }}
+                navigation={true}
+                style={{ paddingBottom: '48px' }}
+              >
+                {facilityImages.map((img, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="gallery-item position-relative">
+                      <img src={img.src} alt={img.caption} loading="lazy" />
+                      <div className="gallery-overlay d-flex flex-column justify-content-end p-3" style={{background:'linear-gradient(180deg,rgba(111,34,72,0.0),rgba(111,34,72,0.65))'}}>
+                        <h5 className="mb-1 text-white fw-bold">{img.caption}</h5>
                       </div>
-                    </motion.div>
-                  </div>
+                    </div>
+                  </SwiperSlide>
                 ))}
-              </div>
+              </Swiper>
             </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="row g-5 mt-5">
-            <div className="col-12">
+            <div className="col-12 mt-4">
               <div className="bg-primary rounded p-5 text-center text-white wow fadeInUp" data-wow-delay="0.1s">
                 <h3 className="mb-4">Experience Our Facilities</h3>
                 <p className="mb-4">Schedule a visit to our hospital and experience our world-class facilities firsthand. Our team is ready to provide you with exceptional care.</p>
