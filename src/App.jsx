@@ -12,11 +12,13 @@ import PartnerForm from './pages/PartnerForm';
 import Facilities from './pages/Facilities';
 import VisitationForm from './pages/VisitationForm';
 import Partners from './pages/Partners';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -9,6 +10,20 @@ const Services = () => {
       new window.WOW().init();
     }
   }, []);
+
+  const serviceCategories = [
+    { key: 'all', label: 'All' },
+    { key: 'fertility', label: 'Fertility' },
+    { key: 'maternity', label: 'Maternity' },
+    { key: 'general', label: 'General Medicine' },
+    { key: 'gynecology', label: 'Gynecology' },
+    { key: 'pediatrics', label: 'Pediatrics' },
+    { key: 'lab', label: 'Lab' },
+    { key: 'emergency', label: 'Emergency' },
+    { key: 'specialized', label: 'Specialized' }
+  ];
+
+  const [activeCategory, setActiveCategory] = useState('all');
 
   const services = [
     {
@@ -61,6 +76,41 @@ const Services = () => {
     }
   ];
 
+  // Before/after slider demo images
+  const beforeAfterImages = {
+    before: '/images/fertility-treatment.jpg',
+    after: '/images/fertility-center.jpg'
+  };
+
+  // Equipment showcase
+  const equipment = [
+    { name: 'Ultrasound Machine', img: '/images/gallery/diagnostic.jpeg', desc: 'High-res imaging for diagnostics.' },
+    { name: 'IVF Incubator', img: '/images/gallery/fertility-center.jpg', desc: 'Advanced embryo culture system.' },
+    { name: 'Surgical Robot', img: '/images/gallery/surgical.jpeg', desc: 'Precision-assisted surgery.' }
+  ];
+
+  // Pricing table
+  const pricing = [
+    { name: 'Consultation', price: '₵150', highlight: false },
+    { name: 'IVF Cycle', price: '₵12,000', highlight: true },
+    { name: 'Lab Tests', price: '₵300', highlight: false },
+    { name: 'Emergency Care', price: '₵500', highlight: false }
+  ];
+
+  // Service flow steps
+  const flowSteps = [
+    'Book Appointment',
+    'Initial Consultation',
+    'Diagnostic Tests',
+    'Treatment Plan',
+    'Follow-up Care'
+  ];
+
+  // Filtered services
+  const filteredServices = activeCategory === 'all'
+    ? services
+    : services.filter(s => s.title.toLowerCase().includes(activeCategory));
+
   return (
     <>
       <Header />
@@ -78,7 +128,7 @@ const Services = () => {
         </div>
       </div>
 
-      {/* Services Overview */}
+      {/* Service Category Filtering */}
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
@@ -86,26 +136,166 @@ const Services = () => {
             <h1 className="display-6 mb-4">Comprehensive Healthcare Services</h1>
             <p className="mb-0">Mount Carmel Hospital offers a wide range of medical services designed to meet all your healthcare needs. From fertility treatment to emergency care, we provide expert medical care with compassion and excellence.</p>
           </div>
-          <div className="row g-4">
-            {services.map((service, index) => (
-              <div key={index} className="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
-                <div className="service-item text-center pt-3">
-                  <div className="p-4">
-                    <i className={`${service.icon} fa-3x text-primary mb-4`}></i>
-                    <h5 className="mb-3">{service.title}</h5>
-                    <p>{service.description}</p>
-                    <ul className="list-unstyled text-start">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="mb-2">
-                          <i className="fa fa-check text-primary me-2"></i>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
+          <div className="d-flex justify-content-center mb-4 flex-wrap gap-2">
+            {serviceCategories.map(cat => (
+              <button
+                key={cat.key}
+                className={`btn btn-outline-primary px-3 py-2${activeCategory === cat.key ? ' active' : ''}`}
+                style={{ borderRadius: '20px', fontWeight: 500, transition: 'background .2s' }}
+                onClick={() => setActiveCategory(cat.key)}
+              >
+                {cat.label}
+              </button>
             ))}
+          </div>
+          <div className="row g-4">
+            <AnimatePresence>
+              {filteredServices.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="col-lg-4 col-sm-6"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                >
+                  <div className="service-item text-center pt-3">
+                    <div className="p-4">
+                      <i className={`${service.icon} fa-3x text-primary mb-4`}></i>
+                      <h5 className="mb-3">{service.title}</h5>
+                      <p>{service.description}</p>
+                      <ul className="list-unstyled text-start">
+                        {service.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="mb-2">
+                            <i className="fa fa-check text-primary me-2"></i>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      {/* Before/After Comparison Slider */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mb-4">
+            <h2 className="mb-2">Fertility Center Transformation</h2>
+            <p>See the difference our advanced technology makes.</p>
+          </div>
+          <div className="comparison-slider mx-auto" style={{maxWidth:'600px', position:'relative', height:'320px'}}>
+            <input type="range" min="0" max="100" defaultValue="50" className="w-100 position-absolute top-0" style={{zIndex:2, opacity:0.7, height:'320px'}} onInput={e => {
+              const slider = e.target;
+              const before = slider.parentNode.querySelector('.before-img');
+              before.style.width = slider.value + '%';
+            }} />
+            <div className="before-img" style={{position:'absolute',top:0,left:0,height:'320px',width:'50%',overflow:'hidden',transition:'width .3s'}}>
+              <img src={beforeAfterImages.before} alt="Before" style={{height:'320px',width:'600px',objectFit:'cover'}} />
+            </div>
+            <div className="after-img" style={{position:'absolute',top:0,left:0,height:'320px',width:'100%',overflow:'hidden'}}>
+              <img src={beforeAfterImages.after} alt="After" style={{height:'320px',width:'600px',objectFit:'cover',opacity:0.85}} />
+            </div>
+            <div className="slider-labels position-absolute w-100 d-flex justify-content-between px-3" style={{top:'8px',zIndex:3}}>
+              <span className="badge bg-primary">Before</span>
+              <span className="badge bg-success">After</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Interactive Service Flow Diagram */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mb-4">
+            <h2 className="mb-2">How Our Service Works</h2>
+            <p>Follow the steps for a seamless healthcare experience.</p>
+          </div>
+          <div className="flow-diagram d-flex justify-content-center align-items-center gap-4 flex-wrap">
+            {flowSteps.map((step, i) => (
+              <motion.div
+                key={step}
+                className="flow-step bg-white shadow rounded px-4 py-3 text-center"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, delay: i * 0.15 }}
+                whileHover={{ scale: 1.08, boxShadow: '0 8px 32px rgba(111,34,72,0.18)' }}
+                style={{ minWidth: '160px', fontWeight: 500, color: '#6f2248', border: '2px solid #a85c7a' }}
+              >
+                {step}
+                {i < flowSteps.length - 1 && <span style={{fontSize:'2rem',color:'#a85c7a',marginLeft:'12px'}}>&rarr;</span>}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Equipment Showcase 3D-like Presentation */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mb-4">
+            <h2 className="mb-2">Featured Equipment</h2>
+            <p>Explore our advanced medical equipment.</p>
+          </div>
+          <div className="row g-4 justify-content-center">
+            {equipment.map((eq, i) => (
+              <motion.div
+                key={eq.name}
+                className="col-md-4"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.18 }}
+                whileHover={{ scale: 1.12, rotateY: 8, boxShadow: '0 12px 40px rgba(111,34,72,0.18)' }}
+                style={{ perspective: '800px' }}
+              >
+                <div className="equipment-card bg-white rounded shadow p-4 text-center" style={{border:'2px solid #a85c7a'}}>
+                  <img src={eq.img} alt={eq.name} style={{width:'100%',height:'180px',objectFit:'cover',borderRadius:'12px',boxShadow:'0 2px 12px rgba(111,34,72,0.10)'}} />
+                  <h5 className="mt-3 mb-1" style={{color:'#6f2248'}}>{eq.name}</h5>
+                  <p className="mb-0 text-muted" style={{fontSize:'1rem'}}>{eq.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing Table with Highlight Animation */}
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center mb-4">
+            <h2 className="mb-2">Service Pricing</h2>
+            <p>Transparent pricing for our most popular services.</p>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <table className="table table-bordered pricing-table text-center">
+                <thead>
+                  <tr className="bg-primary text-white">
+                    <th>Service</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pricing.map((item, i) => (
+                    <motion.tr
+                      key={item.name}
+                      initial={{ scale: 0.95, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.4, delay: i * 0.12 }}
+                      whileHover={item.highlight ? { backgroundColor: '#a85c7a', color: '#fff', scale: 1.04 } : { scale: 1.03 }}
+                      style={item.highlight ? { background: '#a85c7a', color: '#fff', fontWeight: 700 } : {}}
+                    >
+                      <td>{item.name}</td>
+                      <td>{item.price}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -292,6 +482,38 @@ const Services = () => {
       </div>
       
       <Footer />
+      {/* Modern styles for new features */}
+      <style>{`
+        .comparison-slider input[type=range]::-webkit-slider-thumb {
+          width: 16px; height: 320px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
+        }
+        .comparison-slider input[type=range]::-moz-range-thumb {
+          width: 16px; height: 320px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
+        }
+        .comparison-slider input[type=range]::-ms-thumb {
+          width: 16px; height: 320px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
+        }
+        .comparison-slider input[type=range] {
+          appearance: none;
+          background: transparent;
+        }
+        .flow-step {
+          box-shadow: 0 2px 12px rgba(111,34,72,0.10);
+        }
+        .equipment-card {
+          transition: box-shadow .3s, transform .3s;
+        }
+        .pricing-table tr {
+          transition: background .3s, color .3s, transform .3s;
+        }
+        .pricing-table tr:hover {
+          background: #a85c7a; color: #fff;
+        }
+        .btn.active, .btn:active {
+          background: #a85c7a !important; color: #fff !important;
+          border-color: #a85c7a !important;
+        }
+      `}</style>
     </>
   );
 };

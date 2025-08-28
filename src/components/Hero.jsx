@@ -95,7 +95,7 @@ const Hero = () => {
               <div 
                 className="w-100 position-relative"
                 style={{ 
-                  height: '80vh',
+                  height: '100vh',
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
@@ -133,7 +133,7 @@ const Hero = () => {
                         <div className="mb-3" style={{
                           animation: index === currentSlide ? 'slideInRight 1s ease-out 0.2s both' : 'none'
                         }}>
-                          <span className="badge bg-primary px-3 py-2 mb-2" style={{
+                          <span className="badge bg-primary px-3 mb-2" style={{
                             backgroundColor: '#6f3348',
                             fontSize: '0.9rem',
                             fontWeight: '500'
@@ -302,7 +302,7 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3" style={{zIndex: 3}}>
         <div className="text-center text-white">
-          <div className="mb-2">Scroll Down</div>
+          {/* <div className="mb-2">Scroll Down</div> */}
           <div className="d-flex justify-content-center">
             <div className="w-1 h-8 bg-white rounded-full" style={{
               animation: 'scrollIndicator 2s ease-in-out infinite'
