@@ -1,497 +1,260 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { FaBaby, FaHeartbeat, FaUserMd, FaStethoscope, FaClinicMedical, FaFlask, FaAmbulance, FaProcedures } from 'react-icons/fa';
 
 const Services = () => {
   useEffect(() => {
-    // Initialize WOW.js for animations
-    if (window.WOW) {
-      new window.WOW().init();
-    }
+    window.scrollTo(0, 0);
   }, []);
 
   const serviceCategories = [
-    { key: 'all', label: 'All' },
+    { key: 'all', label: 'All Services' },
     { key: 'fertility', label: 'Fertility' },
     { key: 'maternity', label: 'Maternity' },
-    { key: 'general', label: 'General Medicine' },
     { key: 'gynecology', label: 'Gynecology' },
-    { key: 'pediatrics', label: 'Pediatrics' },
-    { key: 'lab', label: 'Lab' },
+    { key: 'ivf', label: 'IVF & ART' },
+    { key: 'urology', label: 'Male Infertility' },
+    { key: 'surgical', label: 'Surgical' },
+    { key: 'diagnostics', label: 'Diagnostics' },
     { key: 'emergency', label: 'Emergency' },
     { key: 'specialized', label: 'Specialized' }
   ];
 
   const [activeCategory, setActiveCategory] = useState('all');
+  const [isHovered, setIsHovered] = useState(null);
 
   const services = [
     {
-      icon: 'fa fa-baby',
-      title: 'Fertility Treatment',
-      description: 'Advanced fertility treatments including IVF, IUI, and reproductive medicine with high success rates.',
-      features: ['In Vitro Fertilization (IVF)', 'Intrauterine Insemination (IUI)', 'Fertility Assessment', 'Hormone Therapy']
+      id: 1,
+      category: 'fertility',
+      icon: <FaBaby className="text-4xl text-pink-600 mb-4" />,
+      title: 'Fertility Assessment',
+      description: 'Comprehensive evaluation to understand your fertility potential and identify any underlying issues.',
+      features: ['Hormone Testing', 'Ovarian Reserve Testing', 'Semen Analysis', 'Fertility Ultrasound'],
+      image: '/images/services/fertility-assessment.jpg'
     },
     {
-      icon: 'fa fa-heartbeat',
-      title: 'Maternity Care',
-      description: 'Comprehensive prenatal, delivery, and postnatal care for expectant mothers and their babies.',
-      features: ['Prenatal Care', 'Safe Delivery', 'Postnatal Care', 'Neonatal Care']
+      id: 2,
+      category: 'ivf',
+      icon: <FaHeartbeat className="text-4xl text-pink-600 mb-4" />,
+      title: 'IVF Treatment',
+      description: 'Advanced In Vitro Fertilization with high success rates using the latest reproductive technologies.',
+      features: ['Egg Retrieval', 'Embryo Culture', 'Embryo Transfer', 'Blastocyst Culture'],
+      image: '/images/services/ivf-treatment.jpg'
     },
     {
-      icon: 'fa fa-stethoscope',
-      title: 'General Medicine',
-      description: 'Complete medical care for all ages with experienced physicians and modern diagnostic facilities.',
-      features: ['Health Check-ups', 'Diagnostic Services', 'Treatment Plans', 'Preventive Care']
+      id: 3,
+      category: 'maternity',
+      icon: <FaClinicMedical className="text-4xl text-pink-600 mb-4" />,
+      title: 'Prenatal & Postnatal Care',
+      description: 'Comprehensive care for expectant mothers from conception through delivery and beyond.',
+      features: ['Prenatal Checkups', 'Ultrasound Scans', 'Nutrition Counseling', 'Postpartum Care'],
+      image: '/images/services/prenatal-care.jpg'
     },
     {
-      icon: 'fa fa-user-md',
-      title: 'Gynecology',
-      description: 'Specialized women\'s health care including routine check-ups and advanced gynecological procedures.',
-      features: ['Women\'s Health', 'Gynecological Surgery', 'Family Planning', 'Menopause Care']
+      id: 4,
+      category: 'gynecology',
+      icon: <FaUserMd className="text-4xl text-pink-600 mb-4" />,
+      title: 'Gynecological Services',
+      description: 'Specialized care for women\'s health needs at every stage of life.',
+      features: ['Women\'s Health', 'Gynecological Surgery', 'Family Planning', 'Menopause Care'],
+      image: '/images/services/gynecology.jpg'
     },
     {
-      icon: 'fa fa-child',
-      title: 'Pediatrics',
-      description: 'Expert care for children from birth through adolescence with child-friendly environment.',
-      features: ['Child Health', 'Vaccinations', 'Growth Monitoring', 'Child Development']
+      id: 5,
+      category: 'urology',
+      icon: <FaUserMd className="text-4xl text-blue-600 mb-4" />,
+      title: 'Male Infertility',
+      description: 'Comprehensive evaluation and treatment for male factor infertility issues.',
+      features: ['Semen Analysis', 'Hormone Testing', 'Surgical Sperm Retrieval', 'Varicocele Treatment'],
+      image: '/images/services/male-fertility.jpg'
     },
     {
-      icon: 'fa fa-flask',
+      id: 6,
+      category: 'ivf',
+      icon: <FaFlask className="text-4xl text-pink-600 mb-4" />,
+      title: 'Advanced ART',
+      description: 'Cutting-edge Assisted Reproductive Technologies for complex fertility cases.',
+      features: ['ICSI', 'PGT Testing', 'Egg/Embryo Freezing', 'Donor Programs'],
+      image: '/images/services/art.jpg'
+    },
+    {
+      id: 7,
+      category: 'surgical',
+      icon: <FaProcedures className="text-4xl text-pink-600 mb-4" />,
+      title: 'Fertility Surgeries',
+      description: 'Minimally invasive surgical procedures to treat various fertility issues.',
+      features: ['Laparoscopy', 'Hysteroscopy', 'Myomectomy', 'Tubal Surgery'],
+      image: '/images/services/fertility-surgery.jpg'
+    },
+    {
+      id: 8,
+      category: 'fertility',
+      icon: <FaHeartbeat className="text-4xl text-pink-600 mb-4" />,
+      title: 'Fertility Preservation',
+      description: 'Options for preserving fertility before medical treatments or for future family planning.',
+      features: ['Egg Freezing', 'Sperm Freezing', 'Embryo Freezing', 'Ovarian Tissue Freezing'],
+      image: '/images/services/fertility-preservation.jpg'
+    },
+    {
+      id: 9,
+      category: 'diagnostics',
+      icon: <FaFlask className="text-4xl text-blue-600 mb-4" />,
       title: 'Laboratory Services',
       description: 'State-of-the-art laboratory with comprehensive diagnostic testing and quick results.',
-      features: ['Blood Tests', 'Urine Analysis', 'Microbiology', 'Pathology']
+      features: ['Blood Tests', 'Urine Analysis', 'Microbiology', 'Pathology'],
+      image: '/images/services/laboratory.jpg'
     },
     {
-      icon: 'fa fa-ambulance',
+      id: 10,
+      category: 'emergency',
+      icon: <FaAmbulance className="text-4xl text-red-600 mb-4" />,
       title: 'Emergency Care',
       description: '24/7 emergency medical services with rapid response and critical care facilities.',
-      features: ['Emergency Response', 'Critical Care', 'Trauma Care', 'Emergency Surgery']
+      features: ['Emergency Response', 'Critical Care', 'Trauma Care', 'Emergency Surgery'],
+      image: '/images/services/emergency-care.jpg'
     },
     {
-      icon: 'fa fa-eye',
+      id: 11,
+      category: 'specialized',
+      icon: <FaStethoscope className="text-4xl text-purple-600 mb-4" />,
       title: 'Specialized Care',
       description: 'Specialized medical services including cardiology, orthopedics, and other specialties.',
-      features: ['Cardiology', 'Orthopedics', 'Dermatology', 'Neurology']
+      features: ['Cardiology', 'Orthopedics', 'Dermatology', 'Neurology'],
+      image: '/images/services/specialized-care.jpg'
     }
   ];
 
-  // Before/after slider demo images
-  const beforeAfterImages = {
-    before: '/images/fertility-treatment.jpg',
-    after: '/images/fertility-center.jpg'
+  const filteredServices = activeCategory === 'all' 
+    ? services 
+    : services.filter(service => service.category === activeCategory);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
   };
 
-  // Equipment showcase
-  const equipment = [
-    { name: 'Ultrasound Machine', img: '/images/gallery/diagnostic.jpeg', desc: 'High-res imaging for diagnostics.' },
-    { name: 'IVF Incubator', img: '/images/gallery/fertility-center.jpg', desc: 'Advanced embryo culture system.' },
-    { name: 'Surgical Robot', img: '/images/gallery/surgical.jpeg', desc: 'Precision-assisted surgery.' }
-  ];
-
-  // Pricing table
-  const pricing = [
-    { name: 'Consultation', price: '₵150', highlight: false },
-    { name: 'IVF Cycle', price: '₵12,000', highlight: true },
-    { name: 'Lab Tests', price: '₵300', highlight: false },
-    { name: 'Emergency Care', price: '₵500', highlight: false }
-  ];
-
-  // Service flow steps
-  const flowSteps = [
-    'Book Appointment',
-    'Initial Consultation',
-    'Diagnostic Tests',
-    'Treatment Plan',
-    'Follow-up Care'
-  ];
-
-  // Filtered services
-  const filteredServices = activeCategory === 'all'
-    ? services
-    : services.filter(s => s.title.toLowerCase().includes(activeCategory));
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 }
+    },
+    hover: {
+      scale: 1.03,
+      transition: { duration: 0.3 }
+    }
+  };
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <Header />
-      
-      {/* Page Header */}
-      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
+      {/* Hero Section with Background Image and Overlay (About Page Style) */}
+      <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
+        background: `linear-gradient(rgba(111,34,72,0.85), rgba(111,34,72,0.85)), url('/images/gallery/fertility-center.jpg') center/cover no-repeat`,
+        position: 'relative',
+        borderRadius: '0 0 32px 32px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+        backgroundAttachment: 'fixed',
+        height: '400px'
+      }}>
         <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown">Our Services</h1>
+          <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Our Services</h1>
           <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Services</li>
             </ol>
           </nav>
+          <p className="lead text-white mt-4" style={{maxWidth: '600px'}}>Explore our comprehensive range of fertility, maternity, surgical, and specialized medical services delivered with compassion and excellence.</p>
         </div>
       </div>
 
-      {/* Service Category Filtering */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Services</h6>
-            <h1 className="display-6 mb-4">Comprehensive Healthcare Services</h1>
-            <p className="mb-0">Mount Carmel Hospital offers a wide range of medical services designed to meet all your healthcare needs. From fertility treatment to emergency care, we provide expert medical care with compassion and excellence.</p>
-          </div>
-          <div className="d-flex justify-content-center mb-4 flex-wrap gap-2">
-            {serviceCategories.map(cat => (
-              <button
-                key={cat.key}
-                className={`btn btn-outline-primary px-3 py-2${activeCategory === cat.key ? ' active' : ''}`}
-                style={{ borderRadius: '20px', fontWeight: 500, transition: 'background .2s' }}
-                onClick={() => setActiveCategory(cat.key)}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-          <div className="row g-4">
-            <AnimatePresence>
-              {filteredServices.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  className="col-lg-4 col-sm-6"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 30 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                >
-                  <div className="service-item text-center pt-3">
-                    <div className="p-4">
-                      <i className={`${service.icon} fa-3x text-primary mb-4`}></i>
-                      <h5 className="mb-3">{service.title}</h5>
-                      <p>{service.description}</p>
-                      <ul className="list-unstyled text-start">
-                        {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="mb-2">
-                            <i className="fa fa-check text-primary me-2"></i>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
-
-      {/* Before/After Comparison Slider */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mb-4">
-            <h2 className="mb-2">Fertility Center Transformation</h2>
-            <p>See the difference our advanced technology makes.</p>
-          </div>
-          <div className="comparison-slider mx-auto" style={{maxWidth:'600px', position:'relative', height:'320px'}}>
-            <input type="range" min="0" max="100" defaultValue="50" className="w-100 position-absolute top-0" style={{zIndex:2, opacity:0.7, height:'320px'}} onInput={e => {
-              const slider = e.target;
-              const before = slider.parentNode.querySelector('.before-img');
-              before.style.width = slider.value + '%';
-            }} />
-            <div className="before-img" style={{position:'absolute',top:0,left:0,height:'320px',width:'50%',overflow:'hidden',transition:'width .3s'}}>
-              <img src={beforeAfterImages.before} alt="Before" style={{height:'320px',width:'600px',objectFit:'cover'}} />
-            </div>
-            <div className="after-img" style={{position:'absolute',top:0,left:0,height:'320px',width:'100%',overflow:'hidden'}}>
-              <img src={beforeAfterImages.after} alt="After" style={{height:'320px',width:'600px',objectFit:'cover',opacity:0.85}} />
-            </div>
-            <div className="slider-labels position-absolute w-100 d-flex justify-content-between px-3" style={{top:'8px',zIndex:3}}>
-              <span className="badge bg-primary">Before</span>
-              <span className="badge bg-success">After</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Interactive Service Flow Diagram */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mb-4">
-            <h2 className="mb-2">How Our Service Works</h2>
-            <p>Follow the steps for a seamless healthcare experience.</p>
-          </div>
-          <div className="flow-diagram d-flex justify-content-center align-items-center gap-4 flex-wrap">
-            {flowSteps.map((step, i) => (
-              <motion.div
-                key={step}
-                className="flow-step bg-white shadow rounded px-4 py-3 text-center"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.4, delay: i * 0.15 }}
-                whileHover={{ scale: 1.08, boxShadow: '0 8px 32px rgba(111,34,72,0.18)' }}
-                style={{ minWidth: '160px', fontWeight: 500, color: '#6f2248', border: '2px solid #a85c7a' }}
-              >
-                {step}
-                {i < flowSteps.length - 1 && <span style={{fontSize:'2rem',color:'#a85c7a',marginLeft:'12px'}}>&rarr;</span>}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Equipment Showcase 3D-like Presentation */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mb-4">
-            <h2 className="mb-2">Featured Equipment</h2>
-            <p>Explore our advanced medical equipment.</p>
-          </div>
-          <div className="row g-4 justify-content-center">
-            {equipment.map((eq, i) => (
-              <motion.div
-                key={eq.name}
-                className="col-md-4"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: i * 0.18 }}
-                whileHover={{ scale: 1.12, rotateY: 8, boxShadow: '0 12px 40px rgba(111,34,72,0.18)' }}
-                style={{ perspective: '800px' }}
-              >
-                <div className="equipment-card bg-white rounded shadow p-4 text-center" style={{border:'2px solid #a85c7a'}}>
-                  <img src={eq.img} alt={eq.name} style={{width:'100%',height:'180px',objectFit:'cover',borderRadius:'12px',boxShadow:'0 2px 12px rgba(111,34,72,0.10)'}} />
-                  <h5 className="mt-3 mb-1" style={{color:'#6f2248'}}>{eq.name}</h5>
-                  <p className="mb-0 text-muted" style={{fontSize:'1rem'}}>{eq.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Pricing Table with Highlight Animation */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mb-4">
-            <h2 className="mb-2">Service Pricing</h2>
-            <p>Transparent pricing for our most popular services.</p>
-          </div>
+      <main className="container mx-auto px-4 py-16">
+        {/* Service Categories - Responsive Horizontal Scroll */}
+        <div className="container my-5">
           <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <table className="table table-bordered pricing-table text-center">
-                <thead>
-                  <tr className="bg-primary text-white">
-                    <th>Service</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pricing.map((item, i) => (
-                    <motion.tr
-                      key={item.name}
-                      initial={{ scale: 0.95, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.4, delay: i * 0.12 }}
-                      whileHover={item.highlight ? { backgroundColor: '#a85c7a', color: '#fff', scale: 1.04 } : { scale: 1.03 }}
-                      style={item.highlight ? { background: '#a85c7a', color: '#fff', fontWeight: 700 } : {}}
-                    >
-                      <td>{item.name}</td>
-                      <td>{item.price}</td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="col-12">
+              <div className="d-flex flex-row flex-nowrap overflow-auto gap-3 py-3 px-2" style={{scrollbarWidth: 'none'}}>
+                {serviceCategories.map((category) => (
+                  <button
+                    key={category.key}
+                    onClick={() => setActiveCategory(category.key)}
+                    className={`btn rounded-pill px-4 py-2 fw-semibold shadow-sm transition-all ${
+                      activeCategory === category.key
+                        ? 'btn-primary text-white'
+                        : 'btn-outline-primary text-primary bg-white'
+                    }`}
+                    style={{minWidth: '140px', whiteSpace: 'nowrap'}}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Featured Services */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Fertility Treatment</h6>
-                <h1 className="display-6 mb-4">Advanced Fertility Care</h1>
-                <p>Our fertility center is equipped with the latest technology and staffed by experienced reproductive medicine specialists. We offer comprehensive fertility treatments with personalized care plans.</p>
-                <div className="row g-4 mb-4">
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">IVF Treatment</h6>
+        {/* Services Grid - Modern Responsive Cards */}
+        <div className="container pb-5">
+          <div className="row g-4">
+            {filteredServices.map((service) => (
+              <div key={service.id} className="col-12 col-sm-6 col-lg-4">
+                <div className="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
+                  <div className="position-relative" style={{height: '220px', overflow: 'hidden'}}>
+                    <img src={service.image} alt={service.title} className="w-100 h-100 object-fit-cover" style={{objectFit: 'cover'}} />
+                    <div className="position-absolute top-0 start-0 w-100 h-100" style={{background: 'linear-gradient(180deg, rgba(111,34,72,0.25) 0%, rgba(0,0,0,0.45) 100%)'}}></div>
+                    <div className="position-absolute top-0 end-0 m-3 bg-white rounded-circle shadow p-2">
+                      {service.icon}
                     </div>
                   </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">IUI Procedures</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Fertility Assessment</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Hormone Therapy</h6>
-                    </div>
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title fw-bold mb-2 text-primary">{service.title}</h5>
+                    <p className="card-text text-muted mb-3 flex-grow-1">{service.description}</p>
+                    <ul className="list-unstyled mb-3">
+                      {service.features.slice(0, 3).map((feature, i) => (
+                        <li key={i} className="d-flex align-items-center mb-2">
+                          <span className="badge bg-primary me-2" style={{width: '8px', height: '8px', borderRadius: '50%'}}></span>
+                          <span className="text-secondary small">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} className="btn btn-outline-primary rounded-pill mt-auto">Learn More</a>
                   </div>
                 </div>
-                <a className="btn btn-primary py-3 px-5" href="/appointment">Book Consultation</a>
               </div>
-            </div>
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="img-border">
-                <img className="img-fluid" src="/images/fertility-treatment.jpg" alt="Fertility Treatment" />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-            </div>
-            
-      {/* Maternity Care Section */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="img-border">
-                <img className="img-fluid" src="/images/maternity-care.jpg" alt="Maternity Care" />
-              </div>
-            </div>
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Maternity Care</h6>
-                <h1 className="display-6 mb-4">Complete Maternity Services</h1>
-                <p>Experience the joy of motherhood with our comprehensive maternity care services. From prenatal care to safe delivery and postnatal support, we ensure the best care for you and your baby.</p>
-                <div className="row g-4 mb-4">
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Prenatal Care</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Safe Delivery</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Postnatal Care</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Neonatal Care</h6>
-                    </div>
-                  </div>
-                </div>
-                <a className="btn btn-primary py-3 px-5" href="/appointment">Schedule Visit</a>
-              </div>
-            </div>
-          </div>
+      </main>
+      {/* CTA Section - Modern Full Width */}
+      <section className="container-fluid w-100 py-5" style={{background: 'linear-gradient(90deg, #6f2248 0%, #a85c7a 100%)', color: '#fff', margin: 0, padding: 0}}>
+        <div className="container text-center">
+          <h2 className="display-5 fw-bold mb-3">Ready to Start Your Journey?</h2>
+          <p className="lead mb-4">Our fertility specialists are here to guide you every step of the way.</p>
+          <a href="/appointment" className="btn btn-light btn-lg px-5 py-3 rounded-pill shadow" style={{color: '#6f2248', fontWeight: 'bold'}}>Book a Consultation</a>
+          <a href="/contact" className="btn btn-outline-light btn-lg px-5 py-3 rounded-pill shadow ms-3">Contact Us</a>
         </div>
-            </div>
-            
-      {/* Emergency Care Section */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">Emergency Care</h6>
-                <h1 className="display-6 mb-4">24/7 Emergency Services</h1>
-                <p>Our emergency department is staffed 24/7 with experienced emergency medicine specialists and equipped with state-of-the-art facilities to handle all types of medical emergencies.</p>
-                <div className="row g-4 mb-4">
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Rapid Response</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Critical Care</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Trauma Care</h6>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x text-primary me-3"></i>
-                      <h6 className="mb-0">Emergency Surgery</h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center">
-                  <i className="fa fa-phone fa-2x text-primary me-3"></i>
-                  <div>
-                    <h6 className="mb-0">Emergency Hotline</h6>
-                    <h4 className="mb-0">+233 30 393 9896</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="img-border">
-                <img className="img-fluid" src="/images/emergency-care.jpg" alt="Emergency Care" />
-              </div>
-            </div>
-          </div>
-        </div>
-            </div>
-            
-      {/* Call to Action */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #0066CC, #003366)'}}>
-        <div className="container py-5 pt-lg-0">
-          <div className="row gx-0">
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
-                <div className="d-flex">
-                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-calendar text-primary"></i>
-                  </div>
-                  <div className="ps-3">
-                    <h4>Book Appointment</h4>
-                    <span>Schedule your visit today</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
-                <div className="d-flex">
-                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone text-primary"></i>
-                  </div>
-                  <div className="ps-3">
-                    <h4>Call Us</h4>
-                    <span>+233 30 393 9896</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+      </section>
       <Footer />
-      {/* Modern styles for new features */}
       <style>{`
         .comparison-slider input[type=range]::-webkit-slider-thumb {
-          width: 16px; height: 320px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
+          width: 16px; height: 32px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
         }
         .comparison-slider input[type=range]::-moz-range-thumb {
-          width: 16px; height: 320px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
+          width: 16px; height: 32px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
         }
         .comparison-slider input[type=range]::-ms-thumb {
-          width: 16px; height: 320px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
+          width: 16px; height: 32px; background: #a85c7a; border-radius: 8px; cursor: ew-resize;
         }
         .comparison-slider input[type=range] {
           appearance: none;
@@ -514,8 +277,8 @@ const Services = () => {
           border-color: #a85c7a !important;
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
-export default Services; 
+export default Services;
