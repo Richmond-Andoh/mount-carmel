@@ -2,599 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS for Mount Carmel Hospital */
 :root {
-    --primary-color: #6f3348; /* Mount Carmel Maroon - Primary */
-    --secondary-color: #DAA520; /* Golden Rod - Secondary */
-    --accent-color: #B8860B; /* Dark Golden Rod */
-    --dark-color: #4B1438; /* Very Dark Maroon */
-    --light-color: #FFF8DC; /* Cornsilk - Light background */
-    --white-color: #FFFFFF;
-    --text-dark: #2C1810;
-    --text-light: #FFF8DC;
+  --primary-color: #6f3348;
+  --secondary-color: #4B1438;
+  --dark-color: #001122;
+  --light-color: #F8FBFF;
+  --text-dark: #001122;
+  --text-light: #F8FBFF;
 }
 
-/* Force Bootstrap navbar to display properly - override Tailwind */
-.navbar {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0.5rem 1rem !important;
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.navbar-nav {
-  display: flex !important;
-  flex-direction: row !important;
-  padding-left: 0 !important;
-  margin: 0 !important;
-  list-style: none !important;
-  flex: 1 !important;
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: var(--text-dark);
 }
 
-.navbar-nav .nav-item {
-  margin-right: 35px !important;
-}
-
-.navbar-nav .nav-link {
-  display: block !important;
-  padding: 20px 0 !important;
-  color: var(--text-dark) !important;
-  font-size: 18px !important;
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  transition: color 0.3s ease !important;
-}
-
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
-  color: var(--primary-color) !important;
-}
-
-.navbar-collapse {
-  flex-basis: 100% !important;
-  flex-grow: 1 !important;
-  align-items: center !important;
-  display: flex !important;
-}
-
-.navbar-collapse.show {
-  display: flex !important;
-}
-
-.navbar-toggler {
-  display: none !important;
-}
-
-/* Mobile adjustments */
-@media (max-width: 991.98px) {
-  .navbar-nav {
-    flex-direction: column !important;
-    width: 100% !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border-radius: 12px !important;
-    padding: 1rem !important;
-    margin-top: 1rem !important;
-    box-shadow: 0 8px 32px rgba(111, 51, 72, 0.1) !important;
-  }
-
-  .navbar-nav .nav-item {
-    margin-right: 0 !important;
-    margin-bottom: 8px !important;
-    width: 100% !important;
-  }
-
-  .navbar-nav .nav-link {
-    padding: 12px 16px !important;
-    border-radius: 8px !important;
-    margin: 2px 0 !important;
-    width: 100% !important;
-    text-align: left !important;
-  }
-
-  .navbar-toggler {
-    display: block !important;
-    border: none !important;
-    /* padding: 8px !important; */
-    border-radius: 8px !important;
-    background: rgba(111, 51, 72, 0.1) !important;
-  }
-
-  .navbar-toggler:focus {
-    box-shadow: none !important;
-  }
-
-  .navbar-collapse:not(.show) {
-    display: none !important;
-  }
-
-  .dropdown-menu {
-    position: static !important;
-    float: none !important;
-    width: 100% !important;
-    background: rgba(248, 251, 255, 0.95) !important;
-    border: none !important;
-    box-shadow: none !important;
-    margin-top: 0 !important;
-    border-radius: 8px !important;
-  }
-
-  .dropdown-item {
-    padding: 10px 20px !important;
-    border-radius: 6px !important;
-    margin: 2px 8px !important;
-  }
-}
-
-/* Utility classes for Mount Carmel colors */
-.bg-primary { background-color: var(--primary-color) !important; }
-.text-primary { color: var(--primary-color) !important; }
-.btn-primary { 
-    background-color: var(--primary-color) !important; 
-    border-color: var(--primary-color) !important;
-}
-.btn-primary:hover { 
-    background-color: var(--secondary-color) !important; 
-    border-color: var(--secondary-color) !important;
-}
-
-/* Enhanced Glassmorphism Effects */
-.glassmorphism {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-
-.glassmorphism-dark {
-    background: rgba(0, 17, 34, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-
-/* Navbar Enhancements */
-.navbar {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    box-shadow: 0 8px 32px rgba(0, 102, 204, 0.1) !important;
-}
-
-.nav-link {
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.nav-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.1), transparent);
-    transition: left 0.5s;
-}
-
-.nav-link:hover::before {
-    left: 100%;
-}
-
-.nav-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
-}
-
-.nav-link.active {
-    background: rgba(0, 102, 204, 0.1);
-    color: var(--primary-color) !important;
-}
-
-/* Dropdown Enhancements */
-.dropdown-menu {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(0, 102, 204, 0.1) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15) !important;
-    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dropdown-item {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 6px;
-    margin: 2px 8px;
-}
-
-.dropdown-item:hover {
-    background: rgba(0, 102, 204, 0.1) !important;
-    color: var(--primary-color) !important;
-    transform: translateX(4px);
-}
-
-/* Social Media Buttons */
-.btn-sm-square {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.btn-sm-square::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-}
-
-.btn-sm-square:hover::before {
-    width: 100%;
-    height: 100%;
-}
-
-.btn-sm-square:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
-}
-
-/* Animations */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-  @keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+/* Focus States */
+.btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 /* Animation Classes */
 .animate-fadeInUp {
-    animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .animate-slideInLeft {
-    animation: slideInLeft 0.6s ease-out;
+  animation: slideInLeft 0.6s ease-out;
 }
 
 .animate-slideInRight {
-    animation: slideInRight 0.6s ease-out;
+  animation: slideInRight 0.6s ease-out;
 }
 
 .animate-pulse {
-    animation: pulse 2s infinite;
-  }
+  animation: pulse 2s infinite;
+}
 
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
 /* Smooth Transitions */
 .transition-all {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .transition-transform {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease;
 }
 
 .transition-colors {
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Hover Effects */
-.hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.hover-scale:hover {
-    transform: scale(1.05);
-}
-
-.hover-glow:hover {
-    box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
-}
-
-/* Loading States */
-.loading {
-    position: relative;
-    overflow: hidden;
-}
-
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
-}
-
-/* Responsive Enhancements */
-@media (max-width: 768px) {
-    .navbar-nav {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 12px;
-        padding: 1rem;
-        margin-top: 1rem;
-        box-shadow: 0 8px 32px rgba(0, 102, 204, 0.1);
-    }
-
-    .nav-link {
-        padding: 12px 16px;
-        margin: 4px 0;
-        border-radius: 8px;
-    }
-
-    .dropdown-menu {
-        background: rgba(248, 251, 255, 0.95) !important;
-        border: none;
-        box-shadow: none;
-        margin-top: 0;
-    }
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-}
-
-/* Focus States */
-.nav-link:focus,
-.dropdown-item:focus,
-.btn:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Active States */
-.nav-link.active {
-    position: relative;
-}
-
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--primary-color);
-    animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-/* Mount Carmel Brand Colors */
-.bg-secondary {
-  background-color: var(--secondary-color) !important;
-}
-
-.text-secondary {
-  color: var(--secondary-color) !important;
-}
-
-.btn-secondary {
-  background-color: var(--secondary-color) !important;
-  border-color: var(--secondary-color) !important;
-}
-
-.btn-secondary:hover {
-  background-color: var(--dark-color) !important;
-  border-color: var(--dark-color) !important;
-}
-
-/* Ensure icons display properly */
-.icon-box-primary {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-color);
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-.icon-box-primary i {
-  font-size: 1.5rem;
-  color: white;
-}
-
-/* Service item styling */
-.service-item {
-  padding: 2rem;
-  border: 1px solid #e9ecef;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  height: 100%;
-}
-
-.service-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Team item styling */
-.team-item {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.team-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
-.team-social {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.team-item:hover .team-social {
-  opacity: 1;
-}
-
-/* Testimonial section styling */
-.testimonial {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  position: relative;
-}
-
-.testimonial::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('/images/dna-bg.jpg') center/cover;
-  opacity: 0.1;
-  z-index: 0;
-}
-
-.testimonial .container {
-  position: relative;
-  z-index: 1;
-}
-
-/* Animation classes */
-.wow {
-  visibility: hidden;
-}
-
-.wow.animated {
-  visibility: visible;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .display-1 {
-    font-size: 2.5rem;
-  }
-
-  .display-6 {
-    font-size: 1.5rem;
-  }
-
-  .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-::view-transition-old(root), ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }

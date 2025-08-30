@@ -22,6 +22,13 @@ export default {
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
   			dark: '#4B1438',
+  			// Mount Carmel brand colors
+  			'mount-carmel': {
+  				primary: '#6f3348',
+  				secondary: '#4B1438',
+  				dark: '#001122',
+  				light: '#F8FBFF'
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

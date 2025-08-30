@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
+
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
@@ -43,8 +44,8 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    setIsMobileMenuOpen(false); // Close mobile menu on route change
-    setActiveDropdown(null); // Close dropdown on route change
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
   }, [location.pathname]);
 
   const handleDropdownToggle = (index) => {
@@ -54,56 +55,31 @@ const Header = () => {
   return (
     <>
       {/* Topbar */}
-      <div
-        className="container-fluid py-2 d-none d-lg-flex"
-        style={{ backgroundColor: "#001122", color: "#F8FBFF" }}
-      >
-        <div className="container">
-          <div className="d-flex justify-content-between">
-            <div>
-              <small className="me-3">
-                <i className="fa fa-map-marker-alt me-2"></i>
+      <div className="hidden lg:block bg-mount-carmel-dark text-mount-carmel-light py-2">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-6">
+              <small className="flex items-center">
+                <i className="fa fa-map-marker-alt mr-2"></i>
                 Ashfoam Junction, Tema Com.25, Accra, Ghana
               </small>
-              <small className="me-3">
-                <i className="fa fa-clock me-2"></i>
+              <small className="flex items-center">
+                <i className="fa fa-clock mr-2"></i>
                 Mon-Sat 08:00-18:00, Sun 09:00-15:00
               </small>
             </div>
-            <nav className="breadcrumb mb-0">
-              <a
-                className="breadcrumb-item small"
-                href="#"
-                style={{ color: "#F8FBFF" }}
-              >
+            <nav className="flex items-center space-x-4">
+              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
                 Careers
               </a>
-              <a
-                className="breadcrumb-item small"
-                href="#"
-                style={{ color: "#F8FBFF" }}
-              >
+              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
                 Support
               </a>
-              <a
-                className="breadcrumb-item small"
-                href="#"
-                style={{ color: "#F8FBFF" }}
-              >
+              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
                 Terms
               </a>
-              <a
-                className="breadcrumb-item small"
-                href="#"
-                style={{ color: "#F8FBFF" }}
-              >
-                <AnimatedThemeToggler />
-              </a>
-              <a
-                className="breadcrumb-item small"
-                href="#"
-                style={{ color: "#F8FBFF" }}
-              >
+              <AnimatedThemeToggler />
+              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
                 FAQs
               </a>
             </nav>
@@ -112,57 +88,37 @@ const Header = () => {
       </div>
 
       {/* Brand Section */}
-      <div
-        className="container-fluid pt-4 pb-5 d-none d-lg-flex"
-        style={{ backgroundColor: "#6f3348" }}
-      >
-        <div className="container pb-2">
-          <div className="d-flex align-items-center justify-content-between">
-            <div className="d-flex">
-              <i
-                className="bi bi-telephone-inbound fs-2"
-                style={{ color: "#FFFFFF" }}
-              ></i>
-              <div className="ms-3">
+      <div className="hidden lg:block bg-mount-carmel-primary pt-4 pb-5">
+        <div className="container mx-auto px-4 pb-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <i className="bi bi-telephone-inbound text-3xl text-white"></i>
+              <div className="ml-3">
                 <h5 className="text-white mb-0">Call Now</h5>
-                <span style={{ color: "#F8FBFF" }}>+233 30 393 9896</span>
+                <span className="text-mount-carmel-light">+233 30 393 9896</span>
               </div>
             </div>
-            <Link to="/" className="h1 text-white mb-0 text-decoration-none">
-              <div className="d-flex align-items-center">
+            <Link to="/" className="text-white no-underline">
+              <div className="flex items-center">
                 <img
                   src="/images/logo.jpg"
                   alt="Mount Carmel Hospital Logo"
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "50%",
-                    marginRight: "15px",
-                  }}
+                  className="w-15 h-15 rounded-full mr-4"
                 />
                 <div>
-                  <span style={{ color: "#F8FBFF" }}>Mount </span>
-                  <span style={{ color: "#FFFFFF" }}>Carmel</span>
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      color: "#F8FBFF",
-                      fontWeight: "normal",
-                    }}
-                  >
+                  <span className="text-mount-carmel-light">Mount </span>
+                  <span className="text-white">Carmel</span>
+                  <div className="text-sm text-mount-carmel-light font-normal">
                     Hospital & Fertility Center
                   </div>
                 </div>
               </div>
             </Link>
-            <div className="d-flex">
-              <i
-                className="bi bi-envelope fs-2"
-                style={{ color: "#FFFFFF" }}
-              ></i>
-              <div className="ms-3">
+            <div className="flex items-center">
+              <i className="bi bi-envelope text-3xl text-white"></i>
+              <div className="ml-3">
                 <h5 className="text-white mb-0">Mail Now</h5>
-                <span style={{ color: "#F8FBFF" }}>
+                <span className="text-mount-carmel-light">
                   mountcarmelhospital@outlook.com
                 </span>
               </div>
@@ -171,9 +127,9 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Navbar with Glassmorphism */}
+      {/* Navigation Bar with Glassmorphism */}
       <div
-        className={`container-fluid sticky-top transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled ? "py-2" : "py-3"
         }`}
         style={{
@@ -187,329 +143,247 @@ const Header = () => {
             : "0 4px 16px rgba(111, 51, 72, 0.05)",
         }}
       >
-        <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light py-0">
-            <Link to="/" className="navbar-brand d-lg-none">
-              <div className="d-flex align-items-center">
-                <img
-                  src="/images/logo.jpg"
-                  alt="Mount Carmel Hospital Logo"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    marginRight: "10px",
-                  }}
-                />
-                <h1 className="m-0">
-                  <span style={{ color: "#6f3348" }}>Mount </span>
-                  <span style={{ color: "#4B1438" }}>Carmel</span>
-                </h1>
-              </div>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between">
+            {/* Mobile Logo */}
+            <Link to="/" className="lg:hidden flex items-center">
+              <img
+                src="/images/logo.jpg"
+                alt="Mount Carmel Hospital Logo"
+                className="w-10 h-10 rounded-full mr-3"
+              />
+              <h1 className="m-0">
+                <span className="text-mount-carmel-primary">Mount </span>
+                <span className="text-mount-carmel-secondary">Carmel</span>
+              </h1>
             </Link>
-            <button
-              type="button"
-              className="navbar-toggler me-0"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarCollapse"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className={`collapse navbar-collapse ${
-                isMobileMenuOpen ? "show" : ""
-              }`}
-              id="navbarCollapse"
-            >
-              <div
-                className="navbar-nav mx-auto"
-                style={{
-                  display: "flex",
-                  flexDirection: window.innerWidth <= 991 ? "column" : "row",
-                  listStyle: "none",
-                  margin: 0,
-                  padding: 0,
-                  width: "100%",
-                }}
-              >
-                {navLinks.map((link, index) => (
-                  <div
-                    key={link.path}
-                    className="nav-item position-relative me-4"
-                  >
-                    {link.dropdown ? (
-                      <>
-                        <button
-                          className={`nav-link dropdown-toggle ${
-                            location.pathname === link.path ? "active" : ""
-                          }`}
-                          onClick={() => handleDropdownToggle(index)}
-                          style={{
-                            color: "#001122",
-                            textDecoration: "none",
-                            padding: "12px 16px",
-                            fontWeight: "500",
-                            background: "transparent",
-                            border: "none",
-                            borderRadius: "8px",
-                            transition: "all 0.3s ease",
-                            position: "relative",
-                            overflow: "hidden",
-                          }}
-                          onMouseEnter={(e) => {
-                            setActiveDropdown(index);
-                            e.target.style.padding = "16px 20px";
-                            e.target.style.background =
-                              "rgba(111, 51, 72, 0.1)";
-                            e.target.style.color = "#6f3348";
-                            e.target.style.transform = "translateY(-2px)";
-                            e.target.style.boxShadow =
-                              "0 4px 12px rgba(111, 51, 72, 0.15)";
-                          }}
-                          onMouseLeave={(e) => {
-                            setActiveDropdown(null);
-                            e.target.style.padding = "12px 16px";
-                            e.target.style.background = "transparent";
-                            e.target.style.color = "#001122";
-                            e.target.style.transform = "translateY(0)";
-                            e.target.style.boxShadow = "none";
-                          }}
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
+              {navLinks.map((link, index) => (
+                <div key={link.path} className="relative group">
+                  {link.dropdown ? (
+                    <>
+                      <button
+                        className={`px-4 py-3 rounded-lg font-medium transition-all duration-300 relative overflow-hidden ${
+                          location.pathname === link.path
+                            ? "text-mount-carmel-primary bg-mount-carmel-primary/10"
+                            : "text-mount-carmel-dark hover:text-mount-carmel-primary hover:bg-mount-carmel-primary/10"
+                        }`}
+                        onClick={() => handleDropdownToggle(index)}
+                        onMouseEnter={() => setActiveDropdown(index)}
+                      >
+                        {link.name}
+                        <svg
+                          className="ml-1 inline-block w-4 h-4 transition-transform duration-200"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
                         >
-                          {link.name}
-                          <span
-                            className="position-absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300"
-                            style={{ height: "2px" }}
-                          ></span>
-                        </button>
-                        <div
-                          className={`dropdown-menu ${
-                            activeDropdown === index ? "show" : ""
-                          }`}
-                          style={{
-                            background: "rgba(255, 255, 255, 0.95)",
-                            backdropFilter: "blur(20px)",
-                            border: "1px solid rgba(111, 51, 72, 0.1)",
-                            borderRadius: "12px",
-                            boxShadow: "0 8px 32px rgba(111, 51, 72, 0.15)",
-                            padding: "8px 0",
-                            marginTop: "8px",
-                            minWidth: "200px",
-                            animation:
-                              activeDropdown === index
-                                ? "slideDown 0.3s ease"
-                                : "none",
-                          }}
-                          onMouseLeave={() => setActiveDropdown(null)}
-                        >
-                          {link.dropdown.map((dropdownItem, dropdownIndex) => (
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        className={`absolute top-full left-0 mt-2 w-48 rounded-xl shadow-lg transition-all duration-300 ${
+                          activeDropdown === index
+                            ? "opacity-100 visible translate-y-0"
+                            : "opacity-0 invisible -translate-y-2"
+                        }`}
+                        style={{
+                          background: "rgba(255, 255, 255, 0.95)",
+                          backdropFilter: "blur(20px)",
+                          border: "1px solid rgba(111, 51, 72, 0.1)",
+                          boxShadow: "0 8px 32px rgba(111, 51, 72, 0.15)",
+                        }}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                      >
+                        <div className="py-2">
+                          {link.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.path}
                               to={dropdownItem.path}
-                              className="dropdown-item px-4 py-2"
-                              style={{
-                                color: "#001122",
-                                textDecoration: "none",
-                                transition: "all 0.2s ease",
-                                borderRadius: "6px",
-                                margin: "2px 8px",
-                                padding: "8px 16px",
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.background =
-                                  "rgba(111, 51, 72, 0.1)";
-                                e.target.style.color = "#6f3348";
-                                e.target.style.padding = "12px 20px";
-                                e.target.style.transform = "translateX(4px)";
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.background = "transparent";
-                                e.target.style.color = "#001122";
-                                e.target.style.padding = "8px 16px";
-                                e.target.style.transform = "translateX(0)";
-                              }}
+                              className="block px-4 py-2 text-mount-carmel-dark hover:text-mount-carmel-primary hover:bg-mount-carmel-primary/10 transition-all duration-200 rounded-lg mx-2"
                             >
                               {dropdownItem.name}
                             </Link>
                           ))}
                         </div>
-                      </>
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`px-4 py-3 rounded-lg font-medium transition-all duration-300 relative ${
+                        location.pathname === link.path
+                          ? "text-mount-carmel-primary bg-mount-carmel-primary/10"
+                          : "text-mount-carmel-dark hover:text-mount-carmel-primary hover:bg-mount-carmel-primary/10"
+                      }`}
+                    >
+                      {link.name}
+                      {location.pathname === link.path && (
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-mount-carmel-primary"></span>
+                      )}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Social Media Icons - Desktop */}
+            <div className="hidden lg:flex items-center space-x-2">
+              {[
+                { icon: "fab fa-facebook-f", href: "#" },
+                { icon: "fab fa-twitter", href: "#" },
+                { icon: "fab fa-linkedin-in", href: "#" },
+                { icon: "fab fa-instagram", href: "#" },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  className="w-10 h-10 bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <i className={social.icon}></i>
+                </a>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden p-2 rounded-lg bg-mount-carmel-primary/10 hover:bg-mount-carmel-primary/20 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <svg
+                className="w-6 h-6 text-mount-carmel-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile Navigation Menu */}
+          <div
+            className={`lg:hidden transition-all duration-300 overflow-hidden ${
+              isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div
+              className="mt-4 rounded-xl p-4"
+              style={{
+                background: "rgba(255, 255, 255, 0.95)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(111, 51, 72, 0.1)",
+                boxShadow: "0 8px 32px rgba(111, 51, 72, 0.1)",
+              }}
+            >
+              <div className="space-y-2">
+                {navLinks.map((link, index) => (
+                  <div key={link.path}>
+                    {link.dropdown ? (
+                      <div>
+                        <button
+                          className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
+                            location.pathname === link.path
+                              ? "text-mount-carmel-primary bg-mount-carmel-primary/10"
+                              : "text-mount-carmel-dark hover:text-mount-carmel-primary hover:bg-mount-carmel-primary/10"
+                          }`}
+                          onClick={() => handleDropdownToggle(index)}
+                        >
+                          <div className="flex items-center justify-between">
+                            {link.name}
+                            <svg
+                              className={`w-4 h-4 transition-transform duration-200 ${
+                                activeDropdown === index ? "rotate-180" : ""
+                              }`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                        </button>
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ${
+                            activeDropdown === index ? "max-h-48" : "max-h-0"
+                          }`}
+                        >
+                          <div className="pl-4 space-y-1">
+                            {link.dropdown.map((dropdownItem) => (
+                              <Link
+                                key={dropdownItem.path}
+                                to={dropdownItem.path}
+                                className="block px-4 py-2 text-mount-carmel-dark hover:text-mount-carmel-primary hover:bg-mount-carmel-primary/10 rounded-lg transition-all duration-200"
+                              >
+                                {dropdownItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     ) : (
                       <Link
                         to={link.path}
-                        className={`nav-link ${
-                          location.pathname === link.path ? "active" : ""
+                        className={`block px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
+                          location.pathname === link.path
+                            ? "text-mount-carmel-primary bg-mount-carmel-primary/10"
+                            : "text-mount-carmel-dark hover:text-mount-carmel-primary hover:bg-mount-carmel-primary/10"
                         }`}
-                        style={{
-                          color: "#001122",
-                          textDecoration: "none",
-                          padding: "12px 16px",
-                          fontWeight: "500",
-                          borderRadius: "8px",
-                          transition: "all 0.3s ease",
-                          position: "relative",
-                          overflow: "hidden",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.background = "rgba(111, 51, 72, 0.1)";
-                          e.target.style.color = "#6f3348";
-                          e.target.style.padding = "16px 20px";
-                          e.target.style.transform = "translateY(-2px)";
-                          e.target.style.boxShadow =
-                            "0 4px 12px rgba(111, 51, 72, 0.15)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.background = "transparent";
-                          e.target.style.color = "#001122";
-                          e.target.style.padding = "12px 16px";
-                          e.target.style.transform = "translateY(0)";
-                          e.target.style.boxShadow = "none";
-                        }}
                       >
                         {link.name}
-                        {location.pathname === link.path && (
-                          <span
-                            className="position-absolute bottom-0 left-0 w-full h-0.5 bg-primary"
-                            style={{ height: "2px" }}
-                          ></span>
-                        )}
                       </Link>
                     )}
                   </div>
                 ))}
               </div>
-              <div className="ms-auto d-none d-lg-flex">
-                <a
-                  className="btn btn-sm-square ms-2"
-                  href="#"
-                  style={{
-                    backgroundColor: "#6f3348",
-                    borderColor: "#6f3348",
-                    transition: "all 0.3s ease",
-                    transform: "scale(1)",
-                    padding: "8px",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = "scale(1.1)";
-                    e.target.style.backgroundColor = "#4B1438";
-                    e.target.style.padding = "12px";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = "scale(1)";
-                    e.target.style.backgroundColor = "#6f3348";
-                    e.target.style.padding = "8px";
-                  }}
-                >
-                  <i
-                    className="fab fa-facebook-f"
-                    style={{ color: "white" }}
-                  ></i>
-                </a>
-                <a
-                  className="btn btn-sm-square ms-2"
-                  href="#"
-                  style={{
-                    backgroundColor: "#6f3348",
-                    borderColor: "#6f3348",
-                    transition: "all 0.3s ease",
-                    transform: "scale(1)",
-                    padding: "8px",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = "scale(1.1)";
-                    e.target.style.backgroundColor = "#4B1438";
-                    e.target.style.padding = "12px";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = "scale(1)";
-                    e.target.style.backgroundColor = "#6f3348";
-                    e.target.style.padding = "8px";
-                  }}
-                >
-                  <i className="fab fa-twitter" style={{ color: "white" }}></i>
-                </a>
-                <a
-                  className="btn btn-sm-square ms-2"
-                  href="#"
-                  style={{
-                    backgroundColor: "#6f3348",
-                    borderColor: "#6f3348",
-                    transition: "all 0.3s ease",
-                    transform: "scale(1)",
-                    padding: "8px",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = "scale(1.1)";
-                    e.target.style.backgroundColor = "#4B1438";
-                    e.target.style.padding = "12px";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = "scale(1)";
-                    e.target.style.backgroundColor = "#6f3348";
-                    e.target.style.padding = "8px";
-                  }}
-                >
-                  <i
-                    className="fab fa-linkedin-in"
-                    style={{ color: "white" }}
-                  ></i>
-                </a>
-                <a
-                  className="btn btn-sm-square ms-2"
-                  href="#"
-                  style={{
-                    backgroundColor: "#6f3348",
-                    borderColor: "#6f3348",
-                    transition: "all 0.3s ease",
-                    transform: "scale(1)",
-                    padding: "8px",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = "scale(1.1)";
-                    e.target.style.backgroundColor = "#4B1438";
-                    e.target.style.padding = "12px";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = "scale(1)";
-                    e.target.style.backgroundColor = "#6f3348";
-                    e.target.style.padding = "8px";
-                  }}
-                >
-                  <i
-                    className="fab fa-instagram"
-                    style={{ color: "white" }}
-                  ></i>
-                </a>
+
+              {/* Social Media Icons - Mobile */}
+              <div className="flex items-center justify-center space-x-2 mt-4 pt-4 border-t border-mount-carmel-primary/10">
+                {[
+                  { icon: "fab fa-facebook-f", href: "#" },
+                  { icon: "fab fa-twitter", href: "#" },
+                  { icon: "fab fa-linkedin-in", href: "#" },
+                  { icon: "fab fa-instagram", href: "#" },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  >
+                    <i className={social.icon}></i>
+                  </a>
+                ))}
               </div>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .transition-all {
-          transition: all 0.3s ease;
-        }
-
-        .navbar-nav .nav-link:hover {
-          transform: translateY(-2px);
-        }
-
-        .dropdown-menu {
-          animation: slideDown 0.3s ease;
-        }
-      `}</style>
     </>
   );
 };
