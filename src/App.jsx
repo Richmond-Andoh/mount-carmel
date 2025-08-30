@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -13,8 +14,24 @@ import Facilities from './pages/Facilities';
 import VisitationForm from './pages/VisitationForm';
 import Partners from './pages/Partners';
 import ScrollToTop from './ScrollToTop';
+import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time and hide spinner after 2.5 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <Router>
       <div className="App">

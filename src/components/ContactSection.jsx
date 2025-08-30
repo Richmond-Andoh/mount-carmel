@@ -191,7 +191,7 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <div className="container-fluid justify-content-center align-content-center mx-auto row g-5">
+        <div className="container justify-content-center align-content-center mx-auto row g-5">
           {/* Contact Information */}
           <div className="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
             <div

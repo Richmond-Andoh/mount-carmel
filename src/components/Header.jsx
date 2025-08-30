@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
+import { ScrollProgress } from "./magicui/scroll-progress";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -55,7 +56,7 @@ const Header = () => {
   return (
     <>
       {/* Topbar */}
-      <div className="hidden lg:block bg-mount-carmel-dark text-mount-carmel-light py-2">
+      <div className="hidden lg:block bg-mount-carmel-dark text-mount-carmel-light py-1">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-6">
@@ -88,8 +89,8 @@ const Header = () => {
       </div>
 
       {/* Brand Section */}
-      <div className="hidden lg:block bg-mount-carmel-primary pt-4 pb-5">
-        <div className="container mx-auto px-4 pb-2">
+      <div className="hidden lg:block bg-mount-carmel-primary pt-2 pb-3">
+        <div className="container mx-auto px-4 pb-1">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <i className="bi bi-telephone-inbound text-3xl text-white"></i>
@@ -104,6 +105,7 @@ const Header = () => {
                   src="/images/logo.jpg"
                   alt="Mount Carmel Hospital Logo"
                   className="w-15 h-15 rounded-full mr-4"
+                  style={{ height: "80px", width: "80px" }}
                 />
                 <div>
                   <span className="text-mount-carmel-light">Mount </span>
@@ -384,6 +386,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <ScrollProgress/>
     </>
   );
 };

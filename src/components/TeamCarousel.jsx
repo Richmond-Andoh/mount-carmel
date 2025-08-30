@@ -12,12 +12,12 @@ const teamMembers = [
   {
     name: "Dr. Michael Chen",
     role: "Head of Gynecology",
-    image: "/images/team-2.jpg"
+    image: "/images/team-3.jpg"
   },
   {
     name: "Dr. Emily Rodriguez",
     role: "Pediatrician",
-    image: "/images/team-3.jpg"
+    image: "/images/team-2.jpg"
   },
   {
     name: "Dr. David Thompson",
