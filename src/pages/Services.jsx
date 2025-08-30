@@ -181,7 +181,7 @@ const Services = () => {
 
       <main className="container mx-auto px-4 py-16">
         {/* Service Categories - Responsive Horizontal Scroll */}
-        <div className="container my-5">
+        <div className="container my-5" contentEditable='true'>
           <div className="row justify-content-center">
             <div className="col-12">
               <div className="d-flex flex-row flex-nowrap overflow-auto gap-3 py-3 px-2" style={{scrollbarWidth: 'none'}}>
