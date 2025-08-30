@@ -24,6 +24,7 @@
     "react-loading-indicators": "^1.0.1",
     "react-router-dom": "^6.21.0",
     "react-slick": "^0.31.0",
+    "shadcn": "^3.0.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1",
