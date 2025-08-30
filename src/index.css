@@ -594,3 +594,7 @@
     padding-right: 15px;
   }
 }
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
