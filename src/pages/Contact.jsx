@@ -39,7 +39,7 @@ const Contact = () => {
 
       {/* Parallax Page Header with Overlay and Background Image (brand) */}
       <div
-        className="w-100 mb-5"
+        className="w-100"
         style={{
           width: "100vw",
           marginLeft: "calc(-50vw + 50%)",
@@ -47,7 +47,7 @@ const Contact = () => {
           backgroundAttachment: "fixed",
           position: "relative",
           overflow: "hidden",
-          borderRadius: "0 0 32px 32px",
+          height: "400px"
         }}
       >
         <div className="container py-5">
@@ -74,6 +74,32 @@ const Contact = () => {
           </nav>
         </div>
       </div>
+
+      {/* Brand Marquee Section */}
+      <section className="container-fluid py-5" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+          </div>
+        </div>
+      </section>
 
       {/* Contact Information */}
       <div className="container-xxl py-5">
@@ -211,7 +237,7 @@ const Contact = () => {
                     </div>
                     <div className="col-12">
                       <button
-                        className="btn btn-primary w-100 py-3"
+                        className="btn brand-btn w-100 py-3"
                         type="submit"
                       >
                         Send Message
@@ -258,7 +284,6 @@ const Contact = () => {
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: '32px'
       }}>
         <div className="container">
           <div className="row g-5 align-items-center">

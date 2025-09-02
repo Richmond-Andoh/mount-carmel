@@ -69,15 +69,15 @@ const Testimonies = () => {
       <Header />
       
       {/* Parallax Hero Section with Overlay (brand) */}
-      <div className="w-100 mb-5" style={{
+      <div className="w-100" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
         background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/testimonial.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: '0 0 32px 32px',
-        height: '400px'
+        height: '400px',
+        margin: 0
       }}>
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown" style={{textShadow: '0 2px 16px #000'}}>Patient Testimonials</h1>
@@ -91,14 +91,14 @@ const Testimonies = () => {
       </div>
 
       {/* Brand Marquee Section */}
-      <section className="container-fluid py-3" style={{
+      <section className="container-fluid py-5" style={{
         background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
         color: '#fff',
         margin: 0,
         padding: 0
       }}>
         <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
             <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
@@ -177,11 +177,10 @@ const Testimonies = () => {
       <div className="w-100 py-5" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/success-stories/gallery-1.jpg') center/cover no-repeat, url('/images/success-stories.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/success-stories/gallery-1.jpg') center/cover no-repeat,`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: '32px'
       }}>
         <div className="container">
           <div className="row g-5 align-items-center">
@@ -302,12 +301,6 @@ const Testimonies = () => {
             <div className="d-flex justify-content-center gap-3">
               <a className="btn brand-btn py-3 px-5" href="/appointment">Book Appointment</a>
               <a className="btn brand-outline-btn py-3 px-5" href="/contact">Contact Us</a>
-              <style>{`
-                .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
-                .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
-                .brand-outline-btn { background: transparent; border-color: #6f3348; color: #6f3348; }
-                .brand-outline-btn:hover { background: #6f3348; color: #fff; }
-              `}</style>
             </div>
           </div>
         </div>

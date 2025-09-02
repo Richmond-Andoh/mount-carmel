@@ -64,15 +64,14 @@ const FAQ = () => {
       <Header />
       
       {/* Parallax Page Header with Overlay and Background Image (brand) */}
-      <div className="w-100 mb-5" style={{
-        width: '100vw',
+      <div className="w-100" style={{
         marginLeft: 'calc(-50vw + 50%)',
         background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: '0 0 32px 32px',
-        height: '400px'
+        height: '400px',
+        margin: 0
       }}>
         <div className="container py-5 justify-center align-center my-auto">
           <h1 className="display-3 text-white pt-6 animated slideInDown" style={{textShadow: '0 2px 16px #000'}}>Frequently Asked Questions</h1>
@@ -86,14 +85,14 @@ const FAQ = () => {
       </div>
 
       {/* Brand Marquee Section */}
-      <section className="container-fluid py-3" style={{
+      <section className="container-fluid py-5" style={{
         background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
         color: '#fff',
         margin: 0,
         padding: 0
       }}>
         <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
             <span className="fw-semibold" style={{opacity:0.95}}>Trusted Answers</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Clear Guidance</span>
             <span className="fw-semibold" style={{opacity:0.95}}>24/7 Emergency</span>

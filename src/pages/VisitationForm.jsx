@@ -72,12 +72,12 @@ const VisitationForm = () => {
     <>
       <Header />
       {/* Hero Section with Background Image and Overlay */}
-      <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{
+      <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
         background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/gallery/room-facility.jpg') center/cover no-repeat`,
         position: 'relative',
         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
         backgroundAttachment: 'fixed',
-        height: '500px'
+        height: '400px'
       }}>
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Visit Our Facility</h1>
@@ -90,6 +90,32 @@ const VisitationForm = () => {
           <p className="lead text-white mt-4" style={{maxWidth: '600px'}}>Experience our world-class facilities firsthand. Schedule a visit to see our state-of-the-art medical equipment and meet our expert team.</p>
         </div>
       </div>
+
+      {/* Brand Marquee Section */}
+      <section className="container-fluid py-5" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+          </div>
+        </div>
+      </section>
 
       {/* Visitation Form Section */}
       <div className="container-xxl py-5">
@@ -269,7 +295,7 @@ const VisitationForm = () => {
           </div>
 
           {/* Contact Information - Full Width, No Margin, Responsive, Flush with Footer */}
-          <div className="container-fluid px-0 my-auto" style={{ width: '100vw', height: "auto", marginLeft: 'calc(-50vw + 50%)', marginRight: 0, marginBottom: 0, paddingLeft: 0, paddingRight: 0, background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', boxSizing: 'border-box' }}>
+          <div className="container-fluid px-0" style={{ width: '100vw', height: "auto", marginLeft: 'calc(-50vw + 50%)', marginRight: 0, marginBottom: 0, paddingLeft: 0, paddingRight: 0, background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', boxSizing: 'border-box' }}>
             <div className="row g-0 align-items-center justify-content-center text-center" style={{ margin: 0 }}>
               <div className="col-12 py-5" style={{paddingBottom: 0, marginBottom: 0}}>
                 <h3 className="fw-bold text-white mb-3">Need Immediate Assistance?</h3>

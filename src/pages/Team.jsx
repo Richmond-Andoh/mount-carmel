@@ -114,16 +114,16 @@ const Team = () => {
       <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
         background: `linear-gradient(rgba(111,51,72,0.8), rgba(111,51,72,0.8)), url('/images/about-bg.jpg') center/cover no-repeat`,
         position: 'relative',
-        borderRadius: '0 0 32px 32px',
+        // borderRadius: '0 0 32px 32px',
         boxShadow: '0 10px 38px rgba(0,0,0,0.16)',
         backgroundAttachment: 'fixed',
         overflow: 'hidden',
-        minHeight: '520px'
+        minHeight: '450px'
       }}>
-        <div className="container py-5" style={{backdropFilter: 'blur(6px)', background: 'rgba(255,255,255,0.08)', borderRadius: '24px'}}>
+        <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px', textShadow: '0 2px 16px rgba(0,0,0,0.18)'}}>Our Team</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb" style={{background: 'rgba(255,255,255,0.12)', borderRadius: '12px'}}>
+            <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Team</li>
             </ol>
@@ -132,14 +132,14 @@ const Team = () => {
       </div>
 
       {/* Brand Marquee Section */}
-      <section className="container-fluid py-2" style={{
+      <section className="container-fluid py-5" style={{
         background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
         color: '#fff',
         margin: 0,
         padding: 0
       }}>
         <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
             <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Expert Physicians</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Advanced Diagnostics</span>
@@ -159,7 +159,7 @@ const Team = () => {
 
 
       {/* Jumbotron Section - Glassmorphism & Animation */}
-      <section className="jumbotron-section py-5" style={{background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)', color: '#fff', position: 'relative'}}>
+      <section className="jumbotron-section py-5 mt-5" style={{background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)', color: '#fff', position: 'relative'}}>
         <div className="container text-center" style={{backdropFilter: 'blur(8px)', background: 'rgba(255,255,255,0.10)', borderRadius: '24px', boxShadow: '0 4px 32px rgba(111,34,72,0.12)', minHeight: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
           <h1 className="display-4 fw-bold mb-3 wow fadeInDown" data-wow-delay="0.1s" style={{textShadow: '0 2px 16px rgba(0,0,0,0.18)'}}>Meet Our World-Class Medical Team</h1>
           <p className="lead mb-4 wow fadeInUp" data-wow-delay="0.2s">Compassionate, innovative, and dedicated to your health and well-being.</p>

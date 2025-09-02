@@ -4,11 +4,11 @@
 
 :root {
   --primary-color: #6f3348;
-  --secondary-color: #4B1438;
+  --secondary-color: #4b1438;
   --dark-color: #001122;
-  --light-color: #F8FBFF;
+  --light-color: #f8fbff;
   --text-dark: #001122;
-  --text-light: #F8FBFF;
+  --text-light: #f8fbff;
 }
 
 /* Base Styles */
@@ -19,8 +19,8 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -90,7 +90,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -99,7 +100,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -117,12 +119,14 @@ body {
 }
 
 .transition-colors {
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 @layer base {
   .theme {
-    --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
+    --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s)
+      infinite;
   }
 }
 
@@ -137,11 +141,32 @@ body {
 
 @theme inline {
   @keyframes ripple {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
     }
-  50% {
-    transform: translate(-50%, -50%) scale(0.9);
+    50% {
+      transform: translate(-50%, -50%) scale(0.9);
     }
   }
+}
+
+.brand-btn {
+  background: #6f3348;
+  border-color: #6f3348;
+  color: #fff;
+}
+.brand-btn:hover {
+  background: #4b1438;
+  border-color: #4b1438;
+  color: #fff;
+}
+.brand-outline-btn {
+  background: transparent;
+  border-color: #6f3348;
+  color: #6f3348;
+}
+.brand-outline-btn:hover {
+  background: #6f3348;
+  color: #fff;
 }
