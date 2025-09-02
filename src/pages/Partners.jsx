@@ -43,7 +43,37 @@ const Partners = () => {
     }
   }, []);
 
-  const partners = [
+  const insuranceCompanies = [
+    { name: "Apex Mutual Health", logo: "/images/partners/apex-mutual.png" },
+    { name: "Nationwide Insurance", logo: "/images/partners/nationwide.png" },
+    { name: "Acacia Insurance", logo: "/images/partners/acacia.png" },
+    { name: "Phoenix Insurance", logo: "/images/partners/phoenix.png" },
+    { name: "Glico Insurance", logo: "/images/partners/glico.png" },
+    { name: "Premier Health Insurance", logo: "/images/partners/premier-health.png" },
+    { name: "Liberty Medical Health", logo: "/images/partners/liberty-medical.png" },
+    { name: "Kaiser Global Health Insurance Limited", logo: "/images/partners/kaiser-global.png" },
+    { name: "Vitality Health Insurance", logo: "/images/partners/vitality-health.png" },
+    { name: "Metropolitan Health Insurance", logo: "/images/partners/metropolitan.png" }
+  ];
+
+  const pharmaceuticalCompanies = [
+    { name: "Doty Pharmacy", logo: "/images/partners/doty-pharmacy.png" },
+    { name: "East Cantonment Pharmacy", logo: "/images/partners/east-cantonment.png" },
+    { name: "Ernest Chemist", logo: "/images/partners/ernest-chemist.png" },
+    { name: "Mega Life Science", logo: "/images/partners/mega-life.png" },
+    { name: "Tobinco/Entrance Pharmaceuticals", logo: "/images/partners/tobinco.png" },
+    { name: "Worldwide Pharmacy", logo: "/images/partners/worldwide.png" },
+    { name: "Gokals Pharmacy", logo: "/images/partners/gokals.png" },
+    { name: "Lymens Pharmaceuticals", logo: "/images/partners/lymens.png" },
+    { name: "Wayne Health Products", logo: "/images/partners/wayne-health.png" },
+    { name: "Oak Brothers Ltd", logo: "/images/partners/oak-brothers.png" },
+    { name: "Kosak Ventures", logo: "/images/partners/kosak.png" },
+    { name: "Capa Chemist", logo: "/images/partners/capa.png" },
+    { name: "Kofikorm Pharmacy", logo: "/images/partners/kofikorm.png" },
+    { name: "Top Up Pharmacy", logo: "/images/partners/top-up.png" }
+  ];
+
+  const governmentPartners = [
     {
       name: "Ghana Health Service",
       logo: "/images/partners/ghs-logo.png",
@@ -93,7 +123,7 @@ const Partners = () => {
     <>
       <Header />
       
-      {/* Page Header - Modern Hero with Background Image, Overlay, and Animation */}
+      {/* Page Header - Modern Hero with Background Image, Overlay, and Animation (brand) */}
       <div className="container-fluid page-header position-relative py-5 mb-5" style={{
         background: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat`,
         minHeight: '440px',
@@ -103,7 +133,7 @@ const Partners = () => {
       }}>
         {/* Animated Gradient Overlay & Blur */}
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{
-          background: 'linear-gradient(120deg, rgba(111,34,72,0.82) 0%, rgba(168,92,122,0.65) 60%, rgba(0,0,0,0.55) 100%)',
+          background: 'linear-gradient(120deg, rgba(75,20,56,0.82) 0%, rgba(111,51,72,0.65) 60%, rgba(0,0,0,0.55) 100%)',
           backdropFilter: 'blur(4px)',
           zIndex: 1,
           animation: 'gradientMove 8s linear infinite alternate'
@@ -145,29 +175,94 @@ const Partners = () => {
       {/* Partners Section */}
       <div className="container-xxl py-5">
         <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Partnerships</h6>
+          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '800px'}}>
+            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Partnerships</h6>
             <h1 className="display-6 mb-4">Working Together for Better Healthcare</h1>
-            <p className="mb-0">We collaborate with leading healthcare organizations and institutions to provide the best possible care for our patients.</p>
+            <p className="mb-0">We collaborate with leading healthcare organizations, insurance companies, and pharmaceutical partners to provide comprehensive care for our patients.</p>
           </div>
 
-          {/* Partners Grid */}
-          <div className="row g-5 mb-5">
-            {partners.map((partner, index) => (
-              <div key={partner.name} className="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`} data-wow-duration="0.6s">
-                <div className="service-item d-flex h-100 p-5 rounded-3 transition-all hover-lift shadow-sm">
-                  <div className="flex-shrink-0">
-                    <div className="bg-primary rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{width: '60px', height: '60px'}}>
-                      <i className="fa fa-handshake text-white fa-2x animate-float"></i>
+          {/* Insurance Companies Section */}
+          <div className="row mb-5">
+            <div className="col-12">
+              <div className="bg-light rounded-3 p-5 wow fadeInUp shadow-sm" data-wow-delay="0.1s">
+                <div className="text-center mb-4">
+                  <h3 className="mb-3" style={{color:'#6f3348'}}>
+                    <i className="fa fa-shield-alt me-2"></i>
+                    Insurance Companies MCHFC Works With
+                  </h3>
+                  <p className="lead mb-4">MCHFC is an accredited service provider for major private health insurance companies</p>
+                </div>
+                <div className="row g-4">
+                  {insuranceCompanies.map((company, index) => (
+                    <div key={company.name} className="col-lg-2 col-md-3 col-sm-4 col-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.05}s`}>
+                      <div className="insurance-card text-center p-3 bg-white rounded-3 shadow-sm h-100 transition-all hover-lift">
+                        <div className="insurance-logo mb-3" style={{height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                          <i className="fa fa-shield-alt fa-2x" style={{color:'#6f3348'}}></i>
+                        </div>
+                        <h6 className="mb-0 small fw-semibold" style={{fontSize: '0.85rem', lineHeight: '1.2'}}>{company.name}</h6>
+                      </div>
                     </div>
-                  </div>
-                  <div className="ms-4">
-                    <h4 className="mb-3">{partner.name}</h4>
-                    <p className="mb-4">{partner.description}</p>
-                  </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Pharmaceutical Companies Section */}
+          <div className="row mb-5">
+            <div className="col-12">
+              <div className="rounded-3 p-5 wow fadeInUp shadow-sm text-white" data-wow-delay="0.2s" style={{background: 'linear-gradient(135deg, #6f3348 0%, #4B1438 100%)'}}>
+                <div className="text-center mb-4">
+                  <h3 className="mb-3 text-white">
+                    <i className="fa fa-pills me-2"></i>
+                    Pharmaceutical Companies on Our Portfolio
+                  </h3>
+                  <p className="lead mb-4 text-white opacity-75">Trusted pharmaceutical partners ensuring quality medication and healthcare products</p>
+                </div>
+                <div className="row g-4">
+                  {pharmaceuticalCompanies.map((company, index) => (
+                    <div key={company.name} className="col-lg-2 col-md-3 col-sm-4 col-6 wow fadeInUp" data-wow-delay={`${0.2 + index * 0.05}s`}>
+                      <div className="pharmacy-card text-center p-3 bg-white rounded-3 shadow-sm h-100 transition-all hover-lift">
+                        <div className="pharmacy-logo mb-3" style={{height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                          <i className="fa fa-prescription-bottle-alt fa-2x" style={{color:'#6f3348'}}></i>
+                        </div>
+                        <h6 className="mb-0 small fw-semibold text-dark" style={{fontSize: '0.85rem', lineHeight: '1.2'}}>{company.name}</h6>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Government Partners Grid */}
+          <div className="row mb-5">
+            <div className="col-12">
+              <div className="text-center mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                <h3 className="mb-3" style={{color:'#6f3348'}}>
+                  <i className="fa fa-university me-2"></i>
+                  Government & Regulatory Partners
+                </h3>
+                <p className="mb-4">Collaborating with regulatory bodies to maintain the highest standards of healthcare</p>
+              </div>
+              <div className="row g-4">
+                {governmentPartners.map((partner, index) => (
+                  <div key={partner.name} className="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay={`${0.3 + index * 0.1}s`} data-wow-duration="0.6s">
+                    <div className="service-item d-flex h-100 p-4 rounded-3 transition-all hover-lift shadow-sm border">
+                      <div className="flex-shrink-0">
+                        <div className="rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{width: '60px', height: '60px', background:'#6f3348'}}>
+                          <i className="fa fa-handshake text-white fa-2x animate-float"></i>
+                        </div>
+                      </div>
+                      <div className="ms-4">
+                        <h5 className="mb-3">{partner.name}</h5>
+                        <p className="mb-0 text-muted">{partner.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Partnership Benefits */}
@@ -182,7 +277,7 @@ const Partners = () => {
               <div key={benefit.title} className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`} data-wow-duration="0.6s">
                 <div className="service-item d-flex h-100 p-5 rounded-3 transition-all hover-lift shadow-sm">
                   <div className="flex-shrink-0">
-                    <div className="bg-primary rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{width: '60px', height: '60px'}}>
+                    <div className="rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{width: '60px', height: '60px', background:'#6f3348'}}>
                       <i className={`${benefit.icon} text-white fa-2x animate-float`}></i>
                     </div>
                   </div>
@@ -198,14 +293,28 @@ const Partners = () => {
           {/* Partnership Statistics */}
           <div className="row g-5 mb-5">
             <div className="col-12">
-              <div className="bg-primary rounded-3 p-5 text-center text-white wow fadeInUp shadow-sm" data-wow-delay="0.1s">
+              <div className="rounded-3 p-5 text-center text-white wow fadeInUp shadow-sm" data-wow-delay="0.4s" style={{background:'#6f3348'}}>
                 <h3 className="mb-5">Our Partnership Impact</h3>
                 <div className="row g-4">
                   <div className="col-lg-3 col-md-6">
                     <div className="counter-item">
-                      <i className="fa fa-hospital fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={15} suffix="+" /></h2>
-                      <p className="mb-0">Partner Organizations</p>
+                      <i className="fa fa-shield-alt fa-3x mb-3"></i>
+                      <h2 className="display-4 fw-bold"><AnimatedCounter end={10} suffix="" /></h2>
+                      <p className="mb-0">Insurance Partners</p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6">
+                    <div className="counter-item">
+                      <i className="fa fa-prescription-bottle-alt fa-3x mb-3"></i>
+                      <h2 className="display-4 fw-bold"><AnimatedCounter end={14} suffix="" /></h2>
+                      <p className="mb-0">Pharmaceutical Partners</p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6">
+                    <div className="counter-item">
+                      <i className="fa fa-university fa-3x mb-3"></i>
+                      <h2 className="display-4 fw-bold"><AnimatedCounter end={4} suffix="" /></h2>
+                      <p className="mb-0">Government Partners</p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6">
@@ -213,20 +322,6 @@ const Partners = () => {
                       <i className="fa fa-users fa-3x mb-3"></i>
                       <h2 className="display-4 fw-bold"><AnimatedCounter end={10} suffix="K+" /></h2>
                       <p className="mb-0">Patients Served</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <div className="counter-item">
-                      <i className="fa fa-certificate fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={100} suffix="%" /></h2>
-                      <p className="mb-0">Quality Standards</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <div className="counter-item">
-                      <i className="fa fa-heart fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={5} suffix="+" /></h2>
-                      <p className="mb-0">Years of Excellence</p>
                     </div>
                   </div>
                 </div>
@@ -240,9 +335,13 @@ const Partners = () => {
               <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h3 className="mb-4">Interested in Partnering with Us?</h3>
                 <p className="mb-4">Join our network of healthcare partners and help us provide better healthcare services to our community.</p>
-                <Link to="/partner-form" className="btn btn-primary btn-lg transition-transform hover-scale">
+                <Link to="/partner-form" className="btn brand-btn btn-lg transition-transform hover-scale">
                   <i className="fa fa-handshake me-2"></i>Become a Partner
                 </Link>
+                <style>{`
+                  .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
+                  .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
+                `}</style>
               </div>
             </div>
           </div>
@@ -273,6 +372,54 @@ const Partners = () => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .hover-lift {
+          transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+        }
+        .insurance-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(111,51,72,0.2) !important;
+        }
+        .pharmacy-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+        }
+        .insurance-card, .pharmacy-card {
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        .counter-item {
+          transition: all 0.3s ease;
+        }
+        .counter-item:hover {
+          transform: scale(1.05);
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .transition-all {
+          transition: all 0.3s ease;
+        }
+        .service-item:hover {
+          transform: translateY(-2px);
+        }
+        .insurance-logo, .pharmacy-logo {
+          transition: all 0.3s ease;
+        }
+        .insurance-card:hover .insurance-logo i,
+        .pharmacy-card:hover .pharmacy-logo i {
+          transform: scale(1.1) rotate(5deg);
+        }
+      `}</style>
 
       <Footer />
     </>

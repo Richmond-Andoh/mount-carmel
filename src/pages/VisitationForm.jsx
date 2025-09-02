@@ -73,7 +73,7 @@ const VisitationForm = () => {
       <Header />
       {/* Hero Section with Background Image and Overlay */}
       <div className="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style={{
-        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/gallery/room-facility.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/gallery/room-facility.jpg') center/cover no-repeat`,
         position: 'relative',
         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
         backgroundAttachment: 'fixed',
@@ -95,7 +95,7 @@ const VisitationForm = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Visit Us</h6>
+            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Visit Us</h6>
             <h1 className="display-6 mb-4">Schedule a Facility Tour</h1>
             <p className="mb-0">Fill out the form below to book your visit and discover our hospital.</p>
           </div>
@@ -104,12 +104,16 @@ const VisitationForm = () => {
             <div className="col-lg-8">
               {submitted ? (
                 <div className="bg-light rounded-4 p-5 text-center shadow-lg wow fadeInUp" data-wow-delay="0.1s">
-                  <i className="fa fa-check-circle fa-4x text-primary mb-4"></i>
-                  <h2 className="text-primary mb-3">Thank You!</h2>
+                  <i className="fa fa-check-circle fa-4x mb-4" style={{color:'#6f3348'}}></i>
+                  <h2 className="mb-3" style={{color:'#6f3348'}}>Thank You!</h2>
                   <p className="mb-4">Thank you for your interest in visiting our facility. We will contact you soon to arrange your tour.</p>
-                  <Link to="/" className="btn btn-primary rounded-pill px-4 py-2">
+                  <Link to="/" className="btn brand-btn rounded-pill px-4 py-2">
                     <i className="fa fa-home me-2"></i>Go Back to Home
                   </Link>
+                  <style>{`
+                    .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
+                    .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
+                  `}</style>
                 </div>
               ) : (
                 <div className="bg-white rounded-4 p-5 shadow-lg wow fadeInUp" data-wow-delay="0.1s">
@@ -191,7 +195,7 @@ const VisitationForm = () => {
                       </div>
                       <div className="col-12">
                         <button 
-                          className="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow" 
+                          className="btn brand-btn w-100 py-3 rounded-pill fw-bold shadow" 
                           type="submit"
                           disabled={!isFormValid || loading}
                         >
@@ -216,7 +220,7 @@ const VisitationForm = () => {
           </div>
 
           {/* Visit Information - Modern Responsive Full Width Section */}
-          <div className="container-fluid px-0 mt-5" style={{width: '100vw', marginLeft: 'calc(-50vw + 50%)', background: 'linear-gradient(90deg, #e3eafc 0%, #f8f9fa 100%)', borderRadius: '32px', boxShadow: '0 4px 24px rgba(0,51,102,0.08)', padding: '32px 0'}}>
+          <div className="container-fluid px-0 mt-5" style={{width: '100vw', marginLeft: 'calc(-50vw + 50%)', background: 'linear-gradient(90deg, #F8FBFF 0%, #ffffff 100%)', borderRadius: '32px', boxShadow: '0 4px 24px rgba(111,51,72,0.10)', padding: '32px 0'}}>
             <div className="container">
               <div className="row g-4">
                 <div className="col-12">
@@ -246,11 +250,11 @@ const VisitationForm = () => {
                 ].map((info, idx) => (
                   <div key={info.title} className="col-12 col-sm-6 col-lg-4 d-flex align-items-stretch wow fadeInUp" data-wow-delay={info.delay}>
                     <div className="benefit-card bg-white rounded-4 shadow-lg p-4 w-100 d-flex flex-column align-items-center justify-content-center text-center h-100" style={{transition: 'transform .3s, box-shadow .3s'}}>
-                      <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center mb-3" style={{width: '64px', height: '64px', boxShadow: '0 2px 12px rgba(111,34,72,0.15)'}}>
+                      <div className="rounded-circle d-flex align-items-center justify-content-center mb-3" style={{width: '64px', height: '64px', boxShadow: '0 2px 12px rgba(111,51,72,0.15)', background:'#6f3348'}}>
                         <i className={`fa ${info.icon} text-white fa-2x`} loading="lazy"></i>
                       </div>
-                      <h4 className="mb-2 fw-bold text-primary">{info.title}</h4>
-                      <p className="mb-0 text-secondary small">{info.desc}</p>
+                      <h4 className="mb-2 fw-bold" style={{color:'#6f3348'}}>{info.title}</h4>
+                      <p className="mb-0 small" style={{color:'#4B1438'}}>{info.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -265,7 +269,7 @@ const VisitationForm = () => {
           </div>
 
           {/* Contact Information - Full Width, No Margin, Responsive, Flush with Footer */}
-          <div className="container-fluid px-0 my-auto" style={{ width: '100vw', height: "auto", marginLeft: 'calc(-50vw + 50%)', marginRight: 0, marginBottom: 0, paddingLeft: 0, paddingRight: 0, background: 'linear-gradient(90deg, #6f2248 0%, #a85c7a 100%)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', boxSizing: 'border-box' }}>
+          <div className="container-fluid px-0 my-auto" style={{ width: '100vw', height: "auto", marginLeft: 'calc(-50vw + 50%)', marginRight: 0, marginBottom: 0, paddingLeft: 0, paddingRight: 0, background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', boxSizing: 'border-box' }}>
             <div className="row g-0 align-items-center justify-content-center text-center" style={{ margin: 0 }}>
               <div className="col-12 py-5" style={{paddingBottom: 0, marginBottom: 0}}>
                 <h3 className="fw-bold text-white mb-3">Need Immediate Assistance?</h3>

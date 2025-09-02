@@ -25,7 +25,7 @@ const About = () => {
           height: '400px'
         }}
       >
-        <div className="absolute inset-0 bg-mount-carmel-primary/85 rounded-b-3xl"></div>
+        <div className="absolute inset-0 bg-mount-carmel-primary/85"></div>
         <div className="container py-5 relative">
           <h1 className="display-3 text-white animated slideInDown fw-bold tracking-wider">About Us</h1>
           <nav aria-label="breadcrumb animated slideInDown">
@@ -51,9 +51,8 @@ const About = () => {
               <div className="col-lg-6 wow fadeInRight" data-wow-delay="0.5s">
                 <div className="h-100 p-4 rounded-2xl bg-white shadow-sm">
                   <h6 className="section-title bg-white text-start text-mount-carmel-primary pe-3">About Us</h6>
-                  <h1 className="display-6 mb-4 fw-bold">Mount Carmel Hospital & Fertility Center</h1>
-                  <p className="lead">Mount Carmel Hospital and Fertility Center is a leading healthcare institution in Ghana, dedicated to providing exceptional medical care with compassion and excellence. Established with a vision to transform healthcare delivery, we have been serving our community with state-of-the-art medical facilities and expert healthcare professionals.</p>
-                  <p>Our commitment to excellence extends beyond traditional healthcare services. We specialize in fertility treatments, maternity care, and comprehensive medical services, ensuring that every patient receives personalized care in a comfortable and supportive environment.</p>
+                  <h1 className="display-6 mb-4 fw-bold">ABOUT MOUNT CARMEL HOSPITAL AND FERTILITY CENTER (MCHFC)</h1>
+                  <p className="lead">Mount Carmel Hospital and Fertility Center is a Private Health Care organization located at community 25, ashfoam junction Tema. The center stands at all times for Quality Health Services that you will find most cost efficient. We are set to provide total services that go to ensure the quality of health that fosters Productivity and growth.</p>
                   <a className="btn btn-primary py-3 px-5 rounded-pill shadow" href="/services">Explore More</a>
                 </div>
               </div>
@@ -77,21 +76,14 @@ const About = () => {
         className="w-full py-5 bg-cover bg-center bg-no-repeat bg-fixed relative"
         style={{ backgroundImage: `url('/images/feature.jpg')` }}
       >
-        <div className="absolute inset-0 bg-mount-carmel-primary/70"></div>
+        <div className="absolute inset-0 bg-mount-carmel-primary/90"></div>
         <div className="container relative">
           <div className="row g-5 align-items-center">
             <div className="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
               <div className="h-100 p-4 rounded-2xl bg-white shadow-sm">
                 <h6 className="section-title bg-white text-start text-mount-carmel-primary pe-3">Our Mission</h6>
-                <h1 className="display-6 mb-4 fw-bold">Providing Exceptional Healthcare</h1>
-                <p>Our mission is to provide comprehensive, high-quality healthcare services that improve the health and well-being of our patients and communities. We are committed to:</p>
-                <ul className="mb-4">
-                  <li>Delivering patient-centered care with compassion and respect</li>
-                  <li>Utilizing advanced medical technology and evidence-based practices</li>
-                  <li>Maintaining the highest standards of medical excellence</li>
-                  <li>Supporting families through their healthcare journey</li>
-                  <li>Contributing to the advancement of medical knowledge</li>
-                </ul>
+                <h1 className="display-6 mb-4 fw-bold">Our Mission</h1>
+                <p>“Our Mission is to collaborate to improve the health status of our clients and community by delivering high quality service that exceeds the expectations of those we serve. We are committed to quality service and competitive pricing”</p>
               </div>
             </div>
             <div className="col-lg-6 wow zoomIn" data-wow-delay="0.5s">
@@ -100,15 +92,8 @@ const About = () => {
               </div>
               <div className="h-100 p-4 rounded-2xl bg-white shadow-sm mt-3">
                 <h6 className="section-title bg-white text-start text-mount-carmel-primary pe-3">Our Vision</h6>
-                <h1 className="display-6 mb-4 fw-bold">Leading Healthcare Innovation</h1>
-                <p>We envision Mount Carmel Hospital as the premier healthcare institution in Ghana, recognized for:</p>
-                <ul className="mb-4">
-                  <li>Excellence in medical care and patient outcomes</li>
-                  <li>Innovation in healthcare delivery and technology</li>
-                  <li>Leadership in fertility and reproductive medicine</li>
-                  <li>Community health improvement and education</li>
-                  <li>Partnerships that advance healthcare in Africa</li>
-                </ul>
+                <h1 className="display-6 mb-4 fw-bold">Our Vision</h1>
+                <p>“To be A Health Facility with Efficient and Competent Team ready to Deliver Quality Health Care Service that meets Global Standards” at an affordable price.</p>
               </div>
             </div>
           </div>
@@ -171,7 +156,7 @@ const About = () => {
         className="w-full py-5 bg-cover bg-center bg-no-repeat bg-fixed relative"
         style={{ backgroundImage: `url('/images/carousel-2.jpg')` }}
       >
-        <div className="absolute inset-0 bg-mount-carmel-primary/70"></div>
+        <div className="absolute inset-0 bg-mount-carmel-primary/90"></div>
         <div className="container relative">
           <div className="row g-5 align-items-center">
             <div className="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
