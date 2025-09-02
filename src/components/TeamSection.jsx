@@ -71,16 +71,16 @@ const TeamSection = () => {
               compassion, and a commitment to excellence in patient care.
             </p>
             <div className="d-flex">
-              <a className="btn btn-lg-square btn-primary me-2" href="#">
+              <a className="btn btn-lg-square bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white me-2" href="#">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a className="btn btn-lg-square btn-primary me-2" href="#">
+              <a className="btn btn-lg-square bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white me-2" href="#">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a className="btn btn-lg-square btn-primary me-2" href="#">
+              <a className="btn btn-lg-square bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white me-2" href="#">
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a className="btn btn-lg-square btn-primary me-2" href="#">
+              <a className="btn btn-lg-square bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white me-2" href="#">
                 <i className="fab fa-youtube"></i>
               </a>
             </div>
