@@ -68,11 +68,11 @@ const Testimonies = () => {
     <>
       <Header />
       
-      {/* Parallax Hero Section with Overlay */}
+      {/* Parallax Hero Section with Overlay (brand) */}
       <div className="w-100 mb-5" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/testimonial.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/testimonial.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
@@ -90,11 +90,37 @@ const Testimonies = () => {
         </div>
       </div>
 
+      {/* Brand Marquee Section */}
+      <section className="container-fluid py-3" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Introduction */}
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Testimonials</h6>
+            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Testimonials</h6>
             <h1 className="display-6 mb-4">What Our Patients Say</h1>
             <p className="mb-0">Hear from our patients about their experiences at Mount Carmel Hospital. Their stories reflect our commitment to providing exceptional healthcare with compassion and excellence.</p>
           </div>
@@ -112,27 +138,27 @@ const Testimonies = () => {
                   background: 'rgba(255,255,255,0.85)',
                   border: '1px solid #e0e0e0',
                   transition: 'transform 0.3s, box-shadow 0.3s',
-                  boxShadow: '0 4px 24px rgba(111,34,72,0.08)',
+                  boxShadow: '0 4px 24px rgba(111,51,72,0.08)',
                   cursor: 'pointer'
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = 'translateY(-8px) scale(1.03)';
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(111,34,72,0.18)';
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(111,51,72,0.18)';
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(111,34,72,0.08)';
+                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(111,51,72,0.08)';
                 }}>
                   <div className="d-flex align-items-center mb-4">
                     <img 
                       className="flex-shrink-0 rounded-circle me-3 border border-3" 
                       src={testimonial.image} 
                       alt={testimonial.name}
-                      style={{width: '60px', height: '60px', objectFit: 'cover', borderColor: '#6f2248'}}
+                      style={{width: '60px', height: '60px', objectFit: 'cover', borderColor: '#6f3348'}}
                     />
                     <div>
-                      <h5 className="mb-1" style={{color: '#6f2248'}}>{testimonial.name}</h5>
-                      <small style={{color: '#a85c7a'}}>{testimonial.role}</small>
+                      <h5 className="mb-1" style={{color: '#6f3348'}}>{testimonial.name}</h5>
+                      <small style={{color: '#4B1438'}}>{testimonial.role}</small>
                     </div>
                   </div>
                   <div className="mb-3">
@@ -147,11 +173,11 @@ const Testimonies = () => {
       </div>
 
 
-      {/* Success Stories Section with Parallax and Overlay */}
+      {/* Success Stories Section with Parallax and Overlay (brand) */}
       <div className="w-100 py-5" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/success-stories/gallery-1.jpg') center/cover no-repeat, url('/images/success-stories.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/success-stories/gallery-1.jpg') center/cover no-repeat, url('/images/success-stories.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
@@ -161,36 +187,40 @@ const Testimonies = () => {
           <div className="row g-5 align-items-center">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="h-100" style={{color: '#fff'}}>
-                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f2248'}}>Success Stories</h6>
+                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f3348'}}>Success Stories</h6>
                 <h1 className="display-6 mb-4">Transforming Lives Through Healthcare</h1>
                 <p>At Mount Carmel Hospital, we believe in the power of healthcare to transform lives. Our success stories are a testament to our commitment to excellence and the trust our patients place in us.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#6f3348'}}></i>
                       <h6 className="mb-0">High Success Rates</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#6f3348'}}></i>
                       <h6 className="mb-0">Patient Satisfaction</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#6f3348'}}></i>
                       <h6 className="mb-0">Expert Care</h6>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
-                      <i className="fa fa-check fa-2x me-3" style={{color: '#a85c7a'}}></i>
+                      <i className="fa fa-check fa-2x me-3" style={{color: '#6f3348'}}></i>
                       <h6 className="mb-0">Modern Technology</h6>
                     </div>
                   </div>
                 </div>
-                <a className="btn btn-primary py-3 px-5" href="/appointment">Book Your Appointment</a>
+                <a className="btn brand-btn py-3 px-5" href="/appointment">Book Your Appointment</a>
+                <style>{`
+                  .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
+                  .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
+                `}</style>
               </div>
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -203,14 +233,14 @@ const Testimonies = () => {
       </div>
 
       {/* Statistics Section */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(#6f2248)'}}>
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)'}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay="0.1s">
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-heart text-primary"></i>
+                    <i className="fa fa-heart" style={{color:'#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>98%</h4>
@@ -223,7 +253,7 @@ const Testimonies = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-baby text-primary"></i>
+                    <i className="fa fa-baby" style={{color:'#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>1000+</h4>
@@ -236,7 +266,7 @@ const Testimonies = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-users text-primary"></i>
+                    <i className="fa fa-users" style={{color:'#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>5000+</h4>
@@ -249,7 +279,7 @@ const Testimonies = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-star text-primary"></i>
+                    <i className="fa fa-star" style={{color:'#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>4.9/5</h4>
@@ -266,12 +296,18 @@ const Testimonies = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Join Our Success Stories</h6>
+            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Join Our Success Stories</h6>
             <h1 className="display-6 mb-4">Experience Exceptional Healthcare</h1>
             <p className="mb-4">Join thousands of satisfied patients who have experienced the Mount Carmel difference. Book your appointment today and start your journey to better health.</p>
             <div className="d-flex justify-content-center gap-3">
-              <a className="btn btn-primary py-3 px-5" href="/appointment">Book Appointment</a>
-              <a className="btn btn-outline-primary py-3 px-5" href="/contact">Contact Us</a>
+              <a className="btn brand-btn py-3 px-5" href="/appointment">Book Appointment</a>
+              <a className="btn brand-outline-btn py-3 px-5" href="/contact">Contact Us</a>
+              <style>{`
+                .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
+                .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
+                .brand-outline-btn { background: transparent; border-color: #6f3348; color: #6f3348; }
+                .brand-outline-btn:hover { background: #6f3348; color: #fff; }
+              `}</style>
             </div>
           </div>
         </div>

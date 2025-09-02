@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation, EffectCoverflow, Keyboard, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -106,7 +107,7 @@ const Facilities = () => {
   return (
     <>
       <Header />
-  {/* Local styles: modern card hover, focus, parallax, carousel and responsive tweaks (burgundy palette) */}
+  {/* Local styles: modern card hover, focus, parallax, carousel and responsive tweaks (brand palette) */}
   <style>{`
         .service-item {
           background: #ffffff;
@@ -119,19 +120,19 @@ const Facilities = () => {
         .service-item:hover,
         .service-item:focus-within {
           transform: translateY(-8px);
-          box-shadow: 0 12px 36px rgba(111,34,72,0.12);
-          background: linear-gradient(90deg, #6f2248, #a85c7a);
+          box-shadow: 0 12px 36px rgba(111,51,72,0.12);
+          background: linear-gradient(90deg, #4B1438, #6f3348);
           color: #fff;
         }
 
         .service-item .bg-primary {
-          background: #6f2248 !important;
+          background: #6f3348 !important;
           transition: background .28s ease, transform .28s ease;
         }
 
         .service-item:hover .bg-primary,
         .service-item:focus-within .bg-primary {
-          background: linear-gradient(90deg, #6f2248, #a85c7a) !important;
+          background: linear-gradient(90deg, #4B1438, #6f3348) !important;
         }
 
         .service-item h4,
@@ -147,7 +148,7 @@ const Facilities = () => {
         }
 
         .service-item ul li i {
-          color: #6f2248;
+          color: #6f3348;
           transition: color .28s ease;
         }
 
@@ -165,7 +166,7 @@ const Facilities = () => {
 
         /* Focus visible for keyboard users */
         .btn:focus-visible {
-          outline: 3px solid rgba(111,34,72,0.24);
+          outline: 3px solid rgba(111,51,72,0.24);
           outline-offset: 2px;
         }
 
@@ -199,7 +200,7 @@ const Facilities = () => {
           display:flex;
           align-items:center;
           justify-content:center;
-          background: linear-gradient(180deg, rgba(111,34,72,0.0), rgba(0,0,0,0.35));
+          background: linear-gradient(180deg, rgba(111,51,72,0.0), rgba(0,0,0,0.35));
           color: #fff;
           opacity: 0;
           transition: opacity .28s ease;
@@ -229,10 +230,10 @@ const Facilities = () => {
         .carousel-btn.prev { left: 12px; }
         .carousel-btn.next { right: 12px; }
 
-        .carousel-btn:hover { background: rgba(111,34,72,0.85); }
+        .carousel-btn:hover { background: rgba(111,51,72,0.85); }
 
-        /* Override bootstrap primary color on this page to match About palette */
-        .bg-primary { background: linear-gradient(90deg, #6f2248, #a85c7a) !important; }
+        /* Override bootstrap primary color on this page to match brand palette */
+        .bg-primary { background: linear-gradient(90deg, #4B1438, #6f3348) !important; }
       `}</style>
     {/* Modern Swiper styles for gallery */}
     <style>{`
@@ -248,7 +249,12 @@ const Facilities = () => {
         justify-content: center;
         align-items: stretch;
         height: 320px;
+        transition: transform .3s ease, opacity .3s ease;
       }
+      .swiper-slide .gallery-item { transform: scale(.94); opacity: .9; }
+      .swiper-slide-next .gallery-item,
+      .swiper-slide-prev .gallery-item { transform: scale(.98); opacity: .95; }
+      .swiper-slide-active .gallery-item { transform: scale(1.05); opacity: 1; box-shadow: 0 16px 48px rgba(111,51,72,0.22), 0 4px 12px rgba(0,0,0,0.12); }
       .gallery-item {
         position: relative;
         width: 100%;
@@ -256,7 +262,7 @@ const Facilities = () => {
         height: 100%;
         border-radius: 18px;
         overflow: hidden;
-        box-shadow: 0 6px 32px rgba(111,34,72,0.12), 0 1.5px 6px rgba(0,0,0,0.08);
+        box-shadow: 0 6px 32px rgba(111,51,72,0.12), 0 1.5px 6px rgba(0,0,0,0.08);
         transition: transform 0.3s, box-shadow 0.3s;
         background: #fff;
       }
@@ -274,7 +280,7 @@ const Facilities = () => {
       .gallery-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg,rgba(111,34,72,0.0),rgba(111,34,72,0.85));
+        background: linear-gradient(180deg,rgba(111,51,72,0.0),rgba(111,51,72,0.85));
         color: #fff;
         display: flex;
         align-items: flex-end;
@@ -291,7 +297,7 @@ const Facilities = () => {
       /* Swiper navigation buttons */
       .swiper-button-next, .swiper-button-prev {
         color: #fff;
-        background: rgba(111,34,72,0.65);
+        background: rgba(111,51,72,0.65);
         border-radius: 50%;
         width: 44px;
         height: 44px;
@@ -301,27 +307,27 @@ const Facilities = () => {
         transition: background 0.2s;
       }
       .swiper-button-next:hover, .swiper-button-prev:hover {
-        background: rgba(111,34,72,0.85);
+        background: rgba(111,51,72,0.85);
       }
       .swiper-pagination-bullet {
-        background: #6f2248;
+        background: #6f3348;
         opacity: 0.7;
       }
       .swiper-pagination-bullet-active {
         background: #fff;
         opacity: 1;
-        border: 2px solid #6f2248;
+        border: 2px solid #6f3348;
       }
     `}</style>
 
-      {/* Page Header - match About page styling with background image + overlay */}
+      {/* Page Header - improved hero with brand overlay and depth */}
       <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
-        background: `linear-gradient(rgba(111,34,72,0.85), rgba(111,34,72,0.85)), url('/images/about-bg.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(111,51,72,0.85), rgba(111,51,72,0.85)), url('/images/about-bg.jpg') center/cover no-repeat`,
         position: 'relative',
         borderRadius: '0 0 32px 32px',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+        boxShadow: '0 10px 38px rgba(0,0,0,0.16)',
         backgroundAttachment: 'fixed',
-        height: '400px'
+        height: '420px'
       }}>
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Our Facilities</h1>
@@ -331,8 +337,37 @@ const Facilities = () => {
               <li className="breadcrumb-item text-white active" aria-current="page">Facilities</li>
             </ol>
           </nav>
+          <p className="lead text-white mt-3" style={{maxWidth:'680px'}}>Explore our world-class departments and infrastructure thoughtfully designed for comfort, safety, and advanced care.</p>
         </div>
       </div>
+
+      {/* Brand Marquee Section */}
+      <section className="container-fluid py-3" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Safety First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Modern Equipment</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Staff</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient Comfort</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Advanced Diagnostics</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Accredited Facility</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Safety First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Modern Equipment</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Staff</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient Comfort</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Advanced Diagnostics</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Accredited Facility</span>
+          </div>
+        </div>
+      </section>
 
       {/* Facilities Section */}
       <div className="container-xxl py-5">
@@ -480,17 +515,24 @@ const Facilities = () => {
             </div>
             <div className="carousel-wrap position-relative">
               <Swiper
-                modules={[Autoplay, Pagination, Navigation]}
+                modules={[Autoplay, Pagination, Navigation, EffectCoverflow, Keyboard, Mousewheel]}
                 spaceBetween={24}
                 slidesPerView={1}
+                centeredSlides={true}
                 breakpoints={{
-                  576: { slidesPerView: 2 },
-                  992: { slidesPerView: 3 },
-                  1200: { slidesPerView: 4 }
+                  576: { slidesPerView: 1.5 },
+                  768: { slidesPerView: 2 },
+                  992: { slidesPerView: 2.5 },
+                  1200: { slidesPerView: 3 }
                 }}
                 loop={true}
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
-                pagination={{ clickable: true }}
+                effect="coverflow"
+                coverflowEffect={{ rotate: 20, stretch: 0, depth: 140, modifier: 1, slideShadows: false }}
+                grabCursor={true}
+                keyboard={{ enabled: true, onlyInViewport: true }}
+                mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
+                autoplay={{ delay: 2600, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                pagination={{ clickable: true, dynamicBullets: true }}
                 navigation={true}
                 style={{ paddingBottom: '48px' }}
               >

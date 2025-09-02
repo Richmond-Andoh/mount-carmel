@@ -63,11 +63,11 @@ const FAQ = () => {
     <>
       <Header />
       
-      {/* Parallax Page Header with Overlay and Background Image */}
+      {/* Parallax Page Header with Overlay and Background Image (brand) */}
       <div className="w-100 mb-5" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
@@ -85,11 +85,37 @@ const FAQ = () => {
         </div>
       </div>
 
+      {/* Brand Marquee Section */}
+      <section className="container-fluid py-3" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted Answers</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Clear Guidance</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>24/7 Emergency</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient Support</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted Answers</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Clear Guidance</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>24/7 Emergency</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient Support</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Introduction */}
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">FAQ</h6>
+            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>FAQ</h6>
             <h1 className="display-6 mb-4">Frequently Asked Questions</h1>
             <p className="mb-0">Find answers to common questions about our services, appointments, and healthcare procedures. If you don't find what you're looking for, please contact us directly.</p>
           </div>
@@ -138,7 +164,7 @@ const FAQ = () => {
                 <p className="mb-4">If you couldn't find the answer to your question in our FAQ, we're here to help. Contact us directly and we'll get back to you as soon as possible.</p>
                 
                 <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-phone fa-2x text-primary me-3"></i>
+                  <i className="fa fa-phone fa-2x me-3" style={{color:'#6f3348'}}></i>
                   <div>
                     <h6 className="mb-0">Call Us</h6>
                     <p className="mb-0">+233 30 393 9896</p>
@@ -146,7 +172,7 @@ const FAQ = () => {
                 </div>
                 
                 <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-envelope fa-2x text-primary me-3"></i>
+                  <i className="fa fa-envelope fa-2x me-3" style={{color:'#6f3348'}}></i>
                   <div>
                     <h6 className="mb-0">Email Us</h6>
                     <p className="mb-0">mountcarmelhospital@outlook.com</p>
@@ -154,14 +180,18 @@ const FAQ = () => {
                 </div>
                 
                 <div className="d-flex align-items-center mb-4">
-                  <i className="fa fa-clock fa-2x text-primary me-3"></i>
+                  <i className="fa fa-clock fa-2x me-3" style={{color:'#6f3348'}}></i>
                   <div>
                     <h6 className="mb-0">Business Hours</h6>
                     <p className="mb-0">Mon-Sat: 8:00 AM - 6:00 PM<br/>Sun: 9:00 AM - 3:00 PM</p>
                   </div>
                 </div>
                 
-                <a className="btn btn-primary w-100 py-3" href="/contact">Contact Us</a>
+                <a className="btn brand-btn w-100 py-3" href="/contact">Contact Us</a>
+                <style>{`
+                  .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
+                  .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
+                `}</style>
               </div>
             </div>
           </div>
@@ -169,11 +199,11 @@ const FAQ = () => {
       </div>
 
 
-      {/* Quick Links Section with Parallax, Overlay, and Background Image */}
+      {/* Quick Links Section with Parallax, Overlay, and Background Image (brand) */}
       <div className="w-100 py-5" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
@@ -181,7 +211,7 @@ const FAQ = () => {
       }}>
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px', color: '#fff'}}>
-            <h6 className="section-title bg-white text-center px-3" style={{color: '#6f2248'}}>Quick Links</h6>
+            <h6 className="section-title bg-white text-center px-3" style={{color: '#6f3348'}}>Quick Links</h6>
             <h1 className="display-6 mb-4">Find What You Need</h1>
             <p className="mb-0">Explore our services and resources to get the information you need about your healthcare journey.</p>
           </div>
@@ -190,40 +220,40 @@ const FAQ = () => {
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-calendar" style={{color: '#6f2248'}}></i>
+                  <i className="fa fa-3x fa-calendar" style={{color: '#6f3348'}}></i>
                   <h5 className="mb-3">Book Appointment</h5>
                   <p>Schedule your visit with our expert medical team for comprehensive healthcare services.</p>
-                  <a className="btn btn-primary py-2 px-4" href="/appointment">Book Now</a>
+                  <a className="btn brand-btn py-2 px-4" href="/appointment">Book Now</a>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
               <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-user-md" style={{color: '#6f2248'}}></i>
+                  <i className="fa fa-3x fa-user-md" style={{color: '#6f3348'}}></i>
                   <h5 className="mb-3">Our Team</h5>
                   <p>Meet our experienced medical professionals dedicated to providing exceptional care.</p>
-                  <a className="btn btn-primary py-2 px-4" href="/team">Meet Team</a>
+                  <a className="btn brand-btn py-2 px-4" href="/team">Meet Team</a>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-stethoscope" style={{color: '#6f2248'}}></i>
+                  <i className="fa fa-3x fa-stethoscope" style={{color: '#6f3348'}}></i>
                   <h5 className="mb-3">Our Services</h5>
                   <p>Explore our comprehensive range of medical services and specialized treatments.</p>
-                  <a className="btn btn-primary py-2 px-4" href="/services">View Services</a>
+                  <a className="btn brand-btn py-2 px-4" href="/services">View Services</a>
                 </div>
               </div>
             </div>
             <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
               <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-map-marker-alt" style={{color: '#6f2248'}}></i>
+                  <i className="fa fa-3x fa-map-marker-alt" style={{color: '#6f3348'}}></i>
                   <h5 className="mb-3">Visit Us</h5>
                   <p>Find our location and get directions to Mount Carmel Hospital for your appointment.</p>
-                  <a className="btn btn-primary py-2 px-4" href="/contact">Get Directions</a>
+                  <a className="btn brand-btn py-2 px-4" href="/contact">Get Directions</a>
                 </div>
               </div>
             </div>
@@ -232,15 +262,15 @@ const FAQ = () => {
       </div>
 
 
-      {/* Stats/Call to Action Section with Updated Background Color */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(135deg, #6f2248, #a85c7a)'}}>
+      {/* Stats/Call to Action Section with Updated Background Color (brand) */}
+      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)'}}>
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-calendar" style={{color: '#6f2248'}}></i>
+                    <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Book Appointment</h4>
@@ -253,7 +283,7 @@ const FAQ = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone" style={{color: '#6f2248'}}></i>
+                    <i className="fa fa-phone" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Call Us Now</h4>

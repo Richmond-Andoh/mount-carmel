@@ -37,13 +37,13 @@ const Contact = () => {
     <>
       <Header />
 
-      {/* Parallax Page Header with Overlay and Background Image */}
+      {/* Parallax Page Header with Overlay and Background Image (brand) */}
       <div
         className="w-100 mb-5"
         style={{
           width: "100vw",
           marginLeft: "calc(-50vw + 50%)",
-          background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
+          background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
           backgroundAttachment: "fixed",
           position: "relative",
           overflow: "hidden",
@@ -83,7 +83,7 @@ const Contact = () => {
             data-wow-delay="0.1s"
             style={{ maxWidth: "600px" }}
           >
-            <h6 className="section-title bg-white text-center text-primary px-3">
+            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>
               Contact Us
             </h6>
             <h1 className="display-6 mb-4">Get In Touch With Us</h1>
@@ -99,7 +99,7 @@ const Contact = () => {
             >
               <div className="service-item text-center pt-3">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-map-marker-alt text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-map-marker-alt mb-4" style={{color:'#6f3348'}}></i>
                   <h5 className="mb-3">Our Location</h5>
                   <p>Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
                 </div>
@@ -111,7 +111,7 @@ const Contact = () => {
             >
               <div className="service-item text-center pt-3">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-phone text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-phone mb-4" style={{color:'#6f3348'}}></i>
                   <h5 className="mb-3">Call Us</h5>
                   <p>+233 30 393 9896</p>
                 </div>
@@ -123,7 +123,7 @@ const Contact = () => {
             >
               <div className="service-item text-center pt-3">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-envelope text-primary mb-4"></i>
+                  <i className="fa fa-3x fa-envelope mb-4" style={{color:'#6f3348'}}></i>
                   <h5 className="mb-3">Email Us</h5>
                   <p>mountcarmelhospital@outlook.com</p>
                 </div>
@@ -139,7 +139,7 @@ const Contact = () => {
           <div className="row g-5">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">
+                <h6 className="section-title bg-white text-start pe-3" style={{color:'#6f3348'}}>
                   Contact Us
                 </h6>
                 <h1 className="display-6 mb-4">Send Us A Message</h1>
@@ -223,7 +223,7 @@ const Contact = () => {
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="h-100">
-                <h6 className="section-title bg-white text-start text-primary pe-3">
+                <h6 className="section-title bg-white text-start pe-3" style={{color:'#6f3348'}}>
                   Our Location
                 </h6>
                 <h1 className="display-6 mb-4">Find Us On Map</h1>
@@ -254,7 +254,7 @@ const Contact = () => {
   <div className="w-100 py-5 mt-5 mb-5" style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
+        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
         backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
@@ -264,14 +264,14 @@ const Contact = () => {
           <div className="row g-5 align-items-center">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="h-100" style={{color: '#fff'}}>
-                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f2248'}}>Business Hours</h6>
+                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f3348'}}>Business Hours</h6>
                 <h1 className="display-6 mb-4">When We're Open</h1>
                 <p>We understand that healthcare needs don't follow a 9-to-5 schedule. That's why we offer flexible hours to accommodate our patients' busy lives.</p>
                 <div className="row g-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
                       <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-clock" style={{color: '#6f2248'}}></i>
+                        <i className="fa fa-clock" style={{color: '#6f3348'}}></i>
                       </div>
                       <div className="ms-3">
                         <h6 className="mb-0">Monday - Saturday</h6>
@@ -282,7 +282,7 @@ const Contact = () => {
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
                       <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-clock" style={{color: '#6f2248'}}></i>
+                        <i className="fa fa-clock" style={{color: '#6f3348'}}></i>
                       </div>
                       <div className="ms-3">
                         <h6 className="mb-0">Sunday</h6>
@@ -293,7 +293,7 @@ const Contact = () => {
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
                       <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-ambulance" style={{color: '#6f2248'}}></i>
+                        <i className="fa fa-ambulance" style={{color: '#6f3348'}}></i>
                       </div>
                       <div className="ms-3">
                         <h6 className="mb-0">Emergency Care</h6>
@@ -304,7 +304,7 @@ const Contact = () => {
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
                       <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-calendar" style={{color: '#6f2248'}}></i>
+                        <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
                       </div>
                       <div className="ms-3">
                         <h6 className="mb-0">Appointments</h6>
@@ -317,12 +317,12 @@ const Contact = () => {
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="h-100 bg-white rounded-4 shadow-lg p-4" style={{minHeight: '400px'}}>
-                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f2248'}}>Emergency Contact</h6>
-                <h1 className="display-6 mb-4" style={{color: '#6f2248'}}>24/7 Emergency Services</h1>
-                <p style={{color: '#6f2248'}}>For medical emergencies, please call our emergency hotline immediately. Our emergency department is staffed 24/7 with experienced medical professionals.</p>
+                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f3348'}}>Emergency Contact</h6>
+                <h1 className="display-6 mb-4" style={{color: '#6f3348'}}>24/7 Emergency Services</h1>
+                <p style={{color: '#6f3348'}}>For medical emergencies, please call our emergency hotline immediately. Our emergency department is staffed 24/7 with experienced medical professionals.</p>
                 <div className="bg-light p-4 rounded">
                   <div className="d-flex align-items-center mb-3">
-                    <i className="fa fa-phone fa-2x me-3" style={{color: '#6f2248'}}></i>
+                    <i className="fa fa-phone fa-2x me-3" style={{color: '#6f3348'}}></i>
                     <div>
                       <h5 className="mb-0">Emergency Hotline</h5>
                       <h3 className="mb-0">+233 30 393 9896</h3>
@@ -331,12 +331,12 @@ const Contact = () => {
                   <p className="mb-0">Our emergency team is ready to respond to your medical needs at any time of day or night.</p>
                 </div>
                 <div className="mt-4">
-                  <h6 style={{color: '#6f2248'}}>What to do in an emergency:</h6>
+                  <h6 style={{color: '#6f3348'}}>What to do in an emergency:</h6>
                   <ul className="list-unstyled">
-                    <li><i className="fa fa-check me-2" style={{color: '#6f2248'}}></i>Call our emergency number immediately</li>
-                    <li><i className="fa fa-check me-2" style={{color: '#6f2248'}}></i>Stay calm and follow instructions</li>
-                    <li><i className="fa fa-check me-2" style={{color: '#6f2248'}}></i>Provide clear location and symptoms</li>
-                    <li><i className="fa fa-check me-2" style={{color: '#6f2248'}}></i>Our team will guide you through next steps</li>
+                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Call our emergency number immediately</li>
+                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Stay calm and follow instructions</li>
+                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Provide clear location and symptoms</li>
+                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Our team will guide you through next steps</li>
                   </ul>
                 </div>
               </div>
@@ -345,10 +345,10 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Call to Action Section with Updated Background Color */}
+      {/* Call to Action Section with Updated Background Color (brand) */}
       <div
         className="container-fluid fact py-5 pt-lg-0"
-        style={{ background: "linear-gradient(135deg, #6f2248, #a85c7a)" }}
+        style={{ background: "linear-gradient(90deg, #4B1438 0%, #6f3348 100%)" }}
       >
         <div className="container py-5 pt-lg-0">
           <div className="row gx-0">
@@ -359,7 +359,7 @@ const Contact = () => {
               >
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-calendar" style={{color: '#6f2248'}}></i>
+                    <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Book Appointment</h4>
@@ -375,7 +375,7 @@ const Contact = () => {
               >
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone" style={{color: '#6f2248'}}></i>
+                    <i className="fa fa-phone" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Call Us Now</h4>
