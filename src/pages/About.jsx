@@ -18,7 +18,7 @@ const About = () => {
 
       {/* Hero Section with Background Image and Overlay */}
       <div 
-        className="container-fluid page-header py-5 wow fadeIn relative rounded-b-3xl shadow-lg bg-cover bg-center bg-no-repeat bg-fixed" 
+        className="container-fluid page-header py-5 wow fadeIn relative shadow-lg bg-cover bg-center bg-no-repeat bg-fixed" 
         data-wow-delay="0.1s" 
         style={{ 
           backgroundImage: `url('/images/about-bg.jpg')`,
@@ -37,7 +37,31 @@ const About = () => {
         </div>
       </div>
 
-
+{/* Brand Marquee Section */}
+      <section className="container-fluid py-5" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+          </div>
+        </div>
+      </section>
 
         {/* About Section - Modernized with Animation and Image */}
         <div className="container-xxl py-5">

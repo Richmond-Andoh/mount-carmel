@@ -124,10 +124,9 @@ const Partners = () => {
       <Header />
       
       {/* Page Header - Modern Hero with Background Image, Overlay, and Animation (brand) */}
-      <div className="container-fluid page-header position-relative py-5 mb-5" style={{
+      <div className="container-fluid page-header position-relative py-5" style={{
         background: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat`,
         minHeight: '440px',
-        borderRadius: '0 0 32px 32px',
         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
         overflow: 'hidden'
       }}>
@@ -171,6 +170,32 @@ const Partners = () => {
           }
         `}</style>
       </div>
+
+      {/* Brand Marquee Section */}
+      <section className="container-fluid py-5" style={{
+        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
+        color: '#fff',
+        margin: 0,
+        padding: 0
+      }}>
+        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+            {/* duplicate for seamless loop */}
+            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
+            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+          </div>
+        </div>
+      </section>
 
       {/* Partners Section */}
       <div className="container-xxl py-5">
