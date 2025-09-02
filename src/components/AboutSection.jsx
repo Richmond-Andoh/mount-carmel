@@ -76,7 +76,7 @@ const AboutSection = () => {
         <div className="row justify-content-center mb-5">
           <div className="col-lg-8 text-center">
             <div className="mb-3">
-              <span className="badge bg-primary px-3 py-2 mb-2" style={{
+              <span className="badge brand-btn px-3 py-2 mb-2" style={{
                 backgroundColor: '#6f3348',
                 fontSize: '0.9rem',
                 fontWeight: '500'

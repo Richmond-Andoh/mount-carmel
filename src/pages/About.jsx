@@ -77,7 +77,7 @@ const About = () => {
                   <h6 className="section-title bg-white text-start text-mount-carmel-primary pe-3">About Us</h6>
                   <h1 className="display-6 mb-4 fw-bold">ABOUT MOUNT CARMEL HOSPITAL AND FERTILITY CENTER (MCHFC)</h1>
                   <p className="lead">Mount Carmel Hospital and Fertility Center is a Private Health Care organization located at community 25, ashfoam junction Tema. The center stands at all times for Quality Health Services that you will find most cost efficient. We are set to provide total services that go to ensure the quality of health that fosters Productivity and growth.</p>
-                  <a className="btn btn-primary py-3 px-5 rounded-pill shadow" href="/services">Explore More</a>
+                  <a className="btn brand-btn py-3 px-5 rounded-pill shadow" href="/services">Explore More</a>
                 </div>
               </div>
             </div>

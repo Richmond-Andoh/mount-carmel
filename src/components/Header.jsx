@@ -155,7 +155,7 @@ const Header = () => {
                 className="w-10 h-10 rounded-full mr-3"
               />
               <h1 className="m-0">
-                <span className="text-mount-carmel-primary">Mount </span>
+                <span className="text-mount-carmel-primarytext-mount-carmel-primary">Mount </span>
                 <span className="text-mount-carmel-secondary">Carmel</span>
               </h1>
             </Link>
