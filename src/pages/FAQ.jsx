@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     // Initialize WOW.js for animations
@@ -14,50 +15,70 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "What services does Mount Carmel Hospital offer?",
-      answer: "Mount Carmel Hospital offers comprehensive healthcare services including fertility treatment, maternity care, general medicine, gynecology, pediatrics, emergency care, laboratory services, and specialized medical care. We provide both outpatient and inpatient services with state-of-the-art facilities."
+      question: "What are your opening hours?",
+      answer: "We operate 24 hours a day, 7 days a week to ensure patients have access to care and emergency services anytime."
     },
     {
-      question: "How do I book an appointment?",
-      answer: "You can book an appointment by calling us at +233 30 393 9896, visiting our hospital in person, or using our online appointment booking system. We recommend booking in advance to ensure availability with your preferred doctor."
+      question: "Are all services available 24/7?",
+      answer: "Most of our services are available around the clock. However: Laboratory services close at 9:00 pm daily. X-ray services close at 5:00 pm daily."
     },
     {
-      question: "What are your operating hours?",
-      answer: "Our regular operating hours are Monday to Saturday from 8:00 AM to 6:00 PM, and Sundays from 9:00 AM to 3:00 PM. Our emergency department is open 24/7 for urgent medical care."
+      question: "Do you provide emergency services?",
+      answer: "Yes. We provide 24-hour emergency care, with doctors and nurses always available to handle urgent medical needs."
+    },
+    {
+      question: "Do you provide pediatric services?",
+      answer: "Yes, we have pediatric care services to look after the health of children and newborns."
+    },
+    {
+      question: "Is medical staff available at night?",
+      answer: "Absolutely. Our team of doctors, nurses, and support staff are available 24/7."
+    },
+    {
+      question: "Do you provide fertility and IVF services?",
+      answer: "Yes. We offer advanced reproductive treatments, including In Vitro Fertilization (IVF), to support couples on their journey to parenthood."
+    },
+    {
+      question: "Do you offer counseling for couples undergoing fertility treatments?",
+      answer: "Yes. We provide professional counseling and emotional support to individuals and couples throughout their fertility journey."
+    },
+    {
+      question: "Do you also provide maternity and women’s health services?",
+      answer: "Yes, we offer comprehensive maternity and gynecology services alongside our fertility and IVF care."
+    },
+    {
+      question: "How can I book an appointment?",
+      answer: "You can book an appointment by calling our hospital’s front desk, visiting us in person, or using our online appointment system (if available)."
+    },
+    {
+      question: "Can I walk in without an appointment?",
+      answer: "Yes. Walk-ins are always welcome, especially in emergencies. However, for specialized services such as IVF consultations, we recommend booking ahead."
+    },
+    {
+      question: "Do you offer payment plans?",
+      answer: "Yes. We provide flexible payment plans to make healthcare and fertility services more affordable for our clients."
     },
     {
       question: "Do you accept health insurance?",
-      answer: "Yes, we accept most major health insurance plans. Please contact our billing department to verify your specific insurance coverage and benefits. We also offer flexible payment plans for patients without insurance."
+      answer: "Yes. We accept the majority of private health insurance policies. If you’re unsure about your provider, please check with our front desk team."
     },
     {
-      question: "What should I bring for my first appointment?",
-      answer: "For your first appointment, please bring your ID, insurance card (if applicable), list of current medications, medical history, and any relevant medical records or test results from previous healthcare providers."
-    },
-    {
-      question: "How successful are your fertility treatments?",
-      answer: "Our fertility treatments have high success rates, with IVF success rates averaging 60-70% depending on various factors including age and medical conditions. We provide personalized treatment plans and comprehensive support throughout the fertility journey."
-    },
-    {
-      question: "Do you provide emergency care?",
-      answer: "Yes, our emergency department is staffed 24/7 with experienced emergency medicine specialists. We handle all types of medical emergencies and provide rapid response care. For emergencies, call +233 30 393 9896 immediately."
-    },
-    {
-      question: "What makes Mount Carmel Hospital different?",
-      answer: "Mount Carmel Hospital stands out for our patient-centered approach, experienced medical team, modern facilities, and commitment to excellence. We combine advanced medical technology with compassionate care to provide the best healthcare experience for our patients."
-    },
-    {
-      question: "Can I get laboratory tests done without a doctor's appointment?",
-      answer: "Yes, we offer walk-in laboratory services for many common tests. However, some specialized tests may require a doctor's referral. Please contact our laboratory department to confirm test requirements and availability."
-    },
-    {
-      question: "Do you provide pediatric care?",
-      answer: "Yes, we have a dedicated pediatric department with experienced pediatricians who provide comprehensive care for children from birth through adolescence. Our child-friendly environment ensures a comfortable experience for young patients."
+      question: "What documents should I bring for insurance claims?",
+      answer: "You will need: your insurance card, a valid photo ID, and any referral forms required by your insurer."
     }
   ];
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredFaqs = normalizedQuery
+    ? faqs.filter((item) =>
+        item.question.toLowerCase().includes(normalizedQuery) ||
+        item.answer.toLowerCase().includes(normalizedQuery)
+      )
+    : faqs;
 
   return (
     <>
@@ -122,38 +143,65 @@ const FAQ = () => {
       </div>
 
       {/* FAQ Section */}
-      <div className="container-xxl py-5">
+      <div className="container-xxl py-5 faq-section">
         <div className="container">
           <div className="row g-5">
             <div className="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="accordion" id="faqAccordion">
-          {faqs.map((faq, index) => (
-                  <div key={index} className="accordion-item">
-                    <h2 className="accordion-header" id={`heading${index}`}>
-              <button
-                        className={`accordion-button ${activeIndex === index ? '' : 'collapsed'}`}
-                        type="button" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target={`#collapse${index}`}
-                        aria-expanded={activeIndex === index ? 'true' : 'false'}
-                        aria-controls={`collapse${index}`}
-                        onClick={() => toggleFAQ(index)}
+              <div className="faq-surface rounded-5 p-3 p-md-4 position-relative">
+              <div className="mb-4">
+                <label htmlFor="faq-search" className="form-label fw-semibold" style={{color:'#6f3348'}}>Search FAQs</label>
+                <div className="position-relative">
+                  <input
+                    id="faq-search"
+                    type="search"
+                    className="form-control form-control-lg rounded-4 shadow-sm faq-search-input"
+                    placeholder="Search by question or keywords..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    aria-label="Search frequently asked questions"
+                  />
+                  <i className="fa fa-search position-absolute" style={{right:'16px', top:'50%', transform:'translateY(-50%)', color:'#6f3348', opacity:0.75}} aria-hidden="true"></i>
+                </div>
+              </div>
+
+              <div className="accordion faq-accordion" id="faqAccordion">
+                {filteredFaqs.length === 0 && (
+                  <div className="alert alert-light border rounded-4" role="status">
+                    No results found. Try different keywords.
+                  </div>
+                )}
+                {filteredFaqs.map((faq, index) => {
+                  const isActive = activeIndex === index;
+                  return (
+                    <div key={index} className={`accordion-item rounded-4 shadow-sm mb-3 border-0 overflow-hidden animate-faq-item ${isActive ? 'is-open' : ''}`} style={{animationDelay: `${index * 60}ms`}}>
+                      <h2 className="accordion-header" id={`heading${index}`}>
+                        <button
+                          className={`accordion-button d-flex align-items-center gap-3 ${isActive ? '' : 'collapsed'}`}
+                          type="button"
+                          aria-expanded={isActive ? 'true' : 'false'}
+                          aria-controls={`collapse${index}`}
+                          onClick={() => toggleFAQ(index)}
+                        >
+                          <span className={`chevron-icon transition-rotate ${isActive ? 'rotated' : ''}`} aria-hidden="true">
+                            <i className="fa fa-chevron-down"></i>
+                          </span>
+                          <span className="flex-grow-1 text-start">{faq.question}</span>
+                        </button>
+                      </h2>
+                      <div
+                        id={`collapse${index}`}
+                        className={`accordion-collapse ${isActive ? 'show' : ''}`}
+                        aria-labelledby={`heading${index}`}
+                        aria-hidden={isActive ? 'false' : 'true'}
                       >
-                        {faq.question}
-                      </button>
-                    </h2>
-                    <div 
-                      id={`collapse${index}`} 
-                      className={`accordion-collapse collapse ${activeIndex === index ? 'show' : ''}`}
-                      aria-labelledby={`heading${index}`}
-                      data-bs-parent="#faqAccordion"
-                    >
-                      <div className="accordion-body">
-                        {faq.answer}
+                        <div className="accordion-body pt-0">
+                          {faq.answer}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
+              </div>
               </div>
             </div>
             
@@ -296,6 +344,54 @@ const FAQ = () => {
       </div>
 
       <Footer />
+      <style>{`
+        /* Section background and surface */
+        .faq-section { 
+          background: radial-gradient(1200px 400px at 50% 0%, rgba(111,51,72,0.08), transparent 60%);
+        }
+        .faq-surface::before { 
+          content: '';
+          position: absolute; inset: 0; 
+          background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.65));
+          backdrop-filter: blur(6px);
+          border-radius: 28px; 
+          pointer-events: none;
+        }
+        .faq-surface { position: relative; }
+        
+        .faq-search-input:focus { box-shadow: 0 0 0 0.25rem rgba(111,51,72,0.15) !important; border-color: #6f3348; }
+        .faq-accordion .accordion-item { transition: box-shadow .25s ease, transform .12s ease; }
+        .faq-accordion .accordion-item:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.06); }
+        .faq-accordion .accordion-button { padding: 1.25rem 1.25rem; font-weight: 600; font-size: 1.1rem; }
+        @media (max-width: 576px) {
+          .faq-accordion .accordion-button { padding: 1.1rem 1rem; font-size: 1.05rem; }
+          .faq-accordion .accordion-body { font-size: 0.975rem; }
+        }
+        .faq-accordion .accordion-button:not(.collapsed) { color: #4B1438; background-color: #fdf7f9; box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); }
+        .faq-accordion .accordion-button::after { display: none; }
+        .faq-accordion .chevron-icon { width: 1.25rem; height: 1.25rem; display: inline-flex; align-items: center; justify-content: center; color: #6f3348; }
+        .transition-rotate { transition: transform .25s ease; }
+        .transition-rotate.rotated { transform: rotate(180deg); }
+        .faq-accordion .accordion-body { line-height: 1.7; color: #333; padding: 0 1.25rem 1.25rem 3rem; }
+        .faq-accordion .accordion-item.is-open { border-left: 4px solid #6f3348; }
+        .faq-accordion .accordion-button:focus { box-shadow: 0 0 0 0.2rem rgba(111,51,72,0.15); }
+        .faq-accordion .accordion-item:active { transform: translateY(1px); }
+        .faq-accordion .accordion-button:hover { background-color: #fdf1f5; }
+
+        /* Smooth expand/collapse without Bootstrap JS */
+        .accordion-collapse { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+        .accordion-collapse.show { max-height: 500px; }
+        @media (prefers-reduced-motion: reduce) {
+          .accordion-collapse { transition: none; }
+        }
+
+        /* Staggered entrance animation */
+        @keyframes faqItemIn {
+          0% { opacity: 0; transform: translateY(8px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-faq-item { animation: faqItemIn .45s ease both; }
+      `}</style>
     </>
   );
 };
