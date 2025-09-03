@@ -324,7 +324,6 @@ const Facilities = () => {
       <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
         background: `linear-gradient(rgba(111,51,72,0.85), rgba(111,51,72,0.85)), url('/images/about-bg.jpg') center/cover no-repeat`,
         position: 'relative',
-        borderRadius: '0 0 32px 32px',
         boxShadow: '0 10px 38px rgba(0,0,0,0.16)',
         backgroundAttachment: 'fixed',
         height: '420px'
@@ -342,14 +341,14 @@ const Facilities = () => {
       </div>
 
       {/* Brand Marquee Section */}
-      <section className="container-fluid py-3" style={{
+      <section className="container-fluid py-5" style={{
         background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
         color: '#fff',
         margin: 0,
         padding: 0
       }}>
         <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee" style={{whiteSpace:'nowrap'}}>
+          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
             <span className="fw-semibold" style={{opacity:0.95}}>Safety First</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Modern Equipment</span>
             <span className="fw-semibold" style={{opacity:0.95}}>Expert Staff</span>
@@ -373,7 +372,7 @@ const Facilities = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-primary px-3">Facilities</h6>
+            <h6 className="section-title bg-white text-center text-mount-carmel-primary px-3">Facilities</h6>
             <h1 className="display-6 mb-4">World-Class Hospital Infrastructure</h1>
             <p className="mb-0">Experience healthcare excellence in our state-of-the-art facilities, designed to provide the highest quality medical care in a comfortable and healing environment.</p>
           </div>
@@ -383,14 +382,14 @@ const Facilities = () => {
             <div className="btn-group" role="group">
               <button
                 type="button"
-                className={`btn ${activeTab === 'departments' ? 'btn-primary' : 'btn-outline-primary'}`}
+                className={`btn brand-btn ${activeTab === 'departments' ? 'btn-primary' : 'btn-outline-primary'}`}
                 onClick={() => setActiveTab('departments')}
               >
                 <i className="fa fa-hospital me-2"></i>Departments
               </button>
               <button
                 type="button"
-                className={`btn ${activeTab === 'infrastructure' ? 'btn-primary' : 'btn-outline-primary'}`}
+                className={`btn brand-outline-btn ${activeTab === 'infrastructure' ? 'btn-primary' : 'btn-outline-primary'}`}
                 onClick={() => setActiveTab('infrastructure')}
               >
                 <i className="fa fa-building me-2"></i>Infrastructure
