@@ -18,6 +18,39 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Prevent horizontal overflow from full-width components */
+.container-fluid {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure all components respect viewport width */
+.w-100 {
+  max-width: 100%;
+}
+
+/* Additional overflow prevention */
+* {
+  max-width: 100%;
+}
+
+/* Fix for any potential marquee overflow */
+.marquee-scene {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Ensure carousel doesn't overflow */
+.carousel {
+  max-width: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",

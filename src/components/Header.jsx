@@ -191,7 +191,7 @@ const Header = () => {
                         </svg>
                       </button>
                       <div
-                        className={`absolute top-full left-0 mt-2 w-48 rounded-xl shadow-lg transition-all duration-300 ${
+                        className={`absolute top-full left-0 mt-2 w-56 md:w-64 lg:w-72 rounded-xl shadow-lg transition-all duration-300 ${
                           activeDropdown === index
                             ? "opacity-100 visible translate-y-0"
                             : "opacity-0 invisible -translate-y-2"
@@ -289,6 +289,10 @@ const Header = () => {
             className={`lg:hidden transition-all duration-300 overflow-hidden ${
               isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
             }`}
+            style={{
+              maxHeight: isMobileMenuOpen ? '80vh' : '0',
+              overflowY: isMobileMenuOpen ? 'auto' : 'hidden'
+            }}
           >
             <div
               className="mt-4 rounded-xl p-4"
@@ -297,9 +301,12 @@ const Header = () => {
                 backdropFilter: "blur(20px)",
                 border: "1px solid rgba(111, 51, 72, 0.1)",
                 boxShadow: "0 8px 32px rgba(111, 51, 72, 0.1)",
+                maxHeight: '70vh',
+                overflowY: 'auto',
+                WebkitOverflowScrolling: 'touch'
               }}
             >
-              <div className="space-y-2">
+              <div className="space-y-2" style={{minHeight: 'fit-content'}}>
                 {navLinks.map((link, index) => (
                   <div key={link.path}>
                     {link.dropdown ? (

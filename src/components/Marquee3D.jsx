@@ -30,15 +30,11 @@ const twelfthRow = images.slice(0, 3);
 const Marquee3D = () => {
   return (
     <div className="relative w-screen overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]" style={{height: "550px",maxHeight: "550px"}}>
-      {/* Background overlay/vignette */}
-      <div className="pointer-events-none absolute inset-0" style={{background:"radial-gradient(120% 80% at 50% 50%, rgba(111,51,72,0.18), rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.35) 100%)", zIndex:1}}></div>
-
       <div
-        className="marquee-scene absolute flex h-full w-full flex-row items-center justify-center perspective-1000"
+        className="absolute flex h-full w-full flex-row items-center justify-center perspective-1000"
         style={{
           transform:
             "translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)",
-          zIndex: 2
         }}
       >
         <Marquee pauseOnHover vertical className="[--duration:20s]">
@@ -101,49 +97,32 @@ const Marquee3D = () => {
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        {/* Extra columns to ensure right-end coverage */}
-        <Marquee pauseOnHover vertical className="[--duration:20s]">
-          {thirdRow.map((img, i) => (
-            <img key={`extra-a-${i}`} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden sm:block" vertical>
-          {fourthRow.map((img, i) => (
-            <img key={`extra-b-${i}`} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
-          ))}
-        </Marquee>
       </div>
-      {/* Center banner text marquee indicating gallery */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-[3]">
-        <div className="mx-auto w-full">
-          <div className="relative">
-            <div className="absolute inset-0 backdrop-blur-sm" style={{background:"linear-gradient(90deg, rgba(255,255,255,0.20), rgba(255,255,255,0.08), rgba(255,255,255,0.20))"}}></div>
-            <Marquee className="[--duration:30s]" pauseOnHover>
-              {Array.from({length: 12}).map((_, i) => (
-                <span key={i} className="mx-6 text-white/95 font-semibold tracking-wide uppercase" style={{textShadow:'0 2px 6px rgba(0,0,0,.35)'}}>
-                  Gallery Section · Our Photo Gallery · Mount Carmel ·
-                </span>
-              ))}
-            </Marquee>
+      {/* Center marquee text with background */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10">
+        <div className="w-full">
+          <div className="relative" style={{ height: '100px' }}>
+            <div className="absolute inset-0 backdrop-blur-sm" style={{
+              background: "linear-gradient(135deg, rgba(111,51,72,0.85), rgba(75,20,56,0.75))",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.3)"
+            }}></div>
+            <div className="relative h-full flex items-center justify-center">
+              <Marquee className="[--duration:25s] w-full" pauseOnHover>
+                {Array.from({length: 8}).map((_, i) => (
+                  <span key={i} className="mx-4 md:mx-6 lg:mx-8 text-white font-bold tracking-wide uppercase text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl" style={{
+                    textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                    lineHeight: '1.4'
+                  }}>
+                    Gallery Section · Our Photo Gallery · Mount Carmel Hospital ·
+                  </span>
+                ))}
+              </Marquee>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Edge gradients */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[rgba(0,0,0,0.35)] via-transparent to-[rgba(0,0,0,0.35)]" style={{zIndex:3}}></div>
-
-      {/* Responsive tuning for transforms and image sizes */}
-      <style>{`
-        @media (max-width: 1024px) {
-          .marquee-scene { transform: translateX(-80px) translateY(0) translateZ(-80px) rotateX(18deg) rotateY(-8deg) rotateZ(18deg); }
-        }
-        @media (max-width: 768px) {
-          .marquee-scene { transform: translateX(-60px) translateY(0) translateZ(-60px) rotateX(16deg) rotateY(-6deg) rotateZ(16deg); }
-        }
-        @media (max-width: 480px) {
-          .marquee-scene { transform: translateX(-40px) translateY(0) translateZ(-40px) rotateX(14deg) rotateY(-5deg) rotateZ(14deg); }
-        }
-      `}</style>
+      
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
     </div>
   );
 }

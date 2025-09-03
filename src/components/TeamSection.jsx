@@ -47,6 +47,18 @@ const TeamSection = () => {
         linkedin: "#",
         youtube: "#"
       }
+    },
+    {
+      name: "Dr. Lisa Wang",
+      role: "Fertility Specialist",
+      specialty: "Reproductive Medicine",
+      image: "/images/team-5.jpg",
+      social: {
+        facebook: "#",
+        twitter: "#",
+        linkedin: "#",
+        youtube: "#"
+      }
     }
   ];
 
