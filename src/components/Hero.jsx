@@ -93,7 +93,7 @@ const Hero = () => {
             >
               {/* Background Image with Overlay */}
               <div 
-                className="w-100 position-relative"
+                className="w-100 position-relative hero-slide"
                 style={{ 
                   height: '100vh',
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
@@ -125,10 +125,10 @@ const Hero = () => {
                 </div>
 
                 {/* Content */}
-                <div className="carousel-caption d-flex align-items-center h-100">
+                <div className="carousel-caption d-flex align-items-center h-100 hero-caption">
                   <div className="container">
                     <div className={`row justify-content-${slide.alignment}`}>
-                      <div className="col-lg-8 col-xl-7 text-start">
+                      <div className="col-lg-8 col-xl-7 text-start hero-col">
                         {/* Subtitle */}
                         <div className="mb-3" style={{
                           animation: index === currentSlide ? 'slideInRight 1s ease-out 0.2s both' : 'none'
@@ -182,7 +182,7 @@ const Hero = () => {
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className="d-flex flex-wrap gap-3" style={{
+                        <div className="d-flex flex-wrap gap-3 hero-ctas" style={{
                           animation: index === currentSlide ? 'slideInRight 1s ease-out 1s both' : 'none'
                         }}>
                           <Link 
@@ -366,6 +366,31 @@ const Hero = () => {
             width: 50px !important;
             height: 50px !important;
           }
+        }
+
+        /* Ultra-small screens: prevent header overlap and bottom clipping */
+        @media (max-width: 400px) {
+          .hero-slide {
+            min-height: 100svh !important;
+            height: auto !important;
+            padding-top: calc(72px + env(safe-area-inset-top));
+            padding-bottom: calc(20px + env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+          .hero-caption { 
+            align-items: flex-start !important; 
+            padding-left: 1rem; 
+            padding-right: 1rem; 
+          }
+          .hero-caption > .container { height: 100%; display: flex; }
+          .hero-col { display: flex; flex-direction: column; flex: 1 1 auto; }
+          .display-3 { font-size: 1.9rem; line-height: 1.25; }
+          .lead { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem !important; }
+          .hero-ctas { margin-top: auto; gap: 0.5rem !important; }
+          .hero-ctas .btn { padding: 0.7rem 1.1rem !important; border-radius: 10px; }
+          .carousel-indicators { display: none !important; }
+          .carousel-control-prev, .carousel-control-next { display: none !important; }
         }
       `}</style>
     </div>

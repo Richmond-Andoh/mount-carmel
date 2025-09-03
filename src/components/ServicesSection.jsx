@@ -24,59 +24,87 @@ const ServicesSection = () => {
 
   const services = [
     {
-      icon: "bi bi-heart-pulse",
-      title: "Fertility Treatment",
-      description: "Advanced fertility treatments including IVF, IUI, and fertility counseling with high success rates.",
-      link: "/services/fertility",
+      icon: "bi bi-hospital",
+      title: "General Out-patient & In-patient",
+      description: "Comprehensive care including consultancy, 24-hour emergency services, and antenatal/postnatal consultations.",
+      link: "/services/general-out-patient-&-in-patient",
       color: "#6f3348"
     },
     {
-      icon: "bi bi-lungs",
-      title: "Maternity Care",
-      description: "Comprehensive prenatal, delivery, and postnatal care for expectant mothers and newborns.",
-      link: "/services/maternity",
+      icon: "bi bi-heart-pulse",
+      title: "In-Vitro Fertilization (IVF)",
+      description: "Advanced Assisted Reproductive Technology to help you on your journey to parenthood.",
+      link: "/services/in-vitro-fertilization-(ivf)",
       color: "#DAA520"
     },
     {
-      icon: "bi bi-virus",
-      title: "Gynecology",
-      description: "Specialized women's health care including preventive screenings and gynecological procedures.",
-      link: "/services/gynecology",
+      icon: "bi bi-gender-female",
+      title: "Obstetrics & Gynecology",
+      description: "Specialized consultancy and care for women's health at every stage of life.",
+      link: "/services/obstetrics-&-gynecology",
       color: "#4B1438"
     },
     {
-      icon: "bi bi-capsule-pill",
-      title: "Pediatrics",
-      description: "Expert care for children from birth through adolescence with specialized pediatric services.",
-      link: "/services/pediatrics",
+      icon: "bi bi-scissors",
+      title: "General Surgery",
+      description: "A wide range of surgical procedures with minimally invasive techniques.",
+      link: "/services/general-surgery",
       color: "#B8860B"
     },
     {
-      icon: "bi bi-capsule",
-      title: "Laboratory Services",
-      description: "Comprehensive diagnostic testing with state-of-the-art equipment and quick results.",
-      link: "/services/laboratory",
+      icon: "bi bi-heart",
+      title: "Orthopedic Services",
+      description: "Treatment for musculoskeletal issues including bones, joints, and muscles.",
+      link: "/services/orthopedic-services",
       color: "#6f3348"
     },
     {
-      icon: "bi bi-prescription2",
-      title: "Emergency Care",
-      description: "24/7 emergency medical services with rapid response teams and critical care facilities.",
-      link: "/services/emergency",
+      icon: "bi bi-emoji-smile",
+      title: "Pediatric Services",
+      description: "Comprehensive healthcare for infants, children, and adolescents.",
+      link: "/services/pediatric-services",
       color: "#DAA520"
     },
     {
-      icon: "bi bi-clipboard2-pulse",
-      title: "General Medicine",
-      description: "Primary healthcare services including preventive care, chronic disease management, and health screenings.",
-      link: "/services/general",
+      icon: "bi bi-clipboard2-check",
+      title: "Health Screening",
+      description: "Pre-employment and annual screenings to ensure a healthy workforce.",
+      link: "/services/health-screening",
       color: "#4B1438"
     },
     {
-      icon: "bi bi-file-medical",
-      title: "Surgical Procedures",
-      description: "Advanced surgical procedures with minimally invasive techniques and expert surgical teams.",
-      link: "/services/surgery",
+      icon: "bi bi-people",
+      title: "Family Planning",
+      description: "Comprehensive family planning and reproductive health services.",
+      link: "/services/family-planning",
+      color: "#B8860B"
+    },
+    {
+      icon: "bi bi-truck",
+      title: "Emergency & Ambulance",
+      description: "Life-threatening condition management and emergency transportation.",
+      link: "/services/emergency-&-ambulance",
+      color: "#6f3348"
+    },
+    {
+      icon: "bi bi-flask",
+      title: "Diagnostic & Laboratory",
+      description: "Advanced diagnostics including blood tests, X-rays, and ultrasounds.",
+      link: "/services/diagnostic-&-laboratory",
+      color: "#DAA520"
+    },
+    {
+      icon: "bi bi-heart-pulse-fill",
+      title: "Intensive Care Units (ICU)",
+      description: "Specialized intensive care with continuous monitoring and advanced support.",
+      link: "/services/intensive-care-units-(icu)",
+      color: "#4B1438"
+    },
+    {
+      icon: "bi bi-capsule",
+      title: "Pharmacy Services",
+      description: "In-house pharmacy for dispensing medication and pharmaceutical counseling.",
+      link: "/services/pharmacy-services",
       color: "#B8860B"
     }
   ];
@@ -177,7 +205,7 @@ const ServicesSection = () => {
                 e.target.style.boxShadow = '0 8px 32px rgba(111, 51, 72, 0.1)';
                 e.target.style.borderColor = 'rgba(111, 51, 72, 0.1)';
               }}>
-                <div className="text-center mb-4">
+                <div className="text-center mb-4" style={{animation: isVisible ? `fadeInUp 0.8s ease-out ${0.5 + index * 0.05}s both` : 'none'}}>
                   <div className="icon-box mb-3 mx-auto d-flex align-items-center justify-content-center" style={{
                     width: '70px',
                     height: '70px',
@@ -194,8 +222,8 @@ const ServicesSection = () => {
                     <i className={`${service.icon} fs-2`} style={{color: 'white'}}></i>
                   </div>
                 </div>
-                <h5 className="text-center mb-3 fw-bold" style={{color: '#6f3348'}}>{service.title}</h5>
-                <p className="text-center mb-4 text-muted small">{service.description}</p>
+                <h5 className="text-center mb-2 fw-bold" style={{color: '#6f3348', transition: 'color .3s'}}>{service.title}</h5>
+                <p className="text-center mb-4 text-muted small" style={{animation: isVisible ? `fadeInUp 0.8s ease-out ${0.7 + index * 0.05}s both` : 'none'}}>{service.description}</p>
                 <div className="text-center">
                   <Link 
                     className="btn btn-outline-primary px-4 py-2" 
@@ -204,18 +232,20 @@ const ServicesSection = () => {
                       borderColor: service.color,
                       color: service.color,
                       borderRadius: '25px',
-                      transition: 'all 0.3s ease',
+                      transition: 'transform .25s ease, box-shadow .25s ease, background-color .2s ease, color .2s ease',
                       fontSize: '0.9rem'
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.backgroundColor = service.color;
                       e.target.style.color = 'white';
                       e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = `0 10px 24px ${service.color}44`;
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.backgroundColor = 'transparent';
                       e.target.style.color = service.color;
                       e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = 'none';
                     }}>
                     Read More
                     <i className="bi bi-chevron-double-right ms-1"></i>
