@@ -189,7 +189,7 @@ const AppointmentSection = () => {
             <div className="position-relative" style={{
               animation: isVisible ? 'slideInRight 1s ease-out 0.3s both' : 'none'
             }}>
-              <div className="bg-white p-5 rounded-4" style={{
+              <div className="bg-white p-3 p-md-4 p-lg-5 rounded-4" style={{
                 boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
                 backdropFilter: 'blur(20px)',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
@@ -197,7 +197,7 @@ const AppointmentSection = () => {
                 <h2 className="mb-4 text-center fw-bold" style={{color: '#6f3348'}}>Online Appointment</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="row g-3">
-                    <div className="col-sm-6">
+                    <div className="col-12 col-md-6">
                       <div className="form-floating">
                         <input 
                           type="text" 
@@ -210,13 +210,14 @@ const AppointmentSection = () => {
                           required
                           style={{
                             borderColor: '#6f3348',
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            minHeight: '58px'
                           }}
                         />
                         <label htmlFor="name" style={{color: '#6f3348'}}>Your Name</label>
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-12 col-md-6">
                       <div className="form-floating">
                         <input 
                           type="email" 
@@ -229,13 +230,14 @@ const AppointmentSection = () => {
                           required
                           style={{
                             borderColor: '#6f3348',
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            minHeight: '58px'
                           }}
                         />
                         <label htmlFor="email" style={{color: '#6f3348'}}>Your Email</label>
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-12 col-md-6">
                       <div className="form-floating">
                         <input 
                           type="tel" 
@@ -248,13 +250,14 @@ const AppointmentSection = () => {
                           required
                           style={{
                             borderColor: '#6f3348',
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            minHeight: '58px'
                           }}
                         />
                         <label htmlFor="mobile" style={{color: '#6f3348'}}>Your Mobile</label>
                       </div>
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-12 col-md-6">
                       <div className="form-floating">
                         <select 
                           className="form-select" 
@@ -265,7 +268,8 @@ const AppointmentSection = () => {
                           required
                           style={{
                             borderColor: '#6f3348',
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            minHeight: '58px'
                           }}
                         >
                           {services.map((service, index) => (
@@ -278,14 +282,15 @@ const AppointmentSection = () => {
                     <div className="col-12">
                       <div className="form-floating">
                         <textarea 
-                          className="form-control" 
+                          className="form-control form-textarea" 
                           placeholder="Leave a message here" 
                           id="message" 
                           name="message"
                           style={{ 
                             height: '130px',
                             borderColor: '#6f3348',
-                            borderRadius: '10px'
+                            borderRadius: '10px',
+                            minHeight: '130px'
                           }}
                           value={formData.message}
                           onChange={handleInputChange}
@@ -375,6 +380,33 @@ const AppointmentSection = () => {
           
           .lead {
             font-size: 1rem;
+          }
+        }
+        
+        /* Small screen form improvements */
+        @media (max-width: 450px) {
+          .form-floating {
+            margin-bottom: 1rem;
+          }
+          
+          .form-control, .form-select {
+            font-size: 16px !important; /* Prevents zoom on iOS */
+            padding: 0.75rem 1rem !important;
+            min-height: 56px !important;
+          }
+          
+          .form-floating > label {
+            font-size: 14px;
+            padding: 0.5rem 1rem;
+          }
+          
+          .btn {
+            padding: 0.875rem 1.5rem !important;
+            font-size: 16px !important;
+          }
+          
+          .row.g-3 {
+            --bs-gutter-y: 0.75rem;
           }
         }
       `}</style>
