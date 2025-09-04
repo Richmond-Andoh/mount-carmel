@@ -238,7 +238,7 @@ const Hero = () => {
         </div>
 
         {/* Enhanced Carousel Controls */}
-        <button 
+        {/* <button 
           className="carousel-control-prev" 
           type="button" 
           onClick={goToPrevSlide}
@@ -275,7 +275,7 @@ const Hero = () => {
         >
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
-        </button>
+        </button> */}
 
         {/* Enhanced Carousel Indicators */}
         <div className="carousel-indicators" style={{ bottom: '30px' }}>
@@ -365,6 +365,10 @@ const Hero = () => {
           .carousel-control-next {
             width: 50px !important;
             height: 50px !important;
+            background: #6f3348 !important;
+            border-radius: 50% !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
           }
         }
 
