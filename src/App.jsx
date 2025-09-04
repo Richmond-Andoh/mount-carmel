@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -15,18 +15,41 @@ import VisitationForm from './pages/VisitationForm';
 import Partners from './pages/Partners';
 import ScrollToTop from './ScrollToTop';
 import LoadingSpinner from './components/LoadingSpinner';
+import { Confetti } from './components/magicui/confetti';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const confettiRef = useRef(null);
 
   useEffect(() => {
-    // Simulate loading time and hide spinner after 2.5 seconds
+    // Simulate loading time and hide spinner after 8.5 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
+      // Show confetti immediately after loading completes
+      setShowConfetti(true);
+      
+      // Hide confetti after 5 seconds
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000);
     }, 8500);
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Trigger confetti effect when showConfetti becomes true
+  useEffect(() => {
+    if (showConfetti && confettiRef.current) {
+      confettiRef.current.fire({
+        particleCount: 150,
+        spread: 120,
+        startVelocity: 45,
+        origin: { x: 0.5, y: 0.5 },
+        colors: ['#667eea', '#764ba2', '#6f3348', '#4B1438', '#ffffff', '#ffd700']
+      });
+    }
+  }, [showConfetti]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -36,6 +59,22 @@ function App() {
     <Router>
       <div className="App">
         <ScrollToTop />
+        {/* Confetti overlay that appears after loading */}
+        {showConfetti && (
+          <Confetti 
+            ref={confettiRef}
+            manualstart={true}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'none',
+              zIndex: 9999
+            }}
+          />
+        )}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
