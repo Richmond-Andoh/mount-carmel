@@ -377,7 +377,6 @@ const Hero = () => {
           .hero-slide {
             min-height: 100svh !important;
             height: auto !important;
-            padding-top: calc(72px + env(safe-area-inset-top));
             padding-bottom: calc(20px + env(safe-area-inset-bottom));
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;

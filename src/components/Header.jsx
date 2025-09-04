@@ -131,8 +131,8 @@ const Header = () => {
 
       {/* Navigation Bar with Glassmorphism */}
       <div
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? "py-2" : "py-3"
+        className={` transition-all duration-300 ${
+          isScrolled ? "fixed top-0 left-0 right-0 z-50 py-3" : "relative py-5"
         }`}
         style={{
           background: isScrolled
@@ -143,6 +143,7 @@ const Header = () => {
           boxShadow: isScrolled
             ? "0 8px 32px rgba(111, 51, 72, 0.1)"
             : "0 4px 16px rgba(111, 51, 72, 0.05)",
+          
         }}
       >
         <div className="container mx-auto px-4">
@@ -393,6 +394,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Spacer to prevent content from being hidden behind fixed navbar */}
+       {/* <div className={`${isScrolled ? "h-28" : "h-4"}`}></div>  */}
+
+      
       <ScrollProgress/>
     </>
   );
