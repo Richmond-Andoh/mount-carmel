@@ -23,7 +23,7 @@ function App() {
     // Simulate loading time and hide spinner after 2.5 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 8500);
 
     return () => clearTimeout(timer);
   }, []);

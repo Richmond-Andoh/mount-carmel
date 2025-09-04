@@ -11,7 +11,9 @@ const images = [
   "https://images.unsplash.com/photo-1569952547534-6c914b9da282?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "https://images.unsplash.com/photo-1569952547534-6c914b9da282?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "https://images.unsplash.com/photo-1569952547534-6c914b9da282?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1745438032864-9135ea8b676b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QmxhY2slMjBGZXJ0aWxpdHklMjBkb2N0b3JzfGVufDB8fDB8fHww"
+  "https://images.unsplash.com/photo-1745438032864-9135ea8b676b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QmxhY2slMjBGZXJ0aWxpdHklMjBkb2N0b3JzfGVufDB8fDB8fHww",
+  "https://images.unsplash.com/photo-1745438032864-9135ea8b676b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QmxhY2slMjBGZXJ0aWxpdHklMjBkb2N0b3JzfGVufDB8fDB8fHww",
+
 ];
 
 const firstRow = images.slice(0, 3);
@@ -27,9 +29,10 @@ const tenthRow = images.slice(3, 6);
 const eleventhRow = images.slice(6, 9);
 const twelfthRow = images.slice(0, 3);
 
+
 const Marquee3D = () => {
   return (
-    <div className="relative w-screen overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]" style={{height: "550px",maxHeight: "550px"}}>
+    <div className="relative w-100 overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]" style={{height: "550px",maxHeight: "550px"}}>
       <div
         className="absolute flex h-full w-full flex-row items-center justify-center perspective-1000"
         style={{
@@ -39,64 +42,80 @@ const Marquee3D = () => {
       >
         <Marquee pauseOnHover vertical className="[--duration:20s]">
           {firstRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img key={i} src={img} alt="" className="h-36 w-100 object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s]" vertical>
+        <Marquee reverse pauseOnHover className="[--duration:20s] w-100" vertical>
           {secondRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img key={i} src={img} alt="" className="h-36 object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] hidden md:block">
+        <Marquee pauseOnHover vertical className="[--duration:20s] hidden md:block w-100">
           {thirdRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden md:block" vertical>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden md:block w-100" vertical>
           {fourthRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] hidden lg:block">
+        <Marquee pauseOnHover vertical className="[--duration:20s] hidden lg:block w-100">
           {fifthRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden lg:block" vertical>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden lg:block w-100" vertical>
           {sixthRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] hidden xl:block">
+        <Marquee pauseOnHover vertical className="[--duration:20s] hidden xl:block w-100">
           {seventhRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden xl:block" vertical>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden xl:block w-100" vertical>
           {eighthRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] hidden 2xl:block">
+        <Marquee pauseOnHover vertical className="[--duration:20s] hidden 2xl:block w-100">
           {ninethRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block" vertical>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100" vertical>
           {tenthRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] hidden 2xl:block">
+        <Marquee pauseOnHover vertical className="[--duration:20s] w-100 hidden 2xl:block">
           {eleventhRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block" vertical>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100 -mr-0" vertical>
           {twelfthRow.map((img, i) => (
             <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
           ))}
         </Marquee>
+        {/*
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block" vertical>
+          {thirteenthRow.map((img, i) => (
+            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+          ))}
+        </Marquee>
+         <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block" vertical>
+          {fourteenthRow.map((img, i) => (
+            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block" vertical>
+          {fifteenthRow.map((img, i) => (
+            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+          ))}
+        </Marquee> */}
       </div>
       {/* Center marquee text with background */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10">
