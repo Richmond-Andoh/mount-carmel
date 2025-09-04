@@ -75,12 +75,12 @@ const TeamSection = () => {
           </div>
           <div className="col-md-6 wow fadeIn" data-wow-delay="0.4s">
             <div className="p-4 p-lg-5 rounded-4 bg-white shadow-lg team-feature-card">
-              <h1 className="h2 mb-2" style={{color:'#6f3348'}}>Dr. Sarah Johnson</h1>
+              <h1 className="h2 mb-2" style={{color:'#6f3348'}}>Dr. Philip Anning-Kuffour</h1>
               <p className="mb-1 text-muted">Chief Medical Officer</p>
               <p className="mb-4 text-muted">Mount Carmel Hospital, Accra, Ghana</p>
               <h3 className="h5 mb-2" style={{color:'#4B1438'}}>Biography</h3>
               <p className="mb-3">
-                Dr. Sarah Johnson is a renowned fertility specialist with over 15 years of experience in reproductive medicine.
+               Dr. Philip Anning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.
                 She has successfully helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.
               </p>
               <p className="mb-4">

@@ -173,7 +173,7 @@ const Team = () => {
           <div className="row g-5">
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
               <div className="img-border">
-                <img className="img-fluid" src="/images/team/featured-doctor.jpg" alt="Featured Doctor" />
+                <img className="img-fluid" src="https://plus.unsplash.com/premium_photo-1702598515169-289c3362c8ba?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured Doctor" />
               </div>
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">

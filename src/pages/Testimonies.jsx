@@ -224,7 +224,7 @@ const Testimonies = () => {
             </div>
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="img-border">
-                <img className="img-fluid rounded-4 shadow-lg" src="/images/success-stories.jpg" alt="Success Stories" />
+                <img className="img-fluid rounded-4 shadow-lg" src="https://images.unsplash.com/photo-1574637428470-7ede5332d44e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Success Stories" />
               </div>
             </div>
           </div>
