@@ -103,18 +103,11 @@ const Footer = () => {
       {/* Copyright */}
       <div className="container-fluid copyright py-4" style={{backgroundColor: '#001122'}}>
         <div className="container">
-          <div className="row">
-            <div className="col-md-6 text-center text-md-start">
+            <div className="text-center">
               <p className="mb-0" style={{color: '#F8FBFF'}}>
                 &copy; <a href="#" style={{color: '#FFFFFF'}}>Mount Carmel Hospital</a>. All Rights Reserved. {currentYear}
               </p>
             </div>
-            <div className="col-md-6 text-center text-md-end">
-              <p className="mb-0" style={{color: '#F8FBFF'}}>
-                Designed by <a href="https://htmlcodex.com" style={{color: '#FFFFFF'}}>HTML Codex</a>
-              </p>
-            </div>
-          </div>
         </div>
       </div>
 

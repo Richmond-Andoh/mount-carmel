@@ -191,253 +191,255 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <div className="container justify-content-center align-content-center mx-auto row g-5">
-          {/* Contact Information */}
-          <div className="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-            <div
-              style={{
-                animation: isVisible
-                  ? "slideInLeft 1s ease-out 0.6s both"
-                  : "none",
-              }}
-            >
-              <h3 className="text-white mb-4 fw-bold">Contact Information</h3>
-              <p className="text-white-50 mb-5">
-                We're here to provide you with the best healthcare experience.
-                Don't hesitate to reach out to us for any inquiries or
-                appointments.
-              </p>
-
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <div
-                    key={index}
-                    className="d-flex align-items-start mb-4"
-                    style={{
-                      animation: isVisible
-                        ? `slideInLeft 1s ease-out ${0.8 + index * 0.1}s both`
-                        : "none",
-                    }}
-                  >
-                    <div
-                      className="icon-box me-3 d-flex align-items-center justify-content-center"
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        background: `linear-gradient(135deg, ${info.color}, ${info.color}dd)`,
-                        borderRadius: "50%",
-                        flexShrink: 0,
-                        transition: "all 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.transform = "scale(1.1) rotate(5deg)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.transform = "scale(1) rotate(0deg)";
-                      }}
-                    >
-                      <i className={`${info.icon} text-white fs-5`}></i>
-                    </div>
-                    <div>
-                      <h6 className="text-white mb-1 fw-bold">{info.title}</h6>
-                      <span className="text-white-50">{info.details}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Social Media Links */}
+        <div className="container position-relative" style={{zIndex: 3}}>
+          <div className="row g-5 align-items-center">
+            {/* Contact Information */}
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
               <div
-                className="mt-5"
                 style={{
                   animation: isVisible
-                    ? "slideInLeft 1s ease-out 1.2s both"
+                    ? "slideInLeft 1s ease-out 0.6s both"
                     : "none",
                 }}
               >
-                <h6 className="text-white mb-3 fw-bold">Follow Us</h6>
-                <div className="d-flex gap-3">
-                  {[
-                    { icon: "fab fa-facebook-f", color: "#1877F2" },
-                    { icon: "fab fa-twitter", color: "#1DA1F2" },
-                    { icon: "fab fa-linkedin-in", color: "#0077B5" },
-                    { icon: "fab fa-instagram", color: "#E4405F" },
-                  ].map((social, index) => (
-                    <a
+                <h3 className="text-white mb-4 fw-bold">Contact Information</h3>
+                <p className="text-white-50 mb-5">
+                  We're here to provide you with the best healthcare experience.
+                  Don't hesitate to reach out to us for any inquiries or
+                  appointments.
+                </p>
+
+                <div className="space-y-4">
+                  {contactInfo.map((info, index) => (
+                    <div
                       key={index}
-                      href="#"
-                      className="d-flex align-items-center justify-content-center rounded-circle"
+                      className="d-flex align-items-start mb-4"
                       style={{
-                        width: "45px",
-                        height: "45px",
-                        background: "rgba(255, 255, 255, 0.1)",
-                        color: "white",
-                        textDecoration: "none",
-                        transition: "all 0.3s ease",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = social.color;
-                        e.target.style.transform = "translateY(-3px)";
-                        e.target.style.boxShadow = "0 6px 20px rgba(0,0,0,0.3)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = "rgba(255, 255, 255, 0.1)";
-                        e.target.style.transform = "translateY(0)";
-                        e.target.style.boxShadow = "none";
+                        animation: isVisible
+                          ? `slideInLeft 1s ease-out ${0.8 + index * 0.1}s both`
+                          : "none",
                       }}
                     >
-                      <i className={`${social.icon} fs-5`}></i>
-                    </a>
+                      <div
+                        className="icon-box me-3 d-flex align-items-center justify-content-center"
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          background: `linear-gradient(135deg, ${info.color}, ${info.color}dd)`,
+                          borderRadius: "50%",
+                          flexShrink: 0,
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.transform = "scale(1.1) rotate(5deg)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.transform = "scale(1) rotate(0deg)";
+                        }}
+                      >
+                        <i className={`${info.icon} text-white fs-5`}></i>
+                      </div>
+                      <div>
+                        <h6 className="text-white mb-1 fw-bold">{info.title}</h6>
+                        <span className="text-white-50">{info.details}</span>
+                      </div>
+                    </div>
                   ))}
+                </div>
+
+                {/* Social Media Links */}
+                <div
+                  className="mt-5"
+                  style={{
+                    animation: isVisible
+                      ? "slideInLeft 1s ease-out 1.2s both"
+                      : "none",
+                  }}
+                >
+                  <h6 className="text-white mb-3 fw-bold">Follow Us</h6>
+                  <div className="d-flex gap-3">
+                    {[
+                      { icon: "fab fa-facebook-f", color: "#1877F2" },
+                      { icon: "fab fa-twitter", color: "#1DA1F2" },
+                      { icon: "fab fa-linkedin-in", color: "#0077B5" },
+                      { icon: "fab fa-instagram", color: "#E4405F" },
+                    ].map((social, index) => (
+                      <a
+                        key={index}
+                        href="#"
+                        className="d-flex align-items-center justify-content-center rounded-circle"
+                        style={{
+                          width: "45px",
+                          height: "45px",
+                          background: "rgba(255, 255, 255, 0.1)",
+                          color: "white",
+                          textDecoration: "none",
+                          transition: "all 0.3s ease",
+                          border: "1px solid rgba(255, 255, 255, 0.2)",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.background = social.color;
+                          e.target.style.transform = "translateY(-3px)";
+                          e.target.style.boxShadow = "0 6px 20px rgba(0,0,0,0.3)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.background = "rgba(255, 255, 255, 0.1)";
+                          e.target.style.transform = "translateY(0)";
+                          e.target.style.boxShadow = "none";
+                        }}
+                      >
+                        <i className={`${social.icon} fs-5`}></i>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Contact Form */}
-          <div className="col-lg-8 wow fadeIn" data-wow-delay="0.5s">
-            <div
-              className="position-relative"
-              style={{
-                animation: isVisible
-                  ? "slideInRight 1s ease-out 0.6s both"
-                  : "none",
-              }}
-            >
+            {/* Contact Form */}
+            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
               <div
-                className="bg-white p-3 p-md-4 p-lg-5 rounded-4"
+                className="position-relative"
                 style={{
-                  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  animation: isVisible
+                    ? "slideInRight 1s ease-out 0.6s both"
+                    : "none",
                 }}
               >
-                <h3
-                  className="mb-4 text-center fw-bold"
-                  style={{ color: "#6f3348" }}
+                <div
+                  className="bg-white p-3 p-md-4 p-lg-5 rounded-4"
+                  style={{
+                    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2)",
+                    backdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 0.2)",
+                  }}
                 >
-                  Send Us a Message
-                </h3>
-                <form onSubmit={handleSubmit}>
-                  <div className="row g-3">
-                    <div className="col-12 col-md-6">
-                      <div className="form-floating">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="name"
-                          name="name"
-                          placeholder="Your Name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
+                  <h3
+                    className="mb-4 text-center fw-bold"
+                    style={{ color: "#6f3348" }}
+                  >
+                    Send Us a Message
+                  </h3>
+                  <form onSubmit={handleSubmit}>
+                    <div className="row g-3">
+                      <div className="col-12 col-md-6">
+                        <div className="form-floating">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Your Name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            required
+                            style={{
+                              borderColor: "#6f3348",
+                              borderRadius: "10px",
+                              minHeight: "58px"
+                            }}
+                          />
+                          <label htmlFor="name" style={{ color: "#6f3348" }}>
+                            Your Name
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6">
+                        <div className="form-floating">
+                          <input
+                            type="email"
+                            className="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Your Email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            required
+                            style={{
+                              borderColor: "#6f3348",
+                              borderRadius: "10px",
+                              minHeight: "58px"
+                            }}
+                          />
+                          <label htmlFor="email" style={{ color: "#6f3348" }}>
+                            Your Email
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="form-floating">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="subject"
+                            name="subject"
+                            placeholder="Subject"
+                            value={formData.subject}
+                            onChange={handleInputChange}
+                            required
+                            style={{
+                              borderColor: "#6f3348",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <label htmlFor="subject" style={{ color: "#6f3348" }}>
+                            Subject
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="form-floating">
+                          <textarea
+                            className="form-control form-textarea"
+                            placeholder="Your Message"
+                            id="message"
+                            name="message"
+                            style={{
+                              height: "150px",
+                              borderColor: "#6f3348",
+                              borderRadius: "10px",
+                              minHeight: "150px"
+                            }}
+                            value={formData.message}
+                            onChange={handleInputChange}
+                            required
+                          ></textarea>
+                          <label htmlFor="message" style={{ color: "#6f3348" }}>
+                            Your Message
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-12 text-center">
+                        <button
+                          className="btn btn-primary btn-lg px-5 py-3 fw-bold"
+                          type="submit"
                           style={{
+                            backgroundColor: "#6f3348",
                             borderColor: "#6f3348",
-                            borderRadius: "10px",
-                            minHeight: "58px"
+                            borderRadius: "25px",
+                            transition: "all 0.3s ease",
+                            boxShadow: "0 4px 15px rgba(111, 51, 72, 0.3)",
                           }}
-                        />
-                        <label htmlFor="name" style={{ color: "#6f3348" }}>
-                          Your Name
-                        </label>
+                          onMouseEnter={(e) => {
+                            e.target.style.transform = "translateY(-2px)";
+                            e.target.style.boxShadow =
+                              "0 6px 20px rgba(111, 51, 72, 0.4)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.transform = "translateY(0)";
+                            e.target.style.boxShadow =
+                              "0 4px 15px rgba(111, 51, 72, 0.3)";
+                          }}
+                        >
+                          Send Message
+                        </button>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6">
-                      <div className="form-floating">
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="email"
-                          name="email"
-                          placeholder="Your Email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          style={{
-                            borderColor: "#6f3348",
-                            borderRadius: "10px",
-                            minHeight: "58px"
-                          }}
-                        />
-                        <label htmlFor="email" style={{ color: "#6f3348" }}>
-                          Your Email
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-12">
-                      <div className="form-floating">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="subject"
-                          name="subject"
-                          placeholder="Subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          required
-                          style={{
-                            borderColor: "#6f3348",
-                            borderRadius: "10px",
-                          }}
-                        />
-                        <label htmlFor="subject" style={{ color: "#6f3348" }}>
-                          Subject
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-12">
-                      <div className="form-floating">
-                        <textarea
-                          className="form-control form-textarea"
-                          placeholder="Your Message"
-                          id="message"
-                          name="message"
-                          style={{
-                            height: "150px",
-                            borderColor: "#6f3348",
-                            borderRadius: "10px",
-                            minHeight: "150px"
-                          }}
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          required
-                        ></textarea>
-                        <label htmlFor="message" style={{ color: "#6f3348" }}>
-                          Your Message
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-12 text-center">
-                      <button
-                        className="btn btn-primary btn-lg px-5 py-3 fw-bold"
-                        type="submit"
-                        style={{
-                          backgroundColor: "#6f3348",
-                          borderColor: "#6f3348",
-                          borderRadius: "25px",
-                          transition: "all 0.3s ease",
-                          boxShadow: "0 4px 15px rgba(111, 51, 72, 0.3)",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.transform = "translateY(-2px)";
-                          e.target.style.boxShadow =
-                            "0 6px 20px rgba(111, 51, 72, 0.4)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.transform = "translateY(0)";
-                          e.target.style.boxShadow =
-                            "0 4px 15px rgba(111, 51, 72, 0.3)";
-                        }}
-                      >
-                        Send Message
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
+            </div>
         </div>
 
         {/* Full Width Map Section (matches Contact page) */}
