@@ -158,7 +158,7 @@ const Header = () => {
       {/* Navigation Bar with Glassmorphism */}
       <div
         className={`${
-          isScrolled ? "fixed top-0 left-0 right-0 z-50 py-2 z-[100]" : "relative py-3 z-[100]"
+          isScrolled ? "fixed top-0 left-0 right-0 py-2 z-[100]" : "relative py-3 z-[100]"
         } transition-all duration-300`}
         style={{
           background: isScrolled
