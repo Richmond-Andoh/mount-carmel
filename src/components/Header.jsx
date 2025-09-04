@@ -38,10 +38,22 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrolled = window.scrollY > 50;
+      setIsScrolled(scrolled);
+
+      // Add/remove body padding to prevent content jumping when navbar becomes fixed
+      // if (scrolled) {
+      //   document.body.style.paddingTop = '80px'; // Adjust based on navbar height
+      // } else {
+      //   document.body.style.paddingTop = '50px';
+      // }
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.body.style.paddingTop = "0"; // Cleanup
+    };
   }, []);
 
   useEffect(() => {
@@ -70,17 +82,29 @@ const Header = () => {
               </small>
             </div>
             <nav className="flex items-center space-x-4">
-              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
+              <a
+                className="text-mount-carmel-light hover:text-white transition-colors"
+                href="#"
+              >
                 Careers
               </a>
-              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
+              <a
+                className="text-mount-carmel-light hover:text-white transition-colors"
+                href="#"
+              >
                 Support
               </a>
-              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
+              <a
+                className="text-mount-carmel-light hover:text-white transition-colors"
+                href="#"
+              >
                 Terms
               </a>
               <AnimatedThemeToggler />
-              <a className="text-mount-carmel-light hover:text-white transition-colors" href="#">
+              <a
+                className="text-mount-carmel-light hover:text-white transition-colors"
+                href="#"
+              >
                 FAQs
               </a>
             </nav>
@@ -96,7 +120,9 @@ const Header = () => {
               <i className="bi bi-telephone-inbound text-3xl text-white"></i>
               <div className="ml-3">
                 <h5 className="text-white mb-0">Call Now</h5>
-                <span className="text-mount-carmel-light">+233 30 393 9896</span>
+                <span className="text-mount-carmel-light">
+                  +233 30 393 9896
+                </span>
               </div>
             </div>
             <Link to="/" className="text-white no-underline">
@@ -131,9 +157,9 @@ const Header = () => {
 
       {/* Navigation Bar with Glassmorphism */}
       <div
-        className={` transition-all duration-300 ${
-          isScrolled ? "fixed top-0 left-0 right-0 z-50 py-3" : "relative py-5"
-        }`}
+        className={`${
+          isScrolled ? "fixed top-0 left-0 right-0 z-50 py-2 z-[100]" : "relative py-3 z-[100]"
+        } transition-all duration-300`}
         style={{
           background: isScrolled
             ? "rgba(255, 255, 255, 0.95)"
@@ -143,7 +169,6 @@ const Header = () => {
           boxShadow: isScrolled
             ? "0 8px 32px rgba(111, 51, 72, 0.1)"
             : "0 4px 16px rgba(111, 51, 72, 0.05)",
-          
         }}
       >
         <div className="container mx-auto px-4">
@@ -156,7 +181,9 @@ const Header = () => {
                 className="w-10 h-10 rounded-full mr-3"
               />
               <h1 className="m-0">
-                <span className="text-mount-carmel-primarytext-mount-carmel-primary">Mount </span>
+                <span className="text-mount-carmel-primarytext-mount-carmel-primary">
+                  Mount{" "}
+                </span>
                 <span className="text-mount-carmel-secondary">Carmel</span>
               </h1>
             </Link>
@@ -192,7 +219,7 @@ const Header = () => {
                         </svg>
                       </button>
                       <div
-                        className={`absolute top-full left-0 mt-2 w-56 md:w-64 lg:w-72 rounded-xl shadow-lg transition-all duration-300 ${
+                        className={`absolute top-full left-0 mt-2 w-56 md:w-64 lg:w-72 rounded-xl shadow-lg transition-all duration-300 z-[90] ${
                           activeDropdown === index
                             ? "opacity-100 visible translate-y-0"
                             : "opacity-0 invisible -translate-y-2"
@@ -288,11 +315,13 @@ const Header = () => {
           {/* Mobile Navigation Menu */}
           <div
             className={`lg:hidden transition-all duration-300 overflow-hidden ${
-              isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+              isMobileMenuOpen
+                ? "max-h-screen opacity-100"
+                : "max-h-0 opacity-0"
             }`}
             style={{
-              maxHeight: isMobileMenuOpen ? '80vh' : '0',
-              overflowY: isMobileMenuOpen ? 'auto' : 'hidden'
+              maxHeight: isMobileMenuOpen ? "80vh" : "0",
+              overflowY: isMobileMenuOpen ? "auto" : "hidden",
             }}
           >
             <div
@@ -302,12 +331,12 @@ const Header = () => {
                 backdropFilter: "blur(20px)",
                 border: "1px solid rgba(111, 51, 72, 0.1)",
                 boxShadow: "0 8px 32px rgba(111, 51, 72, 0.1)",
-                maxHeight: '70vh',
-                overflowY: 'auto',
-                WebkitOverflowScrolling: 'touch'
+                maxHeight: "70vh",
+                overflowY: "auto",
+                WebkitOverflowScrolling: "touch",
               }}
             >
-              <div className="space-y-2" style={{minHeight: 'fit-content'}}>
+              <div className="space-y-2" style={{ minHeight: "fit-content" }}>
                 {navLinks.map((link, index) => (
                   <div key={link.path}>
                     {link.dropdown ? (
@@ -396,10 +425,9 @@ const Header = () => {
       </div>
 
       {/* Spacer to prevent content from being hidden behind fixed navbar */}
-       {/* <div className={`${isScrolled ? "h-28" : "h-4"}`}></div>  */}
+      {/* <div className={`${isScrolled ? "h-28" : "h-4"}`}></div>  */}
 
-      
-      <ScrollProgress/>
+      <ScrollProgress />
     </>
   );
 };
