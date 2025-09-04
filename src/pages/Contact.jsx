@@ -175,7 +175,7 @@ const Contact = () => {
                 </p>
                 <form onSubmit={handleSubmit}>
                   <div className="row g-3">
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-sm-12">
                       <div className="form-floating">
                         <input
                           type="text"
