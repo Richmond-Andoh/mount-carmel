@@ -149,7 +149,7 @@ const TestimonialsSection = () => {
               <div style={{
                 animation: isVisible ? 'slideInLeft 1s ease-out 0.6s both' : 'none'
               }}>
-                <a href="/testimonials" className="btn btn-light btn-lg px-5 py-3 fw-bold" style={{
+                <a href="/testimonies" className="btn btn-light btn-lg px-5 py-3 fw-bold" style={{
                   borderRadius: '50px',
                   transition: 'all 0.3s ease',
                   boxShadow: '0 4px 15px rgba(255, 255, 255, 0.2)'
