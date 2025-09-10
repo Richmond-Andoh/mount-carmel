@@ -15,11 +15,11 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: 'Dr. Sarah Johnson',
+      name: 'Dr. Philip Anning-Kuffour',
       position: 'Chief Medical Officer',
       specialty: 'Fertility Specialist',
       image: '/images/team/doctor-1.jpg',
-      description: 'Dr. Johnson is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
+      description: 'Dr. Philip Anning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
       education: 'MBChB, FRCOG',
       experience: '15+ Years',
       social: {
@@ -123,10 +123,10 @@ const Team = () => {
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px', textShadow: '0 2px 16px rgba(0,0,0,0.18)'}}>Our Team</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            {/* <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Team</li>
-            </ol>
+            </ol> */}
           </nav>
         </div>
       </div>
@@ -179,9 +179,9 @@ const Team = () => {
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="h-100">
                 <h6 className="section-title bg-white text-start pe-3" style={{color:'#6f3348'}}>Featured Doctor</h6>
-                <h1 className="display-6 mb-4">Dr. Sarah Johnson</h1>
+                <h1 className="display-6 mb-4">Dr. Philip Anning-Kuffour</h1>
                 <h4 className="mb-4" style={{color:'#6f3348'}}>Chief Medical Officer & Fertility Specialist</h4>
-                <p>Dr. Sarah Johnson is a distinguished fertility specialist with over 15 years of experience in reproductive medicine. She has helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.</p>
+                <p>Dr. Sarah Johnson is a distinguished fertility specialist with over 15 years of experience in reproductive medicine. He has helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.</p>
                 <p>As our Chief Medical Officer, Dr. Johnson leads our medical team with a vision of excellence and innovation in healthcare delivery. Her expertise in IVF, IUI, and reproductive surgery has made Mount Carmel Hospital a leading fertility center in Ghana.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
@@ -209,7 +209,7 @@ const Team = () => {
                     </div>
                   </div>
                 </div>
-                <a className="btn book-btn py-3 px-5" href="/appointment">Book Consultation</a>
+                <a className="btn book-btn py-3 px-5" href="/appointment">Schedule a Consultation</a>
                 <style>{`
                   .book-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
                   .book-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
@@ -378,11 +378,11 @@ const Team = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone" style={{color:'#6f3348'}}></i>
+                    <i className="fa fa-phone-alt me-2" style={{color:'#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Contact Us</h4>
-                    <span>+233 30 393 9896</span>
+                    <span>+233 592 411 108</span>
                   </div>
                 </div>
               </div>

@@ -85,7 +85,7 @@ const ContactSection = () => {
     {
       icon: "bi bi-telephone",
       title: "Phone Number",
-      details: "+233 30 393 9896",
+      details: "+233 592 411 108",
       color: "#DAA520",
     },
     {

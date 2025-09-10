@@ -136,7 +136,7 @@ function Appointment() {
                 transition={{ type: 'spring', stiffness: 300 }}
                 style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
               >
-                <div className="h2 fw-bold">50+</div>
+                <div className="h2 fw-bold">20+</div>
                 <div className="small">Expert Doctors</div>
               </motion.div>
             </div>
@@ -231,10 +231,10 @@ function Appointment() {
                     </div>
                   </div>
                   <div className="d-flex align-items-center">
-                    <i className="fa fa-phone fa-2x me-3"></i>
+                    <i className="fa fa-phone-alt me-2 fa-2x me-3"></i>
                     <div>
                       <h5 className="mb-0 text-white">Emergency Contact</h5>
-                      <p className="mb-0 text-light">+233 30 393 9896 (24/7)</p>
+                      <p className="mb-0 text-light">+233 592 411 108 (24/7)</p>
                     </div>
                   </div>
                 </motion.div>

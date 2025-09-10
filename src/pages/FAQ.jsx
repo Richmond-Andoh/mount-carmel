@@ -55,10 +55,6 @@ const FAQ = () => {
       answer: "Yes. Walk-ins are always welcome, especially in emergencies. However, for specialized services such as IVF consultations, we recommend booking ahead."
     },
     {
-      question: "Do you offer payment plans?",
-      answer: "Yes. We provide flexible payment plans to make healthcare and fertility services more affordable for our clients."
-    },
-    {
       question: "Do you accept health insurance?",
       answer: "Yes. We accept the majority of private health insurance policies. If you’re unsure about your provider, please check with our front desk team."
     },
@@ -97,10 +93,10 @@ const FAQ = () => {
         <div className="container py-5 justify-center align-center my-auto">
           <h1 className="display-3 text-white pt-6 animated slideInDown" style={{textShadow: '0 2px 16px #000'}}>Frequently Asked Questions</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            {/* <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">FAQ</li>
-            </ol>
+            </ol> */}
           </nav>
         </div>
       </div>
@@ -211,10 +207,10 @@ const FAQ = () => {
                 <p className="mb-4">If you couldn't find the answer to your question in our FAQ, we're here to help. Contact us directly and we'll get back to you as soon as possible.</p>
                 
                 <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-phone fa-2x me-3" style={{color:'#6f3348'}}></i>
+                  <i className="fa fa-phone-alt me-2 fa-2x me-3" style={{color:'#6f3348'}}></i>
                   <div>
                     <h6 className="mb-0">Call Us</h6>
-                    <p className="mb-0">+233 30 393 9896</p>
+                    <p className="mb-0">+233 592 411 108</p>
                   </div>
                 </div>
                 
@@ -230,7 +226,7 @@ const FAQ = () => {
                   <i className="fa fa-clock fa-2x me-3" style={{color:'#6f3348'}}></i>
                   <div>
                     <h6 className="mb-0">Business Hours</h6>
-                    <p className="mb-0">Mon-Sat: 8:00 AM - 6:00 PM<br/>Sun: 9:00 AM - 3:00 PM</p>
+                    <p className="mb-0">Mon-Sat: 8:00 AM - 4:00 PM</p>
                   </div>
                 </div>
                 
@@ -330,11 +326,11 @@ const FAQ = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone" style={{color: '#6f3348'}}></i>
+                    <i className="fa fa-phone-alt me-2" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Call Us Now</h4>
-                    <span>+233 30 393 9896</span>
+                    <span>+233 592 411 108</span>
                   </div>
                 </div>
               </div>

@@ -82,10 +82,10 @@ const Testimonies = () => {
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown" style={{textShadow: '0 2px 16px #000'}}>Patient Testimonials</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            {/* <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Testimonials</li>
-            </ol>
+            </ol> */}
           </nav>
         </div>
       </div>

@@ -80,12 +80,12 @@ const PartnerForm = () => {
       }}>
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Become a Partner</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
+          {/* <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Partner Form</li>
             </ol>
-          </nav>
+          </nav> */}
           <p className="lead text-white mt-4" style={{maxWidth: '600px'}}>Partner with Mount Carmel Hospital to provide better healthcare services to our community.</p>
         </div>
       </div>

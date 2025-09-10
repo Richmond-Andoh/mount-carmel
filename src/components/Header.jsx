@@ -12,10 +12,10 @@ const navLinks = [
     dropdown: [
       { name: "All Services", path: "/services" },
       { name: "Our Facilities", path: "/facilities" },
-      { name: "Book Appointment", path: "/appointment" },
+      { name: "Team", path: "/team" },
     ],
   },
-  { name: "Team", path: "/team" },
+  { name: "Book Appointment", path: "/appointment" },
   { name: "Testimonies", path: "/testimonies" },
   { name: "FAQ", path: "/faq" },
   {
@@ -101,12 +101,12 @@ const Header = () => {
                 Terms
               </a>
               <AnimatedThemeToggler />
-              <a
+              {/* <a
                 className="text-mount-carmel-light hover:text-white transition-colors"
                 href="#"
               >
                 FAQs
-              </a>
+              </a> */}
             </nav>
           </div>
         </div>
@@ -121,7 +121,7 @@ const Header = () => {
               <div className="ml-3">
                 <h5 className="text-white mb-0">Call Now</h5>
                 <span className="text-mount-carmel-light">
-                  +233 30 393 9896
+                  +233 592 411 108
                 </span>
               </div>
             </div>

@@ -5,12 +5,12 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const teamMembers = [
   {
-    name: "Dr. Philip Anning-Kuffour",
+    name: "Dr. Philip Aning-Kuffour",
     role: "Chief Medical Officer",
     image: "/images/team-1.jpg"
   },
   {
-    name: "Dr. Philip Anning-Kuffour",
+    name: "Dr. Philip Aning-Kuffour",
     role: "Head of Gynecology",
     image: "/images/team-3.jpg"
   },
