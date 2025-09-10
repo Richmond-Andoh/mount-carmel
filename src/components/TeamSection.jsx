@@ -1,7 +1,7 @@
 const TeamSection = () => {
   const teamMembers = [
     {
-      name: "Dr. Sarah Johnson",
+      name: "Dr. Philip Aning-Kuffour",
       role: "Chief Medical Officer",
       specialty: "Fertility Specialist",
       image: "/images/team-1.jpg",
@@ -13,9 +13,9 @@ const TeamSection = () => {
       }
     },
     {
-      name: "Dr. Michael Chen",
-      role: "Head of Gynecology",
-      specialty: "Women's Health",
+      name: "Dr. Joseph Amonoo",
+      role: "General Medicine",
+      specialty: "General Health Care",
       image: "/images/team-2.jpg",
       social: {
         facebook: "#",
@@ -25,7 +25,7 @@ const TeamSection = () => {
       }
     },
     {
-      name: "Dr. Emily Rodriguez",
+      name: "Dr. Abigail Danso",
       role: "Pediatrician",
       specialty: "Child Care Expert",
       image: "/images/team-3.jpg",
@@ -37,9 +37,9 @@ const TeamSection = () => {
       }
     },
     {
-      name: "Dr. David Thompson",
-      role: "Emergency Medicine",
-      specialty: "Critical Care",
+      name: "Mrs. Magaret Serwaa Boakye",
+      role: "Antenatal and Postnatal Care",
+      specialty: "Maternal Health",
       image: "/images/team-4.jpg",
       social: {
         facebook: "#",
@@ -49,9 +49,9 @@ const TeamSection = () => {
       }
     },
     {
-      name: "Dr. Lisa Wang",
-      role: "Fertility Specialist",
-      specialty: "Reproductive Medicine",
+      name: "Dr. Lenusia Ahligah",
+      role: "Physician",
+      specialty: "Internal Medicine",
       image: "/images/team-5.jpg",
       social: {
         facebook: "#",
@@ -129,6 +129,7 @@ const TeamSection = () => {
                 <div className="text-center p-4">
                   <h5 className="mb-1">{member.name}</h5>
                   <span>{member.role}</span>
+                  <span className="d-block text-muted">{member.specialty}</span>
                 </div>
               </div>
             </div>

@@ -5,14 +5,18 @@ import { ScrollProgress } from "./magicui/scroll-progress";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
+  { name: "About Us", path: "/about",
+    dropdown: [
+      { name: "About Us", path: "/about" },
+      { name: "Team", path: "/team" },
+    ],
+  },
   {
     name: "Services",
     path: "/services",
     dropdown: [
       { name: "All Services", path: "/services" },
       { name: "Our Facilities", path: "/facilities" },
-      { name: "Team", path: "/team" },
     ],
   },
   { name: "Book Appointment", path: "/appointment" },

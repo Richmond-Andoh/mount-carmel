@@ -19,7 +19,7 @@ const Team = () => {
       position: 'Chief Medical Officer',
       specialty: 'Fertility Specialist',
       image: '/images/team/doctor-1.jpg',
-      description: 'Dr. Philip Anning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
+      description: 'Dr. Philip Aning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
       education: 'MBChB, FRCOG',
       experience: '15+ Years',
       social: {
@@ -30,11 +30,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. Michael Chen',
-      position: 'Head of Gynecology',
+      name: 'Dr. Gerald Osei-Owusu',
+      position: 'Gynecology Specialist',
       specialty: 'Women\'s Health',
       image: '/images/team/doctor-2.jpg',
-      description: 'Dr. Chen specializes in women\'s health and gynecological surgery with expertise in minimally invasive procedures.',
+      description: 'Dr. Osei-Owusu specializes in women\'s health and gynecological surgery with expertise in minimally invasive procedures.',
       education: 'MBChB, MD',
       experience: '12+ Years',
       social: {
@@ -45,11 +45,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. Emily Rodriguez',
+      name: 'Dr. Abigail Danso',
       position: 'Pediatrician',
       specialty: 'Child Care Expert',
       image: '/images/team/doctor-3.jpg',
-      description: 'Dr. Rodriguez is dedicated to providing comprehensive care for children from birth through adolescence.',
+      description: 'Dr. Danso is dedicated to providing comprehensive care for children from birth through adolescence.',
       education: 'MBChB, DCH',
       experience: '10+ Years',
       social: {
@@ -60,11 +60,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. David Thompson',
+      name: 'Dr. Kazima Kwame Kpesese',
       position: 'Emergency Medicine',
       specialty: 'Emergency Care',
       image: '/images/team/doctor-4.jpg',
-      description: 'Dr. Thompson leads our emergency department with expertise in critical care and trauma medicine.',
+      description: 'Dr. Kpesese leads our emergency department with expertise in critical care and trauma medicine.',
       education: 'MBChB, FCEM',
       experience: '8+ Years',
       social: {
@@ -74,12 +74,42 @@ const Team = () => {
         instagram: '#'
       }
     },
+        {
+      name: 'Dr. Bernard Seshie',
+      position: 'General Surgeon',
+      specialty: 'Surgical Care',
+      image: '/images/team/doctor-6.jpg',
+      description: 'Dr. Seshie provides comprehensive surgical care with a focus on minimally invasive techniques.',
+      education: 'MBChB, FRCS',
+      experience: '11+ Years',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        linkedin: '#',
+        instagram: '#'
+      }
+    },
+        {
+      name: 'Dr. Selasie Mawuko',
+      position: 'Anaesthesiologist',
+      specialty: 'Anaesthesia',
+      image: '/images/team/doctor-6.jpg',
+      description: 'Dr. Mawuko provides comprehensive anaesthetic care with a focus on patient safety and comfort.',
+      education: 'MBChB, FRCA',
+      experience: '11+ Years',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        linkedin: '#',
+        instagram: '#'
+      }
+    },
     {
-      name: 'Dr. Lisa Wang',
+      name: 'Mr. Isaac Addo',
       position: 'Laboratory Director',
       specialty: 'Pathology',
       image: '/images/team/doctor-5.jpg',
-      description: 'Dr. Wang oversees our state-of-the-art laboratory services and diagnostic testing facilities.',
+      description: 'Mr. Addo oversees our state-of-the-art laboratory services and diagnostic testing facilities.',
       education: 'MBChB, FRCPath',
       experience: '14+ Years',
       social: {
@@ -90,11 +120,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. James Osei',
+      name: 'Dr. Robert Acquah',
       position: 'General Medicine',
       specialty: 'Internal Medicine',
       image: '/images/team/doctor-6.jpg',
-      description: 'Dr. Osei provides comprehensive medical care for adults with a focus on preventive medicine.',
+      description: 'Dr. Acquah provides comprehensive medical care for adults with a focus on preventive medicine.',
       education: 'MBChB, MRCP',
       experience: '11+ Years',
       social: {
@@ -103,7 +133,22 @@ const Team = () => {
         linkedin: '#',
         instagram: '#'
       }
-    }
+    },
+        {
+      name: 'Dr. Lemuel Ato Bray',
+      position: 'Urology Specialist',
+      specialty: 'Urology',
+      image: '/images/team/doctor-6.jpg',
+      description: 'Dr. Bray specializes in urology and provides comprehensive care for patients with urinary tract disorders.',
+      education: 'MBChB, FRCS',
+      experience: '11+ Years',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        linkedin: '#',
+        instagram: '#'
+      }
+    },
   ];
 
   return (
