@@ -6,7 +6,7 @@ const AppointmentSection = () => {
     name: '',
     email: '',
     mobile: '',
-    service: 'Fertility Treatment',
+    service: '',
     message: ''
   });
 
@@ -45,7 +45,7 @@ const AppointmentSection = () => {
       name: '',
       email: '',
       mobile: '',
-      service: 'Fertility Treatment',
+      service: '',
       message: ''
     });
   };
@@ -177,7 +177,7 @@ const AppointmentSection = () => {
                   </div>
                   <div>
                     <h5 className="text-white mb-1">Hospital Hours</h5>
-                    <span className="text-white-50">Mon-Sat 08:00-18:00, Sun 09:00-15:00</span>
+                    <span className="text-white-50">24/7</span>
                   </div>
                 </div>
               </div>

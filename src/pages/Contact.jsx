@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Link } from 'react-router-dom';
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,12 +27,28 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message. We will get back to you soon!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    try {
+      const response = await fetch("https://formspree.io/f/xzzaopzv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("✅ Thank you for your message. We will get back to you soon!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        alert("❌ Oops! Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("⚠️ Network error. Please try again.");
+    }
   };
 
   return (
@@ -57,7 +75,7 @@ const Contact = () => {
           >
             Contact Us
           </h1>
-          <nav aria-label="breadcrumb animated slideInDown">
+          {/* <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <a className="text-white" href="/">
@@ -71,7 +89,7 @@ const Contact = () => {
                 Contact
               </li>
             </ol>
-          </nav>
+          </nav> */}
         </div>
       </div>
 
@@ -137,9 +155,9 @@ const Contact = () => {
             >
               <div className="service-item text-center pt-3">
                 <div className="p-4">
-                  <i className="fa fa-3x fa-phone mb-4" style={{color:'#6f3348'}}></i>
+                  <i className="fa fa-3x fa-phone-alt me-2 mb-4" style={{color:'#6f3348'}}></i>
                   <h5 className="mb-3">Call Us</h5>
-                  <p>+233 30 393 9896</p>
+                  <p>+233 592 411 108</p>
                 </div>
               </div>
             </div>
@@ -299,12 +317,12 @@ const Contact = () => {
                         <i className="fa fa-clock" style={{color: '#6f3348'}}></i>
                       </div>
                       <div className="ms-3">
-                        <h6 className="mb-0">Monday - Saturday</h6>
-                        <span>08:00 AM - 06:00 PM</span>
+                        <h6 className="mb-0">Monday - Sunday</h6>
+                        <span>Available 24/7</span>
                       </div>
                     </div>
                   </div>
-                  <div className="col-sm-6">
+                  {/* <div className="col-sm-6">
                     <div className="d-flex align-items-center">
                       <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
                         <i className="fa fa-clock" style={{color: '#6f3348'}}></i>
@@ -314,7 +332,7 @@ const Contact = () => {
                         <span>09:00 AM - 03:00 PM</span>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">
                       <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
@@ -347,10 +365,10 @@ const Contact = () => {
                 <p style={{color: '#6f3348'}}>For medical emergencies, please call our emergency hotline immediately. Our emergency department is staffed 24/7 with experienced medical professionals.</p>
                 <div className="bg-light p-4 rounded">
                   <div className="d-flex align-items-center mb-3">
-                    <i className="fa fa-phone fa-2x me-3" style={{color: '#6f3348'}}></i>
+                    <i className="fa fa-phone-alt me-2 fa-2x me-3" style={{color: '#6f3348'}}></i>
                     <div>
                       <h5 className="mb-0">Emergency Hotline</h5>
-                      <h3 className="mb-0">+233 30 393 9896</h3>
+                      <h3 className="mb-0">+233 592 411 108</h3>
                     </div>
                   </div>
                   <p className="mb-0">Our emergency team is ready to respond to your medical needs at any time of day or night.</p>
@@ -387,8 +405,11 @@ const Contact = () => {
                     <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
-                    <h4>Book Appointment</h4>
-                    <span>Schedule your visit today</span>
+                    <Link 
+                    to="/appointment">
+                      <h4>Book Appointment</h4>
+                      <span>Schedule your visit today</span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -400,11 +421,11 @@ const Contact = () => {
               >
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone" style={{color: '#6f3348'}}></i>
+                    <i className="fa fa-phone-alt me-2" style={{color: '#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Call Us Now</h4>
-                    <span>+233 30 393 9896</span>
+                    <span>+233 592 411 108</span>
                   </div>
                 </div>
               </div>

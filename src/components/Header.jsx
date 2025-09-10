@@ -5,17 +5,21 @@ import { ScrollProgress } from "./magicui/scroll-progress";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
+  { name: "About Us", path: "/about",
+    dropdown: [
+      { name: "About Us", path: "/about" },
+      { name: "Team", path: "/team" },
+    ],
+  },
   {
     name: "Services",
     path: "/services",
     dropdown: [
       { name: "All Services", path: "/services" },
       { name: "Our Facilities", path: "/facilities" },
-      { name: "Book Appointment", path: "/appointment" },
     ],
   },
-  { name: "Team", path: "/team" },
+  { name: "Book Appointment", path: "/appointment" },
   { name: "Testimonies", path: "/testimonies" },
   { name: "FAQ", path: "/faq" },
   {
@@ -78,7 +82,7 @@ const Header = () => {
               </small>
               <small className="flex items-center">
                 <i className="fa fa-clock mr-2"></i>
-                Mon-Sat 08:00-18:00, Sun 09:00-15:00
+                Working everyday, 24/7
               </small>
             </div>
             <nav className="flex items-center space-x-4">
@@ -101,12 +105,12 @@ const Header = () => {
                 Terms
               </a>
               <AnimatedThemeToggler />
-              <a
+              {/* <a
                 className="text-mount-carmel-light hover:text-white transition-colors"
                 href="#"
               >
                 FAQs
-              </a>
+              </a> */}
             </nav>
           </div>
         </div>
@@ -121,7 +125,7 @@ const Header = () => {
               <div className="ml-3">
                 <h5 className="text-white mb-0">Call Now</h5>
                 <span className="text-mount-carmel-light">
-                  +233 30 393 9896
+                  +233 592 411 108
                 </span>
               </div>
             </div>

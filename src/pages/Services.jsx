@@ -247,7 +247,7 @@ const Services = () => {
           >
             Our Services
           </h1>
-          <nav aria-label="breadcrumb animated slideInDown">
+          {/* <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <a className="text-white" href="/">
@@ -261,7 +261,7 @@ const Services = () => {
                 Services
               </li>
             </ol>
-          </nav>
+          </nav> */}
           <p className="lead text-white mt-4" style={{ maxWidth: "600px" }}>
             Explore our comprehensive range of fertility, maternity, surgical,
             and specialized medical services delivered with compassion and

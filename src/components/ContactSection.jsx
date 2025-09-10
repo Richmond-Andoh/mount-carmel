@@ -8,6 +8,7 @@ const ContactSection = () => {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState({ type: "", message: "" });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,19 +36,43 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Contact form submitted:", formData);
-    alert(
-      "Thank you! Your message has been sent. We will get back to you soon."
-    );
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+
+    try {
+      const response = await fetch("https://formspree.io/f/xzzaopzv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message:
+            "✅ Thank you! Your message has been sent. We will get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setStatus({
+          type: "error",
+          message: "❌ Oops! Something went wrong. Please try again later.",
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus({
+        type: "error",
+        message: "⚠️ Network error. Please try again later.",
+      });
+    }
   };
 
   const contactInfo = [
@@ -60,7 +85,7 @@ const ContactSection = () => {
     {
       icon: "bi bi-telephone",
       title: "Phone Number",
-      details: "+233 30 393 9896",
+      details: "+233 592 411 108",
       color: "#DAA520",
     },
     {
@@ -72,7 +97,7 @@ const ContactSection = () => {
     {
       icon: "bi bi-clock",
       title: "Working Hours",
-      details: "Mon-Sat 08:00-18:00, Sun 09:00-15:00",
+      details: "24/7",
       color: "#B8860B",
     },
   ];
@@ -163,7 +188,7 @@ const ContactSection = () => {
                   fontWeight: "500",
                 }}
               >
-                Get In Touch
+                Get In Touch With Our Facility
               </span>
             </div>
             <h1
@@ -191,7 +216,7 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <div className="container position-relative" style={{zIndex: 3}}>
+        <div className="container position-relative" style={{ zIndex: 3 }}>
           <div className="row g-5 align-items-center">
             {/* Contact Information */}
             <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -280,7 +305,8 @@ const ContactSection = () => {
                         onMouseEnter={(e) => {
                           e.target.style.background = social.color;
                           e.target.style.transform = "translateY(-3px)";
-                          e.target.style.boxShadow = "0 6px 20px rgba(0,0,0,0.3)";
+                          e.target.style.boxShadow =
+                            "0 6px 20px rgba(0,0,0,0.3)";
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.background = "rgba(255, 255, 255, 0.1)";
@@ -320,6 +346,21 @@ const ContactSection = () => {
                   >
                     Send Us a Message
                   </h3>
+
+                  {/* Status Message */}
+                  {status.message && (
+                    <div
+                      className={`alert ${
+                        status.type === "success"
+                          ? "alert-success"
+                          : "alert-danger"
+                      } text-center`}
+                      role="alert"
+                    >
+                      {status.message}
+                    </div>
+                  )}
+
                   <form onSubmit={handleSubmit}>
                     <div className="row g-3">
                       <div className="col-12 col-md-6">
@@ -336,7 +377,7 @@ const ContactSection = () => {
                             style={{
                               borderColor: "#6f3348",
                               borderRadius: "10px",
-                              minHeight: "58px"
+                              minHeight: "58px",
                             }}
                           />
                           <label htmlFor="name" style={{ color: "#6f3348" }}>
@@ -358,7 +399,7 @@ const ContactSection = () => {
                             style={{
                               borderColor: "#6f3348",
                               borderRadius: "10px",
-                              minHeight: "58px"
+                              minHeight: "58px",
                             }}
                           />
                           <label htmlFor="email" style={{ color: "#6f3348" }}>
@@ -398,7 +439,7 @@ const ContactSection = () => {
                               height: "150px",
                               borderColor: "#6f3348",
                               borderRadius: "10px",
-                              minHeight: "150px"
+                              minHeight: "150px",
                             }}
                             value={formData.message}
                             onChange={handleInputChange}
@@ -439,7 +480,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-            </div>
+          </div>
         </div>
 
         {/* Full Width Map Section (matches Contact page) */}
@@ -486,7 +527,7 @@ const ContactSection = () => {
         @keyframes slideInLeft {
           from {
             opacity: 0;
-            transform: translateX(-50px);
+            transform: translateX(-30px);
           }
           to {
             opacity: 1;
@@ -497,7 +538,7 @@ const ContactSection = () => {
         @keyframes slideInRight {
           from {
             opacity: 0;
-            transform: translateX(50px);
+            transform: translateX(30px);
           }
           to {
             opacity: 1;
@@ -505,74 +546,18 @@ const ContactSection = () => {
           }
         }
 
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes float {
           0%,
           100% {
-            transform: translateY(0px);
+            transform: translateY(0);
           }
           50% {
             transform: translateY(-20px);
           }
         }
 
-        .wow {
-          visibility: hidden;
-        }
-
-        .wow.animated {
-          visibility: visible;
-        }
-
-        .space-y-4 > * + * {
-          margin-top: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-          .display-4 {
-            font-size: 2.5rem;
-          }
-
-          .lead {
-            font-size: 1rem;
-          }
-        }
-        
-        /* Small screen form improvements */
-        @media (max-width: 450px) {
-          .form-floating {
-            margin-bottom: 1rem;
-          }
-          
-          .form-control, .form-select {
-            font-size: 16px !important; /* Prevents zoom on iOS */
-            padding: 0.75rem 1rem !important;
-            min-height: 56px !important;
-          }
-          
-          .form-floating > label {
-            font-size: 14px;
-            padding: 0.5rem 1rem;
-          }
-          
-          .btn {
-            padding: 0.875rem 1.5rem !important;
-            font-size: 16px !important;
-          }
-          
-          .row.g-3 {
-            --bs-gutter-y: 0.75rem;
-          }
+        .form-textarea {
+          resize: none;
         }
       `}</style>
     </div>

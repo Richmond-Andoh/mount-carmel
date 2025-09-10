@@ -28,12 +28,6 @@ const About = () => {
         <div className="absolute inset-0 bg-mount-carmel-primary/85"></div>
         <div className="container py-5 relative">
           <h1 className="display-3 text-white animated slideInDown fw-bold tracking-wider">About Us</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-              <li className="breadcrumb-item text-white active" aria-current="page">About</li>
-            </ol>
-          </nav>
         </div>
       </div>
 

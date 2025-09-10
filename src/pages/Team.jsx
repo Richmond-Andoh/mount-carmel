@@ -15,11 +15,11 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: 'Dr. Sarah Johnson',
+      name: 'Dr. Philip Anning-Kuffour',
       position: 'Chief Medical Officer',
       specialty: 'Fertility Specialist',
       image: '/images/team/doctor-1.jpg',
-      description: 'Dr. Johnson is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
+      description: 'Dr. Philip Aning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
       education: 'MBChB, FRCOG',
       experience: '15+ Years',
       social: {
@@ -30,11 +30,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. Michael Chen',
-      position: 'Head of Gynecology',
+      name: 'Dr. Gerald Osei-Owusu',
+      position: 'Gynecology Specialist',
       specialty: 'Women\'s Health',
       image: '/images/team/doctor-2.jpg',
-      description: 'Dr. Chen specializes in women\'s health and gynecological surgery with expertise in minimally invasive procedures.',
+      description: 'Dr. Osei-Owusu specializes in women\'s health and gynecological surgery with expertise in minimally invasive procedures.',
       education: 'MBChB, MD',
       experience: '12+ Years',
       social: {
@@ -45,11 +45,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. Emily Rodriguez',
+      name: 'Dr. Abigail Danso',
       position: 'Pediatrician',
       specialty: 'Child Care Expert',
       image: '/images/team/doctor-3.jpg',
-      description: 'Dr. Rodriguez is dedicated to providing comprehensive care for children from birth through adolescence.',
+      description: 'Dr. Danso is dedicated to providing comprehensive care for children from birth through adolescence.',
       education: 'MBChB, DCH',
       experience: '10+ Years',
       social: {
@@ -60,11 +60,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. David Thompson',
+      name: 'Dr. Kazima Kwame Kpesese',
       position: 'Emergency Medicine',
       specialty: 'Emergency Care',
       image: '/images/team/doctor-4.jpg',
-      description: 'Dr. Thompson leads our emergency department with expertise in critical care and trauma medicine.',
+      description: 'Dr. Kpesese leads our emergency department with expertise in critical care and trauma medicine.',
       education: 'MBChB, FCEM',
       experience: '8+ Years',
       social: {
@@ -74,12 +74,42 @@ const Team = () => {
         instagram: '#'
       }
     },
+        {
+      name: 'Dr. Bernard Seshie',
+      position: 'General Surgeon',
+      specialty: 'Surgical Care',
+      image: '/images/team/doctor-6.jpg',
+      description: 'Dr. Seshie provides comprehensive surgical care with a focus on minimally invasive techniques.',
+      education: 'MBChB, FRCS',
+      experience: '11+ Years',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        linkedin: '#',
+        instagram: '#'
+      }
+    },
+        {
+      name: 'Dr. Selasie Mawuko',
+      position: 'Anaesthesiologist',
+      specialty: 'Anaesthesia',
+      image: '/images/team/doctor-6.jpg',
+      description: 'Dr. Mawuko provides comprehensive anaesthetic care with a focus on patient safety and comfort.',
+      education: 'MBChB, FRCA',
+      experience: '11+ Years',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        linkedin: '#',
+        instagram: '#'
+      }
+    },
     {
-      name: 'Dr. Lisa Wang',
+      name: 'Mr. Isaac Addo',
       position: 'Laboratory Director',
       specialty: 'Pathology',
       image: '/images/team/doctor-5.jpg',
-      description: 'Dr. Wang oversees our state-of-the-art laboratory services and diagnostic testing facilities.',
+      description: 'Mr. Addo oversees our state-of-the-art laboratory services and diagnostic testing facilities.',
       education: 'MBChB, FRCPath',
       experience: '14+ Years',
       social: {
@@ -90,11 +120,11 @@ const Team = () => {
       }
     },
     {
-      name: 'Dr. James Osei',
+      name: 'Dr. Robert Acquah',
       position: 'General Medicine',
       specialty: 'Internal Medicine',
       image: '/images/team/doctor-6.jpg',
-      description: 'Dr. Osei provides comprehensive medical care for adults with a focus on preventive medicine.',
+      description: 'Dr. Acquah provides comprehensive medical care for adults with a focus on preventive medicine.',
       education: 'MBChB, MRCP',
       experience: '11+ Years',
       social: {
@@ -103,7 +133,22 @@ const Team = () => {
         linkedin: '#',
         instagram: '#'
       }
-    }
+    },
+        {
+      name: 'Dr. Lemuel Ato Bray',
+      position: 'Urology Specialist',
+      specialty: 'Urology',
+      image: '/images/team/doctor-6.jpg',
+      description: 'Dr. Bray specializes in urology and provides comprehensive care for patients with urinary tract disorders.',
+      education: 'MBChB, FRCS',
+      experience: '11+ Years',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        linkedin: '#',
+        instagram: '#'
+      }
+    },
   ];
 
   return (
@@ -123,10 +168,10 @@ const Team = () => {
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px', textShadow: '0 2px 16px rgba(0,0,0,0.18)'}}>Our Team</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            {/* <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Team</li>
-            </ol>
+            </ol> */}
           </nav>
         </div>
       </div>
@@ -179,9 +224,9 @@ const Team = () => {
             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
               <div className="h-100">
                 <h6 className="section-title bg-white text-start pe-3" style={{color:'#6f3348'}}>Featured Doctor</h6>
-                <h1 className="display-6 mb-4">Dr. Sarah Johnson</h1>
+                <h1 className="display-6 mb-4">Dr. Philip Anning-Kuffour</h1>
                 <h4 className="mb-4" style={{color:'#6f3348'}}>Chief Medical Officer & Fertility Specialist</h4>
-                <p>Dr. Sarah Johnson is a distinguished fertility specialist with over 15 years of experience in reproductive medicine. She has helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.</p>
+                <p>Dr. Sarah Johnson is a distinguished fertility specialist with over 15 years of experience in reproductive medicine. He has helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.</p>
                 <p>As our Chief Medical Officer, Dr. Johnson leads our medical team with a vision of excellence and innovation in healthcare delivery. Her expertise in IVF, IUI, and reproductive surgery has made Mount Carmel Hospital a leading fertility center in Ghana.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
@@ -209,7 +254,7 @@ const Team = () => {
                     </div>
                   </div>
                 </div>
-                <a className="btn book-btn py-3 px-5" href="/appointment">Book Consultation</a>
+                <a className="btn book-btn py-3 px-5" href="/appointment">Schedule a Consultation</a>
                 <style>{`
                   .book-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
                   .book-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
@@ -378,11 +423,11 @@ const Team = () => {
               <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
                 <div className="d-flex">
                   <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone" style={{color:'#6f3348'}}></i>
+                    <i className="fa fa-phone-alt me-2" style={{color:'#6f3348'}}></i>
                   </div>
                   <div className="ps-3">
                     <h4>Contact Us</h4>
-                    <span>+233 30 393 9896</span>
+                    <span>+233 592 411 108</span>
                   </div>
                 </div>
               </div>

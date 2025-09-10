@@ -2,6 +2,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import apex from '../images/partners/apex-mutual.png';
+import nationwide from '../images/partners/nationwide.png';
+import acacia from '../images/partners/acacia.png';
+import phoenix from '../images/partners/phoenix.png';
+import glico from '../images/partners/glico.png';
+import premier from '../images/partners/premier.png';
+import liberty from '../images/partners/liberty.png';
+import kaiser from '../images/partners/kaiser.png';
+import vitality from '../images/partners/vitality.png';
+import metropolitan from '../images/partners/metropolitan.png';
+
+
 
 // Small, self-contained count-up component that animates when visible
 const AnimatedCounter = ({ end, duration = 1200, suffix = '', prefix = '' }) => {
@@ -44,20 +56,20 @@ const Partners = () => {
   }, []);
 
   const insuranceCompanies = [
-    { name: "Apex Mutual Health", logo: "/images/partners/apex-mutual.png" },
-    { name: "Nationwide Insurance", logo: "/images/partners/nationwide.png" },
-    { name: "Acacia Insurance", logo: "/images/partners/acacia.png" },
-    { name: "Phoenix Insurance", logo: "/images/partners/phoenix.png" },
-    { name: "Glico Insurance", logo: "/images/partners/glico.png" },
-    { name: "Premier Health Insurance", logo: "/images/partners/premier-health.png" },
-    { name: "Liberty Medical Health", logo: "/images/partners/liberty-medical.png" },
-    { name: "Kaiser Global Health Insurance Limited", logo: "/images/partners/kaiser-global.png" },
-    { name: "Vitality Health Insurance", logo: "/images/partners/vitality-health.png" },
-    { name: "Metropolitan Health Insurance", logo: "/images/partners/metropolitan.png" }
+    { name: "Apex Mutual Health", logo: apex },
+    { name: "Nationwide Insurance", logo: nationwide },
+    { name: "Acacia Insurance", logo: acacia },
+    { name: "Phoenix Insurance", logo: phoenix },
+    { name: "Glico Insurance", logo: glico },
+    { name: "Premier Health Insurance", logo: premier },
+    { name: "Liberty Medical Health", logo: liberty },
+    { name: "Kaiser Global Health Insurance Limited", logo: kaiser },
+    { name: "Vitality Health Insurance", logo: vitality },
+    { name: "Metropolitan Health Insurance", logo: metropolitan }
   ];
 
   const pharmaceuticalCompanies = [
-    { name: "Doty Pharmacy", logo: "/images/partners/doty-pharmacy.png" },
+    { name: "Dosty Pharmacy", logo: "/images/partners/dosty-pharmacy.png" },
     { name: "East Cantonment Pharmacy", logo: "/images/partners/east-cantonment.png" },
     { name: "Ernest Chemist", logo: "/images/partners/ernest-chemist.png" },
     { name: "Mega Life Science", logo: "/images/partners/mega-life.png" },
@@ -144,16 +156,16 @@ const Partners = () => {
           <i className="fa fa-flask" style={{position:'absolute',top:'30%',right:'10%',fontSize:'2.6rem',color:'#fff',opacity:0.16,animation:'floatIcon 3.5s 0.7s ease-in-out infinite alternate'}}></i>
           <i className="fa fa-shield-alt" style={{position:'absolute',top:'70%',right:'14%',fontSize:'2.4rem',color:'#fff',opacity:0.13,animation:'floatIcon 4.5s 0.3s ease-in-out infinite alternate'}}></i>
         </div>
-        <div className="container py-5 position-relative" style={{zIndex:3}}>
+        <div className="container py-17 position-relative" style={{zIndex:3}}>
           <h1 className="display-3 text-white fw-bold mb-3" style={{letterSpacing: '2px', animation: 'fadeSlideIn 1.2s cubic-bezier(.77,0,.18,1)'}}>
             Our Partners
           </h1>
-          <nav aria-label="breadcrumb">
+          {/* <nav aria-label="breadcrumb">
             <ol className="breadcrumb animated" style={{animation: 'fadeSlideIn 1.6s 0.3s cubic-bezier(.77,0,.18,1) both'}}>
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Partners</li>
             </ol>
-          </nav>
+          </nav> */}
         </div>
         <style>{`
           @keyframes fadeSlideIn {
@@ -213,17 +225,21 @@ const Partners = () => {
                 <div className="text-center mb-4">
                   <h3 className="mb-3" style={{color:'#6f3348'}}>
                     <i className="fa fa-shield-alt me-2"></i>
-                    Insurance Companies MCHFC Works With
+                    Insurance Companies Mount Carmel Hospital Works With
                   </h3>
-                  <p className="lead mb-4">MCHFC is an accredited service provider for major private health insurance companies</p>
+                  <p className="lead mb-4">Mount Carmel Hosptal and Fertlty Centre is an accredited service provider for major private health insurance companies</p>
                 </div>
                 <div className="row g-4">
                   {insuranceCompanies.map((company, index) => (
                     <div key={company.name} className="col-lg-2 col-md-3 col-sm-4 col-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.05}s`}>
                       <div className="insurance-card text-center p-3 bg-white rounded-3 shadow-sm h-100 transition-all hover-lift">
                         <div className="insurance-logo mb-3" style={{height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                          <i className="fa fa-shield-alt fa-2x" style={{color:'#6f3348'}}></i>
-                        </div>
+                            {company.logo ? (
+                                <img src={company.logo} alt={company.name} style={{maxHeight: '80px', maxWidth: '100%', objectFit: 'contain'}} />
+                                       ) : (
+                                         <i className="fa fa-shield-alt fa-2x" style={{color:'#6f3348'}}></i>
+                                           )}
+                          </div>
                         <h6 className="mb-0 small fw-semibold" style={{fontSize: '0.85rem', lineHeight: '1.2'}}>{company.name}</h6>
                       </div>
                     </div>
@@ -377,9 +393,9 @@ const Partners = () => {
               <div className="bg-light rounded-3 p-5 wow fadeInUp shadow-sm transition-all hover-lift" data-wow-delay="0.1s">
                 <div className="row g-4">
                   <div className="col-md-4 text-center py-3">
-                    <i className="fa fa-phone fa-2x text-primary mb-3 animate-float"></i>
+                    <i className="fa fa-phone-alt me-2 fa-2x text-primary mb-3 animate-float"></i>
                     <h5>Call Us</h5>
-                    <p className="mb-0">+233 30 393 9896</p>
+                    <p className="mb-0">+233 592 411 108</p>
                   </div>
                   <div className="col-md-4 text-center py-3">
                     <i className="fa fa-envelope fa-2x text-primary mb-3 animate-float"></i>

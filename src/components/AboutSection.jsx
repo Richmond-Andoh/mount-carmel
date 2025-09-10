@@ -3,15 +3,13 @@ import { useState, useEffect } from 'react';
 const AboutSection = () => {
   const [counts, setCounts] = useState({
     experience: 0,
-    awards: 0,
     cases: 0,
     clients: 0
   });
 
   useEffect(() => {
     const targetCounts = {
-      experience: 15,
-      awards: 25,
+      experience: 10,
       cases: 5000,
       clients: 10000
     };
@@ -27,7 +25,7 @@ const AboutSection = () => {
 
       setCounts({
         experience: Math.floor(targetCounts.experience * progress),
-        awards: Math.floor(targetCounts.awards * progress),
+        awards: Math.floor(targetCounts.experience * progress),
         cases: Math.floor(targetCounts.cases * progress),
         clients: Math.floor(targetCounts.clients * progress)
       });
@@ -167,18 +165,25 @@ const AboutSection = () => {
                   </div>
                 </div>
                 <div className="col-6">
-                  <div className="position-relative overflow-hidden rounded-4 h-100 d-flex flex-column align-items-center justify-content-center" style={{
-                    background: 'linear-gradient(135deg, #6f3348, #4B1438)',
-                    boxShadow: '0 10px 30px rgba(111, 51, 72, 0.3)',
-                    minHeight: '250px'
+                  <div className="position-relative overflow-hidden rounded-4" style={{
+                    boxShadow: '0 10px 30px rgba(111, 51, 72, 0.2)',
+                    transition: 'all 0.3s ease'
                   }}>
-                    <div className="text-center text-white">
-                      <div className="mb-3">
-                        <i className="bi bi-award fs-1" style={{color: '#DAA520'}}></i>
-                      </div>
-                      <h1 className="display-4 fw-bold mb-0">{counts.experience}+</h1>
-                      <p className="fs-5 mb-0">Years Experience</p>
-                    </div>
+                    <img 
+                      className="img-fluid w-100" 
+                      src="/images/about-4.jpg" 
+                      alt="Medical Staff"
+                      style={{
+                        height: '250px',
+                        objectFit: 'cover',
+                        transition: 'transform 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                      onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                    />
+                    <div className="position-absolute top-0 start-0 w-100 h-100" style={{
+                      background: 'linear-gradient(45deg, rgba(111, 51, 72, 0.3), transparent)'
+                    }}></div>
                   </div>
                 </div>
               </div>
@@ -301,8 +306,8 @@ const AboutSection = () => {
                     <div className="mb-2">
                       <i className="bi bi-trophy fs-2" style={{color: '#DAA520'}}></i>
                     </div>
-                    <h3 className="text-white fw-bold mb-1">{counts.awards}+</h3>
-                    <p className="text-white-50 mb-0">Awards Won</p>
+                    <h3 className="text-white fw-bold mb-1">{counts.experience}+</h3>
+                    <p className="text-white-50 mb-0">Years of Experience</p>
                   </div>
                 </div>
                 <div className="col-sm-6">

@@ -331,10 +331,10 @@ const Facilities = () => {
         <div className="container py-5">
           <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Our Facilities</h1>
           <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
+            {/* <ol className="breadcrumb">
               <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
               <li className="breadcrumb-item text-white active" aria-current="page">Facilities</li>
-            </ol>
+            </ol> */}
           </nav>
           <p className="lead text-white mt-3" style={{maxWidth:'680px'}}>Explore our world-class departments and infrastructure thoughtfully designed for comfort, safety, and advanced care.</p>
         </div>

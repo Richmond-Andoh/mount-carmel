@@ -45,7 +45,7 @@ const Footer = () => {
                 ensure the highest quality care for our patients.
               </p>
               <p style={{color: '#F8FBFF'}}><i className="fa fa-map-marker-alt me-2" style={{color: '#FFFFFF'}}></i>Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
-              <p style={{color: '#F8FBFF'}}><i className="fa fa-phone-alt me-2" style={{color: '#FFFFFF'}}></i>+233 30 393 9896</p>
+              <p style={{color: '#F8FBFF'}}><i className="fa fa-phone-alt me-2" style={{color: '#FFFFFF'}}></i>+233 592 411 108</p>
               <p style={{color: '#F8FBFF'}}><i className="fa fa-envelope me-2" style={{color: '#FFFFFF'}}></i>mountcarmelhospital@outlook.com</p>
               <div className="d-flex mt-4">
                 <a className="btn btn-lg-square me-2" href="#" style={{backgroundColor: '#4B1438', borderColor: '#4B1438'}}>
