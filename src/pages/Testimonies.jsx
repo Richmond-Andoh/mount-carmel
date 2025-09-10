@@ -14,42 +14,63 @@ const Testimonies = () => {
     {
       name: 'Sarah and John Mensah',
       role: 'Fertility Treatment Success',
-      image: '/images/testimonial-1.jpg',
+      // image: '/images/testimonial-1.jpg',
       content: 'After years of trying to conceive, Mount Carmel Hospital gave us hope. The fertility treatment was successful and we now have beautiful twins. The doctors and staff were incredibly supportive throughout our journey.',
       rating: 5
     },
     {
       name: 'Grace Addo',
       role: 'Maternity Care Patient',
-      image: '/images/testimonial-2.jpg',
+      // image: '/images/testimonial-2.jpg',
       content: 'My experience at Mount Carmel Hospital during my pregnancy was exceptional. The prenatal care was comprehensive, and the delivery was smooth. The postnatal care was also excellent. I highly recommend their maternity services.',
       rating: 5
     },
     {
       name: 'Kwame Osei',
       role: 'General Medicine Patient',
-      image: '/images/testimonial-3.jpg',
+      // image: '/images/testimonial-3.jpg',
       content: 'The medical team at Mount Carmel Hospital is professional and caring. They took the time to understand my health concerns and provided effective treatment. The facilities are modern and the staff is very friendly.',
+      rating: 5
+    },
+    {
+      name: 'Alimatu Bawa',
+      role: 'Anaesthetics Patient',
+      // image: '/images/testimonial-5.jpg',
+      content: 'As a patient undergoing anesthesia, I was initially anxious, but the Mount Carmel team reassured me with clear explanations and compassionate care. The procedure went smoothly, and I’m very grateful for their kindness.',
+      rating: 5
+    },
+    {
+      name: 'Mrs. Cecilia Antwi',
+      role: 'Physician Patient',
+      // image: '/images/testimonial-5.jpg',
+      content: 'As a physician, I was impressed by Mount Carmel’s swift response, clear communication, clinical expertise, and genuine compassion. They exceeded my expectations, and I’m truly grateful',
       rating: 5
     },
     {
       name: 'Ama Kufuor',
       role: 'Pediatric Care Parent',
-      image: '/images/testimonial-4.jpg',
+      // image: '/images/testimonial-4.jpg',
       content: 'As a parent, I appreciate the child-friendly environment and the expertise of the pediatric team. My children feel comfortable during their visits, and the doctors are excellent with kids.',
       rating: 5
     },
     {
       name: 'Michael Asante',
       role: 'Emergency Care Patient',
-      image: '/images/testimonial-5.jpg',
+      // image: '/images/testimonial-5.jpg',
       content: 'When I had a medical emergency, Mount Carmel Hospital responded quickly and professionally. The emergency team was efficient and the care I received was outstanding. Thank you for saving my life.',
+      rating: 5
+    },
+    {
+      name: 'Mr Kwame Sarfo',
+      role: 'Urology Patient',
+      // image: '/images/testimonial-5.jpg',
+      content: 'When I had a urology issue, Mount Carmel Hospital responded quickly and professionally. The urology team was efficient and the care I received was outstanding. Thank you for saving my life.',
       rating: 5
     },
     {
       name: 'Elizabeth Boateng',
       role: 'Laboratory Services Patient',
-      image: '/images/testimonial-6.jpg',
+      // image: '/images/testimonial-6.jpg',
       content: 'The laboratory services at Mount Carmel Hospital are top-notch. The tests were done quickly and the results were accurate. The staff was professional and made the process comfortable.',
       rating: 5
     }
@@ -150,12 +171,12 @@ const Testimonies = () => {
                   e.currentTarget.style.boxShadow = '0 4px 24px rgba(111,51,72,0.08)';
                 }}>
                   <div className="d-flex align-items-center mb-4">
-                    <img 
+                    {/* <img 
                       className="flex-shrink-0 rounded-circle me-3 border border-3" 
-                      src={testimonial.image} 
+                      // src={testimonial.image} 
                       alt={testimonial.name}
                       style={{width: '60px', height: '60px', objectFit: 'cover', borderColor: '#6f3348'}}
-                    />
+                    /> */}
                     <div>
                       <h5 className="mb-1" style={{color: '#6f3348'}}>{testimonial.name}</h5>
                       <small style={{color: '#4B1438'}}>{testimonial.role}</small>
@@ -311,4 +332,4 @@ const Testimonies = () => {
   );
 };
 
-export default Testimonies; 
+export default Testimonies;

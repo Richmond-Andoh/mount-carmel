@@ -14,6 +14,7 @@ import Facilities from './pages/Facilities';
 import VisitationForm from './pages/VisitationForm';
 import Partners from './pages/Partners';
 import ScrollToTop from './ScrollToTop';
+import Blog from './pages/Blog';
 import LoadingSpinner from './components/LoadingSpinner';
 import { Confetti } from './components/magicui/confetti';
 
@@ -84,6 +85,7 @@ function App() {
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/testimonies" element={<Testimonies />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
           <Route path="/partner-form" element={<PartnerForm />} />
           <Route path="/facilities" element={<Facilities />} />
