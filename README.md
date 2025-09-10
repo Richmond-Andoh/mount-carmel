@@ -1,6 +1,6 @@
 # Mount Carmel Hospital And Fertility Center
 
-Welcome to the official website repository of Mount Carmel Hospital And Fertility Center. This modern, responsive website is built using React and showcases our medical facilities, services, and healthcare professionals.
+Welcome to the official website repository of Mount Carmel Hospital And Fertility Center. This modern, responsive website is built using React and tailwindcss and showcases our medical facilities, services, and healthcare professionals.
 
 ## Features
 
