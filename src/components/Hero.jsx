@@ -17,8 +17,8 @@ const Hero = () => {
       alignment: "start",
       stats: [
         { number: "5000+", label: "Happy Patients" },
-        { number: "50+", label: "Expert Doctors" },
-        { number: "15+", label: "Years Experience" }
+        { number: "20+", label: "Expert Doctors" },
+        { number: "10+", label: "Years Experience" }
       ]
     },
     {
@@ -48,7 +48,7 @@ const Hero = () => {
       stats: [
         { number: "100%", label: "Modern Equipment" },
         { number: "5", label: "Specialized Units" },
-        { number: "200+", label: "Medical Staff" }
+        { number: "50+", label: "Medical Staff" }
       ]
     }
   ];

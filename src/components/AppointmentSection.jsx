@@ -6,7 +6,7 @@ const AppointmentSection = () => {
     name: '',
     email: '',
     mobile: '',
-    service: 'Fertility Treatment',
+    service: '',
     message: ''
   });
 
@@ -45,7 +45,7 @@ const AppointmentSection = () => {
       name: '',
       email: '',
       mobile: '',
-      service: 'Fertility Treatment',
+      service: '',
       message: ''
     });
   };

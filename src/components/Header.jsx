@@ -78,7 +78,7 @@ const Header = () => {
               </small>
               <small className="flex items-center">
                 <i className="fa fa-clock mr-2"></i>
-                Mon-Sat 08:00-18:00, Sun 09:00-15:00
+                Working everyday, 24/7
               </small>
             </div>
             <nav className="flex items-center space-x-4">
