@@ -1,6 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { db } from '../lib/firebase';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import TestimonyForm from '../components/TestimonyForm';
 
 const Testimonies = () => {
   useEffect(() => {
@@ -8,6 +11,20 @@ const Testimonies = () => {
     if (window.WOW) {
       new window.WOW().init();
     }
+  }, []);
+
+  // Firestore testimonies state
+  const [firestoreTestimonies, setFirestoreTestimonies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const q = query(collection(db, "testimonies"), orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setFirestoreTestimonies(data);
+      setLoading(false);
+    });
+    return () => unsubscribe();
   }, []);
 
   const testimonials = [
@@ -145,6 +162,10 @@ const Testimonies = () => {
             <h1 className="display-6 mb-4">What Our Patients Say</h1>
             <p className="mb-0">Hear from our patients about their experiences at Mount Carmel Hospital. Their stories reflect our commitment to providing exceptional healthcare with compassion and excellence.</p>
           </div>
+          {/* Testimony submission form */}
+          <div className="my-5">
+            <TestimonyForm />
+          </div>
         </div>
       </div>
 
@@ -152,7 +173,8 @@ const Testimonies = () => {
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-4">
-          {testimonials.map((testimonial, index) => (
+            {/* Static testimonials */}
+            {testimonials.map((testimonial, index) => (
               <div key={index} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`}>
                 <div className="testimonial-item rounded-4 p-4 shadow-lg bg-white" style={{
                   backdropFilter: 'blur(8px)',
@@ -189,6 +211,50 @@ const Testimonies = () => {
                 </div>
               </div>
             ))}
+            {/* Firestore testimonials */}
+            {loading ? (
+              <div className="col-12 text-center">Loading testimonies...</div>
+            ) : firestoreTestimonies.length === 0 ? (
+              <div className="col-12 text-center">No patient testimonies yet.</div>
+            ) : (
+              firestoreTestimonies.map((testimonial, index) => (
+                <div key={testimonial.id} className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + (index + testimonials.length) * 0.1}s`}>
+                  <div className="testimonial-item rounded-4 p-4 shadow-lg bg-white" style={{
+                    backdropFilter: 'blur(8px)',
+                    background: 'rgba(255,255,255,0.85)',
+                    border: '1px solid #e0e0e0',
+                    transition: 'transform 0.3s, box-shadow 0.3s',
+                    boxShadow: '0 4px 24px rgba(111,51,72,0.08)',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'translateY(-8px) scale(1.03)';
+                    e.currentTarget.style.boxShadow = '0 8px 32px rgba(111,51,72,0.18)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'none';
+                    e.currentTarget.style.boxShadow = '0 4px 24px rgba(111,51,72,0.08)';
+                  }}>
+                    <div className="d-flex align-items-center mb-4">
+                      {/* <img 
+                        className="flex-shrink-0 rounded-circle me-3 border border-3" 
+                        // src={testimonial.image} 
+                        alt={testimonial.name}
+                        style={{width: '60px', height: '60px', objectFit: 'cover', borderColor: '#6f3348'}}
+                      /> */}
+                      <div>
+                        <h5 className="mb-1" style={{color: '#6f3348'}}>{testimonial.name}</h5>
+                        <small style={{color: '#4B1438'}}>{testimonial.role}</small>
+                      </div>
+                    </div>
+                    <div className="mb-3">
+                      {renderStars(testimonial.rating)}
+                    </div>
+                    <p className="mb-0">"{testimonial.content}"</p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
