@@ -237,46 +237,6 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Enhanced Carousel Controls */}
-        {/* <button 
-          className="carousel-control-prev" 
-          type="button" 
-          onClick={goToPrevSlide}
-          style={{ 
-            width: '5%',
-            background: 'rgba(111, 51, 72, 0.8)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            top: '50%',
-            left: '20px',
-            transform: 'translateY(-50%)'
-          }}
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button 
-          className="carousel-control-next" 
-          type="button" 
-          onClick={goToNextSlide}
-          style={{ 
-            width: '5%',
-            background: 'rgba(111, 51, 72, 0.8)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            top: '50%',
-            right: '20px',
-            transform: 'translateY(-50%)'
-          }}
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button> */}
-
         {/* Enhanced Carousel Indicators */}
         <div className="carousel-indicators" style={{ bottom: '30px' }}>
           {slides.map((_, index) => (

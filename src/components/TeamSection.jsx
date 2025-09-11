@@ -50,7 +50,7 @@ const TeamSection = () => {
     },
     {
       name: "Dr. Lenusia Ahligah",
-      role: "Physician",
+      role: "Physician Specialist",
       specialty: "Internal Medicine",
       image: "/images/team-5.jpg",
       social: {

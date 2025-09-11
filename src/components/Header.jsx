@@ -1,36 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 import { ScrollProgress } from "./magicui/scroll-progress";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About Us", path: "/about",
+  { name: "About", 
     dropdown: [
-      { name: "About Us", path: "/about" },
+      { name: "About", path: "/about" },
       { name: "Team", path: "/team" },
     ],
   },
   {
     name: "Services",
-    path: "/services",
     dropdown: [
       { name: "All Services", path: "/services" },
       { name: "Our Facilities", path: "/facilities" },
-    ],
-  },
-  { name: "Book Appointment", path: "/appointment" },
-  { name: "Testimonies", path: "/testimonies" },
-  { name: "FAQ", path: "/faq" },
-  {
-    name: "Partners",
-    path: "/partners",
-    dropdown: [
-      { name: "Our Partners", path: "/partners" },
-      { name: "Become a Partner", path: "/partner-form" },
       { name: "Visit Facility", path: "/visitation-form" },
     ],
   },
+  { 
+    name: "Testimonies", 
+    dropdown: [
+      { name: "Testimonies", path: "/testimonies" },
+      { name: "FAQ", path: "/faq" },
+    ],
+  },
+  {
+    name: "Partners",
+    dropdown: [
+      { name: "Our Partners", path: "/partners" },
+      { name: "Become a Partner", path: "/partner-form" }
+    ],
+  },
+  { name: "Blog", path: "/blog" },
+  { name: "Book Appointment", path: "/appointment" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -39,6 +43,22 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
+
+  // hide logo text when window width is reduced by 250px or more from initial full width
+  const [showLogoText, setShowLogoText] = useState(true);
+  const initialWidthRef = useRef(null);
+
+  useEffect(() => {
+    // record initial full screen width on mount
+    initialWidthRef.current = window.innerWidth;
+    const onResize = () => {
+      const init = initialWidthRef.current || window.innerWidth;
+      setShowLogoText(window.innerWidth > init - 250);
+    };
+    window.addEventListener("resize", onResize);
+    onResize();
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -129,23 +149,23 @@ const Header = () => {
                 </span>
               </div>
             </div>
-            <Link to="/" className="text-white no-underline">
-              <div className="flex items-center">
-                <img
-                  src="/images/logo.jpg"
-                  alt="Mount Carmel Hospital Logo"
-                  className="w-15 h-15 rounded-full mr-4"
-                  style={{ height: "80px", width: "80px" }}
-                />
-                <div>
-                  <span className="text-mount-carmel-light">Mount </span>
-                  <span className="text-white">Carmel</span>
-                  <div className="text-sm text-mount-carmel-light font-normal">
-                    Hospital & Fertility Center
-                  </div>
-                </div>
-              </div>
-            </Link>
+            {/* Social Media Icons - Desktop */}
+            <div className="hidden lg:flex items-center space-x-2">
+              {[
+                { icon: "fab fa-facebook-f", href: "#" },
+                { icon: "fab fa-twitter", href: "#" },
+                { icon: "fab fa-linkedin-in", href: "#" },
+                { icon: "fab fa-instagram", href: "#" },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  className="w-10 h-10 bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <i className={social.icon}></i>
+                </a>
+              ))}
+            </div>
             <div className="flex items-center">
               <i className="bi bi-envelope text-3xl text-white"></i>
               <div className="ml-3">
@@ -184,15 +204,37 @@ const Header = () => {
                 alt="Mount Carmel Hospital Logo"
                 className="w-10 h-10 rounded-full mr-3"
               />
-              <h1 className="m-0">
-                <span className="text-mount-carmel-primarytext-mount-carmel-primary">
-                  Mount{" "}
-                </span>
-                <span className="text-mount-carmel-secondary">Carmel</span>
-              </h1>
+              {showLogoText && (
+                <h1 className="m-0">
+                  <span className="text-mount-carmel-primary font-bold">Mount{" "}</span>
+                  <span className="text-mount-carmel-secondary font-bold">Carmel</span>
+                </h1>
+              )}
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Logo — placed BEFORE navbar links, reduced margins, won't shrink */}
+            <Link
+              to="/"
+              className="hidden lg:flex items-center text-black no-underline mr-2 flex-none"
+            >
+              <img
+                src="/images/logo.jpg"
+                alt="Mount Carmel Hospital Logo"
+                className="rounded-full mr-2"
+                style={{ height: "80px", width: "80px" }}
+              />
+              {showLogoText && (
+                <div>
+                  <span className="text-black font-bold">Mount </span>
+                  <span className="text-black font-bold">Carmel</span>
+                  <div className="text-sm text-black font-medium">
+                    Hospital & Fertility Center
+                  </div>
+                </div>
+              )}
+            </Link>
+
+            {/* Desktop Navigation - centered, takes remaining space */}
             <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
               {navLinks.map((link, index) => (
                 <div key={link.path} className="relative group">
@@ -265,24 +307,6 @@ const Header = () => {
                     </Link>
                   )}
                 </div>
-              ))}
-            </div>
-
-            {/* Social Media Icons - Desktop */}
-            <div className="hidden lg:flex items-center space-x-2">
-              {[
-                { icon: "fab fa-facebook-f", href: "#" },
-                { icon: "fab fa-twitter", href: "#" },
-                { icon: "fab fa-linkedin-in", href: "#" },
-                { icon: "fab fa-instagram", href: "#" },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 bg-mount-carmel-primary hover:bg-mount-carmel-secondary text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                >
-                  <i className={social.icon}></i>
-                </a>
               ))}
             </div>
 

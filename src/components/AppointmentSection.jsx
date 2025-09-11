@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import booking from '../images/partners/booking.jpg';
 
 const AppointmentSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -194,135 +196,38 @@ const AppointmentSection = () => {
                 backdropFilter: 'blur(20px)',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }}>
-                <h2 className="mb-4 text-center fw-bold" style={{color: '#6f3348'}}>Online Appointment</h2>
-                <form onSubmit={handleSubmit}>
-                  <div className="row g-3">
-                    <div className="col-12 col-md-6">
-                      <div className="form-floating">
-                        <input 
-                          type="text" 
-                          className="form-control" 
-                          id="name" 
-                          name="name"
-                          placeholder="Your Name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                          style={{
-                            borderColor: '#6f3348',
-                            borderRadius: '10px',
-                            minHeight: '58px'
-                          }}
-                        />
-                        <label htmlFor="name" style={{color: '#6f3348'}}>Your Name</label>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <div className="form-floating">
-                        <input 
-                          type="email" 
-                          className="form-control" 
-                          id="email" 
-                          name="email"
-                          placeholder="Your Email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          style={{
-                            borderColor: '#6f3348',
-                            borderRadius: '10px',
-                            minHeight: '58px'
-                          }}
-                        />
-                        <label htmlFor="email" style={{color: '#6f3348'}}>Your Email</label>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <div className="form-floating">
-                        <input 
-                          type="tel" 
-                          className="form-control" 
-                          id="mobile" 
-                          name="mobile"
-                          placeholder="Your Mobile"
-                          value={formData.mobile}
-                          onChange={handleInputChange}
-                          required
-                          style={{
-                            borderColor: '#6f3348',
-                            borderRadius: '10px',
-                            minHeight: '58px'
-                          }}
-                        />
-                        <label htmlFor="mobile" style={{color: '#6f3348'}}>Your Mobile</label>
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <div className="form-floating">
-                        <select 
-                          className="form-select" 
-                          id="service" 
-                          name="service"
-                          value={formData.service}
-                          onChange={handleInputChange}
-                          required
-                          style={{
-                            borderColor: '#6f3348',
-                            borderRadius: '10px',
-                            minHeight: '58px'
-                          }}
-                        >
-                          {services.map((service, index) => (
-                            <option key={index} value={service}>{service}</option>
-                          ))}
-                        </select>
-                        <label htmlFor="service" style={{color: '#6f3348'}}>Choose A Service</label>
-                      </div>
-                    </div>
-                    <div className="col-12">
-                      <div className="form-floating">
-                        <textarea 
-                          className="form-control form-textarea" 
-                          placeholder="Leave a message here" 
-                          id="message" 
-                          name="message"
-                          style={{ 
-                            height: '130px',
-                            borderColor: '#6f3348',
-                            borderRadius: '10px',
-                            minHeight: '130px'
-                          }}
-                          value={formData.message}
-                          onChange={handleInputChange}
-                        ></textarea>
-                        <label htmlFor="message" style={{color: '#6f3348'}}>Message</label>
-                      </div>
-                    </div>
-                    <div className="col-12 text-center">
-                      <button 
-                        className="btn btn-primary w-100 py-3 fw-bold" 
-                        type="submit"
-                        style={{
-                          backgroundColor: '#6f3348',
-                          borderColor: '#6f3348',
-                          borderRadius: '25px',
-                          transition: 'all 0.3s ease',
-                          boxShadow: '0 4px 15px rgba(111, 51, 72, 0.3)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.transform = 'translateY(-2px)';
-                          e.target.style.boxShadow = '0 6px 20px rgba(111, 51, 72, 0.4)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.transform = 'translateY(0)';
-                          e.target.style.boxShadow = '0 4px 15px rgba(111, 51, 72, 0.3)';
-                        }}
-                      >
-                        Submit Now
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                <h1 className="mb-4 text-center fw-bold" style={{color: '#6f3348'}}>Online Appointment</h1>
+                <div className="text-center mb-3">
+                  <img
+                    src={booking}
+                    alt="Online booking"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      borderRadius: '12px',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.12)'
+                    }}
+                  />
+                </div>
+
+                <div className="text-center my-2">
+                  <Link
+                    to="/appointment"
+                    className="inline-block font-bold text-white"
+                    style={{
+                      backgroundColor: '#6f3348',
+                      padding: '0.75rem 1.5rem',
+                      borderRadius: '9999px',
+                      textDecoration: 'none',
+                      boxShadow: '0 6px 18px rgba(111,51,72,0.15)',
+                      transition: 'transform 0.15s ease'
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                  >
+                    Book Your Appointment Now
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -414,4 +319,4 @@ const AppointmentSection = () => {
   );
 };
 
-export default AppointmentSection; 
+export default AppointmentSection;
