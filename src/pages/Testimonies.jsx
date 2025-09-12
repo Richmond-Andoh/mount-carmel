@@ -4,8 +4,11 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TestimonyForm from '../components/TestimonyForm';
+import Modal from '../components/Modal';
 
 const Testimonies = () => {
+  // Modal trigger state
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     // Initialize WOW.js for animations
     if (window.WOW) {
@@ -161,10 +164,17 @@ const Testimonies = () => {
             <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Testimonials</h6>
             <h1 className="display-6 mb-4">What Our Patients Say</h1>
             <p className="mb-0">Hear from our patients about their experiences at Mount Carmel Hospital. Their stories reflect our commitment to providing exceptional healthcare with compassion and excellence.</p>
-          </div>
-          {/* Testimony submission form */}
-          <div className="my-5">
-            <TestimonyForm />
+            {/* Modern button to trigger modal */}
+            <button
+              className="mt-6 px-6 py-3 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200"
+              style={{ fontSize: '1.1rem', letterSpacing: '0.02em' }}
+              onClick={() => setOpen(true)}
+            >
+              <i className="fa fa-plus-circle me-2"></i> Share Your Testimony
+            </button>
+            <Modal isOpen={open} onClose={() => setOpen(false)}>
+              <TestimonyForm />
+            </Modal>
           </div>
         </div>
       </div>
@@ -317,7 +327,6 @@ const Testimonies = () => {
           </div>
         </div>
       </div>
-
       {/* Statistics Section */}
       <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)'}}>
         <div className="container py-5 pt-lg-0">
