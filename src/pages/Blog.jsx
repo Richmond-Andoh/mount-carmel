@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { db } from '../lib/firebase';
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion, Timestamp, addDoc } from 'firebase/firestore';
 import { formatDistance } from 'date-fns';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Search, Filter, ArrowDown, X } from "lucide-react";
+import { Search, Filter, ArrowDown, X, Plus, XCircle, Image as ImageIcon } from "lucide-react";
 
 // Dummy data for featured article
 const featuredArticle = {
@@ -86,8 +86,24 @@ const dummyBlogs = [
 
 function Blog() {
   const [blogs, setBlogs] = useState(dummyBlogs);
+  const [dbBlogs, setDbBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [showNewPostModal, setShowNewPostModal] = useState(false);
+  const [newPost, setNewPost] = useState({
+    title: '',
+    excerpt: '',
+    image: '',
+    tag: 'Fertility',
+    readTime: '',
+    content: '',
+    author: {
+      name: '',
+      title: 'Content Writer',
+      avatar: ''
+    }
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [comments, setComments] = useState({});
   const [commentForm, setCommentForm] = useState({ name: '', email: '', comment: '' });
   const [activeTab, setActiveTab] = useState('recent');
@@ -112,6 +128,61 @@ function Blog() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
+  // Handle new blog post submission
+  const handleNewPostSubmit = async (e) => {
+    e.preventDefault();
+    if (!newPost.title || !newPost.content || !newPost.author?.name) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Save to Firestore
+      const post = {
+        ...newPost,
+        tags: [newPost.tag],
+        date: new Date().toISOString(),
+        timestamp: Timestamp.now(),
+      };
+      const docRef = await addDoc(collection(db, 'blogs'), post);
+      // Add to local state for instant feedback
+      setDbBlogs(prev => [{ id: docRef.id, ...post }, ...prev]);
+      setNewPost({
+        title: '',
+        excerpt: '',
+        image: '',
+        tag: 'Fertility',
+        readTime: '',
+        content: '',
+        author: {
+          name: '',
+          title: 'Content Writer',
+          avatar: ''
+        }
+      });
+      setShowNewPostModal(false);
+      alert('Blog post created successfully!');
+    } catch (error) {
+      console.error('Error creating post:', error);
+      alert('Failed to create post. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  // Load blog posts from Firestore
+  useEffect(() => {
+    const q = query(collection(db, 'blogs'), orderBy('timestamp', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const posts = [];
+      snapshot.forEach(doc => {
+        posts.push({ id: doc.id, ...doc.data() });
+      });
+      setDbBlogs(posts);
+    });
+    return () => unsubscribe();
+  }, []);
+
   // Handle newsletter subscription
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
@@ -120,19 +191,22 @@ function Blog() {
     setEmail("");
   };
   
-  // Get unique tags from blogs
-  const allTags = ['all', ...new Set(blogs.flatMap(blog => blog.tags || []))];
-  
+  // Merge Firestore blogs and dummy blogs
+  const allBlogs = [...dbBlogs, ...dummyBlogs];
+
+  // Get unique tags from all blogs
+  const allTags = ['all', ...new Set(allBlogs.flatMap(blog => blog.tags || []))];
+
   // Filter blogs by search and selected tag
-  const filteredBlogs = blogs.filter(blog => {
+  const filteredBlogs = allBlogs.filter(blog => {
     const matchesSearch = blog.title.toLowerCase().includes(search.toLowerCase()) || 
                          blog.excerpt.toLowerCase().includes(search.toLowerCase());
     const matchesTag = selectedTag === 'all' || (blog.tags && blog.tags.includes(selectedTag));
     return matchesSearch && matchesTag;
   });
-  
-  // Get popular posts (dummy implementation - in real app, this would be based on views/comments)
-  const popularPosts = [...blogs].sort(() => 0.5 - Math.random()).slice(0, 3);
+
+  // Get popular posts (dummy implementation)
+  const popularPosts = [...allBlogs].sort(() => 0.5 - Math.random()).slice(0, 3);
 
   // Load comments from Firestore
   useEffect(() => {
@@ -205,368 +279,380 @@ function Blog() {
   // Pagination logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(blogs.length / postsPerPage);
+  const currentPosts = filteredBlogs.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredBlogs.length / postsPerPage);
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
-      
-      {/* Hero Section with Video Background */}
-      <section className="relative pt-20 md:pt-24 h-[calc(100vh-5rem)] min-h-[500px] max-h-[800px] overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="/videos/5124290_Person_People_3840x2160.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-purple-900/50"></div>
-        </div>
+      <main className="flex-grow">
+        {/* Moved New Post Button to hero section */}
 
-        {/* Content */}
-        <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="h-full flex flex-col justify-center items-center text-center pt-16 pb-8 sm:pt-24 sm:pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-4xl mx-auto"
+        {/* Hero Section with Video Background */}
+        <section className="relative pt-20 md:pt-24 h-[calc(100vh-5rem)] min-h-[500px] max-h-[800px] overflow-hidden">
+          {/* Video Background */}
+          <div className="absolute inset-0 w-full h-full">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-                Mount Carmel Blog
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0">
-                Discover the latest insights, tips, and stories about fertility, wellness, and reproductive health.
-              </p>
-              
-              {/* Search Bar */}
-              <div className="max-w-2xl w-full mx-auto px-2 sm:px-0">
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search articles..."
-                    className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base rounded-full bg-white/10 backdrop-blur-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 pr-12"
-                  />
-                  <Search className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 absolute right-4 sm:right-5 top-1/2 transform -translate-y-1/2" />
+              <source src="/videos/5124290_Person_People_3840x2160.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-purple-900/50"></div>
+          </div>
+
+          {/* Content */}
+          <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="h-full flex flex-col justify-center items-center text-center pt-16 pb-8 sm:pt-24 sm:pb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="w-full flex flex-col items-center">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight text-center">
+                    Mount Carmel Blog
+                  </h1>
+                  <button
+                    onClick={() => setShowNewPostModal(true)}
+                    className="flex items-center gap-2 bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <Plus size={20} />
+                    Write a New Post
+                  </button>
                 </div>
-              </div>
+                <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0">
+                  Discover the latest insights, tips, and stories about fertility, wellness, and reproductive health.
+                </p>
+                
+                {/* Search Bar */}
+                <div className="max-w-2xl w-full mx-auto px-2 sm:px-0">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      placeholder="Search articles..."
+                      className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base rounded-full bg-white/10 backdrop-blur-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 pr-12"
+                    />
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 absolute right-4 sm:right-5 top-1/2 transform -translate-y-1/2" />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="flex flex-col items-center text-white/70 hover:text-white transition-colors cursor-pointer"
+              onClick={() => {
+                const mainContent = document.querySelector('main');
+                if (mainContent) {
+                  mainContent.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              <span className="text-sm mb-2">Scroll to explore</span>
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </motion.div>
             </motion.div>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="flex flex-col items-center text-white/70 hover:text-white transition-colors cursor-pointer"
-            onClick={() => {
-              const mainContent = document.querySelector('main');
-              if (mainContent) {
-                mainContent.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            <span className="text-sm mb-2">Scroll to explore</span>
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </motion.div>
-          </motion.div>
-        </div>
+        </section>
 
-      </section>
-
-      <main className="container mx-auto px-4 py-12 md:py-16">
-        {/* Categories Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(tag)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedTag === tag
-                  ? 'bg-[var(--primary-color)] text-white'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-            >
-              {tag.charAt(0).toUpperCase() + tag.slice(1)}
-            </button>
-          ))}
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            {/* Latest Articles Section */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8 w-full">
-              <motion.div 
-                className="max-w-7xl mx-auto text-center mb-12"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+        <div className="container mx-auto px-4 py-12 md:py-16">
+          {/* Categories Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  selectedTag === tag
+                    ? 'bg-[var(--primary-color)] text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
               >
-                <span className="inline-block bg-primary-color/10 text-primary-color text-sm font-semibold px-4 py-1 rounded-full mb-4">
-                  Latest Updates
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                  Our Recent Articles
-                </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto mb-8">Stay updated with our latest health insights and medical news</p>
-                
-                <div className="flex justify-center gap-4 mb-12">
-                  <button 
-                    onClick={() => setActiveTab('recent')}
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                      activeTab === 'recent' 
-                        ? 'bg-primary-color text-white shadow-lg shadow-primary-color/30' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    Most Recent
-                  </button>
-                  <button 
-                    onClick={() => setActiveTab('popular')}
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                      activeTab === 'popular' 
-                        ? 'bg-primary-color text-white shadow-lg shadow-primary-color/30' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    Most Popular
-                  </button>
-                </div>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                  {currentPosts.map((post, index) => (
-                    <motion.div
-                      key={post.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+                {tag.charAt(0).toUpperCase() + tag.slice(1)}
+              </button>
+            ))}
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              {/* Latest Articles Section */}
+              <section className="py-16 px-4 sm:px-6 lg:px-8 w-full">
+                <motion.div 
+                  className="max-w-7xl mx-auto text-center mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className="inline-block bg-primary-color/10 text-primary-color text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                    Latest Updates
+                  </span>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                    Our Recent Articles
+                  </h2>
+                  <p className="text-gray-600 max-w-2xl mx-auto mb-8">Stay updated with our latest health insights and medical news</p>
+                  
+                  <div className="flex justify-center gap-4 mb-12">
+                    <button 
+                      onClick={() => setActiveTab('recent')}
+                      className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                        activeTab === 'recent' 
+                          ? 'bg-primary-color text-white shadow-lg shadow-primary-color/30' 
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
                     >
-                      <div className="relative h-80 overflow-hidden">
-                        <img
-                          src={post.image}
+                      Most Recent
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('popular')}
+                      className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                        activeTab === 'popular' 
+                          ? 'bg-primary-color text-white shadow-lg shadow-primary-color/30' 
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      Most Popular
+                    </button>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {currentPosts.map((post, index) => (
+                      <motion.div
+                        key={post.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+                      >
+                        <div className="relative h-80 overflow-hidden">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = '/images/services/fertility.jpg';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <div className="flex flex-wrap gap-2 mb-3">
+                              {(post.tags || []).map((tag, index) => (
+                                <span 
+                                  key={index}
+                                  className="px-3 py-1 bg-white/90 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 text-xs font-medium rounded-full backdrop-blur-sm"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                              {post.title}
+                            </h1>
+                            <div className="flex items-center text-sm text-white/90">
+                              <span className="flex items-center">
+                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {post.date || 'Unknown date'}
+                              </span>
+                              <span className="mx-3">•</span>
+                              <span className="flex items-center">
+                                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {post.readTime || '5 min'} read
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Article Content */}
+                        <div className="p-6">
+                          <div className="prose dark:prose-invert max-w-none">
+                            <div className="flex items-center mb-8">
+                              <div className="h-12 w-12 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mr-4">
+                                <img 
+                                  src={post.author?.avatar || '/images/logo.png'} 
+                                  alt={post.author?.name || 'Author'}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = '/images/logo.png';
+                                  }}
+                                />
+                              </div>
+                              <div>
+                                <p className="font-medium text-gray-900 dark:text-white">
+                                  {post.author?.name || 'Anonymous'}
+                                </p>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                  {post.author?.title || 'Content Writer'}
+                                </p>
+                              </div>
+                            </div>
+                            
+                            <div className="prose-lg dark:prose-invert max-w-none">
+                              {post.content || post.excerpt}
+                            </div>
+
+                            {/* Social Sharing */}
+                            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+                              <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Share this article</h4>
+                              <div className="flex space-x-4">
+                                {['Twitter', 'Facebook', 'LinkedIn', 'Copy Link'].map((platform) => (
+                                  <button
+                                    key={platform}
+                                    className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                    onClick={() => handleShare(platform.toLowerCase())}
+                                  >
+                                    <span className="sr-only">Share on {platform}</span>
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                      {/* Icons would go here */}
+                                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                    </svg>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                        <motion.button 
+                          onClick={() => setSelectedArticle(post)}
+                          className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all transform hover:-translate-y-0.5 active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                          whileHover={{ 
+                            background: 'linear-gradient(45deg, var(--primary-color), var(--secondary-color))',
+                          }}
+                        >
+                          <span className="relative z-10 flex items-center">
+                            Read Full Article
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" 
+                              className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" 
+                              fill="none" 
+                              viewBox="0 0 24 24" 
+                              stroke="currentColor"
+                            >
+                              <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                              />
+                            </svg>
+                          </span>
+                        </motion.button>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </section>
+            </div>
+            
+            {/* Sidebar */}
+            <div className="space-y-8">
+              {/* Popular Posts */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Popular Posts</h3>
+                <div className="space-y-4">
+                  {popularPosts.map((post) => (
+                    <div 
+                      key={post.id}
+                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
+                      onClick={() => openArticle(post)}
+                    >
+                      <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden">
+                        <img 
+                          src={post.image} 
                           alt={post.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = '/images/services/fertility.jpg';
                           }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            {(post.tags || []).map((tag, index) => (
-                              <span 
-                                key={index}
-                                className="px-3 py-1 bg-white/90 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 text-xs font-medium rounded-full backdrop-blur-sm"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                            {post.title}
-                          </h1>
-                          <div className="flex items-center text-sm text-white/90">
-                            <span className="flex items-center">
-                              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
-                              {post.date || 'Unknown date'}
-                            </span>
-                            <span className="mx-3">•</span>
-                            <span className="flex items-center">
-                              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                              {post.readTime || '5 min'} read
-                            </span>
-                          </div>
-                        </div>
                       </div>
-
-                      {/* Article Content */}
-                      <div className="p-6">
-                        <div className="prose dark:prose-invert max-w-none">
-                          <div className="flex items-center mb-8">
-                            <div className="h-12 w-12 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mr-4">
-                              <img 
-                                src={post.author?.avatar || '/images/logo.png'} 
-                                alt={post.author?.name || 'Author'}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  e.target.onerror = null;
-                                  e.target.src = '/images/logo.png';
-                                }}
-                              />
-                            </div>
-                            <div>
-                              <p className="font-medium text-gray-900 dark:text-white">
-                                {post.author?.name || 'Anonymous'}
-                              </p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">
-                                {post.author?.title || 'Content Writer'}
-                              </p>
-                            </div>
-                          </div>
-                          
-                          <div className="prose-lg dark:prose-invert max-w-none">
-                            {post.content || post.excerpt}
-                          </div>
-
-                          {/* Social Sharing */}
-                          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-                            <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Share this article</h4>
-                            <div className="flex space-x-4">
-                              {['Twitter', 'Facebook', 'LinkedIn', 'Copy Link'].map((platform) => (
-                                <button
-                                  key={platform}
-                                  className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                                  onClick={() => handleShare(platform.toLowerCase())}
-                                >
-                                  <span className="sr-only">Share on {platform}</span>
-                                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    {/* Icons would go here */}
-                                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                  </svg>
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>  
-                      <motion.button 
-                        onClick={() => setSelectedArticle(post)}
-                        className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all transform hover:-translate-y-0.5 active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                        whileHover={{ 
-                          background: 'linear-gradient(45deg, var(--primary-color), var(--secondary-color))',
-                        }}
-                      >
-                        <span className="relative z-10 flex items-center">
-                          Read Full Article
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke="currentColor"
-                          >
-                            <path 
-                              strokeLinecap="round" 
-                              strokeLinejoin="round" 
-                              strokeWidth={2} 
-                              d="M14 5l7 7m0 0l-7 7m7-7H3" 
-                            />
-                          </svg>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
+                          {post.title}
+                        </h4>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {post.readTime}
                         </span>
-                      </motion.button>
-                    </motion.div>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
-            </section>
-          </div>
-          
-          {/* Sidebar */}
-          <div className="space-y-8">
-            {/* Popular Posts */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Popular Posts</h3>
-              <div className="space-y-4">
-                {popularPosts.map((post) => (
-                  <div 
-                    key={post.id}
-                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
-                    onClick={() => openArticle(post)}
-                  >
-                    <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = '/images/services/fertility.jpg';
-                        }}
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
-                        {post.title}
-                      </h4>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                        {post.readTime}
-                      </span>
-                    </div>
-                  </div>
-                ))}
               </div>
-            </div>
-            
-            {/* Newsletter Signup */}
-            <div className="bg-gradient-to-br from-[var(--primary-color)] to-purple-600 rounded-xl p-6 text-white">
-              <h3 className="text-xl font-bold mb-2">Stay Updated</h3>
-              <p className="text-white/90 text-sm mb-4">
-                Subscribe to our newsletter for the latest articles and updates.
-              </p>
-              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email address"
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
-                  required
-                />
-                <button 
-                  type="submit"
-                  className="w-full bg-white text-[var(--primary-color)] font-medium py-2.5 px-4 rounded-lg hover:bg-opacity-90 transition-colors"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-            
-            {/* Categories */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Categories</h3>
-              <div className="space-y-2">
-                {allTags.filter(tag => tag !== 'all').map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => setSelectedTag(tag)}
-                    className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
-                      selectedTag === tag
-                        ? 'bg-[var(--primary-color)] text-white'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`}
+              
+              {/* Newsletter Signup */}
+              <div className="bg-gradient-to-br from-[var(--primary-color)] to-purple-600 rounded-xl p-6 text-white">
+                <h3 className="text-xl font-bold mb-2">Stay Updated</h3>
+                <p className="text-white/90 text-sm mb-4">
+                  Subscribe to our newsletter for the latest articles and updates.
+                </p>
+                <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email address"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    required
+                  />
+                  <button 
+                    type="submit"
+                    className="w-full bg-white text-[var(--primary-color)] font-medium py-2.5 px-4 rounded-lg hover:bg-opacity-90 transition-colors"
                   >
-                    <span className="flex items-center justify-between">
-                      <span>{tag.charAt(0).toUpperCase() + tag.slice(1)}</span>
-                      <span className="bg-white/20 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-full">
-                        {blogs.filter(b => b.tags && b.tags.includes(tag)).length}
-                      </span>
-                    </span>
+                    Subscribe
                   </button>
-                ))}
+                </form>
+              </div>
+              
+              {/* Categories */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Categories</h3>
+                <div className="space-y-2">
+                  {allTags.filter(tag => tag !== 'all').map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => setSelectedTag(tag)}
+                      className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                        selectedTag === tag
+                          ? 'bg-[var(--primary-color)] text-white'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        <span>{tag.charAt(0).toUpperCase() + tag.slice(1)}</span>
+                        <span className="bg-white/20 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-full">
+                          {blogs.filter(b => b.tags && b.tags.includes(tag)).length}
+                        </span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -815,6 +901,256 @@ function Blog() {
       )}
       
       <Footer />
+
+      {/* New Post Modal */}
+      <AnimatePresence>
+        {showNewPostModal && (
+          <div className="fixed inset-0 z-[9999] overflow-y-auto">
+            <motion.div 
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowNewPostModal(false)}
+            />
+            
+            <div className="flex min-h-full items-center justify-center p-4">
+              <motion.div 
+                className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden z-[9999] relative"
+                initial={{ y: 20, opacity: 0, scale: 0.98 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: 20, opacity: 0, scale: 0.98 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 400 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-900">Create New Blog Post</h2>
+                    <button 
+                      onClick={() => setShowNewPostModal(false)}
+                      className="text-gray-400 hover:text-gray-500"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                  
+                  <form onSubmit={handleNewPostSubmit}>
+                    <div className="space-y-6">
+                      {/* Title */}
+                      <div>
+                        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+                          Title <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="title"
+                          value={newPost.title}
+                          onChange={(e) => setNewPost({...newPost, title: e.target.value})}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Enter post title"
+                          required
+                        />
+                      </div>
+                      
+                      {/* Excerpt */}
+                      <div>
+                        <label htmlFor="excerpt" className="block text-sm font-medium text-gray-700 mb-1">
+                          Excerpt
+                        </label>
+                        <textarea
+                          id="excerpt"
+                          rows="2"
+                          value={newPost.excerpt}
+                          onChange={(e) => setNewPost({...newPost, excerpt: e.target.value})}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="A short summary of your post"
+                        />
+                      </div>
+                      
+                      {/* Author Information */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Author Information
+                        </label>
+                        <div className="space-y-4">
+                          <div>
+                            <label htmlFor="authorName" className="block text-xs font-medium text-gray-500 mb-1">
+                              Full Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="authorName"
+                              value={newPost.author?.name || ''}
+                              onChange={(e) => setNewPost({
+                                ...newPost,
+                                author: {
+                                  ...newPost.author,
+                                  name: e.target.value
+                                }
+                              })}
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="Author's full name"
+                              required
+                            />
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                              <label htmlFor="authorTitle" className="block text-xs font-medium text-gray-500 mb-1">
+                                Title/Role
+                              </label>
+                              <input
+                                type="text"
+                                id="authorTitle"
+                                value={newPost.author?.title || ''}
+                                onChange={(e) => setNewPost({
+                                  ...newPost,
+                                  author: {
+                                    ...newPost.author,
+                                    title: e.target.value
+                                  }
+                                })}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="e.g. Fertility Specialist"
+                              />
+                            </div>
+                            <div>
+                              <label htmlFor="authorAvatar" className="block text-xs font-medium text-gray-500 mb-1">
+                                Avatar URL (optional)
+                              </label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <ImageIcon className="h-4 w-4 text-gray-400" />
+                                </div>
+                                <input
+                                  type="url"
+                                  id="authorAvatar"
+                                  value={newPost.author?.avatar || ''}
+                                  onChange={(e) => setNewPost({
+                                    ...newPost,
+                                    author: {
+                                      ...newPost.author,
+                                      avatar: e.target.value
+                                    }
+                                  })}
+                                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                  placeholder="https://example.com/avatar.jpg"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Image URL */}
+                        <div>
+                          <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
+                            Image URL
+                          </label>
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                              <ImageIcon className="h-5 w-5 text-gray-400" />
+                            </div>
+                            <input
+                              type="url"
+                              id="image"
+                              value={newPost.image}
+                              onChange={(e) => setNewPost({...newPost, image: e.target.value})}
+                              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="https://example.com/image.jpg"
+                            />
+                          </div>
+                        </div>
+                        
+                        {/* Tag */}
+                        <div>
+                          <label htmlFor="tag" className="block text-sm font-medium text-gray-700 mb-1">
+                            Category
+                          </label>
+                          <select
+                            id="tag"
+                            value={newPost.tag}
+                            onChange={(e) => setNewPost({...newPost, tag: e.target.value})}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                          >
+                            <option value="Fertility">Fertility</option>
+                            <option value="IVF">IVF</option>
+                            <option value="Wellness">Wellness</option>
+                            <option value="Men's Health">Men's Health</option>
+                            <option value="Family">Family</option>
+                          </select>
+                        </div>
+                        
+                        {/* Read Time */}
+                        <div>
+                          <label htmlFor="readTime" className="block text-sm font-medium text-gray-700 mb-1">
+                            Read Time
+                          </label>
+                          <div className="relative">
+                            <input
+                              type="text"
+                              id="readTime"
+                              value={newPost.readTime}
+                              onChange={(e) => setNewPost({...newPost, readTime: e.target.value})}
+                              className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="e.g. 5 min read"
+                            />
+                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                              <span className="text-gray-500 text-sm">min</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div>
+                        <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+                          Content <span className="text-red-500">*</span>
+                        </label>
+                        <textarea
+                          id="content"
+                          rows="8"
+                          value={newPost.content}
+                          onChange={(e) => setNewPost({...newPost, content: e.target.value})}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-sans"
+                          placeholder="Write your post content here..."
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="mt-8 flex justify-end space-x-3">
+                      <button
+                        type="button"
+                        onClick={() => setShowNewPostModal(false)}
+                        className="px-6 py-2.5 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                        disabled={isSubmitting}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors flex items-center"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Publishing...
+                          </>
+                        ) : 'Publish Post'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
