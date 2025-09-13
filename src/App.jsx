@@ -15,46 +15,13 @@ import VisitationForm from './pages/VisitationForm';
 import Partners from './pages/Partners';
 import ScrollToTop from './ScrollToTop';
 import Blog from './pages/Blog';
+import TermsAndConditions from './pages/TermsAndConditions';
+
+
 import LoadingSpinner from './components/LoadingSpinner';
 import { Confetti } from './components/magicui/confetti';
 
 function App() {
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [showConfetti, setShowConfetti] = useState(false);
-  // const confettiRef = useRef(null);
-
-  // useEffect(() => {
-  //   // Simulate loading time and hide spinner after 8.5 seconds
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false);
-  //     // Show confetti immediately after loading completes
-  //     setShowConfetti(true);
-      
-  //     // Hide confetti after 5 seconds
-  //     setTimeout(() => {
-  //       setShowConfetti(false);
-  //     }, 5000);
-  //   }, 8500);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // Trigger confetti effect when showConfetti becomes true
-  // useEffect(() => {
-  //   if (showConfetti && confettiRef.current) {
-  //     confettiRef.current.fire({
-  //       particleCount: 150,
-  //       spread: 120,
-  //       startVelocity: 45,
-  //       origin: { x: 0.5, y: 0.5 },
-  //       colors: ['#667eea', '#764ba2', '#6f3348', '#4B1438', '#ffffff', '#ffd700']
-  //     });
-  //   }
-  // }, [showConfetti]);
-
-  // if (isLoading) {
-  //   return <LoadingSpinner />;
-  // }
 
   return (
     <Router>
@@ -85,6 +52,7 @@ function App() {
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/testimonies" element={<Testimonies />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
           <Route path="/partner-form" element={<PartnerForm />} />
