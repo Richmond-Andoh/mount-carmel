@@ -42,62 +42,182 @@ const Marquee3D = () => {
       >
         <Marquee pauseOnHover vertical className="[--duration:20s]">
           {firstRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-100 object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Hospital facility ${i + 1}`}
+              className="h-36 w-100 object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/team-1.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] w-100" vertical>
           {secondRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Medical team ${i + 1}`}
+              className="h-36 object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/about-1.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden md:block w-100">
           {thirdRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Hospital service ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/carousel-1.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden md:block w-100" vertical>
           {fourthRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Medical facility ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/carousel-2.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden lg:block w-100">
           {fifthRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Healthcare service ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/carousel-3.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden lg:block w-100" vertical>
           {sixthRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Medical department ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/feature.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden xl:block w-100">
           {seventhRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Medical gallery ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/about-2.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden xl:block w-100" vertical>
           {eighthRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Hospital gallery ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/about-3.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden 2xl:block w-100">
           {ninethRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Facility gallery ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/about-4.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100" vertical>
           {tenthRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Service gallery ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/team-2.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] w-100 hidden 2xl:block">
           {eleventhRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Department gallery ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/team-3.jpg';
+              }}
+            />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100 -mr-0" vertical>
           {twelfthRow.map((img, i) => (
-            <img key={i} src={img} alt="" className="h-36 w-auto object-cover rounded-lg" />
+            <img 
+              key={i} 
+              src={img} 
+              alt={`Medical center ${i + 1}`}
+              className="h-36 w-auto object-cover rounded-lg" 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/team-4.jpg';
+              }}
+            />
           ))}
         </Marquee>
         {/*

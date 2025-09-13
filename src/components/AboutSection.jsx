@@ -112,8 +112,13 @@ const AboutSection = () => {
                         objectFit: 'cover',
                         transition: 'transform 0.3s ease'
                       }}
+                      loading="lazy"
                       onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
                       onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/images/feature.jpg';
+                      }}
                     />
                     <div className="position-absolute top-0 start-0 w-100 h-100" style={{
                       background: 'linear-gradient(45deg, rgba(111, 51, 72, 0.3), transparent)'

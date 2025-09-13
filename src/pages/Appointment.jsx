@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
+import AppointmentSuccess from './AppointmentSuccess';
 
 
 function Appointment() {
@@ -21,6 +22,7 @@ function Appointment() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const departments = [
     'Fertility Treatment',
@@ -42,9 +44,22 @@ function Appointment() {
     return slots;
   };
 
+  // Populate form with data from preview page when editing
+  useEffect(() => {
+    if (location.state && location.state.patientType) {
+      setFormData(location.state);
+    }
+  }, [location.state]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePreview = (e) => {
+    e.preventDefault();
+    // Navigate to preview page with form data
+    navigate('/appointment-preview', { state: formData });
   };
 
   const handleSubmit = async (e) => {
@@ -68,19 +83,23 @@ function Appointment() {
       payload.append('Residence', formData.residence);
     }
     payload.append('Additional Message', formData.message || 'None');
+
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
         body: payload,
         headers: { Accept: 'application/json' },
       });
+
       if (res.ok) {
+        // Save a fallback flag and pass the submitted data to the success page so it can show confirmation details
         sessionStorage.setItem('appointmentSuccess', 'true');
-        navigate('/appointment-success');
+        navigate('/appointment-success', { state: formData });
       } else {
         setSubmitStatus('error');
       }
-    } catch {
+    } catch (err) {
+      console.error('Appointment submit error:', err);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -258,9 +277,20 @@ function Appointment() {
                     <i className="fa fa-calendar-alt fa-2x text-white"></i>
                   </motion.div>
                   <h3 className="fw-bold" style={{ color: '#6f2248' }}>
-                    Book Your Appointment
+                    {location.state && location.state.patientType ? 'Edit Your Appointment' : 'Book Your Appointment'}
                   </h3>
-                  <p className="text-muted">Fill out the form below to schedule your visit</p>
+                  <p className="text-muted">
+                    {location.state && location.state.patientType 
+                      ? 'Review and modify your appointment details below' 
+                      : 'Fill out the form below to schedule your visit'
+                    }
+                  </p>
+                  {location.state && location.state.patientType && (
+                    <div className="alert alert-info border-0 mb-3" style={{ background: 'linear-gradient(135deg, #d1ecf1, #bee5eb)' }}>
+                      <i className="fa fa-edit me-2"></i>
+                      <strong>Editing Mode:</strong> Your previous data has been loaded. Make any changes needed and submit.
+                    </div>
+                  )}
                 </div>
                 <form onSubmit={handleSubmit} autoComplete="off">
                   <div className="row g-3">
@@ -328,6 +358,7 @@ function Appointment() {
                           name="date"
                           value={formData.date}
                           onChange={handleChange}
+                          min={new Date().toISOString().split('T')[0]}
                           required
                           style={{ height: '58px', borderLeft: '4px solid #6f2248', transition: 'all 0.3s ease' }}
                         />
@@ -393,6 +424,7 @@ function Appointment() {
                               name="dateOfBirth"
                               value={formData.dateOfBirth}
                               onChange={handleChange}
+                              max={new Date().toISOString().split('T')[0]}
                               required
                               style={{ height: '58px', borderLeft: '4px solid #6f2248', transition: 'all 0.3s ease' }}
                             />
@@ -458,35 +490,58 @@ function Appointment() {
                       </motion.div>
                     </div>
                     <div className="col-12">
-                      <motion.button
-                        className="btn w-100 py-3 px-5 rounded-pill shadow-lg fw-bold"
-                        type="submit"
-                        disabled={isSubmitting}
-                        style={{
-                          background: isSubmitting
-                            ? '#ccc'
-                            : 'linear-gradient(135deg, #6f2248, #a85c7a)',
-                          border: 'none',
-                          color: 'white',
-                          fontSize: '18px',
-                          transition: 'all 0.3s ease',
-                        }}
-                        whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(111, 34, 72, 0.3)' } : {}}
-                        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                        transition={{ type: 'spring', stiffness: 300 }}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <i className="fa fa-spinner fa-spin me-2"></i>
-                            Booking Appointment...
-                          </>
-                        ) : (
-                          <>
-                            <i className="fa fa-calendar-check me-2"></i>
-                            Book Appointment
-                          </>
-                        )}
-                      </motion.button>
+                      <div className="d-flex gap-3">
+                        <motion.button
+                          className="btn flex-fill py-3 px-5 rounded-pill shadow-lg fw-bold"
+                          type="button"
+                          onClick={handlePreview}
+                          disabled={isSubmitting}
+                          style={{
+                            background: isSubmitting
+                              ? '#ccc'
+                              : 'linear-gradient(135deg, #6f2248, #a85c7a)',
+                            border: 'none',
+                            color: 'white',
+                            fontSize: '18px',
+                            transition: 'all 0.3s ease',
+                          }}
+                          whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(111, 34, 72, 0.3)' } : {}}
+                          whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                          transition={{ type: 'spring', stiffness: 300 }}
+                        >
+                          <i className="fa fa-eye me-2"></i>
+                          Preview Appointment
+                        </motion.button>
+                        <motion.button
+                          className="btn flex-fill py-3 px-5 rounded-pill shadow-lg fw-bold"
+                          type="submit"
+                          disabled={isSubmitting}
+                          style={{
+                            background: isSubmitting
+                              ? '#ccc'
+                              : 'linear-gradient(135deg, #28a745, #20c997)',
+                            border: 'none',
+                            color: 'white',
+                            fontSize: '18px',
+                            transition: 'all 0.3s ease',
+                          }}
+                          whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(40, 167, 69, 0.3)' } : {}}
+                          whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                          transition={{ type: 'spring', stiffness: 300 }}
+                        >
+                           {isSubmitting ? (
+                             <>
+                               <i className="fa fa-spinner fa-spin me-2"></i>
+                               Submitting Appointment...
+                             </>
+                           ) : (
+                             <>
+                               <i className="fa fa-paper-plane me-2"></i>
+                               Submit
+                             </>
+                           )}
+                        </motion.button>
+                      </div>
                     </div>
                   </div>
                   {submitStatus === 'error' && (

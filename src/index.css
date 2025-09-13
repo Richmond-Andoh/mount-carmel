@@ -29,6 +29,74 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Mobile Image Optimizations */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* Improve image rendering on mobile */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* Prevent layout shift */
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Mobile-specific image loading improvements */
+@media (max-width: 768px) {
+  img {
+    /* Reduce image quality slightly for faster loading on mobile */
+    image-rendering: auto;
+    /* Ensure images don't cause horizontal scroll */
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* Lazy loading fallback for older browsers */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+}
+
+/* Image error handling */
+img[src=""], img:not([src]) {
+  opacity: 0;
+}
+
+/* Prevent broken image icons on mobile */
+img[alt]:not([alt=""]) {
+  min-height: 50px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile carousel image optimizations */
+.carousel-item img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile gallery optimizations */
+.gallery img, .marquee img {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  img {
+    transition: none;
+  }
+}
+
 /* Ensure all components respect viewport width */
 .w-100 {
   max-width: 100%;
