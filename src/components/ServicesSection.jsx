@@ -197,7 +197,7 @@ const ServicesSection = () => {
               }}
               onMouseEnter={(e) => {
                 e.target.style.transform = 'translateY(-10px)';
-                e.target.style.boxShadow = '0 15px 40px rgba(111, 51, 72, 0.2)';
+                e.target.style.boxShadow = '0 15px 40px rgba(250, 248, 248, 0.2)';
                 e.target.style.borderColor = service.color;
               }}
               onMouseLeave={(e) => {

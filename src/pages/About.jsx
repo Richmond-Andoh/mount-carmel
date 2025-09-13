@@ -69,8 +69,8 @@ const About = () => {
               <div className="col-lg-6 wow fadeInRight" data-wow-delay="0.5s">
                 <div className="h-100 p-4 rounded-2xl bg-white shadow-sm">
                   <h6 className="section-title bg-white text-start text-mount-carmel-primary pe-3">About Us</h6>
-                  <h1 className="display-6 mb-4 fw-bold">ABOUT MOUNT CARMEL HOSPITAL AND FERTILITY CENTER (MCHFC)</h1>
-                  <p className="lead">Mount Carmel Hospital and Fertility Center is a Private Health Care organization located at community 25, ashfoam junction Tema. The center stands at all times for Quality Health Services that you will find most cost efficient. We are set to provide total services that go to ensure the quality of health that fosters Productivity and growth.</p>
+                  <h1 className="display-6 mb-4 fw-bold">ABOUT MOUNT CARMEL HOSPITAL AND FERTILITY CENTRE (MCHFC)</h1>
+                  <p className="lead">Mount Carmel Hospital and Fertility Centre is a Private Health Care organization located at community 25, ashfoam junction Tema. The center stands at all times for Quality Health Services that you will find most cost efficient. We are set to provide total services that go to ensure the quality of health that fosters Productivity and growth.</p>
                   <a className="btn brand-btn py-3 px-5 rounded-pill shadow" href="/services">Explore More</a>
                 </div>
               </div>
@@ -82,7 +82,7 @@ const About = () => {
         <section className="jumbotron-section py-5 text-white bg-gradient-to-r from-mount-carmel-primary to-accent">
           <div className="container text-center">
             <h1 className="display-4 fw-bold mb-3 wow fadeInDown" data-wow-delay="0.1s">Experience Excellence in Healthcare</h1>
-            <p className="lead mb-4 wow fadeInUp" data-wow-delay="0.2s">At Mount Carmel Hospital & Fertility Center, we combine compassion, innovation, and expertise to deliver world-class medical services for you and your family.</p>
+            <p className="lead mb-4 wow fadeInUp" data-wow-delay="0.2s">At Mount Carmel Hospital & Fertility Centre, we combine compassion, innovation, and expertise to deliver world-class medical services for you and your family.</p>
             <a href="/appointment" className="btn btn-light btn-lg px-5 py-3 rounded-pill shadow wow fadeInUp text-mount-carmel-primary font-bold" data-wow-delay="0.3s">Book an Appointment</a>
           </div>
         </section>

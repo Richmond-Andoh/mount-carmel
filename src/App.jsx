@@ -15,46 +15,19 @@ import VisitationForm from './pages/VisitationForm';
 import Partners from './pages/Partners';
 import ScrollToTop from './ScrollToTop';
 import Blog from './pages/Blog';
+import TermsAndConditions from './pages/TermsAndConditions';
+import Support from './pages/Support';
+import Emergency from './pages/Emergency';
+import Maternity from './pages/Maternity';
+import Fertility from './pages/Fertility';
+import Laboratory from './pages/Laboratory';
+import AppointmentPreview from './pages/AppointmentPreview';
+
+
 import LoadingSpinner from './components/LoadingSpinner';
 import { Confetti } from './components/magicui/confetti';
 
 function App() {
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [showConfetti, setShowConfetti] = useState(false);
-  // const confettiRef = useRef(null);
-
-  // useEffect(() => {
-  //   // Simulate loading time and hide spinner after 8.5 seconds
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false);
-  //     // Show confetti immediately after loading completes
-  //     setShowConfetti(true);
-      
-  //     // Hide confetti after 5 seconds
-  //     setTimeout(() => {
-  //       setShowConfetti(false);
-  //     }, 5000);
-  //   }, 8500);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // Trigger confetti effect when showConfetti becomes true
-  // useEffect(() => {
-  //   if (showConfetti && confettiRef.current) {
-  //     confettiRef.current.fire({
-  //       particleCount: 150,
-  //       spread: 120,
-  //       startVelocity: 45,
-  //       origin: { x: 0.5, y: 0.5 },
-  //       colors: ['#667eea', '#764ba2', '#6f3348', '#4B1438', '#ffffff', '#ffd700']
-  //     });
-  //   }
-  // }, [showConfetti]);
-
-  // if (isLoading) {
-  //   return <LoadingSpinner />;
-  // }
 
   return (
     <Router>
@@ -86,8 +59,15 @@ function App() {
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/testimonies" element={<Navigate to="/testimonials" replace />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/emergency" element={<Emergency />} />
+          <Route path="/maternity" element={<Maternity />} />
+          <Route path="/fertility" element={<Fertility />} />
+          <Route path="/laboratory" element={<Laboratory />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
+          <Route path="/appointment-preview" element={<AppointmentPreview />} />
           <Route path="/partner-form" element={<PartnerForm />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/visitation-form" element={<VisitationForm />} />

@@ -100,11 +100,11 @@ const Header = () => {
                 <i className="fa fa-map-marker-alt mr-2"></i>
                 Ashfoam Junction, Tema Com.25, Accra, Ghana
               </small>
-              <small className="flex items-center">
+            </div>
+            <small className="flex items-center">
                 <i className="fa fa-clock mr-2"></i>
                 Working everyday, 24/7
               </small>
-            </div>
             <nav className="flex items-center space-x-4">
               <a
                 className="text-mount-carmel-light hover:text-white transition-colors"
@@ -114,23 +114,23 @@ const Header = () => {
               </a>
               <a
                 className="text-mount-carmel-light hover:text-white transition-colors"
-                href="#"
+                href="/support"
               >
                 Support
               </a>
               <a
                 className="text-mount-carmel-light hover:text-white transition-colors"
-                href="#"
+                href="/terms"
               >
                 Terms
               </a>
               <AnimatedThemeToggler />
-              {/* <a
+              <a
                 className="text-mount-carmel-light hover:text-white transition-colors"
-                href="#"
+                href="/faq"
               >
                 FAQs
-              </a> */}
+              </a>
             </nav>
           </div>
         </div>
@@ -224,18 +224,19 @@ const Header = () => {
                 style={{ height: "80px", width: "80px" }}
               />
               {showLogoText && (
-                <div>
+                <div
+                className="rounded-full mr-7">
                   <span className="text-black font-bold">Mount </span>
                   <span className="text-black font-bold">Carmel</span>
                   <div className="text-sm text-black font-medium">
-                    Hospital & Fertility Center
+                    Hospital & Fertility Centre
                   </div>
                 </div>
               )}
             </Link>
 
             {/* Desktop Navigation - centered, takes remaining space */}
-            <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
+            <div className="hidden lg:flex items-center space-x-5 flex-1 justify-center">
               {navLinks.map((link, index) => (
                 <div key={link.path} className="relative group">
                   {link.dropdown ? (

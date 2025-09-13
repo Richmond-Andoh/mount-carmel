@@ -22,7 +22,7 @@ const Facilities = () => {
 
   const departments = [
     {
-      name: "Fertility Center",
+      name: "Fertility Centre",
       image: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=600&q=80",
       description: "State-of-the-art fertility treatment center with advanced reproductive technology.",
       features: [
@@ -97,9 +97,9 @@ const Facilities = () => {
     { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", caption: "Main Building" },
     { src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd2e?auto=format&fit=crop&w=600&q=80", caption: "Reception Area" },
     { src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80", caption: "Patient Room" },
-    { src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80", caption: "Diagnostic Center" },
+    { src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80", caption: "Diagnostic Centre" },
     { src: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=600&q=80", caption: "Emergency Department" },
-    { src: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=600&q=80", caption: "Fertility Center" },
+    { src: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=600&q=80", caption: "Fertility Centre" },
     { src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80", caption: "Patient Facilities" },
     { src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", caption: "Surgical Theater" }
   ];
@@ -481,7 +481,7 @@ const Facilities = () => {
           >
             <div className="parallax-content text-center">
               <motion.h2 initial={{y:20,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.1}}>Fertility Care Spotlight</motion.h2>
-              <motion.p className="lead" initial={{y:20,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}}>Our fertility center blends compassionate care with advanced reproductive technology to guide you on your family-building journey.</motion.p>
+              <motion.p className="lead" initial={{y:20,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}}>Our fertility centre blends compassionate care with advanced reproductive technology to guide you on your family-building journey.</motion.p>
 
               <div className="row mt-4">
                 <div className="col-md-4">

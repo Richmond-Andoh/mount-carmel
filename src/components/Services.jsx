@@ -27,7 +27,7 @@ const Services = () => {
 
   const services = [
     {
-      title: "Fertility Center",
+      title: "Fertility Centre",
       shortDesc: "Advanced reproductive care",
       description: "State-of-the-art fertility treatments with cutting-edge technology and personalized care plans.",
       image: "/images/services/fertility.jpg",

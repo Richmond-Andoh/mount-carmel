@@ -40,7 +40,7 @@ const Navbar = () => {
             </div>
             <div>
               <h3 className="text-lg xs:text-xl font-bold text-[#6f2248] mb-1.5 leading-tight">
-                Mount Carmel Hospital And Fertility Center
+                Mount Carmel Hospital And Fertility Centre
               </h3>
               {/* Contact info only on sm+ */}
               <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-6 text-sm text-gray-600">
