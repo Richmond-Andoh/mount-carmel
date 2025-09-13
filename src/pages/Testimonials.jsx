@@ -7,39 +7,15 @@ import { db } from '../lib/firebase';
 import { collection, addDoc, getDocs, query, orderBy } from 'firebase/firestore';
 
 export default function Testimonials() {
-  const [showModal, setShowModal] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    rating: 0,
-    title: '',
-    message: '',
-    profession: '',
-    consent: false
-  });
-  const [hoverRating, setHoverRating] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [testimonials, setTestimonials] = useState([]);
-
-  useEffect(() => {
-    // Fetch testimonials from Firestore
-    const fetchTestimonials = async () => {
-      const q = query(collection(db, 'testimonies'), orderBy('date', 'desc'));
-      const snapshot = await getDocs(q);
-      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setTestimonials(data);
-    };
-    fetchTestimonials();
-  }, [submitSuccess]);
-
-  // Demo testimonials data
+  const [hoverRating, setHoverRating] = useState(0);
+  // Demo testimonials for fallback
   const demoTestimonials = [
     {
       id: 1,
-      name: "Sarah and Michael Osei",
-      profession: "Fertility Treatment Success",
+      name: "Akosua Mensah",
+      profession: "Fertility Patient",
       image: "/images/testimonial-1.jpg",
       text: "After years of trying to conceive, Mount Carmel Hospital gave us hope. The fertility treatment was successful and we now have beautiful twins. The doctors and staff were incredibly supportive throughout our journey.",
       rating: 5,
@@ -91,6 +67,34 @@ export default function Testimonials() {
       date: "2023-11-08"
     }
   ];
+  const [showModal, setShowModal] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    rating: 0,
+    title: '',
+    message: '',
+    profession: '',
+    consent: false
+  });
+  // Testimonials state
+  const [testimonials, setTestimonials] = useState([]);
+
+  // Fetch testimonials from Firestore on mount
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const q = query(collection(db, 'testimonies'), orderBy('date', 'desc'));
+        const snapshot = await getDocs(q);
+        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setTestimonials(data);
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+      }
+    };
+    fetchTestimonials();
+  }, []);
 
   // Use database testimonials if available, else demo data
   const filteredTestimonials = testimonials.length > 0 ? testimonials : demoTestimonials;
@@ -118,7 +122,7 @@ export default function Testimonials() {
     }
     setIsSubmitting(true);
     try {
-      await addDoc(collection(db, 'testimonies'), {
+      const newTestimony = {
         name: formData.name,
         email: formData.email,
         rating: formData.rating,
@@ -126,7 +130,10 @@ export default function Testimonials() {
         message: formData.message,
         profession: formData.profession,
         date: new Date().toISOString(),
-      });
+      };
+      const docRef = await addDoc(collection(db, 'testimonies'), newTestimony);
+      // Add new testimony to state for instant display
+      setTestimonials(prev => [{ id: docRef.id, ...newTestimony }, ...prev]);
       setSubmitSuccess(true);
       setFormData({
         name: '',
@@ -226,15 +233,17 @@ export default function Testimonials() {
 
       {/* Testimonial Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[9999] overflow-y-auto flex items-center justify-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div className="absolute inset-0 bg-black/60" onClick={() => setShowModal(false)}></div>
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 z-[10000]">
-            {/* Modal Header */}
-            <div className="flex justify-between items-center mb-4">
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-4 sm:p-8 z-[10000] mx-2 my-4 max-h-screen overflow-y-auto">
+            {/* Modal Header - sticky close button for mobile usability */}
+            <div className="flex justify-between items-center mb-4 sticky top-0 bg-white z-10 py-2">
               <h3 className="text-2xl font-bold text-gray-900">Share Your Experience</h3>
               <button
                 onClick={() => setShowModal(false)}
                 className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                style={{ position: 'sticky', top: 0, right: 0 }}
+                aria-label="Close modal"
               >
                 <X className="h-6 w-6" />
               </button>
