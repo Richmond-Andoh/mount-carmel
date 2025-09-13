@@ -69,7 +69,7 @@ const WhyChooseUs = () => {
             Why Choose Mount Carmel Hospital?
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            As a leading fertility center in the region, we combine advanced medical expertise with compassionate care 
+            As a leading fertility centre in the region, we combine advanced medical expertise with compassionate care 
             to provide you with the best possible treatment experience and outcomes.
           </p>
         </div>

@@ -227,7 +227,7 @@ function Appointment() {
                     <i className="fa fa-clock fa-2x me-3"></i>
                     <div>
                       <h5 className="mb-0 text-white">Business Hours</h5>
-                      <p className="mb-0 text-light">Mon-Sat: 8:00 AM - 6:00 PM | Sun: 9:00 AM - 3:00 PM</p>
+                      <p className="mb-0 text-light">24/7</p>
                     </div>
                   </div>
                   <div className="d-flex align-items-center">

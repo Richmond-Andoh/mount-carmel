@@ -12,10 +12,10 @@ const Footer = () => {
   ];
 
   const popularLinks = [
-    { name: 'Fertility Treatment', path: '/services/fertility' },
-    { name: 'Maternity Care', path: '/services/maternity' },
-    { name: 'Emergency Care', path: '/services/emergency' },
-    { name: 'Laboratory Services', path: '/services/laboratory' },
+    { name: 'Fertility Treatment', path: '/fertility' },
+    { name: 'Maternity Care', path: '/maternity' },
+    { name: 'Emergency Care', path: '/emergency' },
+    { name: 'Laboratory Services', path: '/laboratory' },
     { name: 'Book Appointment', path: '/appointment' }
   ];
 
@@ -40,7 +40,7 @@ const Footer = () => {
                 </div>
               </Link>
               <p className="fs-5 mb-4" style={{color: '#F8FBFF'}}>
-                Mount Carmel Hospital and Fertility Center is committed to providing exceptional healthcare 
+                Mount Carmel Hospital and Fertility Centre is committed to providing exceptional healthcare 
                 with compassion and excellence. Our state-of-the-art facilities and expert medical team 
                 ensure the highest quality care for our patients.
               </p>

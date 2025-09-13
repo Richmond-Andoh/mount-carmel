@@ -9,7 +9,7 @@ const Hero = () => {
     {
       id: 1,
       image: "/images/carousel-1.jpg",
-      title: "Award Winning Hospital & Fertility Center",
+      title: "Award Winning Hospital & Fertility Centre",
       subtitle: "Excellence in Healthcare",
       description: "Providing exceptional healthcare with compassion and excellence. Advanced fertility treatments and comprehensive medical care in a state-of-the-art facility.",
       buttonText: "Explore More",

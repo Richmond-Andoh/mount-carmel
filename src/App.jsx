@@ -16,6 +16,7 @@ import Partners from './pages/Partners';
 import ScrollToTop from './ScrollToTop';
 import Blog from './pages/Blog';
 import TermsAndConditions from './pages/TermsAndConditions';
+import Support from './pages/Support';
 
 
 import LoadingSpinner from './components/LoadingSpinner';
@@ -55,6 +56,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/appointment-success" element={<AppointmentSuccess />} />
           <Route path="/partner-form" element={<PartnerForm />} />
           <Route path="/facilities" element={<Facilities />} />

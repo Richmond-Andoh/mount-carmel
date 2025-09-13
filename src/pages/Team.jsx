@@ -227,7 +227,7 @@ const Team = () => {
                 <h1 className="display-6 mb-4">Dr. Philip Anning-Kuffour</h1>
                 <h4 className="mb-4" style={{color:'#6f3348'}}>Chief Medical Officer & Fertility Specialist</h4>
                 <p>Dr. Sarah Johnson is a distinguished fertility specialist with over 15 years of experience in reproductive medicine. He has helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.</p>
-                <p>As our Chief Medical Officer, Dr. Johnson leads our medical team with a vision of excellence and innovation in healthcare delivery. Her expertise in IVF, IUI, and reproductive surgery has made Mount Carmel Hospital a leading fertility center in Ghana.</p>
+                <p>As our Chief Medical Officer, Dr. Johnson leads our medical team with a vision of excellence and innovation in healthcare delivery. Her expertise in IVF, IUI, and reproductive surgery has made Mount Carmel Hospital a leading fertility centre in Ghana.</p>
                 <div className="row g-4 mb-4">
                   <div className="col-sm-6">
                     <div className="d-flex align-items-center">

@@ -86,7 +86,7 @@ const AboutSection = () => {
               Trusted Healthcare Experts and Latest Medical Technologies
             </h1>
             <p className="lead text-muted">
-              Mount Carmel Hospital and Fertility Center has been at the forefront of medical excellence for over 15 years. 
+              Mount Carmel Hospital and Fertility Centre has been at the forefront of medical excellence for over 15 years. 
               Our commitment to providing exceptional healthcare services is reflected in our state-of-the-art facilities, 
               expert medical staff, and patient-centered approach to care.
             </p>
