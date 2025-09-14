@@ -105,7 +105,7 @@ const AboutSection = () => {
                   }}>
                     <img 
                       className="img-fluid w-100" 
-                      src="/images/about-1.jpg" 
+                      src="/images/about1.jpg" 
                       alt="Hospital Building"
                       style={{
                         height: '250px',
@@ -132,7 +132,7 @@ const AboutSection = () => {
                   }}>
                     <img 
                       className="img-fluid w-100" 
-                      src="/images/about-2.jpg" 
+                      src="/images/about2.jpg" 
                       alt="Medical Equipment"
                       style={{
                         height: '250px',
@@ -154,7 +154,7 @@ const AboutSection = () => {
                   }}>
                     <img 
                       className="img-fluid w-100" 
-                      src="/images/about-3.jpg" 
+                      src="/images/about3.jpg" 
                       alt="Medical Staff"
                       style={{
                         height: '250px',

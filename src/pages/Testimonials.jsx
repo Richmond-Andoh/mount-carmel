@@ -10,6 +10,7 @@ export default function Testimonials() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [hoverRating, setHoverRating] = useState(0);
+  const [ratingFilter, setRatingFilter] = useState(0);
   // Demo testimonials for fallback
   const demoTestimonials = [
     {
@@ -96,8 +97,9 @@ export default function Testimonials() {
     fetchTestimonials();
   }, []);
 
-  // Use database testimonials if available, else demo data
-  const filteredTestimonials = testimonials.length > 0 ? testimonials : demoTestimonials;
+  // Filter testimonials by rating and use database or demo data
+  const filteredTestimonials = (testimonials.length > 0 ? testimonials : demoTestimonials)
+    .filter(testimonial => ratingFilter === 0 || Math.floor(testimonial.rating) === ratingFilter);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -170,28 +172,58 @@ export default function Testimonials() {
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const hasHalfStar = rating % 1 >= 0.5;
 
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
-        stars.push(<Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />);
+        stars.push(
+          <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        );
       } else if (i === fullStars + 1 && hasHalfStar) {
-        stars.push(<StarHalf key={i} className="w-5 h-5 text-yellow-400 fill-current" />);
+        stars.push(
+          <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+            <defs>
+              <linearGradient id="half-star" x1="0" x2="100%" y1="0" y2="0">
+                <stop offset="50%" stopColor="currentColor" />
+                <stop offset="50%" stopColor="#E5E7EB" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#half-star)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        );
       } else {
-        stars.push(<Star key={i} className="w-5 h-5 text-gray-300 fill-current" />);
+        stars.push(
+          <svg key={i} className="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        );
       }
     }
-    return stars;
+    return (
+      <div className="flex space-x-0.5">
+        {stars}
+      </div>
+    );
+  };
+
+  // Scroll to testimonials section
+  const scrollToTestimonials = () => {
+    document.getElementById('testimonials-grid').scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 md:py-24">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-700/90 to-primary-900/90 backdrop-blur-sm"></div>
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-20 md:py-32 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/hero3.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -223,6 +255,12 @@ export default function Testimonials() {
               >
                 <Plus className="w-5 h-5 mr-2 text-white" />
                 Share Your Experience
+              </button>
+              <button
+                onClick={scrollToTestimonials}
+                className="mt-4 ml-4 inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-full text-mount-carmel-primary bg-white hover:bg-gray-100 transition-colors duration-200 shadow-md"
+              >
+                View All Testimonials
               </button>
             </motion.div>
           </div>
@@ -392,10 +430,10 @@ export default function Testimonials() {
         </div>
       )}
       
-      {/* Testimonial Carousel */}
-      <div className="py-12 bg-gray-50">
+      {/* Featured Testimonial Carousel */}
+      <div className="py-12 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-10">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-10 transform transition-all hover:shadow-2xl">
             {filteredTestimonials.length > 0 ? (
               <>
                 <div className="flex items-center justify-center mb-6">
@@ -459,80 +497,174 @@ export default function Testimonials() {
         
  
 
-      {/* Main Content Wrapper */}
-      <div className="flex-1">
-        {/* All Testimonials Grid */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="inline-block px-3 py-1 text-sm font-semibold text-primary-700 bg-primary-100 rounded-full mb-4">
-                Testimonials
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
-                What Our Patients Say
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Read heartfelt stories from our patients about their experiences at Mount Carmel Hospital
-              </p>
+      {/* Testimonials Grid */}
+      <section id="testimonials-grid" className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/5 to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(#6f3348_0.5px,transparent_0.5px)] [background-size:16px_16px] opacity-5"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-mount-carmel-primary uppercase rounded-full bg-mount-carmel-primary/10">
+              Patient Stories
             </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+              What Our <span className="text-mount-carmel-primary">Patients Say</span>
+            </h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Real stories from our patients about their experiences at Mount Carmel Hospital.
+            </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredTestimonials.map((testimonial) => (
-                <motion.div 
-                  key={testimonial.id}
-                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300"
-                  whileHover={{ y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
+            {/* Rating Filter */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              <button
+                onClick={() => setRatingFilter(0)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  ratingFilter === 0 
+                    ? 'bg-mount-carmel-primary text-white' 
+                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                All Ratings
+              </button>
+              {[5, 4, 3, 2, 1].map((rating) => (
+                <button
+                  key={rating}
+                  onClick={() => setRatingFilter(ratingFilter === rating ? 0 : rating)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center ${
+                    ratingFilter === rating 
+                      ? 'bg-mount-carmel-primary/10 text-mount-carmel-primary border border-mount-carmel-primary/20' 
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  }`}
                 >
-                  <div className="p-6">
-                    <div className="flex items-center mb-4">
-                      {renderStars(testimonial.rating)}
-                    </div>
-                    
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                      {testimonial.title || 'Amazing Experience'}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-6 line-clamp-4">
-                      "{testimonial.text}"
-                    </p>
-                    
+                  {renderStars(rating)}
+                  <span className="ml-1">{rating}+</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredTestimonials.length === 0 ? (
+              <div className="col-span-3 text-center py-12">
+                <div className="bg-white p-8 rounded-2xl shadow-lg">
+                  <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <h3 className="mt-4 text-lg font-medium text-gray-900">No testimonials found</h3>
+                  <p className="mt-2 text-gray-500">
+                    {ratingFilter > 0 
+                      ? `No testimonials with ${ratingFilter} star rating. Try a different filter.`
+                      : 'No testimonials available yet.'}
+                  </p>
+                  {ratingFilter > 0 && (
+                    <button
+                      onClick={() => setRatingFilter(0)}
+                      className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-mount-carmel-primary bg-mount-carmel-primary/10 hover:bg-mount-carmel-primary/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mount-carmel-primary"
+                    >
+                      Clear filters
+                    </button>
+                  )}
+                </div>
+              </div>
+            ) : (
+              filteredTestimonials.map((testimonial, index) => (
+              <motion.div 
+                key={testimonial.id || index}
+                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col h-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="relative h-48 bg-gray-100 overflow-hidden">
+                  <img 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    src={testimonial.image || '/images/avatar-placeholder.png'}
+                    alt={testimonial.name}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 w-full">
                     <div className="flex items-center">
-                      <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden mr-4">
+                      <div className="flex-shrink-0 -mb-6">
                         <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name}
-                          className="h-full w-full object-cover"
+                          className="h-14 w-14 rounded-full border-2 border-white object-cover" 
+                          src={testimonial.image || '/images/avatar-placeholder.png'} 
+                          alt={testimonial.name} 
                         />
                       </div>
-                      <div>
-                        <p className="font-medium text-gray-900">{testimonial.name}</p>
-                        <p className="text-sm text-gray-500">{testimonial.profession}</p>
+                      <div className="ml-4 text-left">
+                        <h3 className="text-lg font-semibold text-white">{testimonial.name}</h3>
+                        <p className="text-sm text-white/90">{testimonial.profession}</p>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className="mt-12 text-center">
-              <button
-                onClick={() => setShowModal(true)}
-                className="group inline-flex items-center bg-mount-carmel-primary justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-full hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                <Plus className="w-5 h-5 mr-2 text-white transition-transform duration-300 group-hover:rotate-90" />
-                Share Your Story
-              </button>
-            </div>
+                </div>
+                
+                <div className="p-6 flex-grow flex flex-col">
+                  <div className="mb-4">
+                    <div className="flex items-center">
+                      {renderStars(testimonial.rating)}
+                      <span className="ml-2 text-sm text-gray-500">
+                        {testimonial.rating.toFixed(1)}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">
+                    {testimonial.title || 'Amazing Experience'}
+                  </h4>
+                  
+                  <p className="text-gray-600 mb-6 line-clamp-4 flex-grow">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  <div className="mt-auto pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-500">
+                        {new Date(testimonial.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </span>
+                      <div className="flex space-x-2">
+                        <button className="p-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 1l-6 4-6-4v16l6 4 6-4v-16zm-1.5 2.5l-4.5 3v9l4.5-3v-9zm-9 0v9l-4.5 3v-9l4.5-3z" />
+                          </svg>
+                        </button>
+                        <button className="p-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.59l3.54 7.27 7.91 1.15-5.73 5.59 1.35 7.88-7.07-3.72-7.07 3.72 1.35-7.88-5.73-5.59 7.91-1.15 3.54-7.27zm0 2.36l-2.74 5.64-6.13.89 4.44 4.33-1.05 6.12 5.48-2.88 5.48 2.88-1.05-6.12 4.44-4.33-6.13-.89-2.74-5.64z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))
+            )}
           </div>
-        </section>
-      </div>
-    
-
-    <Footer />
-
-   
-  </div>
-)}
+          
+          <div className="mt-16 text-center">
+            <motion.button 
+              onClick={() => setShowModal(true)}
+              className="group inline-flex items-center px-8 py-4 bg-mount-carmel-primary text-white font-semibold rounded-full hover:bg-mount-carmel-primary-dark transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Plus className="w-5 h-5 mr-2 transition-transform group-hover:rotate-90" />
+              Share Your Experience
+            </motion.button>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+    </div>
+  );
+}

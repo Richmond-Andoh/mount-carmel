@@ -1,66 +1,96 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, ChevronDown, ChevronUp, Phone, Mail } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [query, setQuery] = useState('');
-
-  useEffect(() => {
-    // Initialize WOW.js for animations
-    if (window.WOW) {
-      new window.WOW().init();
-    }
-  }, []);
+  const [activeCategory, setActiveCategory] = useState('all');
+  
+  // Categories for filtering
+  const categories = [
+    { id: 'all', name: 'All Questions' },
+    { id: 'general', name: 'General' },
+    { id: 'appointments', name: 'Appointments' },
+    { id: 'services', name: 'Services' },
+    { id: 'emergency', name: 'Emergency' },
+    { id: 'insurance', name: 'Insurance' }
+  ];
 
   const faqs = [
     {
       question: "What are your opening hours?",
-      answer: "We operate 24 hours a day, 7 days a week to ensure patients have access to care and emergency services anytime."
+      answer: "We operate 24 hours a day, 7 days a week to ensure patients have access to care and emergency services anytime.",
+      category: 'general',
+      featured: true
     },
     {
       question: "Are all services available 24/7?",
-      answer: "Most of our services are available around the clock. However: Laboratory services close at 9:00 pm daily. X-ray services close at 5:00 pm daily."
+      answer: "Most of our services are available around the clock. However: Laboratory services close at 9:00 pm daily. X-ray services close at 5:00 pm daily.",
+      category: 'services',
+      featured: false
     },
     {
       question: "Do you provide emergency services?",
-      answer: "Yes. We provide 24-hour emergency care, with doctors and nurses always available to handle urgent medical needs."
+      answer: "Yes. We provide 24-hour emergency care, with doctors and nurses always available to handle urgent medical needs.",
+      category: 'emergency',
+      featured: true
     },
     {
       question: "Do you provide pediatric services?",
-      answer: "Yes, we have pediatric care services to look after the health of children and newborns."
+      answer: "Yes, we have pediatric care services to look after the health of children and newborns.",
+      category: 'services',
+      featured: false
     },
     {
       question: "Is medical staff available at night?",
-      answer: "Absolutely. Our team of doctors, nurses, and support staff are available 24/7."
+      answer: "Absolutely. Our team of doctors, nurses, and support staff are available 24/7.",
+      category: 'emergency',
+      featured: false
     },
     {
       question: "Do you provide fertility and IVF services?",
-      answer: "Yes. We offer advanced reproductive treatments, including In Vitro Fertilization (IVF), to support couples on their journey to parenthood."
+      answer: "Yes. We offer advanced reproductive treatments, including In Vitro Fertilization (IVF), to support couples on their journey to parenthood.",
+      category: 'services',
+      featured: true
     },
     {
       question: "Do you offer counseling for couples undergoing fertility treatments?",
-      answer: "Yes. We provide professional counseling and emotional support to individuals and couples throughout their fertility journey."
+      answer: "Yes. We provide professional counseling and emotional support to individuals and couples throughout their fertility journey.",
+      category: 'services',
+      featured: false
     },
     {
-      question: "Do you also provide maternity and women’s health services?",
-      answer: "Yes, we offer comprehensive maternity and gynecology services alongside our fertility and IVF care."
+      question: "Do you also provide maternity and women's health services?",
+      answer: "Yes, we offer comprehensive maternity and gynecology services alongside our fertility and IVF care.",
+      category: 'services',
+      featured: false
     },
     {
       question: "How can I book an appointment?",
-      answer: "You can book an appointment by calling our hospital’s front desk, visiting us in person, or using our online appointment system (if available)."
+      answer: "You can book an appointment by calling our hospital's front desk, visiting us in person, or using our online appointment system (if available).",
+      category: 'appointments',
+      featured: true
     },
     {
       question: "Can I walk in without an appointment?",
-      answer: "Yes. Walk-ins are always welcome, especially in emergencies. However, for specialized services such as IVF consultations, we recommend booking ahead."
+      answer: "Yes. Walk-ins are always welcome, especially in emergencies. However, for specialized services such as IVF consultations, we recommend booking ahead.",
+      category: 'appointments',
+      featured: false
     },
     {
       question: "Do you accept health insurance?",
-      answer: "Yes. We accept the majority of private health insurance policies. If you’re unsure about your provider, please check with our front desk team."
+      answer: "Yes. We accept the majority of private health insurance policies. If you're unsure about your provider, please check with our front desk team.",
+      category: 'insurance',
+      featured: true
     },
     {
       question: "What documents should I bring for insurance claims?",
-      answer: "You will need: your insurance card, a valid photo ID, and any referral forms required by your insurer."
+      answer: "You will need: your insurance card, a valid photo ID, and any referral forms required by your insurer.",
+      category: 'insurance',
+      featured: false
     }
   ];
 
@@ -68,328 +98,259 @@ const FAQ = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const normalizedQuery = query.trim().toLowerCase();
-  const filteredFaqs = normalizedQuery
-    ? faqs.filter((item) =>
-        item.question.toLowerCase().includes(normalizedQuery) ||
-        item.answer.toLowerCase().includes(normalizedQuery)
-      )
-    : faqs;
+  // Filter FAQs based on search query and active category
+  const filteredFaqs = faqs.filter(faq => {
+    const matchesSearch = faq.question.toLowerCase().includes(query.toLowerCase()) || 
+                         faq.answer.toLowerCase().includes(query.toLowerCase());
+    const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  // Get featured FAQs for the hero section
+  const featuredFaqs = faqs.filter(faq => faq.featured);
+  
+  // Focus search input when clicking search icon
+  const focusSearch = () => {
+    const searchInput = document.getElementById('faq-search');
+    if (searchInput) searchInput.focus();
+  };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       
-      {/* Parallax Page Header with Overlay and Background Image (brand) */}
-      <div className="w-100" style={{
-        marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
-        backgroundAttachment: 'fixed',
-        position: 'relative',
-        overflow: 'hidden',
-        height: '400px',
-        margin: 0
-      }}>
-        <div className="container py-5 justify-center align-center my-auto">
-          <h1 className="display-3 text-white pt-6 animated slideInDown" style={{textShadow: '0 2px 16px #000'}}>Frequently Asked Questions</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
-            {/* <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-              <li className="breadcrumb-item text-white active" aria-current="page">FAQ</li>
-            </ol> */}
-          </nav>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-16 md:py-24 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/hero3.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-      </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Frequently Asked Questions
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Find answers to common questions about our services and facilities
+            </motion.p>
+            
+            {/* Search Bar */}
+            <motion.div 
+              className="max-w-2xl mx-auto relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="relative">
+                <input
+                  id="faq-search"
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="w-full px-6 py-4 pl-14 pr-12 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-mount-carmel-primary/50 shadow-lg"
+                  placeholder="Search for questions or keywords..."
+                />
+                <div 
+                  className="absolute left-5 top-1/2 transform -translate-y-1/2 text-mount-carmel-primary cursor-pointer"
+                  onClick={focusSearch}
+                >
+                  <Search className="w-5 h-5" />
+                </div>
+                {query && (
+                  <button 
+                    onClick={() => setQuery('')}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Featured Questions */}
+          {featuredFaqs.length > 0 && (
+            <motion.div 
+              className="mt-16 max-w-5xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="text-xl font-semibold text-white/90 mb-6 text-center">Popular Questions</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {featuredFaqs.slice(0, 3).map((faq, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      const faqIndex = faqs.findIndex(f => f.question === faq.question);
+                      setActiveIndex(activeIndex === faqIndex ? null : faqIndex);
+                      document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl p-5 text-left transition-all duration-300 border border-white/10 hover:border-white/20"
+                  >
+                    <h4 className="font-medium text-white/90 mb-2">{faq.question}</h4>
+                    <p className="text-white/70 text-sm line-clamp-2">{faq.answer}</p>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </section>
 
-      {/* Brand Marquee Section */}
-      <section className="container-fluid py-5" style={{
-        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
-        color: '#fff',
-        margin: 0,
-        padding: 0
-      }}>
-        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted Answers</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Clear Guidance</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>24/7 Emergency</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient Support</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            {/* duplicate for seamless loop */}
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted Answers</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Clear Guidance</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>24/7 Emergency</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient Support</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
+      {/* FAQ Section */}
+      <section id="faq-section" className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            {/* Category Filters */}
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeCategory === category.id
+                      ? 'bg-mount-carmel-primary text-white shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+            {/* FAQ List */}
+            <div className="space-y-4">
+              {filteredFaqs.length > 0 ? (
+                <AnimatePresence>
+                  {filteredFaqs.map((faq, index) => {
+                    const faqIndex = faqs.findIndex(f => f.question === faq.question);
+                    const isActive = activeIndex === faqIndex;
+                    
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+                      >
+                        <button
+                          className="w-full px-6 py-5 text-left focus:outline-none flex justify-between items-center"
+                          onClick={() => toggleFAQ(faqIndex)}
+                          aria-expanded={isActive}
+                          aria-controls={`faq-content-${index}`}
+                        >
+                          <h3 className="text-lg font-medium text-gray-900">{faq.question}</h3>
+                          {isActive ? (
+                            <ChevronUp className="w-5 h-5 text-mount-carmel-primary" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-gray-400" />
+                          )}
+                        </button>
+                        <AnimatePresence>
+                          {isActive && (
+                            <motion.div
+                              id={`faq-content-${index}`}
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-6 pb-6 pt-2 text-gray-600">
+                                <p>{faq.answer}</p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 mb-4">
+                    <svg
+                      className="w-16 h-16 mx-auto"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No results found</h3>
+                  <p className="text-gray-500">
+                    We couldn't find any questions matching "{query}". Try a different search term or category.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setQuery('');
+                      setActiveCategory('all');
+                    }}
+                    className="mt-4 text-mount-carmel-primary hover:text-mount-carmel-secondary font-medium"
+                  >
+                    Clear all filters
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Introduction */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>FAQ</h6>
-            <h1 className="display-6 mb-4">Frequently Asked Questions</h1>
-            <p className="mb-0">Find answers to common questions about our services, appointments, and healthcare procedures. If you don't find what you're looking for, please contact us directly.</p>
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary text-white py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Still have questions?</h2>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+            Our team is here to help. Contact us for any additional questions or concerns.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="tel:+233302123456"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-mount-carmel-primary bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors"
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              Call Us Now
+            </a>
+            <a
+              href="mailto:info@mountcarmelhospital.com"
+              className="inline-flex items-center justify-center px-6 py-3 border border-white/20 text-base font-medium rounded-full text-white bg-transparent hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors"
+            >
+              <Mail className="w-5 h-5 mr-2" />
+              Send a Message
+            </a>
           </div>
         </div>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="container-xxl py-5 faq-section">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="faq-surface rounded-5 p-3 p-md-4 position-relative">
-              <div className="mb-4">
-                <label htmlFor="faq-search" className="form-label fw-semibold" style={{color:'#6f3348'}}>Search FAQs</label>
-                <div className="position-relative">
-                  <input
-                    id="faq-search"
-                    type="search"
-                    className="form-control form-control-lg rounded-4 shadow-sm faq-search-input"
-                    placeholder="Search by question or keywords..."
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    aria-label="Search frequently asked questions"
-                  />
-                  <i className="fa fa-search position-absolute" style={{right:'16px', top:'50%', transform:'translateY(-50%)', color:'#6f3348', opacity:0.75}} aria-hidden="true"></i>
-                </div>
-              </div>
-
-              <div className="accordion faq-accordion" id="faqAccordion">
-                {filteredFaqs.length === 0 && (
-                  <div className="alert alert-light border rounded-4" role="status">
-                    No results found. Try different keywords.
-                  </div>
-                )}
-                {filteredFaqs.map((faq, index) => {
-                  const isActive = activeIndex === index;
-                  return (
-                    <div key={index} className={`accordion-item rounded-4 shadow-sm mb-3 border-0 overflow-hidden animate-faq-item ${isActive ? 'is-open' : ''}`} style={{animationDelay: `${index * 60}ms`}}>
-                      <h2 className="accordion-header" id={`heading${index}`}>
-                        <button
-                          className={`accordion-button d-flex align-items-center gap-3 ${isActive ? '' : 'collapsed'}`}
-                          type="button"
-                          aria-expanded={isActive ? 'true' : 'false'}
-                          aria-controls={`collapse${index}`}
-                          onClick={() => toggleFAQ(index)}
-                        >
-                          <span className={`chevron-icon transition-rotate ${isActive ? 'rotated' : ''}`} aria-hidden="true">
-                            <i className="fa fa-chevron-down"></i>
-                          </span>
-                          <span className="flex-grow-1 text-start">{faq.question}</span>
-                        </button>
-                      </h2>
-                      <div
-                        id={`collapse${index}`}
-                        className={`accordion-collapse ${isActive ? 'show' : ''}`}
-                        aria-labelledby={`heading${index}`}
-                        aria-hidden={isActive ? 'false' : 'true'}
-                      >
-                        <div className="accordion-body pt-0">
-                          {faq.answer}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              </div>
-            </div>
-            
-            <div className="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="bg-light rounded p-5">
-                <h4 className="mb-4">Still Have Questions?</h4>
-                <p className="mb-4">If you couldn't find the answer to your question in our FAQ, we're here to help. Contact us directly and we'll get back to you as soon as possible.</p>
-                
-                <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-phone-alt me-2 fa-2x me-3" style={{color:'#6f3348'}}></i>
-                  <div>
-                    <h6 className="mb-0">Call Us</h6>
-                    <p className="mb-0">+233 592 411 108</p>
-                  </div>
-                </div>
-                
-                <div className="d-flex align-items-center mb-3">
-                  <i className="fa fa-envelope fa-2x me-3" style={{color:'#6f3348'}}></i>
-                  <div>
-                    <h6 className="mb-0">Email Us</h6>
-                    <p className="mb-0">mountcarmelhospital@outlook.com</p>
-                  </div>
-                </div>
-                
-                <div className="d-flex align-items-center mb-4">
-                  <i className="fa fa-clock fa-2x me-3" style={{color:'#6f3348'}}></i>
-                  <div>
-                    <h6 className="mb-0">Business Hours</h6>
-                    <p className="mb-0">Mon-Sat: 8:00 AM - 4:00 PM</p>
-                  </div>
-                </div>
-                
-                <a className="btn brand-btn w-100 py-3" href="/contact">Contact Us</a>
-                <style>{`
-                  .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
-                  .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
-                `}</style>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      {/* Quick Links Section with Parallax, Overlay, and Background Image (brand) */}
-      <div className="w-100 py-5" style={{
-        width: '100vw',
-        marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
-        backgroundAttachment: 'fixed',
-        position: 'relative',
-        overflow: 'hidden',
-        borderRadius: '32px'
-      }}>
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px', color: '#fff'}}>
-            <h6 className="section-title bg-white text-center px-3" style={{color: '#6f3348'}}>Quick Links</h6>
-            <h1 className="display-6 mb-4">Find What You Need</h1>
-            <p className="mb-0">Explore our services and resources to get the information you need about your healthcare journey.</p>
-          </div>
-
-          <div className="row g-4">
-            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-calendar" style={{color: '#6f3348'}}></i>
-                  <h5 className="mb-3">Book Appointment</h5>
-                  <p>Schedule your visit with our expert medical team for comprehensive healthcare services.</p>
-                  <a className="btn brand-btn py-2 px-4" href="/appointment">Book Now</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-user-md" style={{color: '#6f3348'}}></i>
-                  <h5 className="mb-3">Our Team</h5>
-                  <p>Meet our experienced medical professionals dedicated to providing exceptional care.</p>
-                  <a className="btn brand-btn py-2 px-4" href="/team">Meet Team</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-stethoscope" style={{color: '#6f3348'}}></i>
-                  <h5 className="mb-3">Our Services</h5>
-                  <p>Explore our comprehensive range of medical services and specialized treatments.</p>
-                  <a className="btn brand-btn py-2 px-4" href="/services">View Services</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-              <div className="service-item text-center pt-3 rounded-4 shadow-lg bg-white h-100">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-map-marker-alt" style={{color: '#6f3348'}}></i>
-                  <h5 className="mb-3">Visit Us</h5>
-                  <p>Find our location and get directions to Mount Carmel Hospital for your appointment.</p>
-                  <a className="btn brand-btn py-2 px-4" href="/contact">Get Directions</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      {/* Stats/Call to Action Section with Updated Background Color (brand) */}
-      <div className="container-fluid fact py-5 pt-lg-0" style={{background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)'}}>
-        <div className="container py-5 pt-lg-0">
-          <div className="row gx-0">
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
-                <div className="d-flex">
-                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
-                  </div>
-                  <div className="ps-3">
-                    <h4>Book Appointment</h4>
-                    <span>Schedule your visit today</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-              <div className="bg-white shadow d-flex align-items-center h-100 p-5" style={{minHeight: '160px'}}>
-                <div className="d-flex">
-                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone-alt me-2" style={{color: '#6f3348'}}></i>
-                  </div>
-                  <div className="ps-3">
-                    <h4>Call Us Now</h4>
-                    <span>+233 592 411 108</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
 
       <Footer />
-      <style>{`
-        /* Section background and surface */
-        .faq-section { 
-          background: radial-gradient(1200px 400px at 50% 0%, rgba(111,51,72,0.08), transparent 60%);
-        }
-        .faq-surface::before { 
-          content: '';
-          position: absolute; inset: 0; 
-          background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.65));
-          backdrop-filter: blur(6px);
-          border-radius: 28px; 
-          pointer-events: none;
-        }
-        .faq-surface { position: relative; }
-        
-        .faq-search-input:focus { box-shadow: 0 0 0 0.25rem rgba(111,51,72,0.15) !important; border-color: #6f3348; }
-        .faq-accordion .accordion-item { transition: box-shadow .25s ease, transform .12s ease; }
-        .faq-accordion .accordion-item:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.06); }
-        .faq-accordion .accordion-button { padding: 1.25rem 1.25rem; font-weight: 600; font-size: 1.1rem; }
-        @media (max-width: 576px) {
-          .faq-accordion .accordion-button { padding: 1.1rem 1rem; font-size: 1.05rem; }
-          .faq-accordion .accordion-body { font-size: 0.975rem; }
-        }
-        .faq-accordion .accordion-button:not(.collapsed) { color: #4B1438; background-color: #fdf7f9; box-shadow: inset 0 -1px 0 rgba(0,0,0,.125); }
-        .faq-accordion .accordion-button::after { display: none; }
-        .faq-accordion .chevron-icon { width: 1.25rem; height: 1.25rem; display: inline-flex; align-items: center; justify-content: center; color: #6f3348; }
-        .transition-rotate { transition: transform .25s ease; }
-        .transition-rotate.rotated { transform: rotate(180deg); }
-        .faq-accordion .accordion-body { line-height: 1.7; color: #333; padding: 0 1.25rem 1.25rem 3rem; }
-        .faq-accordion .accordion-item.is-open { border-left: 4px solid #6f3348; }
-        .faq-accordion .accordion-button:focus { box-shadow: 0 0 0 0.2rem rgba(111,51,72,0.15); }
-        .faq-accordion .accordion-item:active { transform: translateY(1px); }
-        .faq-accordion .accordion-button:hover { background-color: #fdf1f5; }
-
-        /* Smooth expand/collapse without Bootstrap JS */
-        .accordion-collapse { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
-        .accordion-collapse.show { max-height: 500px; }
-        @media (prefers-reduced-motion: reduce) {
-          .accordion-collapse { transition: none; }
-        }
-
-        /* Staggered entrance animation */
-        @keyframes faqItemIn {
-          0% { opacity: 0; transform: translateY(8px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-faq-item { animation: faqItemIn .45s ease both; }
-      `}</style>
-    </>
+    </div>
   );
 };
 
-export default FAQ; 
+export default FAQ;

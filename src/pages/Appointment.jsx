@@ -107,235 +107,254 @@ function Appointment() {
   };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      {/* Parallax Hero Section */}
-      <section
-        style={{
-          background:
-            "linear-gradient(rgba(111,34,72,0.7), rgba(168,92,122,0.7)), url('/images/feature.jpg') center/cover no-repeat",
-          backgroundAttachment: 'fixed',
-          color: '#fff',
-          padding: '80px 0 40px 0',
-        }}
-      >
-        <div className="container text-center">
-          <motion.h1
-            className="display-4 fw-bold mb-3"
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Book Your Appointment
-          </motion.h1>
-          <motion.p
-            className="lead mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Experience world-class healthcare with our expert team. Schedule your visit today and take the first step towards better health.
-          </motion.p>
-          <div className="row justify-content-center mt-5">
-            <div className="col-md-3 col-6 mb-3">
-              <motion.div
-                className="glass-card text-center p-4 rounded-4 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
-              >
-                <div className="h2 fw-bold">5000+</div>
-                <div className="small">Happy Patients</div>
-              </motion.div>
-            </div>
-            <div className="col-md-3 col-6 mb-3">
-              <motion.div
-                className="glass-card text-center p-4 rounded-4 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
-              >
-                <div className="h2 fw-bold">20+</div>
-                <div className="small">Expert Doctors</div>
-              </motion.div>
-            </div>
-            <div className="col-md-3 col-6 mb-3">
-              <motion.div
-                className="glass-card text-center p-4 rounded-4 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
-              >
-                <div className="h2 fw-bold">24/7</div>
-                <div className="small">Emergency Care</div>
-              </motion.div>
-            </div>
-            <div className="col-md-3 col-6 mb-3">
-              <motion.div
-                className="glass-card text-center p-4 rounded-4 shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
-              >
-                <div className="h2 fw-bold">15+</div>
-                <div className="small">Departments</div>
-              </motion.div>
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-24 md:py-32 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/feature.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Book Your Appointment
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Experience world-class healthcare with our expert team. Schedule your visit today.
+            </motion.p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {[
+                { value: '5000+', label: 'Happy Patients' },
+                { value: '20+', label: 'Expert Doctors' },
+                { value: '24/7', label: 'Emergency Care' },
+                { value: '15+', label: 'Departments' }
+              ].map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  className="bg-white/10 backdrop-blur-sm p-4 rounded-xl text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.15)' }}
+                >
+                  <div className="text-2xl md:text-3xl font-bold mb-1">{item.value}</div>
+                  <div className="text-sm md:text-base text-white/80">{item.label}</div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Appointment Form Section */}
-      <section className="py-5" style={{ background: '#f8f9fa' }}>
-        <div className="container">
-          <div className="row g-5 align-items-center">
-            <div className="col-lg-6 mb-4 mb-lg-0">
-              <motion.div
-                className="h-100 p-4 rounded-4 bg-white shadow-sm"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+      {/* Why Choose Us Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block px-4 py-1.5 text-sm font-semibold text-mount-carmel-primary bg-mount-carmel-primary/10 rounded-full mb-4">
+              Why Choose Us
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Exceptional Healthcare Experience</h2>
+            <p className="text-lg text-gray-600">
+              We are committed to providing the highest quality healthcare services with compassion and excellence.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '👨‍⚕️',
+                title: 'Expert Specialists',
+                description: 'Our team of board-certified doctors and specialists provide exceptional care.'
+              },
+              {
+                icon: '🏥',
+                title: 'Modern Facilities',
+                description: 'State-of-the-art equipment and comfortable facilities for your care.'
+              },
+              {
+                icon: '⏱️',
+                title: 'Minimal Wait Times',
+                description: 'We respect your time with efficient scheduling and minimal waiting.'
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={feature.title}
+                className="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-shadow duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="img-border rounded-4 shadow-lg overflow-hidden mb-4">
-                  <img
-                    className="img-fluid"
-                    src="/images/about-1.jpg"
-                    alt="Mount Carmel Hospital"
-                    style={{ borderRadius: '24px', objectFit: 'cover', minHeight: '280px' }}
-                  />
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Appointment Form Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="mx-auto px-4">
+          <div className="mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="md:flex">
+              {/* Left Side - Info */}
+              <div className="container mt-20 p-8 md:p-12 md:w-1/2 mb-0 h-full">
+                <div className='mb-2'>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Book an Appointment</h2>
+                  <p className="text-gray-600">Fill out the form and our team will get back to you shortly.</p>
                 </div>
                 <h6 className="section-title bg-white text-start pe-3" style={{ color: '#6f2248' }}>
                   Why Choose Us
                 </h6>
                 <h1 className="display-6 mb-4 fw-bold">Expert Medical Care</h1>
-                <p className="lead">
+                <p className="lead mb-6">
                   At Mount Carmel Hospital, we provide comprehensive healthcare services with a focus on patient comfort and medical excellence.
                 </p>
-                <div className="row g-3 mb-4">
+                <div className="grid grid-cols-2 gap-4 mb-6">
                   {[
                     { icon: 'fa-user-md', text: 'Expert Doctors' },
                     { icon: 'fa-hospital', text: 'Modern Facilities' },
-                    { icon: 'fa-heart', text: 'Patient-Centered Care' },
-                    { icon: 'fa-dollar-sign', text: 'Affordable Care' },
+                    { icon: 'fa-heart', text: 'Patient Care' },
+                    { icon: 'fa-dollar-sign', text: 'Affordable' },
                   ].map((item, index) => (
-                    <div key={index} className="col-sm-6">
-                      <motion.div
-                        className="d-flex align-items-center p-3 rounded-3 shadow-sm bg-light"
-                        whileHover={{ scale: 1.02, boxShadow: '0 8px 25px rgba(111, 34, 72, 0.15)' }}
-                        transition={{ type: 'spring', stiffness: 300 }}
-                      >
-                        <div
-                          className="rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style={{ width: '48px', height: '48px', background: '#6f2248' }}
-                        >
-                          <i className={`fa ${item.icon} text-white`}></i>
+                    <motion.div 
+                      key={index}
+                      className="bg-gray-50 p-4 rounded-lg shadow-sm"
+                      whileHover={{ y: -5, boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-10 h-10 rounded-full bg-mount-carmel-primary/10 flex items-center justify-center mr-3">
+                          <i className={`fa ${item.icon} text-mount-carmel-primary`}></i>
                         </div>
-                        <h6 className="mb-0 fw-bold">{item.text}</h6>
-                      </motion.div>
-                    </div>
+                        <span className="font-medium text-gray-800">{item.text}</span>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
                 <motion.div
-                  className="p-4 rounded-4 shadow-lg mt-3"
-                  style={{ background: 'linear-gradient(135deg, #6f2248, #a85c7a)', color: 'white' }}
+                  className="p-6 rounded-2xl shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, #6f2248, #a85c7a)' }}
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  <div className="d-flex align-items-center mb-3">
-                    <i className="fa fa-clock fa-2x me-3"></i>
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-4">
+                      <i className="fa fa-clock text-xl text-white"></i>
+                    </div>
                     <div>
-                      <h5 className="mb-0 text-white">Business Hours</h5>
-                      <p className="mb-0 text-light">24/7</p>
+                      <h5 className="text-white font-semibold mb-1">Business Hours</h5>
+                      <p className="text-white/90 text-sm">24/7 Emergency Services</p>
                     </div>
                   </div>
-                  <div className="d-flex align-items-center">
-                    <i className="fa fa-phone-alt me-2 fa-2x me-3"></i>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-4">
+                      <i className="fa fa-phone-alt text-xl text-white"></i>
+                    </div>
                     <div>
-                      <h5 className="mb-0 text-white">Emergency Contact</h5>
-                      <p className="mb-0 text-light">+233 592 411 108 (24/7)</p>
+                      <h5 className="text-white font-semibold mb-1">Emergency</h5>
+                      <p className="text-white/90 text-sm">+233 592 411 108</p>
                     </div>
                   </div>
                 </motion.div>
-              </motion.div>
-            </div>
-            <div className="col-lg-6">
-              <motion.div
-                className="rounded-4 p-5 shadow-lg bg-white"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-center mb-4">
-                  <motion.div
-                    className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                    style={{ width: '80px', height: '80px', background: 'linear-gradient(135deg, #6f2248, #a85c7a)' }}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <i className="fa fa-calendar-alt fa-2x text-white"></i>
-                  </motion.div>
-                  <h3 className="fw-bold" style={{ color: '#6f2248' }}>
-                    {location.state && location.state.patientType ? 'Edit Your Appointment' : 'Book Your Appointment'}
-                  </h3>
-                  <p className="text-muted">
-                    {location.state && location.state.patientType 
-                      ? 'Review and modify your appointment details below' 
-                      : 'Fill out the form below to schedule your visit'
-                    }
-                  </p>
-                  {location.state && location.state.patientType && (
-                    <div className="alert alert-info border-0 mb-3" style={{ background: 'linear-gradient(135deg, #d1ecf1, #bee5eb)' }}>
-                      <i className="fa fa-edit me-2"></i>
-                      <strong>Editing Mode:</strong> Your previous data has been loaded. Make any changes needed and submit.
+              </div>
+
+              {/* Right Side - Form */}
+              <div className="p-8 md:p-12 md:w-1/2 bg-gray-50">
+                <motion.div
+                  className="h-full"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="bg-white rounded-xl shadow-md p-6 h-full">
+                    <div className="text-center mb-6">
+                      <div className="w-16 h-16 bg-mount-carmel-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i className="fa fa-calendar-alt text-2xl text-mount-carmel-primary"></i>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        {location.state?.patientType ? 'Edit Appointment' : 'Book Appointment'}
+                      </h3>
+                      <p className="text-gray-600">
+                        {location.state?.patientType 
+                          ? 'Review and update your appointment details' 
+                          : 'Fill in your details to schedule a visit'}
+                      </p>
                     </div>
-                  )}
-                </div>
-                <form onSubmit={handleSubmit} autoComplete="off">
-                  <div className="row g-3">
-                    <div className="col-12">
-                      <motion.div className="form-floating" whileHover={{ scale: 1.02 }}>
-                        <select
-                          className="form-select border-0 bg-white px-4 rounded-3 shadow-sm"
-                          id="patientType"
-                          name="patientType"
-                          value={formData.patientType}
-                          onChange={handleChange}
-                          required
-                          style={{ height: '58px', borderLeft: '4px solid #6f2248', transition: 'all 0.3s ease' }}
-                        >
-                          <option value="New Patient">New Patient</option>
-                          <option value="Old Patient">Returning Patient</option>
-                        </select>
-                        <label htmlFor="patientType" style={{ color: '#6f2248' }}>
-                          Patient Type
-                        </label>
-                      </motion.div>
-                    </div>
-                    <div className="col-md-6">
-                      <motion.div className="form-floating" whileHover={{ scale: 1.02 }}>
-                        <input
-                          type="text"
-                          className="form-control border-0 bg-white px-4 rounded-3 shadow-sm"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="Your Name"
-                          required
-                          style={{ height: '58px', borderLeft: '4px solid #6f2248', transition: 'all 0.3s ease' }}
-                        />
-                        <label htmlFor="name" style={{ color: '#6f2248' }}>
-                          Full Name
-                        </label>
-                      </motion.div>
-                    </div>
-                    <div className="col-md-6">
+                    {location.state?.patientType && (
+                      <div className="mb-4 p-3 rounded-lg" style={{ background: 'linear-gradient(135deg, #d1ecf1, #bee5eb)' }}>
+                        <div className="flex items-start">
+                          <i className="fa fa-edit mt-1 mr-2"></i>
+                          <div>
+                            <p className="font-medium text-gray-800">Editing Mode</p>
+                            <p className="text-sm text-gray-700">Your previous data has been loaded. Make any changes needed and submit.</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <form onSubmit={handleSubmit} autoComplete="off" className="space-y-4">
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <motion.div className="form-floating" whileHover={{ scale: 1.02 }}>
+                            <select
+                              className="form-select border-0 bg-white px-4 rounded-3 shadow-sm w-full"
+                              id="patientType"
+                              name="patientType"
+                              value={formData.patientType}
+                              onChange={handleChange}
+                              required
+                              style={{ height: '58px', borderLeft: '4px solid #6f2248', transition: 'all 0.3s ease' }}
+                            >
+                              <option value="New Patient">New Patient</option>
+                              <option value="Old Patient">Returning Patient</option>
+                            </select>
+                            <label htmlFor="patientType" style={{ color: '#6f2248' }}>
+                              Patient Type
+                            </label>
+                          </motion.div>
+                        
+                          <motion.div className="form-floating w-full" whileHover={{ scale: 1.02 }}>
+                            <input
+                              type="text"
+                              className="form-control border-0 bg-white px-4 rounded-3 shadow-sm w-full"
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              placeholder="Your Name"
+                              required
+                              style={{ height: '58px', borderLeft: '4px solid #6f2248', transition: 'all 0.3s ease' }}
+                            />
+                            <label htmlFor="name" style={{ color: '#6f2248' }}>
+                              Full Name
+                            </label>
+                          </motion.div>
+                        </div>
+                      </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <motion.div className="form-floating" whileHover={{ scale: 1.02 }}>
                         <input
                           type="tel"
-                          className="form-control border-0 bg-white px-4 rounded-3 shadow-sm"
+                          className="form-control border-0 bg-white px-4 rounded-3 shadow-sm w-full"
                           id="phone"
                           name="phone"
                           value={formData.phone}
@@ -349,11 +368,11 @@ function Appointment() {
                         </label>
                       </motion.div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <motion.div className="form-floating" whileHover={{ scale: 1.02 }}>
                         <input
                           type="date"
-                          className="form-control border-0 bg-white px-4 rounded-3 shadow-sm"
+                          className="form-control border-0 bg-white px-4 rounded-3 shadow-sm w-full"
                           id="date"
                           name="date"
                           value={formData.date}
@@ -366,8 +385,6 @@ function Appointment() {
                           Preferred Date
                         </label>
                       </motion.div>
-                    </div>
-                    <div className="col-md-6">
                       <motion.div className="form-floating" whileHover={{ scale: 1.02 }}>
                         <select
                           className="form-select border-0 bg-white px-4 rounded-3 shadow-sm"
@@ -489,61 +506,58 @@ function Appointment() {
                         </label>
                       </motion.div>
                     </div>
-                    <div className="col-12">
-                      <div className="d-flex gap-3">
-                        <motion.button
-                          className="btn flex-fill py-3 px-5 rounded-pill shadow-lg fw-bold"
-                          type="button"
-                          onClick={handlePreview}
-                          disabled={isSubmitting}
-                          style={{
-                            background: isSubmitting
-                              ? '#ccc'
-                              : 'linear-gradient(135deg, #6f2248, #a85c7a)',
-                            border: 'none',
-                            color: 'white',
-                            fontSize: '18px',
-                            transition: 'all 0.3s ease',
-                          }}
-                          whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(111, 34, 72, 0.3)' } : {}}
-                          whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                          transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                          <i className="fa fa-eye me-2"></i>
-                          Preview Appointment
-                        </motion.button>
-                        <motion.button
-                          className="btn flex-fill py-3 px-5 rounded-pill shadow-lg fw-bold"
-                          type="submit"
-                          disabled={isSubmitting}
-                          style={{
-                            background: isSubmitting
-                              ? '#ccc'
-                              : 'linear-gradient(135deg, #28a745, #20c997)',
-                            border: 'none',
-                            color: 'white',
-                            fontSize: '18px',
-                            transition: 'all 0.3s ease',
-                          }}
-                          whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(40, 167, 69, 0.3)' } : {}}
-                          whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                          transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                           {isSubmitting ? (
-                             <>
-                               <i className="fa fa-spinner fa-spin me-2"></i>
-                               Submitting Appointment...
-                             </>
-                           ) : (
-                             <>
-                               <i className="fa fa-paper-plane me-2"></i>
-                               Submit
-                             </>
-                           )}
-                        </motion.button>
-                      </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                      <motion.button
+                        className="btn py-3 px-5 rounded-pill shadow-lg fw-bold w-full"
+                        type="button"
+                        onClick={handlePreview}
+                        disabled={isSubmitting}
+                        style={{
+                          background: isSubmitting
+                            ? '#ccc'
+                            : 'linear-gradient(135deg, #6f2248, #a85c7a)',
+                          border: 'none',
+                          color: 'white',
+                          fontSize: '18px',
+                          transition: 'all 0.3s ease',
+                        }}
+                        whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(111, 34, 72, 0.3)' } : {}}
+                        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        <i className="fa fa-eye me-2"></i>
+                        Preview Appointment
+                      </motion.button>
+                      <motion.button
+                        className="btn py-3 px-5 rounded-pill shadow-lg fw-bold w-full"
+                        type="submit"
+                        disabled={isSubmitting}
+                        style={{
+                          background: isSubmitting
+                            ? '#ccc'
+                            : 'linear-gradient(135deg, #28a745, #20c997)',
+                          border: 'none',
+                          color: 'white',
+                          fontSize: '18px',
+                          transition: 'all 0.3s ease',
+                        }}
+                        whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 8px 25px rgba(40, 167, 69, 0.3)' } : {}}
+                        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <i className="fa fa-spinner fa-spin me-2"></i>
+                            Submitting Appointment...
+                          </>
+                        ) : (
+                          <>
+                            <i className="fa fa-paper-plane me-2"></i>
+                            Submit
+                          </>
+                        )}
+                      </motion.button>
                     </div>
-                  </div>
                   {submitStatus === 'error' && (
                     <motion.div
                       className="alert alert-danger mt-3 rounded-3 shadow-sm"
@@ -557,14 +571,16 @@ function Appointment() {
                       {`There was an error submitting your appointment. Please try again or contact us directly.`}
                     </motion.div>
                   )}
-                </form>
+                    </form>
+                    </div>
               </motion.div>
             </div>
           </div>
         </div>
+        </div>
       </section>
       <Footer />
-    </>
+    </div>
   );
 }
 

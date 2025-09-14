@@ -4,7 +4,7 @@ const TeamSection = () => {
       name: "Dr. Philip Aning-Kuffour",
       role: "Chief Medical Officer",
       specialty: "Fertility Specialist",
-      image: "/images/team-1.jpg",
+      image: "/images/head-team.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -16,7 +16,7 @@ const TeamSection = () => {
       name: "Dr. Joseph Amonoo",
       role: "General Medicine",
       specialty: "General Health Care",
-      image: "/images/team-2.jpg",
+      image: "/images/team11.webp",
       social: {
         facebook: "#",
         twitter: "#",
@@ -28,7 +28,7 @@ const TeamSection = () => {
       name: "Dr. Abigail Danso",
       role: "Pediatrician",
       specialty: "Child Care Expert",
-      image: "/images/team-3.jpg",
+      image: "/images/team8.png",
       social: {
         facebook: "#",
         twitter: "#",
@@ -40,7 +40,7 @@ const TeamSection = () => {
       name: "Mrs. Magaret Serwaa Boakye",
       role: "Antenatal and Postnatal Care",
       specialty: "Maternal Health",
-      image: "/images/team-4.jpg",
+      image: "/images/team9.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -52,7 +52,7 @@ const TeamSection = () => {
       name: "Dr. Lenusia Ahligah",
       role: "Physician Specialist",
       specialty: "Internal Medicine",
-      image: "/images/team-5.jpg",
+      image: "/images/team10.png",
       social: {
         facebook: "#",
         twitter: "#",
@@ -69,7 +69,7 @@ const TeamSection = () => {
         <div className="row g-5 align-items-center mb-5">
           <div className="col-md-6 wow fadeIn" data-wow-delay="0.2s">
             <div className="position-relative rounded-4 overflow-hidden shadow-lg team-feature-img">
-              <img className="img-fluid w-100" src="/images/team-1.jpg" alt="Dr. Sarah Johnson" />
+              <img className="img-fluid w-100" src="/images/head-team.jpg" alt="Dr. Sarah Johnson" />
               <div className="position-absolute top-0 start-0 w-100 h-100" style={{background:'linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35))'}}></div>
             </div>
           </div>
@@ -81,7 +81,7 @@ const TeamSection = () => {
               <h3 className="h5 mb-2" style={{color:'#4B1438'}}>Biography</h3>
               <p className="mb-3">
                Dr. Philip Anning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.
-                She has successfully helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.
+                He has successfully helped thousands of couples achieve their dream of parenthood through advanced fertility treatments.
               </p>
               <p className="mb-4">
                 As the Chief Medical Officer at Mount Carmel Hospital, Dr. Johnson leads our medical team with expertise,

@@ -1,7 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { 
+  Search, 
+  Filter, 
+  ChevronDown, 
+  ChevronUp, 
+  Shield, 
+  Pill, 
+  Building2, 
+  Handshake, 
+  ArrowRight, 
+  Users, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  FlaskConical, 
+  LineChart 
+} from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+// Import partner logos
 import apex from '../images/partners/apex-mutual.png';
 import nationwide from '../images/partners/nationwide.png';
 import acacia from '../images/partners/acacia.png';
@@ -48,63 +68,187 @@ const AnimatedCounter = ({ end, duration = 1200, suffix = '', prefix = '' }) => 
 };
 
 const Partners = () => {
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedPartner, setExpandedPartner] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Scroll effect for header
   useEffect(() => {
-    // Initialize WOW.js for animations
-    if (window.WOW) {
-      new window.WOW().init();
-    }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const insuranceCompanies = [
-    { name: "Apex Mutual Health", logo: apex },
-    { name: "Nationwide Insurance", logo: nationwide },
-    { name: "Acacia Insurance", logo: acacia },
-    { name: "Phoenix Insurance", logo: phoenix },
-    { name: "Glico Insurance", logo: glico },
-    { name: "Premier Health Insurance", logo: premier },
-    { name: "Liberty Medical Health", logo: liberty },
-    { name: "Kaiser Global Health Insurance Limited", logo: kaiser },
-    { name: "Vitality Health Insurance", logo: vitality },
-    { name: "Metropolitan Health Insurance", logo: metropolitan }
+    { 
+      name: "Apex Mutual Health", 
+      logo: apex,
+      type: 'insurance',
+      description: 'Comprehensive health insurance coverage with nationwide network access',
+      website: '#'
+    },
+    { 
+      name: "Nationwide Insurance", 
+      logo: nationwide,
+      type: 'insurance',
+      description: 'Reliable insurance solutions for individuals and families',
+      website: '#'
+    },
+    { 
+      name: "Acacia Insurance", 
+      logo: acacia,
+      type: 'insurance',
+      description: 'Affordable health coverage with extensive benefits',
+      website: '#'
+    },
+    { 
+      name: "Phoenix Insurance", 
+      logo: phoenix,
+      type: 'insurance',
+      description: 'Rising to meet all your healthcare coverage needs',
+      website: '#'
+    },
+    { 
+      name: "Glico Insurance", 
+      logo: glico,
+      type: 'insurance',
+      description: 'Trusted insurance partner for comprehensive healthcare',
+      website: '#'
+    },
+    { 
+      name: "Premier Health Insurance", 
+      logo: premier,
+      type: 'insurance',
+      description: 'Premium healthcare coverage with exceptional service',
+      website: '#'
+    },
+    { 
+      name: "Liberty Medical Health", 
+      logo: liberty,
+      type: 'insurance',
+      description: 'Freedom to choose your healthcare provider',
+      website: '#'
+    },
+    { 
+      name: "Kaiser Global Health", 
+      logo: kaiser,
+      type: 'insurance',
+      description: 'International healthcare coverage with global reach',
+      website: '#'
+    },
+    { 
+      name: "Vitality Health", 
+      logo: vitality,
+      type: 'insurance',
+      description: 'Rewarding healthy living with better coverage',
+      website: '#'
+    },
+    { 
+      name: "Metropolitan Health", 
+      logo: metropolitan,
+      type: 'insurance',
+      description: 'Comprehensive health plans for urban living',
+      website: '#'
+    }
   ];
 
   const pharmaceuticalCompanies = [
-    { name: "Dosty Pharmacy", logo: "/images/partners/dosty-pharmacy.png" },
-    { name: "East Cantonment Pharmacy", logo: "/images/partners/east-cantonment.png" },
-    { name: "Ernest Chemist", logo: "/images/partners/ernest-chemist.png" },
-    { name: "Mega Life Science", logo: "/images/partners/mega-life.png" },
-    { name: "Tobinco/Entrance Pharmaceuticals", logo: "/images/partners/tobinco.png" },
-    { name: "Worldwide Pharmacy", logo: "/images/partners/worldwide.png" },
-    { name: "Gokals Pharmacy", logo: "/images/partners/gokals.png" },
-    { name: "Lymens Pharmaceuticals", logo: "/images/partners/lymens.png" },
-    { name: "Wayne Health Products", logo: "/images/partners/wayne-health.png" },
-    { name: "Oak Brothers Ltd", logo: "/images/partners/oak-brothers.png" },
-    { name: "Kosak Ventures", logo: "/images/partners/kosak.png" },
-    { name: "Capa Chemist", logo: "/images/partners/capa.png" },
-    { name: "Kofikorm Pharmacy", logo: "/images/partners/kofikorm.png" },
-    { name: "Top Up Pharmacy", logo: "/images/partners/top-up.png" }
+    { 
+      name: "Dosty Pharmacy", 
+      logo: "/images/partners/dosty-pharmacy.png",
+      type: 'pharmaceutical',
+      description: 'Full-service pharmacy providing quality medications and healthcare products',
+      website: '#'
+    },
+    { 
+      name: "East Cantonment Pharmacy", 
+      logo: "/images/partners/east-cantonment.png",
+      type: 'pharmaceutical',
+      description: 'Neighborhood pharmacy with personalized care and service',
+      website: '#'
+    },
+    { 
+      name: "Ernest Chemist", 
+      logo: "/images/partners/ernest-chemist.png",
+      type: 'pharmaceutical',
+      description: 'Leading pharmaceutical company with a wide range of healthcare products',
+      website: '#'
+    },
+    { 
+      name: "Mega Life Science", 
+      logo: "/images/partners/mega-life.png",
+      type: 'pharmaceutical',
+      description: 'Innovative pharmaceutical solutions for better health outcomes',
+      website: '#'
+    },
+    { 
+      name: "Tobinco Pharmaceuticals", 
+      logo: "/images/partners/tobinco.png",
+      type: 'pharmaceutical',
+      description: 'Quality medicines and healthcare solutions',
+      website: '#'
+    },
+    { 
+      name: "Worldwide Pharmacy", 
+      logo: "/images/partners/worldwide.png",
+      type: 'pharmaceutical',
+      description: 'Global pharmaceutical distributor with local presence',
+      website: '#'
+    },
+    { 
+      name: "Gokals Pharmacy", 
+      logo: "/images/partners/gokals.png",
+      type: 'pharmaceutical',
+      description: 'Trusted source for medications and health products',
+      website: '#'
+    }
   ];
 
   const governmentPartners = [
     {
       name: "Ghana Health Service",
       logo: "/images/partners/ghs-logo.png",
-      description: "National healthcare service provider ensuring quality healthcare delivery across Ghana."
+      type: 'government',
+      description: "National healthcare service provider ensuring quality healthcare delivery across Ghana.",
+      website: "https://www.ghanahealthservice.org/"
     },
     {
       name: "National Health Insurance Authority",
-      logo: "/images/partners/nhis-logo.png", 
-      description: "Government agency providing health insurance coverage to Ghanaian citizens."
+      logo: "/images/partners/nhis-logo.png",
+      type: 'government',
+      description: "Government agency providing health insurance coverage to Ghanaian citizens.",
+      website: "https://www.nhis.gov.gh/"
     },
     {
       name: "Medical and Dental Council",
       logo: "/images/partners/mdc-logo.png",
-      description: "Regulatory body ensuring professional standards in medical and dental practice."
+      type: 'regulatory',
+      description: "Regulatory body ensuring professional standards in medical and dental practice.",
+      website: "https://mdcghana.org/"
     },
     {
       name: "Pharmacy Council",
       logo: "/images/partners/pc-logo.png",
-      description: "Regulatory authority for pharmaceutical practice and drug safety in Ghana."
+      type: 'regulatory',
+      description: "Regulatory authority for pharmaceutical practice and drug safety in Ghana.",
+      website: "https://www.pharmacycouncil.org.gh/"
+    },
+    {
+      name: "Food and Drugs Authority",
+      logo: "/images/partners/fda-logo.png",
+      type: 'regulatory',
+      description: "Ensuring the safety, quality, and efficacy of food, drugs, and other regulated products.",
+      website: "https://fdaghana.gov.gh/"
+    },
+    {
+      name: "Noguchi Memorial Institute",
+      logo: "/images/partners/noguchi-logo.png",
+      type: 'research',
+      description: "Leading biomedical research facility in Ghana and the West African sub-region.",
+      website: "https://www.noguchi.ug.edu.gh/"
     }
   ];
 
@@ -131,200 +275,329 @@ const Partners = () => {
     }
   ];
 
+  // Combine all partners for filtering
+  const allPartners = [
+    ...insuranceCompanies.map(p => ({ ...p, category: 'insurance' })),
+    ...pharmaceuticalCompanies.map(p => ({ ...p, category: 'pharmaceutical' })),
+    ...governmentPartners
+  ];
+
+  // Filter partners based on active filter and search query
+  const filteredPartners = allPartners.filter(partner => {
+    const matchesFilter = activeFilter === 'all' || 
+                         (partner.type && partner.type === activeFilter) || 
+                         (partner.category && partner.category === activeFilter);
+    const matchesSearch = partner.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         (partner.description && partner.description.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesFilter && matchesSearch;
+  });
+
+  // Group partners by type for the grid view
+  const partnersByType = {
+    insurance: insuranceCompanies,
+    pharmaceutical: pharmaceuticalCompanies,
+    government: governmentPartners.filter(p => p.type === 'government'),
+    regulatory: governmentPartners.filter(p => p.type === 'regulatory'),
+    research: governmentPartners.filter(p => p.type === 'research')
+  };
+
+  const toggleExpand = (index) => {
+    setExpandedPartner(expandedPartner === index ? null : index);
+  };
+
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       
-      {/* Page Header - Modern Hero with Background Image, Overlay, and Animation (brand) */}
-      <div className="container-fluid page-header position-relative py-5" style={{
-        background: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat`,
-        minHeight: '440px',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-        overflow: 'hidden'
-      }}>
-        {/* Animated Gradient Overlay & Blur */}
-        <div className="position-absolute top-0 start-0 w-100 h-100" style={{
-          background: 'linear-gradient(120deg, rgba(75,20,56,0.82) 0%, rgba(111,51,72,0.65) 60%, rgba(0,0,0,0.55) 100%)',
-          backdropFilter: 'blur(4px)',
-          zIndex: 1,
-          animation: 'gradientMove 8s linear infinite alternate'
-        }}></div>
-        {/* Floating Partner Icons */}
-        <div className="position-absolute w-100 h-100" style={{zIndex:2, pointerEvents:'none'}}>
-          <i className="fa fa-handshake" style={{position:'absolute',top:'18%',left:'8%',fontSize:'2.8rem',color:'#fff',opacity:0.18,animation:'floatIcon 4s ease-in-out infinite alternate'}}></i>
-          <i className="fa fa-users" style={{position:'absolute',top:'60%',left:'12%',fontSize:'2.2rem',color:'#fff',opacity:0.14,animation:'floatIcon 5s 1.2s ease-in-out infinite alternate'}}></i>
-          <i className="fa fa-flask" style={{position:'absolute',top:'30%',right:'10%',fontSize:'2.6rem',color:'#fff',opacity:0.16,animation:'floatIcon 3.5s 0.7s ease-in-out infinite alternate'}}></i>
-          <i className="fa fa-shield-alt" style={{position:'absolute',top:'70%',right:'14%',fontSize:'2.4rem',color:'#fff',opacity:0.13,animation:'floatIcon 4.5s 0.3s ease-in-out infinite alternate'}}></i>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-20 md:py-28 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/80 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <div className="container py-17 position-relative" style={{zIndex:3}}>
-          <h1 className="display-3 text-white fw-bold mb-3" style={{letterSpacing: '2px', animation: 'fadeSlideIn 1.2s cubic-bezier(.77,0,.18,1)'}}>
-            Our Partners
-          </h1>
-          {/* <nav aria-label="breadcrumb">
-            <ol className="breadcrumb animated" style={{animation: 'fadeSlideIn 1.6s 0.3s cubic-bezier(.77,0,.18,1) both'}}>
-              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-              <li className="breadcrumb-item text-white active" aria-current="page">Partners</li>
-            </ol>
-          </nav> */}
-        </div>
-        <style>{`
-          @keyframes fadeSlideIn {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-          }
-          @keyframes floatIcon {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(-18px) scale(1.08); }
-          }
-        `}</style>
-      </div>
-
-      {/* Brand Marquee Section */}
-      <section className="container-fluid py-5" style={{
-        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
-        color: '#fff',
-        margin: 0,
-        padding: 0
-      }}>
-        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
-            {/* duplicate for seamless loop */}
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Our Valued Partners
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Collaborating with leading organizations to deliver exceptional healthcare
+            </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Partners Section */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '800px'}}>
-            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Partnerships</h6>
-            <h1 className="display-6 mb-4">Working Together for Better Healthcare</h1>
-            <p className="mb-0">We collaborate with leading healthcare organizations, insurance companies, and pharmaceutical partners to provide comprehensive care for our patients.</p>
+      {/* Filter and Search Section */}
+      <section className="py-8 bg-white sticky top-0 z-20 shadow-sm" style={{ top: isScrolled ? '0' : 'auto' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="relative flex-1 max-w-2xl">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-mount-carmel-primary focus:border-mount-carmel-primary text-gray-700"
+                  placeholder="Search partners..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  >
+                    <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+              
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setActiveFilter('all')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'all'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Handshake className="w-4 h-4 mr-2" />
+                    All Partners
+                  </span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveFilter('insurance')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'insurance'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Shield className="w-4 h-4 mr-2" />
+                    Insurance
+                  </span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveFilter('pharmaceutical')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'pharmaceutical'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Pill className="w-4 h-4 mr-2" />
+                    Pharmaceutical
+                  </span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveFilter('government')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'government'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Building2 className="w-4 h-4 mr-2" />
+                    Government
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Grid */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <span className="inline-block px-3 py-1 text-sm font-semibold text-mount-carmel-primary bg-mount-carmel-primary/10 rounded-full mb-4">
+              Our Network
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {activeFilter === 'all' 
+                ? 'Our Valued Partners' 
+                : activeFilter === 'insurance' ? 'Insurance Partners'
+                : activeFilter === 'pharmaceutical' ? 'Pharmaceutical Partners'
+                : 'Government & Regulatory Partners'}
+            </h2>
+            <p className="text-lg text-gray-600">
+              We're proud to collaborate with leading organizations to provide the best healthcare services.
+            </p>
           </div>
 
-          {/* Insurance Companies Section */}
-          <div className="row mb-5">
-            <div className="col-12">
-              <div className="bg-light rounded-3 p-5 wow fadeInUp shadow-sm" data-wow-delay="0.1s">
-                <div className="text-center mb-4">
-                  <h3 className="mb-3" style={{color:'#6f3348'}}>
-                    <i className="fa fa-shield-alt me-2"></i>
-                    Insurance Companies Mount Carmel Hospital Works With
-                  </h3>
-                  <p className="lead mb-4">Mount Carmel Hosptal and Fertlty Centre is an accredited service provider for major private health insurance companies</p>
-                </div>
-                <div className="row g-4">
-                  {insuranceCompanies.map((company, index) => (
-                    <div key={company.name} className="col-lg-2 col-md-3 col-sm-4 col-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.05}s`}>
-                      <div className="insurance-card text-center p-3 bg-white rounded-3 shadow-sm h-100 transition-all hover-lift">
-                        <div className="insurance-logo mb-3" style={{height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                            {company.logo ? (
-                                <img src={company.logo} alt={company.name} style={{maxHeight: '80px', maxWidth: '100%', objectFit: 'contain'}} />
-                                       ) : (
-                                         <i className="fa fa-shield-alt fa-2x" style={{color:'#6f3348'}}></i>
-                                           )}
+          {/* Partners Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPartners.length > 0 ? (
+              <AnimatePresence>
+                {filteredPartners.map((partner, index) => (
+                  <motion.div
+                    key={`${partner.name}-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                  >
+                    <div 
+                      className="p-6 cursor-pointer"
+                      onClick={() => toggleExpand(index)}
+                    >
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0 bg-gray-50 rounded-lg p-3 mr-4">
+                          {partner.logo ? (
+                            <img 
+                              src={partner.logo} 
+                              alt={partner.name} 
+                              className="h-16 w-16 object-contain"
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%23F3F4F6%22%2F%3E%3Cpath%20d%3D%22M32%2020C25.3726%2020%2020%2025.3726%2020%2032C20%2038.6274%2025.3726%2044%2032%2044C38.6274%2044%2044%2038.6274%2044%2032C44%2025.3726%2038.6274%2020%2032%2020ZM32%2024.8C34.3196%2024.8%2036.2%2026.6804%2036.2%2029C36.2%2031.3196%2034.3196%2033.2%2032%2033.2C29.6804%2033.2%2027.8%2031.3196%2027.8%2029C27.8%2026.6804%2029.6804%2024.8%2032%2024.8ZM32%2040.8C28.76%2040.8%2025.88%2039.16%2024%2036.68C24.08%2034.16%2032%2032.52%2032%2032.52C32%2032.52%2039.92%2034.16%2040%2036.68C38.12%2039.16%2035.24%2040.8%2032%2040.8Z"%20fill%3D%22%236B7280%22%2F%3E%3C%2Fsvg%3E';
+                              }}
+                            />
+                          ) : (
+                            <div className="h-16 w-16 rounded-full bg-mount-carmel-primary/10 flex items-center justify-center">
+                              {partner.type === 'insurance' && <Shield className="h-8 w-8 text-mount-carmel-primary" />}
+                              {partner.type === 'pharmaceutical' && <Pill className="h-8 w-8 text-mount-carmel-primary" />}
+                              {(partner.type === 'government' || partner.type === 'regulatory') && <Building2 className="h-8 w-8 text-mount-carmel-primary" />}
+                              {partner.type === 'research' && <FlaskConical className="h-8 w-8 text-mount-carmel-primary" />}
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex justify-between items-start">
+                            <h3 className="text-lg font-semibold text-gray-900">{partner.name}</h3>
+                            <button 
+                              className="text-gray-400 hover:text-mount-carmel-primary transition-colors"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleExpand(index);
+                              }}
+                            >
+                              {expandedPartner === index ? (
+                                <ChevronUp className="h-5 w-5" />
+                              ) : (
+                                <ChevronDown className="h-5 w-5" />
+                              )}
+                            </button>
                           </div>
-                        <h6 className="mb-0 small fw-semibold" style={{fontSize: '0.85rem', lineHeight: '1.2'}}>{company.name}</h6>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+                          
+                          <div className="mt-1">
+                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                              partner.type === 'insurance' ? 'bg-blue-100 text-blue-800' :
+                              partner.type === 'pharmaceutical' ? 'bg-green-100 text-green-800' :
+                              partner.type === 'government' ? 'bg-purple-100 text-purple-800' :
+                              partner.type === 'regulatory' ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-gray-100 text-gray-800'
+                            }`}>
+                              {partner.type === 'insurance' && 'Insurance'}
+                              {partner.type === 'pharmaceutical' && 'Pharmaceutical'}
+                              {partner.type === 'government' && 'Government'}
+                              {partner.type === 'regulatory' && 'Regulatory'}
+                              {partner.type === 'research' && 'Research'}
+                            </span>
+                          </div>
 
-          {/* Pharmaceutical Companies Section */}
-          <div className="row mb-5">
-            <div className="col-12">
-              <div className="rounded-3 p-5 wow fadeInUp shadow-sm text-white" data-wow-delay="0.2s" style={{background: 'linear-gradient(135deg, #6f3348 0%, #4B1438 100%)'}}>
-                <div className="text-center mb-4">
-                  <h3 className="mb-3 text-white">
-                    <i className="fa fa-pills me-2"></i>
-                    Pharmaceutical Companies on Our Portfolio
-                  </h3>
-                  <p className="lead mb-4 text-white opacity-75">Trusted pharmaceutical partners ensuring quality medication and healthcare products</p>
-                </div>
-                <div className="row g-4">
-                  {pharmaceuticalCompanies.map((company, index) => (
-                    <div key={company.name} className="col-lg-2 col-md-3 col-sm-4 col-6 wow fadeInUp" data-wow-delay={`${0.2 + index * 0.05}s`}>
-                      <div className="pharmacy-card text-center p-3 bg-white rounded-3 shadow-sm h-100 transition-all hover-lift">
-                        <div className="pharmacy-logo mb-3" style={{height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                          <i className="fa fa-prescription-bottle-alt fa-2x" style={{color:'#6f3348'}}></i>
-                        </div>
-                        <h6 className="mb-0 small fw-semibold text-dark" style={{fontSize: '0.85rem', lineHeight: '1.2'}}>{company.name}</h6>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Government Partners Grid */}
-          <div className="row mb-5">
-            <div className="col-12">
-              <div className="text-center mb-4 wow fadeInUp" data-wow-delay="0.3s">
-                <h3 className="mb-3" style={{color:'#6f3348'}}>
-                  <i className="fa fa-university me-2"></i>
-                  Government & Regulatory Partners
-                </h3>
-                <p className="mb-4">Collaborating with regulatory bodies to maintain the highest standards of healthcare</p>
-              </div>
-              <div className="row g-4">
-                {governmentPartners.map((partner, index) => (
-                  <div key={partner.name} className="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay={`${0.3 + index * 0.1}s`} data-wow-duration="0.6s">
-                    <div className="service-item d-flex h-100 p-4 rounded-3 transition-all hover-lift shadow-sm border">
-                      <div className="flex-shrink-0">
-                        <div className="rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{width: '60px', height: '60px', background:'#6f3348'}}>
-                          <i className="fa fa-handshake text-white fa-2x animate-float"></i>
+                          <AnimatePresence>
+                            {expandedPartner === index && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="mt-3 text-sm text-gray-600">
+                                  <p className="mb-3">{partner.description || 'No description available.'}</p>
+                                  {partner.website && (
+                                    <a 
+                                      href={partner.website} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center text-mount-carmel-primary hover:text-mount-carmel-secondary font-medium text-sm"
+                                      onClick={(e) => e.stopPropagation()}
+                                    >
+                                      Visit website
+                                      <ArrowRight className="ml-1 h-4 w-4" />
+                                    </a>
+                                  )}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
                       </div>
-                      <div className="ms-4">
-                        <h5 className="mb-3">{partner.name}</h5>
-                        <p className="mb-0 text-muted">{partner.description}</p>
-                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
+              </AnimatePresence>
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <div className="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-mount-carmel-primary/10 mb-4">
+                  <Search className="h-12 w-12 text-mount-carmel-primary" />
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 mb-1">No partners found</h3>
+                <p className="text-gray-500">
+                  {searchQuery 
+                    ? `No partners match "${searchQuery}". Try adjusting your search.`
+                    : 'No partners available in this category.'}
+                </p>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="mt-4 text-mount-carmel-primary hover:text-mount-carmel-secondary font-medium text-sm"
+                  >
+                    Clear search
+                  </button>
+                )}
               </div>
-            </div>
+            )}
           </div>
 
-          {/* Partnership Benefits */}
-          <div className="row g-5 mb-5">
-            <div className="col-12">
-              <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h3 className="mb-5">Benefits of Our Partnerships</h3>
-              </div>
-            </div>
-            
+          {/* Benefits Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {benefits.map((benefit, index) => (
-              <div key={benefit.title} className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.1}s`} data-wow-duration="0.6s">
-                <div className="service-item d-flex h-100 p-5 rounded-3 transition-all hover-lift shadow-sm">
-                  <div className="flex-shrink-0">
-                    <div className="rounded-3 d-flex align-items-center justify-content-center shadow-sm" style={{width: '60px', height: '60px', background:'#6f3348'}}>
-                      <i className={`${benefit.icon} text-white fa-2x animate-float`}></i>
+              <div 
+                key={benefit.title} 
+                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                data-aos="fade-up"
+                data-aos-delay={`${index * 100}`}
+              >
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 bg-mount-carmel-primary/10 rounded-lg p-3 mr-4">
+                    <div className="h-12 w-12 rounded-full bg-mount-carmel-primary/10 flex items-center justify-center text-mount-carmel-primary">
+                      {benefit.icon === 'fa fa-flask' && <FlaskConical className="h-6 w-6" />}
+                      {benefit.icon === 'fa fa-shield-alt' && <Shield className="h-6 w-6" />}
+                      {benefit.icon === 'fa fa-users' && <Users className="h-6 w-6" />}
+                      {benefit.icon === 'fa fa-chart-line' && <LineChart className="h-6 w-6" />}
                     </div>
                   </div>
-                  <div className="ms-4">
-                    <h4 className="mb-3">{benefit.title}</h4>
-                    <p className="mb-4">{benefit.description}</p>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                    <p className="text-gray-600">{benefit.description}</p>
                   </div>
                 </div>
               </div>
@@ -332,89 +605,102 @@ const Partners = () => {
           </div>
 
           {/* Partnership Statistics */}
-          <div className="row g-5 mb-5">
-            <div className="col-12">
-              <div className="rounded-3 p-5 text-center text-white wow fadeInUp shadow-sm" data-wow-delay="0.4s" style={{background:'#6f3348'}}>
-                <h3 className="mb-5">Our Partnership Impact</h3>
-                <div className="row g-4">
-                  <div className="col-lg-3 col-md-6">
-                    <div className="counter-item">
-                      <i className="fa fa-shield-alt fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={10} suffix="" /></h2>
-                      <p className="mb-0">Insurance Partners</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <div className="counter-item">
-                      <i className="fa fa-prescription-bottle-alt fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={14} suffix="" /></h2>
-                      <p className="mb-0">Pharmaceutical Partners</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <div className="counter-item">
-                      <i className="fa fa-university fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={4} suffix="" /></h2>
-                      <p className="mb-0">Government Partners</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <div className="counter-item">
-                      <i className="fa fa-users fa-3x mb-3"></i>
-                      <h2 className="display-4 fw-bold"><AnimatedCounter end={10} suffix="K+" /></h2>
-                      <p className="mb-0">Patients Served</p>
-                    </div>
-                  </div>
+          <div className="bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary rounded-2xl p-8 mt-16 mb-12">
+            <h3 className="text-2xl font-bold text-white text-center mb-8">Our Partnership Impact</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
+                  <Shield className="h-8 w-8 text-white" />
                 </div>
+                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={10} suffix="+" /></h2>
+                <p className="text-white/90">Insurance Partners</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
+                  <Pill className="h-8 w-8 text-white" />
+                </div>
+                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={14} suffix="+" /></h2>
+                <p className="text-white/90">Pharmaceutical Partners</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
+                  <Building2 className="h-8 w-8 text-white" />
+                </div>
+                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={4} suffix="+" /></h2>
+                <p className="text-white/90">Government Partners</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={10} suffix="K+" /></h2>
+                <p className="text-white/90">Patients Served</p>
               </div>
             </div>
           </div>
 
-          {/* Become a Partner CTA */}
-          <div className="row g-5">
-            <div className="col-12">
-              <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h3 className="mb-4">Interested in Partnering with Us?</h3>
-                <p className="mb-4">Join our network of healthcare partners and help us provide better healthcare services to our community.</p>
-                <Link to="/partner-form" className="btn brand-btn btn-lg transition-transform hover-scale">
-                  <i className="fa fa-handshake me-2"></i>Become a Partner
+          {/* CTA Section */}
+          <div className="bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary rounded-2xl p-8 mt-16 mb-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Become a Partner</h2>
+              <p className="text-xl text-white/90 mb-8">Join our network of trusted healthcare partners and help us deliver exceptional care to our community.</p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-mount-carmel-primary bg-white hover:bg-gray-100 md:text-lg transition-colors"
+                >
+                  Contact Us
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-                <style>{`
-                  .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
-                  .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
-                `}</style>
+                <Link
+                  to="/partnerships"
+                  className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white/10 md:text-lg transition-colors"
+                >
+                  Learn More
+                </Link>
               </div>
             </div>
           </div>
 
           {/* Contact Information */}
-          <div className="row g-5 mt-5">
-            <div className="col-12">
-              <div className="bg-light rounded-3 p-5 wow fadeInUp shadow-sm transition-all hover-lift" data-wow-delay="0.1s">
-                <div className="row g-4">
-                  <div className="col-md-4 text-center py-3">
-                    <i className="fa fa-phone-alt me-2 fa-2x text-primary mb-3 animate-float"></i>
-                    <h5>Call Us</h5>
-                    <p className="mb-0">+233 592 411 108</p>
-                  </div>
-                  <div className="col-md-4 text-center py-3">
-                    <i className="fa fa-envelope fa-2x text-primary mb-3 animate-float"></i>
-                    <h5>Email Us</h5>
-                    <p className="mb-0">mountcarmelhospital@outlook.com</p>
-                  </div>
-                  <div className="col-md-4 text-center py-3">
-                    <i className="fa fa-map-marker-alt fa-2x text-primary mb-3 animate-float"></i>
-                    <h5>Visit Us</h5>
-                    <p className="mb-0">Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
-                  </div>
+          <div className="bg-white rounded-2xl shadow-sm p-8 mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Get In Touch</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-mount-carmel-primary/10 text-mount-carmel-primary mb-4">
+                  <Phone className="h-6 w-6" />
                 </div>
+                <h4 className="text-lg font-medium text-gray-900 mb-2">Call Us</h4>
+                <p className="text-gray-600">+233 24 123 4567</p>
+                <p className="text-gray-500 text-sm mt-1">Mon-Fri, 8am-5pm</p>
+              </div>
+              <div className="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-mount-carmel-primary/10 text-mount-carmel-primary mb-4">
+                  <Mail className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-medium text-gray-900 mb-2">Email Us</h4>
+                <p className="text-gray-600">partnerships@mountcarmel.com</p>
+                <p className="text-gray-500 text-sm mt-1">We'll respond within 24 hours</p>
+              </div>
+              <div className="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-mount-carmel-primary/10 text-mount-carmel-primary mb-4">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-medium text-gray-900 mb-2">Visit Us</h4>
+                <p className="text-gray-600">123 Healthcare Ave, Accra</p>
+                <p className="text-gray-500 text-sm mt-1">Greater Accra, Ghana</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <style>{`
+      </section>
+          <style jsx global>{`
+        .hover-scale {
+          transition: transform 0.2s ease-in-out;
+        }
+        .hover-scale:hover {
+          transform: scale(1.05);
+        }
         .hover-lift {
           transition: all 0.3s ease;
         }
@@ -460,10 +746,25 @@ const Partners = () => {
         .pharmacy-card:hover .pharmacy-logo i {
           transform: scale(1.1) rotate(5deg);
         }
+        
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-250px * 7))}
+        }
+        
+        .animate-marquee {
+          animation: scroll 40s linear infinite;
+          display: flex;
+          width: calc(250px * 14);
+        }
+        
+        .hover\:pause-animation:hover {
+          animation-play-state: paused;
+        }
       `}</style>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

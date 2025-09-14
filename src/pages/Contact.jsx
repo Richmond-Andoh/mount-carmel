@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link } from 'react-router-dom';
-
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,23 +12,56 @@ const Contact = () => {
     message: "",
   });
 
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   useEffect(() => {
-    // Initialize WOW.js for animations
+    // Initialize animations
     if (window.WOW) {
       new window.WOW().init();
     }
   }, []);
 
+  const validateForm = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
+    
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) return;
+    
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("https://formspree.io/f/xzzaopzv", {
@@ -40,402 +73,309 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        alert("✅ Thank you for your message. We will get back to you soon!");
+        setIsSubmitted(true);
         setFormData({ name: "", email: "", subject: "", message: "" });
+        // Reset submission status after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
       } else {
-        alert("❌ Oops! Something went wrong. Please try again later.");
+        throw new Error('Form submission failed');
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("⚠️ Network error. Please try again.");
+      alert("⚠️ An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      {/* Parallax Page Header with Overlay and Background Image (brand) */}
-      <div
-        className="w-100"
-        style={{
-          width: "100vw",
-          marginLeft: "calc(-50vw + 50%)",
-          background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
-          backgroundAttachment: "fixed",
-          position: "relative",
-          overflow: "hidden",
-          height: "400px"
-        }}
-      >
-        <div className="container py-5">
-          <h1
-            className="display-3 text-white animated slideInDown"
-            style={{ textShadow: "0 2px 16px #000" }}
-          >
-            Contact Us
-          </h1>
-          {/* <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a className="text-white" href="/">
-                  Home
-                </a>
-              </li>
-              <li
-                className="breadcrumb-item text-white active"
-                aria-current="page"
-              >
-                Contact
-              </li>
-            </ol>
-          </nav> */}
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-28 md:py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/contact-hero.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-      </div>
-
-      {/* Brand Marquee Section */}
-      <section className="container-fluid py-5" style={{
-        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
-        color: '#fff',
-        margin: 0,
-        padding: 0
-      }}>
-        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
-            {/* duplicate for seamless loop */}
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Contact Us
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              We're here to help and answer any questions you might have. Reach out to us today.
+            </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Contact Information */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div
-            className="text-center mx-auto mb-5 wow fadeInUp"
-            data-wow-delay="0.1s"
-            style={{ maxWidth: "600px" }}
+      {/* Contact Info Cards */}
+      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Location Card */}
+          <motion.div 
+            className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
-            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>
-              Contact Us
-            </h6>
-            <h1 className="display-6 mb-4">Get In Touch With Us</h1>
-            <p className="mb-0">
-              We're here to help and answer any questions you might have. We
-              look forward to hearing from you.
-            </p>
-          </div>
-          <div className="row g-4">
-            <div
-              className="col-lg-4 col-sm-6 wow fadeInUp"
-              data-wow-delay="0.1s"
-            >
-              <div className="service-item text-center pt-3">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-map-marker-alt mb-4" style={{color:'#6f3348'}}></i>
-                  <h5 className="mb-3">Our Location</h5>
-                  <p>Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
-                </div>
-              </div>
+            <div className="w-16 h-16 bg-mount-carmel-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <MapPin className="w-8 h-8 text-mount-carmel-primary" />
             </div>
-            <div
-              className="col-lg-4 col-sm-6 wow fadeInUp"
-              data-wow-delay="0.3s"
-            >
-              <div className="service-item text-center pt-3">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-phone-alt me-2 mb-4" style={{color:'#6f3348'}}></i>
-                  <h5 className="mb-3">Call Us</h5>
-                  <p>+233 592 411 108</p>
-                </div>
-              </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Our Location</h3>
+            <p className="text-gray-600">Ashfoam Junction, Tema Com.25</p>
+            <p className="text-gray-600">Accra, Ghana</p>
+          </motion.div>
+
+          {/* Contact Card */}
+          <motion.div 
+            className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <div className="w-16 h-16 bg-mount-carmel-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Phone className="w-8 h-8 text-mount-carmel-primary" />
             </div>
-            <div
-              className="col-lg-4 col-sm-6 wow fadeInUp"
-              data-wow-delay="0.5s"
-            >
-              <div className="service-item text-center pt-3">
-                <div className="p-4">
-                  <i className="fa fa-3x fa-envelope mb-4" style={{color:'#6f3348'}}></i>
-                  <h5 className="mb-3">Email Us</h5>
-                  <p>mountcarmelhospital@outlook.com</p>
-                </div>
-              </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Contact Us</h3>
+            <p className="text-gray-600">+233 592 411 108</p>
+            <p className="text-gray-600">mountcarmelhospital@outlook.com</p>
+          </motion.div>
+
+          {/* Hours Card */}
+          <motion.div 
+            className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+          >
+            <div className="w-16 h-16 bg-mount-carmel-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Clock className="w-8 h-8 text-mount-carmel-primary" />
             </div>
-          </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Working Hours</h3>
+            <p className="text-gray-600">Monday - Friday: 8:00 AM - 8:00 PM</p>
+            <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
+            <p className="text-gray-600">Sunday: Emergency Only</p>
+          </motion.div>
         </div>
       </div>
 
-  {/* Contact Form & Map */}
-  <div className="container-xxl py-5 mb-5">
-        <div className="container">
-          <div className="row g-5">
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="h-100">
-                <h6 className="section-title bg-white text-start pe-3" style={{color:'#6f3348'}}>
-                  Contact Us
-                </h6>
-                <h1 className="display-6 mb-4">Send Us A Message</h1>
-                <p>
-                  Have a question or need to schedule an appointment? Fill out
-                  the form below and we'll get back to you as soon as possible.
-                </p>
-                <form onSubmit={handleSubmit}>
-                  <div className="row g-3">
-                    <div className="col-md-6 col-sm-12">
-                      <div className="form-floating">
-                        <input
-                          type="text"
-                          className="form-control border-0 bg-light px-4"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Your Name"
-                          required
-                        />
-                        <label htmlFor="name">Your Name</label>
-                      </div>
+      {/* Contact Form Section */}
+      <div className="bg-gray-50 py-16">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="mx-auto bg-white rounded-2xl shadow-xl overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="md:flex">
+              {/* Contact Form */}
+              <div className="p-8 md:p-12 md:w-1/2">
+                <div className="text-center md:text-left mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">Send Us a Message</h2>
+                  <p className="text-gray-600">We'll get back to you within 24 hours</p>
+                </div>
+
+                {isSubmitted ? (
+                  <div className="text-center py-12">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
+                      <CheckCircle className="w-10 h-10 text-green-600" />
                     </div>
-                    <div className="col-md-6">
-                      <div className="form-floating">
-                        <input
-                          type="email"
-                          className="form-control border-0 bg-light px-4"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="Your Email"
-                          required
-                        />
-                        <label htmlFor="email">Your Email</label>
-                      </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+                    <p className="text-gray-600 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
+                    <button
+                      onClick={() => setIsSubmitted(false)}
+                      className="px-6 py-2.5 bg-mount-carmel-primary text-white rounded-lg hover:bg-mount-carmel-primary/90 transition-colors"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-mount-carmel-primary focus:border-transparent transition-colors ${
+                          errors.name ? 'border-red-300' : 'border-gray-300 focus:border-mount-carmel-primary'
+                        }`}
+                        placeholder="Your Name"
+                      />
+                      {errors.name && (
+                        <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                      )}
                     </div>
-                    <div className="col-12">
-                      <div className="form-floating">
-                        <input
-                          type="text"
-                          className="form-control border-0 bg-light px-4"
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          placeholder="Subject"
-                          required
-                        />
-                        <label htmlFor="subject">Subject</label>
-                      </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-mount-carmel-primary focus:border-transparent transition-colors ${
+                          errors.email ? 'border-red-300' : 'border-gray-300 focus:border-mount-carmel-primary'
+                        }`}
+                        placeholder="your@email.com"
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                      )}
                     </div>
-                    <div className="col-12">
-                      <div className="form-floating">
-                        <textarea
-                          className="form-control border-0 bg-light px-4 py-3"
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          placeholder="Leave a message here"
-                          style={{ height: "150px" }}
-                          required
-                        ></textarea>
-                        <label htmlFor="message">Message</label>
-                      </div>
+
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                        Subject <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-mount-carmel-primary focus:border-transparent transition-colors ${
+                          errors.subject ? 'border-red-300' : 'border-gray-300 focus:border-mount-carmel-primary'
+                        }`}
+                        placeholder="How can we help?"
+                      />
+                      {errors.subject && (
+                        <p className="mt-1 text-sm text-red-600">{errors.subject}</p>
+                      )}
                     </div>
-                    <div className="col-12">
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                        Your Message <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-mount-carmel-primary focus:border-transparent transition-colors ${
+                          errors.message ? 'border-red-300' : 'border-gray-300 focus:border-mount-carmel-primary'
+                        }`}
+                        placeholder="Tell us how we can help..."
+                      ></textarea>
+                      {errors.message && (
+                        <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                      )}
+                    </div>
+
+                    <div className="pt-2">
                       <button
-                        className="btn brand-btn w-100 py-3"
                         type="submit"
+                        disabled={isSubmitting}
+                        className="w-full flex items-center justify-center px-6 py-3.5 bg-mount-carmel-primary text-white font-medium rounded-lg hover:bg-mount-carmel-primary/90 transition-colors disabled:opacity-70"
                       >
-                        Send Message
+                        {isSubmitting ? (
+                          <>
+                            <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-5 h-5 mr-2" />
+                            Send Message
+                          </>
+                        )}
                       </button>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                )}
               </div>
-            </div>
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="h-100">
-                <h6 className="section-title bg-white text-start pe-3" style={{color:'#6f3348'}}>
-                  Our Location
-                </h6>
-                <h1 className="display-6 mb-4">Find Us On Map</h1>
-                <p>
-                  Visit us at our convenient location in Tema, Accra. We're
-                  easily accessible and provide ample parking for our patients.
-                </p>
-                <div
-                  className="position-relative rounded overflow-hidden"
-                  style={{ height: "500px", minHeight: "500px" }}
-                >
+
+              {/* Map Section */}
+              <div className="bg-gray-100 p-8 md:w-1/2 flex flex-col">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Location</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mt-1">
+                        <MapPin className="w-5 h-5 text-mount-carmel-primary" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="text-gray-600">Ashfoam Junction, Tema Com.25</p>
+                        <p className="text-gray-600">Accra, Ghana</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mt-1">
+                        <Phone className="w-5 h-5 text-mount-carmel-primary" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="text-gray-600">+233 592 411 108</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mt-1">
+                        <Mail className="w-5 h-5 text-mount-carmel-primary" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="text-gray-600">mountcarmelhospital@outlook.com</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 mt-1">
+                        <Clock className="w-5 h-5 text-mount-carmel-primary" />
+                      </div>
+                      <div className="ml-3">
+                        <p className="font-medium text-gray-900">Working Hours:</p>
+                        <p className="text-gray-600">Monday - Friday: 8:00 AM - 8:00 PM</p>
+                        <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
+                        <p className="text-gray-600">Sunday: Emergency Only</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Map Embed */}
+                <div className="flex-1 bg-gray-200 rounded-xl overflow-hidden">
                   <iframe
-                    className="position-absolute w-100 h-100"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.5!2d0.0334405!3d5.7468091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1020806191475a19:0x3a98d53c6cad5eab!2sMount%20Carmel%20General%20Hospital%20%26%20Fertility%20Center%20Dawhanya!5e0!3m2!1sen!2sgh!4v1692979200000!5m2!1sen!2sgh"
-                    style={{ border: 0, height: "100%" }}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
                     allowFullScreen=""
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Mount Carmel Hospital Location"
                   ></iframe>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
 
-  {/* Business Hours Section with Parallax, Overlay, and Background Image */}
-  <div className="w-100 py-5 mt-5 mb-5" style={{
-        width: '100vw',
-        marginLeft: 'calc(-50vw + 50%)',
-        background: `linear-gradient(rgba(75,20,56,0.7), rgba(111,51,72,0.7)), url('/images/about-bg.jpg') center/cover no-repeat, url('/images/hospital-background.jpg') center/cover no-repeat`,
-        backgroundAttachment: 'fixed',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div className="container">
-          <div className="row g-5 align-items-center">
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="h-100" style={{color: '#fff'}}>
-                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f3348'}}>Business Hours</h6>
-                <h1 className="display-6 mb-4">When We're Open</h1>
-                <p>We understand that healthcare needs don't follow a 9-to-5 schedule. That's why we offer flexible hours to accommodate our patients' busy lives.</p>
-                <div className="row g-4">
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-clock" style={{color: '#6f3348'}}></i>
-                      </div>
-                      <div className="ms-3">
-                        <h6 className="mb-0">Monday - Sunday</h6>
-                        <span>Available 24/7</span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-clock" style={{color: '#6f3348'}}></i>
-                      </div>
-                      <div className="ms-3">
-                        <h6 className="mb-0">Sunday</h6>
-                        <span>09:00 AM - 03:00 PM</span>
-                      </div>
-                    </div>
-                  </div> */}
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-ambulance" style={{color: '#6f3348'}}></i>
-                      </div>
-                      <div className="ms-3">
-                        <h6 className="mb-0">Emergency Care</h6>
-                        <span>24/7 Available</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="d-flex align-items-center">
-                      <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                        <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
-                      </div>
-                      <div className="ms-3">
-                        <h6 className="mb-0">Appointments</h6>
-                        <span>Call to Schedule</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="h-100 bg-white rounded-4 shadow-lg p-4" style={{minHeight: '400px'}}>
-                <h6 className="section-title bg-white text-start px-3" style={{color: '#6f3348'}}>Emergency Contact</h6>
-                <h1 className="display-6 mb-4" style={{color: '#6f3348'}}>24/7 Emergency Services</h1>
-                <p style={{color: '#6f3348'}}>For medical emergencies, please call our emergency hotline immediately. Our emergency department is staffed 24/7 with experienced medical professionals.</p>
-                <div className="bg-light p-4 rounded">
-                  <div className="d-flex align-items-center mb-3">
-                    <i className="fa fa-phone-alt me-2 fa-2x me-3" style={{color: '#6f3348'}}></i>
-                    <div>
-                      <h5 className="mb-0">Emergency Hotline</h5>
-                      <h3 className="mb-0">+233 592 411 108</h3>
-                    </div>
-                  </div>
-                  <p className="mb-0">Our emergency team is ready to respond to your medical needs at any time of day or night.</p>
-                </div>
-                <div className="mt-4">
-                  <h6 style={{color: '#6f3348'}}>What to do in an emergency:</h6>
-                  <ul className="list-unstyled">
-                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Call our emergency number immediately</li>
-                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Stay calm and follow instructions</li>
-                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Provide clear location and symptoms</li>
-                    <li><i className="fa fa-check me-2" style={{color: '#6f3348'}}></i>Our team will guide you through next steps</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-
-      {/* Call to Action Section with Updated Background Color (brand) */}
-      <div
-        className="container-fluid fact py-5 pt-lg-0"
-        style={{ background: "linear-gradient(90deg, #4B1438 0%, #6f3348 100%)" }}
-      >
-        <div className="container py-5 pt-lg-0">
-          <div className="row gx-0">
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-              <div
-                className="bg-white shadow d-flex align-items-center h-100 p-5"
-                style={{ minHeight: "160px" }}
-              >
-                <div className="d-flex">
-                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-calendar" style={{color: '#6f3348'}}></i>
-                  </div>
-                  <div className="ps-3">
-                    <Link 
-                    to="/appointment">
-                      <h4>Book Appointment</h4>
-                      <span>Schedule your visit today</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-              <div
-                className="bg-white shadow d-flex align-items-center h-100 p-5"
-                style={{ minHeight: "160px" }}
-              >
-                <div className="d-flex">
-                  <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                    <i className="fa fa-phone-alt me-2" style={{color: '#6f3348'}}></i>
-                  </div>
-                  <div className="ps-3">
-                    <h4>Call Us Now</h4>
-                    <span>+233 592 411 108</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <Footer />
-    </>
+    </div>
   );
 };
 
