@@ -107,9 +107,40 @@ const TeamSection = () => {
         <div className="row g-4">
           {teamMembers.slice(1).map((member, index) => (
             <div key={index} className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay={`${0.1 + index * 0.15}s`}>
-              <div className="team-item rounded-4 shadow-lg" style={{transition:'transform .25s ease, box-shadow .25s ease'}} onMouseEnter={(e)=>{e.currentTarget.style.transform='translateY(-6px)'; e.currentTarget.style.boxShadow='0 16px 42px rgba(0,0,0,.12)'}} onMouseLeave={(e)=>{e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow=''}}>
-                <div className="position-relative overflow-hidden rounded-4">
-                  <img className="img-fluid w-100" src={member.image} alt={member.name} style={{transform:'scale(1)', transition:'transform .4s ease'}} />
+              <div
+                className="team-item rounded-4 shadow-lg d-flex flex-column h-100"
+                style={{
+                  transition: 'transform .25s ease, box-shadow .25s ease',
+                  minHeight: '420px', // Ensures all cards have the same height
+                  height: '100%',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.boxShadow = '0 16px 42px rgba(0,0,0,.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'none';
+                  e.currentTarget.style.boxShadow = '';
+                }}
+              >
+                <div
+                  className="position-relative overflow-hidden rounded-4"
+                  style={{ width: '100%' }}
+                >
+                  <img
+                    className="img-fluid w-100"
+                    src={member.image}
+                    alt={member.name}
+                    style={{
+                      transform: 'scale(1)',
+                      transition: 'transform .4s ease',
+                      width: '100%',
+                      height: '320px', // Further increased height for all images
+                      objectFit: 'contain', // Show full image without cropping
+                      display: 'block',
+                      background: '#f8fbff', // Optional: add a light background for images with transparency
+                    }}
+                  />
                   <div className="position-absolute top-0 start-0 w-100 h-100 team-overlay" style={{background:'linear-gradient(180deg, rgba(111,51,72,0.15), rgba(111,51,72,0.45))', opacity:0, transition:'opacity .35s ease'}}></div>
                   <div className="team-social">
                     <a className="btn btn-square btn-light mx-1" href={member.social.facebook}>
@@ -126,7 +157,7 @@ const TeamSection = () => {
                     </a>
                   </div>
                 </div>
-                <div className="text-center p-4">
+                <div className="text-center p-4 flex-grow-1 d-flex flex-column justify-content-center">
                   <h5 className="mb-1">{member.name}</h5>
                   <span>{member.role}</span>
                   <span className="d-block text-muted">{member.specialty}</span>

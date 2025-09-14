@@ -5,13 +5,80 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { HeartPulse, Stethoscope, Microscope, Activity, Shield, Clock, CheckCircle, ChevronRight, Star, MapPin, Phone, Mail } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Facilities = () => {
   const [activeTab, setActiveTab] = useState('departments');
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Facility images for gallery with categories (moved above usage)
+  const facilityImages = [
+    { 
+      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Main Building",
+      category: "Facilities"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd2e?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Reception Area",
+      category: "Facilities"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Patient Room",
+      category: "Patient Care"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Diagnostic Centre",
+      category: "Diagnostics"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Emergency Department",
+      category: "Emergency"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Fertility Centre",
+      category: "Specialty Care"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Patient Facilities",
+      category: "Patient Care"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Surgical Theater",
+      category: "Surgical"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Rehabilitation Center",
+      category: "Therapy"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Modern Operating Room",
+      category: "Surgical"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1551076805-e4c612b6c3d7?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Cardiac Care Unit",
+      category: "Specialty Care"
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1581539250439-c96689b516dd?auto=format&fit=crop&w=1200&q=80", 
+      caption: "Neonatal ICU",
+      category: "Specialty Care"
+    }
+  ];
 
   useEffect(() => {
     // Initialize WOW.js for animations
@@ -19,6 +86,14 @@ const Facilities = () => {
       new window.WOW().init();
     }
   }, []);
+
+  // Get unique categories for gallery filtering
+  const categories = ['All', ...new Set(facilityImages.map(img => img.category))];
+  
+  // Filter images by category
+  const filteredImages = activeCategory === 'All' 
+    ? facilityImages 
+    : facilityImages.filter(img => img.category === activeCategory);
 
   const departments = [
     {
@@ -92,23 +167,194 @@ const Facilities = () => {
     }
   ];
 
-  // Facility images for carousel
-  const facilityImages = [
-    { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", caption: "Main Building" },
-    { src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd2e?auto=format&fit=crop&w=600&q=80", caption: "Reception Area" },
-    { src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80", caption: "Patient Room" },
-    { src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80", caption: "Diagnostic Centre" },
-    { src: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=600&q=80", caption: "Emergency Department" },
-    { src: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=600&q=80", caption: "Fertility Centre" },
-    { src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80", caption: "Patient Facilities" },
-    { src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80", caption: "Surgical Theater" }
-  ];
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <Header />
-  {/* Local styles: modern card hover, focus, parallax, carousel and responsive tweaks (brand palette) */}
-  <style>{`
+      
+      {/* Hero Section */}
+  <section className="relative bg-gradient-to-r from-primary to-primary text-white py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-black/40 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+            alt="Hospital Facilities"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl">
+            <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+              World-Class Healthcare
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Our State-of-the-Art <span className="text-primary">Facilities</span>
+            </h1>
+            <p className="text-xl text-primary/80 mb-8 max-w-2xl">
+              Experience exceptional care in our modern, well-equipped medical facilities designed for your comfort and well-being.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a 
+                href="#departments" 
+                className="bg-white text-primary hover:bg-primary/10 font-semibold py-3 px-6 rounded-full transition-all duration-300 inline-flex items-center"
+              >
+                Explore Departments
+                <ChevronRight className="ml-2 w-5 h-5" />
+              </a>
+              <a 
+                href="#gallery" 
+                className="border-2 border-white text-white hover:bg-white/10 font-semibold py-3 px-6 rounded-full transition-all duration-300 inline-flex items-center"
+              >
+                View Gallery
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Departments Section */}
+      <section id="departments" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Specialized Departments</h2>
+            <p className="text-lg text-gray-600">
+              Comprehensive healthcare services delivered with compassion and cutting-edge technology.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {departments.map((dept, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={dept.image} 
+                    alt={dept.name}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                      {index === 0 ? <HeartPulse className="w-6 h-6" /> : 
+                       index === 1 ? <Activity className="w-6 h-6" /> : 
+                       <Microscope className="w-6 h-6" />}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">{dept.name}</h3>
+                  </div>
+                  <p className="text-gray-600 mb-4">{dept.description}</p>
+                  <ul className="space-y-2 mb-6">
+                    {dept.features.map((feature, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button className="text-primary font-medium hover:text-primary/80 transition-colors inline-flex items-center">
+                    Learn more
+                    <ChevronRight className="ml-1 w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Image Gallery Section */}
+      <section id="gallery" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Facilities Gallery</h2>
+            <p className="text-lg text-gray-600">
+              Take a virtual tour of our state-of-the-art medical facilities and comfortable patient areas.
+            </p>
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === category
+                    ? 'bg-primary text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Image Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredImages.map((image, index) => (
+              <motion.div
+                key={`${image.src}-${index}`}
+                className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="aspect-w-16 aspect-h-10">
+                  <img
+                    src={image.src}
+                    alt={image.caption}
+                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div>
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-primary text-white rounded-full mb-2">
+                      {image.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-white">{image.caption}</h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+  <section className="py-16 bg-primary text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Our Facilities?</h2>
+          <p className="text-xl text-primary/80 mb-8 max-w-2xl mx-auto">
+            Schedule a tour or book an appointment with our specialists today.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="/contact"
+              className="bg-white text-primary hover:bg-primary/10 font-semibold py-3 px-8 rounded-full transition-all duration-300 inline-flex items-center"
+            >
+              Contact Us
+              <ChevronRight className="ml-2 w-5 h-5" />
+            </a>
+            <a
+              href="/appointment"
+              className="border-2 border-white text-white hover:bg-white/10 font-semibold py-3 px-8 rounded-full transition-all duration-300 inline-flex items-center"
+            >
+              Book Appointment
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <style jsx global>{`
         .service-item {
           background: #ffffff;
           border-radius: 14px;
@@ -235,398 +481,10 @@ const Facilities = () => {
         /* Override bootstrap primary color on this page to match brand palette */
         .bg-primary { background: linear-gradient(90deg, #4B1438, #6f3348) !important; }
       `}</style>
-    {/* Modern Swiper styles for gallery */}
-    <style>{`
-      .carousel-wrap {
-        overflow: visible;
-        padding-bottom: 32px;
-      }
-      .swiper {
-        padding-bottom: 48px !important;
-      }
-      .swiper-slide {
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        height: 320px;
-        transition: transform .3s ease, opacity .3s ease;
-      }
-      .swiper-slide .gallery-item { transform: scale(.94); opacity: .9; }
-      .swiper-slide-next .gallery-item,
-      .swiper-slide-prev .gallery-item { transform: scale(.98); opacity: .95; }
-      .swiper-slide-active .gallery-item { transform: scale(1.05); opacity: 1; box-shadow: 0 16px 48px rgba(111,51,72,0.22), 0 4px 12px rgba(0,0,0,0.12); }
-      .gallery-item {
-        position: relative;
-        width: 100%;
-        max-width: 340px;
-        height: 100%;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 6px 32px rgba(111,51,72,0.12), 0 1.5px 6px rgba(0,0,0,0.08);
-        transition: transform 0.3s, box-shadow 0.3s;
-        background: #fff;
-      }
-      .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.3s;
-      }
-      .gallery-item:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 12px 40px rgba(111,34,72,0.18), 0 2px 8px rgba(0,0,0,0.10);
-      }
-      .gallery-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg,rgba(111,51,72,0.0),rgba(111,51,72,0.85));
-        color: #fff;
-        display: flex;
-        align-items: flex-end;
-        padding: 1.2rem;
-        border-radius: 18px;
-        pointer-events: none;
-      }
-      .gallery-overlay h5 {
-        font-size: 1.15rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-      }
-      /* Swiper navigation buttons */
-      .swiper-button-next, .swiper-button-prev {
-        color: #fff;
-        background: rgba(111,51,72,0.65);
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-        top: 50%;
-        transform: translateY(-50%);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-        transition: background 0.2s;
-      }
-      .swiper-button-next:hover, .swiper-button-prev:hover {
-        background: rgba(111,51,72,0.85);
-      }
-      .swiper-pagination-bullet {
-        background: #6f3348;
-        opacity: 0.7;
-      }
-      .swiper-pagination-bullet-active {
-        background: #fff;
-        opacity: 1;
-        border: 2px solid #6f3348;
-      }
-    `}</style>
+   
 
-      {/* Page Header - improved hero with brand overlay and depth */}
-      <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
-        background: `linear-gradient(rgba(111,51,72,0.85), rgba(111,51,72,0.85)), url('/images/about-bg.jpg') center/cover no-repeat`,
-        position: 'relative',
-        boxShadow: '0 10px 38px rgba(0,0,0,0.16)',
-        backgroundAttachment: 'fixed',
-        height: '420px'
-      }}>
-        <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Our Facilities</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
-            {/* <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-              <li className="breadcrumb-item text-white active" aria-current="page">Facilities</li>
-            </ol> */}
-          </nav>
-          <p className="lead text-white mt-3" style={{maxWidth:'680px'}}>Explore our world-class departments and infrastructure thoughtfully designed for comfort, safety, and advanced care.</p>
-        </div>
-      </div>
-
-      {/* Brand Marquee Section */}
-      <section className="container-fluid py-5" style={{
-        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
-        color: '#fff',
-        margin: 0,
-        padding: 0
-      }}>
-        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
-            <span className="fw-semibold" style={{opacity:0.95}}>Safety First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Modern Equipment</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Staff</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient Comfort</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Advanced Diagnostics</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Accredited Facility</span>
-            {/* duplicate for seamless loop */}
-            <span className="fw-semibold" style={{opacity:0.95}}>Safety First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Modern Equipment</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Staff</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient Comfort</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Advanced Diagnostics</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Accredited Facility</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Facilities Section */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center text-mount-carmel-primary px-3">Facilities</h6>
-            <h1 className="display-6 mb-4">World-Class Hospital Infrastructure</h1>
-            <p className="mb-0">Experience healthcare excellence in our state-of-the-art facilities, designed to provide the highest quality medical care in a comfortable and healing environment.</p>
-          </div>
-
-          {/* Tabs */}
-          <div className="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div className="btn-group" role="group">
-              <button
-                type="button"
-                className={`btn brand-btn ${activeTab === 'departments' ? 'btn-primary' : 'btn-outline-primary'}`}
-                onClick={() => setActiveTab('departments')}
-              >
-                <i className="fa fa-hospital me-2"></i>Departments
-              </button>
-              <button
-                type="button"
-                className={`btn brand-outline-btn ${activeTab === 'infrastructure' ? 'btn-primary' : 'btn-outline-primary'}`}
-                onClick={() => setActiveTab('infrastructure')}
-              >
-                <i className="fa fa-building me-2"></i>Infrastructure
-              </button>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="row g-5">
-            {activeTab === 'departments' ? (
-              departments.map((dept, index) => (
-                <div key={dept.name} className="col-lg-4 col-md-6" data-wow-delay={`${0.1 + index * 0.1}s`}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                  >
-                    <div className="service-item d-flex h-100 p-5" tabIndex={0}>
-                      <div className="flex-shrink-0 me-4">
-                        <img src={dept.image} alt={dept.name} style={{width:'80px',height:'80px',objectFit:'cover',borderRadius:'12px',boxShadow:'0 2px 12px rgba(111,34,72,0.10)'}} />
-                      </div>
-                      <div className="ms-2">
-                        <h4 className="mb-3">{dept.name}</h4>
-                        <p className="mb-4">{dept.description}</p>
-                        <ul className="list-unstyled">
-                          {dept.features.map((feature, i) => (
-                            <li key={i} className="mb-2">
-                              <i className="fa fa-check text-primary me-2"></i>
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              ))
-            ) : (
-              infrastructure.map((item, index) => (
-                <div key={item.name} className="col-lg-4 col-md-6" data-wow-delay={`${0.1 + index * 0.1}s`}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                  >
-                    <div className="service-item d-flex h-100 p-5" tabIndex={0}>
-                      <div className="flex-shrink-0 me-4">
-                        <img src={item.image} alt={item.name} style={{width:'80px',height:'80px',objectFit:'cover',borderRadius:'12px',boxShadow:'0 2px 12px rgba(111,34,72,0.10)'}} />
-                      </div>
-                      <div className="ms-2">
-                        <h4 className="mb-3">{item.name}</h4>
-                        <p className="mb-4">{item.description}</p>
-                        <ul className="list-unstyled">
-                          {item.features.map((feature, i) => (
-                            <li key={i} className="mb-2">
-                              <i className="fa fa-check text-primary me-2"></i>
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* Parallax Fertility Spotlight */}
-          <motion.section
-            className="parallax-hero my-5"
-            initial={{opacity:0}}
-            whileInView={{opacity:1}}
-            viewport={{once:true}}
-            transition={{duration:0.8}}
-            style={{
-              background: `linear-gradient(rgba(111,34,72,0.35), rgba(111,34,72,0.55)), url('/images/gallery/fertility-center.jpg') center/cover no-repeat`,
-              backgroundAttachment: 'fixed',
-              borderRadius: 0,
-              width: '100vw',
-              position: 'relative',
-              left: '50%',
-              right: '50%',
-              transform: 'translateX(-50%)',
-              overflowX: 'hidden'
-            }}
-          >
-            <div className="parallax-content text-center">
-              <motion.h2 initial={{y:20,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.1}}>Fertility Care Spotlight</motion.h2>
-              <motion.p className="lead" initial={{y:20,opacity:0}} whileInView={{y:0,opacity:1}} transition={{delay:0.2}}>Our fertility centre blends compassionate care with advanced reproductive technology to guide you on your family-building journey.</motion.p>
-
-              <div className="row mt-4">
-                <div className="col-md-4">
-                  <motion.div initial={{scale:0.92,opacity:0}} whileInView={{scale:1,opacity:1}} transition={{delay:0.25}} className="bg-white text-center p-4 rounded">
-                    <h3 className="mb-0">95%</h3>
-                    <small>Patient Satisfaction</small>
-                  </motion.div>
-                </div>
-                <div className="col-md-4 mt-3 mt-md-0">
-                  <motion.div initial={{scale:0.92,opacity:0}} whileInView={{scale:1,opacity:1}} transition={{delay:0.35}} className="bg-white text-center p-4 rounded">
-                    <h3 className="mb-0">20+</h3>
-                    <small>Years Experience</small>
-                  </motion.div>
-                </div>
-                <div className="col-md-4 mt-3 mt-md-0">
-                  <motion.div initial={{scale:0.92,opacity:0}} whileInView={{scale:1,opacity:1}} transition={{delay:0.45}} className="bg-white text-center p-4 rounded">
-                    <h3 className="mb-0">3000+</h3>
-                    <small>Successful Treatments</small>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </motion.section>
-
-          {/* Gallery Section - Swiper Carousel */}
-          <div className="mt-5">
-            <div className="text-center mb-4">
-              <h3>Facilities Gallery</h3>
-              <p className="mb-0">Explore our hospital through recent images showcasing care, comfort, and technology.</p>
-            </div>
-            <div className="carousel-wrap position-relative">
-              <Swiper
-                modules={[Autoplay, Pagination, Navigation, EffectCoverflow, Keyboard, Mousewheel]}
-                spaceBetween={24}
-                slidesPerView={1}
-                centeredSlides={true}
-                breakpoints={{
-                  576: { slidesPerView: 1.5 },
-                  768: { slidesPerView: 2 },
-                  992: { slidesPerView: 2.5 },
-                  1200: { slidesPerView: 3 }
-                }}
-                loop={true}
-                effect="coverflow"
-                coverflowEffect={{ rotate: 20, stretch: 0, depth: 140, modifier: 1, slideShadows: false }}
-                grabCursor={true}
-                keyboard={{ enabled: true, onlyInViewport: true }}
-                mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
-                autoplay={{ delay: 2600, disableOnInteraction: false, pauseOnMouseEnter: true }}
-                pagination={{ clickable: true, dynamicBullets: true }}
-                navigation={true}
-                style={{ paddingBottom: '48px' }}
-              >
-                {facilityImages.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="gallery-item position-relative">
-                      <img src={img.src} alt={img.caption} loading="lazy" />
-                      <div className="gallery-overlay d-flex flex-column justify-content-end p-3" style={{background:'linear-gradient(180deg,rgba(111,34,72,0.0),rgba(111,34,72,0.65))'}}>
-                        <h5 className="mb-1 text-white fw-bold">{img.caption}</h5>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-            <div className="col-12 mt-4">
-              <div className="bg-primary rounded p-5 text-center text-white wow fadeInUp" data-wow-delay="0.1s">
-                <h3 className="mb-4">Experience Our Facilities</h3>
-                <p className="mb-4">Schedule a visit to our hospital and experience our world-class facilities firsthand. Our team is ready to provide you with exceptional care.</p>
-                <Link to="/visitation-form" className="btn btn-light">
-                  <i className="fa fa-calendar me-2"></i>Schedule a Visit
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Additional Features */}
-          <div className="row g-5 mt-5">
-            <div className="col-12">
-              <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h3 className="mb-5">Why Choose Our Facilities?</h3>
-              </div>
-            </div>
-            
-            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="service-item d-flex h-100 p-5">
-                <div className="flex-shrink-0">
-                  <div className="bg-primary rounded-3" style={{width: '60px', height: '60px'}}>
-                    <i className="fa fa-shield-alt text-white fa-2x"></i>
-                  </div>
-                </div>
-                <div className="ms-4">
-                  <h4 className="mb-3">Safety First</h4>
-                  <p className="mb-4">State-of-the-art safety protocols and emergency systems.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-              <div className="service-item d-flex h-100 p-5">
-                <div className="flex-shrink-0">
-                  <div className="bg-primary rounded-3" style={{width: '60px', height: '60px'}}>
-                    <i className="fa fa-cogs text-white fa-2x"></i>
-                  </div>
-                </div>
-                <div className="ms-4">
-                  <h4 className="mb-3">Modern Equipment</h4>
-                  <p className="mb-4">Latest medical technology and equipment for accurate diagnosis.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-              <div className="service-item d-flex h-100 p-5">
-                <div className="flex-shrink-0">
-                  <div className="bg-primary rounded-3" style={{width: '60px', height: '60px'}}>
-                    <i className="fa fa-users text-white fa-2x"></i>
-                  </div>
-                </div>
-                <div className="ms-4">
-                  <h4 className="mb-3">Expert Staff</h4>
-                  <p className="mb-4">Highly trained medical professionals and support staff.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-              <div className="service-item d-flex h-100 p-5">
-                <div className="flex-shrink-0">
-                  <div className="bg-primary rounded-3" style={{width: '60px', height: '60px'}}>
-                    <i className="fa fa-heart text-white fa-2x"></i>
-                  </div>
-                </div>
-                <div className="ms-4">
-                  <h4 className="mb-3">Patient Comfort</h4>
-                  <p className="mb-4">Comfortable and welcoming environment for patients and families.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Footer />
-    </>
+     
+    </div>
   );
 };
 
