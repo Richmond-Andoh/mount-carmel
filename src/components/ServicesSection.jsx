@@ -27,56 +27,56 @@ const ServicesSection = () => {
       icon: "bi bi-hospital",
       title: "General Out-patient & In-patient",
       description: "Comprehensive care including consultancy, 24-hour emergency services, and antenatal/postnatal consultations.",
-      link: "/services/general-out-patient-&-in-patient",
+      link: "https://www.aucmed.edu/blog/inpatient-vs-outpatient",
       color: "#6f3348"
     },
     {
       icon: "bi bi-heart-pulse",
       title: "In-Vitro Fertilization (IVF)",
       description: "Advanced Assisted Reproductive Technology to help you on your journey to parenthood.",
-      link: "/services/in-vitro-fertilization-(ivf)",
+      link: "https://www.webmd.com/infertility-and-reproduction/in-vitro-fertilization",
       color: "#DAA520"
     },
     {
       icon: "bi bi-gender-female",
       title: "Obstetrics & Gynecology",
       description: "Specialized consultancy and care for women's health at every stage of life.",
-      link: "/services/obstetrics-&-gynecology",
+      link: "https://journals.lww.com/greenjournal/pages/default.aspx",
       color: "#4B1438"
     },
     {
       icon: "bi bi-scissors",
       title: "General Surgery",
       description: "A wide range of surgical procedures with minimally invasive techniques.",
-      link: "/services/general-surgery",
+      link: "https://en.wikipedia.org/wiki/General_surgery",
       color: "#B8860B"
     },
     {
       icon: "bi bi-heart",
       title: "Orthopedic Services",
       description: "Treatment for musculoskeletal issues including bones, joints, and muscles.",
-      link: "/services/orthopedic-services",
+      link: "https://en.wikipedia.org/wiki/Orthopedic_surgery",
       color: "#6f3348"
     },
     {
       icon: "bi bi-emoji-smile",
       title: "Pediatric Services",
       description: "Comprehensive healthcare for infants, children, and adolescents.",
-      link: "/services/pediatric-services",
+      link: "https://en.wikipedia.org/wiki/Pediatrics",
       color: "#DAA520"
     },
     {
       icon: "bi bi-clipboard2-check",
       title: "Health Screening",
       description: "Pre-employment and annual screenings to ensure a healthy workforce.",
-      link: "/services/health-screening",
+      link: "https://medical-dictionary.thefreedictionary.com/health+screening",
       color: "#4B1438"
     },
     {
       icon: "bi bi-people",
       title: "Family Planning",
       description: "Comprehensive family planning and reproductive health services.",
-      link: "/services/family-planning",
+      link: "https://www.who.int/news-room/fact-sheets/detail/family-planning-contraception",
       color: "#B8860B"
     },
     {
@@ -90,14 +90,14 @@ const ServicesSection = () => {
       icon: "bi bi-flask",
       title: "Diagnostic & Laboratory",
       description: "Advanced diagnostics including blood tests, X-rays, and ultrasounds.",
-      link: "/services/diagnostic-&-laboratory",
+      link: "https://medical-dictionary.thefreedictionary.com/Laboratory+diagnostics",
       color: "#DAA520"
     },
     {
       icon: "bi bi-heart-pulse-fill",
       title: "Intensive Care Units (ICU)",
       description: "Specialized intensive care with continuous monitoring and advanced support.",
-      link: "/services/intensive-care-units-(icu)",
+      link: "https://en.wikipedia.org/wiki/Intensive_care_unit",
       color: "#4B1438"
     },
     {
