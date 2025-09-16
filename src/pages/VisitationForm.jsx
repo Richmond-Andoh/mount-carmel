@@ -71,25 +71,107 @@ const VisitationForm = () => {
   return (
     <>
       <Header />
-      {/* Hero Section with Background Image and Overlay */}
-      <div className="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s" style={{
-        background: `linear-gradient(rgba(75,20,56,0.8), rgba(111,51,72,0.8)), url('/images/gallery/room-facility.jpg') center/cover no-repeat`,
-        position: 'relative',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-        backgroundAttachment: 'fixed',
-        height: '400px'
-      }}>
-        <div className="container py-5">
-          <h1 className="display-3 text-white animated slideInDown fw-bold" style={{letterSpacing: '2px'}}>Visit Our Facility</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-              <li className="breadcrumb-item text-white active" aria-current="page">Visitation Form</li>
-            </ol>
-          </nav>
-          <p className="lead text-white mt-4" style={{maxWidth: '600px'}}>Experience our world-class facilities firsthand. Schedule a visit to see our state-of-the-art medical equipment and meet our expert team.</p>
+      {/* Enhanced Hero Section with Improved Styling and Animations */}
+      <section className="position-relative overflow-hidden">
+        <div 
+          className="page-header py-5 d-flex align-items-center min-vh-75 wow fadeIn" 
+          data-wow-delay="0.1s"
+          style={{
+            background: `linear-gradient(rgba(75, 20, 56, 0.85), rgba(111, 51, 72, 0.85)), url('/images/gallery/room-facility.jpg') center/cover no-repeat fixed`,
+            position: 'relative',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+            minHeight: '75vh',
+            display: 'flex',
+            alignItems: 'center',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+          }}
+        >
+          <div className="container py-5 mt-5">
+            <div className="row justify-content-center">
+              <div className="col-lg-8 text-center">
+                <nav aria-label="breadcrumb" className="mb-4">
+                  <ol className="breadcrumb justify-content-center bg-transparent p-0">
+                    <li className="breadcrumb-item"><a className="text-white-50" href="/">Home</a></li>
+                    <li className="breadcrumb-item text-white active" aria-current="page">Visitation Form</li>
+                  </ol>
+                </nav>
+                
+                <h1 className="display-3 text-white fw-bold mb-4 wow fadeInUp" data-wow-delay="0.3s" style={{
+                  textShadow: '2px 2px 8px rgba(0,0,0,0.3)',
+                  letterSpacing: '1.5px',
+                  lineHeight: '1.2'
+                }}>
+                  Schedule Your Visit
+                </h1>
+                
+                <p className="lead text-white mb-5 wow fadeInUp" data-wow-delay="0.5s" style={{
+                  maxWidth: '700px',
+                  margin: '0 auto',
+                  fontSize: '1.25rem',
+                  textShadow: '1px 1px 4px rgba(0,0,0,0.2)'
+                }}>
+                  Experience our world-class healthcare facilities firsthand. Schedule a personalized tour to see our state-of-the-art medical equipment and meet our compassionate team of experts.
+                </p>
+                
+                <a 
+                  href="#visitation-form"
+                  className="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-primary wow fadeInUp cta-pulse" 
+                  data-wow-delay="0.7s"
+                  style={{
+                    boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    zIndex: 1,
+                    border: 'none',
+                    fontWeight: '600',
+                    letterSpacing: '0.5px',
+                    textTransform: 'uppercase',
+                    padding: '12px 30px',
+                    fontSize: '1rem'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.25)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+                  }}
+                >
+                  <span className="position-relative z-2">
+                    Book Your Visit Now
+                    <i className="fas fa-arrow-right ms-2"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Scroll Indicator */}
+          <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4 text-center wow fadeInUp" data-wow-delay="1s">
+            <div className="text-white mb-2" style={{ fontSize: '0.875rem' }}>Scroll Down</div>
+            <div className="d-flex justify-content-center">
+              <div className="scroll-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Animated Background Elements */}
+          <div className="position-absolute top-0 end-0 w-100 h-100" style={{
+            background: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23ffffff\' fill-opacity=\'0.08\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
+            opacity: 0.7,
+            zIndex: 0,
+            pointerEvents: 'none'
+          }}></div>
         </div>
-      </div>
+      </section>
 
       {/* Brand Marquee Section */}
       <section className="container-fluid py-5" style={{
