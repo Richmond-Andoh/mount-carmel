@@ -31,193 +31,211 @@ const twelfthRow = images.slice(0, 3);
 
 
 const Marquee3D = () => {
+  // Set a fixed height for the marquee
+  const marqueeHeight = '600px';
+  
   return (
-    <div className="relative w-100 overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]" style={{height: "550px",maxHeight: "550px"}}>
+    <div className="relative w-full overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 py-4" style={{ height: marqueeHeight }}>
       <div
-        className="absolute flex h-full w-full flex-row items-center justify-center perspective-1000"
+        className="flex h-full w-full flex-row items-center justify-center"
         style={{
-          transform:
-            "translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)",
-        }}
+          transform: "rotateX(10deg) rotateY(-5deg)",
+          perspective: '1000px',
+          transformStyle: 'preserve-3d',
+          gap: '0.5rem',
+          padding: '0 1rem'
+        }}d
       >
         <Marquee pauseOnHover vertical className="[--duration:20s]">
           {firstRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Hospital facility ${i + 1}`}
-              className="h-36 w-100 object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/team-1.jpg';
-              }}
-            />
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Hospital facility ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/team-1.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] w-100" vertical>
           {secondRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Medical team ${i + 1}`}
-              className="h-36 object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/about-1.jpg';
-              }}
-            />
+            <div key={i} className="relative h-36 w-full min-w-[280px] mx-1 overflow-hidden rounded-lg">
+              <img 
+                src={img} 
+                alt={`Medical team ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/about-1.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] hidden md:block w-100">
+        <Marquee pauseOnHover vertical className="[--duration:20s]">
           {thirdRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Hospital service ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/carousel-1.jpg';
-              }}
-            />
+            <div key={i} className="relative h-36 w-full min-w-[320px] mx-1 overflow-hidden rounded-lg">
+              <img 
+                src={img} 
+                alt={`Hospital service ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/carousel-1.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden md:block w-100" vertical>
           {fourthRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Medical facility ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/carousel-2.jpg';
-              }}
-            />
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Medical facility ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/carousel-2.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden lg:block w-100">
           {fifthRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Healthcare service ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/carousel-3.jpg';
-              }}
-            />
+            <div key={i} className="relative h-36 w-full min-w-[280px] mx-1 overflow-hidden rounded-lg">
+              <img 
+                src={img} 
+                alt={`Healthcare service ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/service-1.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden lg:block w-100" vertical>
           {sixthRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Medical department ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/feature.jpg';
-              }}
-            />
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Medical equipment ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/service-2.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden xl:block w-100">
           {seventhRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Medical gallery ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/about-2.jpg';
-              }}
-            />
+            <div key={i} className="relative h-36 w-full min-w-[320px] mx-1 overflow-hidden rounded-lg">
+              <img 
+                src={img} 
+                alt={`Medical team ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/team-2.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden xl:block w-100" vertical>
           {eighthRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Hospital gallery ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/about-3.jpg';
-              }}
-            />
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Medical staff ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/team-3.jpg';
+                }}
+              />
+            </div>
+          ))}
+        </Marquee>
+        <Marquee pauseOnHover vertical className="[--duration:20s] w-100 hidden 2xl:block">
+          {ninethRow.map((img, i) => (
+            <div key={i} className="relative h-36 w-full min-w-[320px] mx-1 overflow-hidden rounded-lg">
+              <img 
+                src={img} 
+                alt={`Healthcare professional ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/team-4.jpg';
+                }}
+              />
+            </div>
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100 -mr-0" vertical>
+          {tenthRow.map((img, i) => (
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Medical staff ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/team-3.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee pauseOnHover vertical className="[--duration:20s] hidden 2xl:block w-100">
           {ninethRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Facility gallery ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/about-4.jpg';
-              }}
-            />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100" vertical>
-          {tenthRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Service gallery ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/team-2.jpg';
-              }}
-            />
-          ))}
-        </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s] w-100 hidden 2xl:block">
-          {eleventhRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Department gallery ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/team-3.jpg';
-              }}
-            />
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Medical department ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/feature.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s] hidden 2xl:block w-100 -mr-0" vertical>
           {twelfthRow.map((img, i) => (
-            <img 
-              key={i} 
-              src={img} 
-              alt={`Medical center ${i + 1}`}
-              className="h-36 w-auto object-cover rounded-lg" 
-              loading="lazy"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/images/team-4.jpg';
-              }}
-            />
+            <div key={i} className="relative h-24 w-full min-w-[220px] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all">
+              <img 
+                src={img} 
+                alt={`Medical center ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105 shadow-md" 
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/team-4.jpg';
+                }}
+              />
+            </div>
           ))}
         </Marquee>
         {/*
