@@ -94,8 +94,6 @@ const Construction = () => {
             Go to homepage
           </Link>
         </div>
-
-        
       </div>
     </div>
   );
