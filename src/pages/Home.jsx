@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import AboutSection from "../components/AboutSection";
 import FeaturesSection from "../components/FeaturesSection";
+import VideoSection from "../components/VideoSection";
 import ServicesSection from "../components/ServicesSection";
 import TeamSection from "../components/TeamSection";
 import TestimonialsSection from "../components/TestimonialsSection";
@@ -21,7 +22,8 @@ const Home = () => {
         background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
         color: '#fff',
         margin: 0,
-        padding: 0}}>
+        padding: 0
+      }}>
         <div className="w-full">
           <div className="relative" style={{ height: "100px" }}>
             <div
@@ -44,7 +46,7 @@ const Home = () => {
                     }}
                   >
                     WELCOME · TO · MOUNT · CARMEL · HOSPITAL & FERTILITY · CENTER
-                    
+
                   </span>
                 ))}
               </Marquee>
@@ -54,6 +56,7 @@ const Home = () => {
       </div>
       <AboutSection />
       <FeaturesSection />
+      <VideoSection />
       <ServicesSection />
       <TeamSection />
       <TestimonialsSection />
