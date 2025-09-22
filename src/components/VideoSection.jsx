@@ -38,12 +38,12 @@ const VideoSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
 
                     {/* Optional: Play button overlay for custom controls */}
-                    {/* <button className="absolute inset-0 flex items-center justify-center w-full h-full bg-black/30 hover:bg-black/40 transition group-hover:scale-105">
-            <svg width="64" height="64" fill="none" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="32" fill="#fff" fillOpacity="0.7" />
-              <polygon points="26,20 48,32 26,44" fill="#6f3348" />
-            </svg>
-          </button> */}
+                    <button className="absolute inset-0 flex items-center justify-center w-full h-full bg-black/30 hover:bg-black/40 transition group-hover:scale-105">
+                        <svg width="64" height="64" fill="none" viewBox="0 0 64 64">
+                            <circle cx="32" cy="32" r="32" fill="#fff" fillOpacity="0.7" />
+                            <polygon points="26,20 48,32 26,44" fill="#6f3348" />
+                        </svg>
+                    </button>
                 </div>
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
