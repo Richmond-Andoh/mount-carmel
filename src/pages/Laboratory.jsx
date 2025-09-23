@@ -30,21 +30,21 @@ const Laboratory = () => {
       title: "Blood Tests",
       description: "Complete blood count, chemistry panels, and specialized blood work",
       tests: ["CBC", "Lipid Panel", "Liver Function", "Kidney Function"],
-      color: "#dc3545"
+      color: "#6f3348"
     },
     {
-      icon: "bi bi-microscope",
+      icon: "bi bi-shield-check",
       title: "Microbiology",
       description: "Bacterial cultures, sensitivity testing, and infectious disease diagnostics",
       tests: ["Culture & Sensitivity", "Stool Analysis", "Urine Culture", "Blood Culture"],
-      color: "#198754"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-heart-pulse-fill",
       title: "Cardiac Markers",
       description: "Heart health assessment and cardiovascular risk evaluation",
       tests: ["Troponin", "CK-MB", "BNP", "Cholesterol"],
-      color: "#fd7e14"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-gender-female",
@@ -58,14 +58,14 @@ const Laboratory = () => {
       title: "Tumor Markers",
       description: "Cancer screening and monitoring for various malignancies",
       tests: ["PSA", "CEA", "CA 125", "AFP"],
-      color: "#0d6efd"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-shield-check",
       title: "Immunology",
       description: "Immune system function and autoimmune disease testing",
       tests: ["Autoantibodies", "Allergy Testing", "Immunoglobulins", "Rheumatoid Factor"],
-      color: "#20c997"
+      color: "#6f3348"
     }
   ];
 
@@ -77,7 +77,7 @@ const Laboratory = () => {
       icon: "bi bi-collection-fill"
     },
     {
-      step: "2", 
+      step: "2",
       title: "Sample Processing",
       description: "Careful handling and preparation of samples for analysis",
       icon: "bi bi-gear-fill"
@@ -99,7 +99,7 @@ const Laboratory = () => {
   return (
     <>
       <Header />
-      
+
       {/* Hero Section */}
       <section className="position-relative overflow-hidden" style={{ minHeight: '70vh' }}>
         {/* Background Image */}
@@ -110,15 +110,25 @@ const Laboratory = () => {
           backgroundRepeat: 'no-repeat',
           zIndex: 1
         }}></div>
-        
+
+        {/* Background Pattern */}
+        {/* <div className="absolute inset-0 z-0 opacity-10" style={{
+          backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+          backgroundSize: '30px 30px',
+          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+        }}></div> */}
+
+        <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 via-mount-carmel-primary/80 to-mount-carmel-secondary/85" />
+
+
         {/* Overlay */}
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{
-          background: 'linear-gradient(135deg, rgba(13, 110, 253, 0.9) 0%, rgba(111, 51, 72, 0.8) 100%)',
+          background: 'linear-gradient(135deg, rgba(111, 51, 72, 0.8) 100%)',
           zIndex: 2
         }}></div>
 
         {/* Floating Elements */}
-        <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style={{zIndex: 2}}>
+        <div className="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style={{ zIndex: 2 }}>
           <div className="position-absolute" style={{
             top: '20%',
             right: '10%',
@@ -139,7 +149,7 @@ const Laboratory = () => {
           }}></div>
         </div>
 
-        <div className="container position-relative" style={{zIndex: 3, paddingTop: '120px', paddingBottom: '80px'}}>
+        <div className="container position-relative" style={{ zIndex: 3, paddingTop: '120px', paddingBottom: '80px' }}>
           <div className="row align-items-center min-vh-50">
             <div className="col-lg-8 mx-auto text-center text-white">
               <div className="mb-4" style={{
@@ -164,7 +174,7 @@ const Laboratory = () => {
                 animation: isVisible ? 'slideInDown 1s ease-out 0.4s both' : 'none',
                 textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
               }}>
-                Mount Carmel Hospital's state-of-the-art laboratory provides comprehensive diagnostic testing 
+                Mount Carmel Hospital's state-of-the-art laboratory provides comprehensive diagnostic testing
                 with rapid turnaround times and accurate results for better patient care.
               </p>
               <div className="d-flex flex-wrap justify-content-center gap-3" style={{
@@ -176,14 +186,14 @@ const Laboratory = () => {
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
                   transition: 'all 0.3s ease'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+                  }}>
                   <i className="bi bi-calendar-check me-2"></i>
                   Book Lab Test
                 </Link>
@@ -193,16 +203,16 @@ const Laboratory = () => {
                   borderWidth: '2px',
                   transition: 'all 0.3s ease'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'white';
-                  e.target.style.color = '#0d6efd';
-                  e.target.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent';
-                  e.target.style.color = 'white';
-                  e.target.style.transform = 'translateY(0)';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = 'white';
+                    e.target.style.color = '#0d6efd';
+                    e.target.style.transform = 'translateY(-3px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = 'white';
+                    e.target.style.transform = 'translateY(0)';
+                  }}>
                   <i className="bi bi-telephone-fill me-2"></i>
                   Contact Lab
                 </Link>
@@ -232,14 +242,14 @@ const Laboratory = () => {
                   transition: 'all 0.3s ease',
                   animation: isVisible ? `slideInUp 1s ease-out ${0.2 + index * 0.1}s both` : 'none'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-10px)';
-                  e.target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-10px)';
+                    e.target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                  }}>
                   <div className="card-body p-4">
                     <div className="text-center mb-4">
                       <div className="mx-auto d-flex align-items-center justify-content-center" style={{
@@ -249,12 +259,12 @@ const Laboratory = () => {
                         borderRadius: '50%',
                         transition: 'all 0.3s ease'
                       }}
-                      onMouseEnter={(e) => {
-                        e.target.style.transform = 'scale(1.1) rotate(5deg)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.transform = 'scale(1) rotate(0deg)';
-                      }}>
+                        onMouseEnter={(e) => {
+                          e.target.style.transform = 'scale(1.1) rotate(5deg)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.transform = 'scale(1) rotate(0deg)';
+                        }}>
                         <i className={`${service.icon} fs-2 text-white`}></i>
                       </div>
                     </div>
@@ -306,7 +316,8 @@ const Laboratory = () => {
                     <div className="mx-auto d-flex align-items-center justify-content-center" style={{
                       width: '100px',
                       height: '100px',
-                      background: 'linear-gradient(135deg, #0d6efd, #6f3348)',
+                      // background: 'linear-gradient(135deg, #0d6efd, #6f3348)',
+                      background: "#6f3348",
                       borderRadius: '50%',
                       color: 'white',
                       fontSize: '2rem',
@@ -314,20 +325,21 @@ const Laboratory = () => {
                       boxShadow: '0 10px 30px rgba(13, 110, 253, 0.3)',
                       transition: 'all 0.3s ease'
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.transform = 'scale(1.1)';
-                      e.target.style.boxShadow = '0 15px 40px rgba(13, 110, 253, 0.4)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.transform = 'scale(1)';
-                      e.target.style.boxShadow = '0 10px 30px rgba(13, 110, 253, 0.3)';
-                    }}>
+                      onMouseEnter={(e) => {
+                        e.target.style.transform = 'scale(1.1)';
+                        e.target.style.boxShadow = '0 15px 40px rgba(13, 110, 253, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.transform = 'scale(1)';
+                        e.target.style.boxShadow = '0 10px 30px rgba(13, 110, 253, 0.3)';
+                      }}>
                       {step.step}
                     </div>
                     <div className="position-absolute top-0 end-0" style={{
                       width: '40px',
                       height: '40px',
-                      background: '#198754',
+                      // background: '#198754',
+                      background: "#6f3348",
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
@@ -356,21 +368,21 @@ const Laboratory = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 mb-4 mb-lg-0">
-              <img 
+              <img
                 src="/images/gallery/02.jpg"
-                 alt="Laboratory Equipment"
-                 className="img-fluid rounded-4 shadow-lg"
-                 style={{
-                   width: '100%',
-                   height: '400px',
-                   objectFit: 'cover'
-                 }}
-                 loading="lazy"
-                 onError={(e) => {
-                   e.target.onerror = null;
-                   e.target.src = '/images/feature.jpg';
-                 }}
-               />
+                alt="Laboratory Equipment"
+                className="img-fluid rounded-4 shadow-lg"
+                style={{
+                  width: '100%',
+                  height: '400px',
+                  objectFit: 'cover'
+                }}
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/images/feature.jpg';
+                }}
+              />
             </div>
             <div className="col-lg-6">
               <h2 className="display-5 fw-bold mb-4" style={{ color: '#6f3348' }}>
@@ -460,7 +472,7 @@ const Laboratory = () => {
       </section>
 
       {/* Laboratory CTA */}
-      <section className="py-5" style={{ 
+      <section className="py-5" style={{
         background: 'linear-gradient(135deg, #0d6efd, #6f3348)',
         color: 'white'
       }}>
@@ -471,7 +483,7 @@ const Laboratory = () => {
                 Ready for Your Lab Tests?
               </h2>
               <p className="lead mb-5">
-                Schedule your laboratory tests with us for accurate, reliable results 
+                Schedule your laboratory tests with us for accurate, reliable results
                 and professional service you can trust.
               </p>
               <div className="d-flex flex-wrap justify-content-center gap-4">
@@ -481,14 +493,14 @@ const Laboratory = () => {
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
                   transition: 'all 0.3s ease'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 12px 35px rgba(0,0,0,0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+                  }}>
                   <i className="bi bi-calendar-check me-2"></i>
                   Book Lab Test
                 </Link>
@@ -498,16 +510,16 @@ const Laboratory = () => {
                   borderWidth: '2px',
                   transition: 'all 0.3s ease'
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'white';
-                  e.target.style.color = '#0d6efd';
-                  e.target.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent';
-                  e.target.style.color = 'white';
-                  e.target.style.transform = 'translateY(0)';
-                }}>
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = 'white';
+                    e.target.style.color = '#0d6efd';
+                    e.target.style.transform = 'translateY(-3px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = 'white';
+                    e.target.style.transform = 'translateY(0)';
+                  }}>
                   <i className="bi bi-telephone-fill me-2"></i>
                   Contact Laboratory
                 </Link>

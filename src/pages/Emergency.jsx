@@ -30,14 +30,14 @@ const Emergency = () => {
       title: "Emergency Hotline",
       description: "24/7 emergency response for life-threatening conditions",
       contact: "+233 592 411 108",
-      color: "#dc3545"
+      color: "#6f3348"
     },
     {
-      icon: "bi bi-ambulance",
+      icon: "bi bi-car-front-fill",
       title: "Ambulance Services",
       description: "Rapid response emergency transportation",
       contact: "Available 24/7",
-      color: "#fd7e14"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-heart-pulse-fill",
@@ -51,7 +51,7 @@ const Emergency = () => {
       title: "Emergency Triage",
       description: "Priority assessment and immediate care",
       contact: "No Appointment Needed",
-      color: "#198754"
+      color: "#6f3348"
     }
   ];
 
@@ -99,7 +99,7 @@ const Emergency = () => {
         
         {/* Overlay */}
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{
-          background: 'linear-gradient(135deg, rgba(220, 53, 69, 0.9) 0%, rgba(111, 51, 72, 0.8) 100%)',
+          background: 'linear-gradient(135deg, rgba(111, 51, 72, 0.8) 100%)',
           zIndex: 2
         }}></div>
 
@@ -440,8 +440,8 @@ const Emergency = () => {
       </section>
 
       {/* Emergency Contact CTA */}
-      <section className="py-5" style={{ 
-        background: 'linear-gradient(135deg, #dc3545, #6f3348)',
+      <section className="py-5 bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary" style={{ 
+        // background: 'linear-gradient(135deg, #dc3545, #6f3348)',
         color: 'white'
       }}>
         <div className="container text-center">
