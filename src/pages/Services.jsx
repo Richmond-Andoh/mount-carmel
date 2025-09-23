@@ -496,9 +496,7 @@ const Services = () => {
                       ))}
                     </ul>
                     <a
-                      href={`/services/${service.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      href="#"
                       className="rounded-pill mt-auto border border-mount-carmel-primary text-mount-carmel-primary px-3 py-2 text-sm fw-semibold hover:bg-mount-carmel-primary hover:text-white transition-colors"
                     >
                       Learn More
