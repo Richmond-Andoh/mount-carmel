@@ -572,7 +572,7 @@ const Partners = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-20 md:py-28 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-36 md:py-28 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center"></div>
@@ -606,8 +606,10 @@ const Partners = () => {
       <section className="py-8 bg-white sticky top-0 z-20 shadow-sm" style={{ top: isScrolled ? '0' : 'auto' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="relative flex-1 max-w-2xl">
+            <div className="flex flex-col d-block md:flex-row md:items-center justify-between gap-6">
+
+              {/* Search container */}
+              <div className="relative mb-4 flex-1 max-w-2xl">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search className="h-5 w-5 text-gray-400" />
                 </div>
@@ -1017,7 +1019,7 @@ const Partners = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
                 <Link
-                  to="/partnerships"
+                  to="#"
                   className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white/10 md:text-lg transition-colors"
                 >
                   Learn More

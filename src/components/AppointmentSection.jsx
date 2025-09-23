@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import booking from '../images/partners/booking.jpg';
+import booking from '/images/booking.jpg';
 
 const AppointmentSection = () => {
   const [isVisible, setIsVisible] = useState(false);
