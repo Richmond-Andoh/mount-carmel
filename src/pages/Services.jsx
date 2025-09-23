@@ -1,8 +1,17 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import {
+  ChevronRight,
+  Heart,
+  Stethoscope,
+  CalendarDays,
+  Phone,
+  ArrowDown,
+  Shield,
+  Award,
+  Clock
+} from 'lucide-react';
 import {
   FaBaby,
   FaHeartbeat,
@@ -13,6 +22,8 @@ import {
   FaAmbulance,
   FaProcedures,
 } from "react-icons/fa";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Services = () => {
   useEffect(() => {
@@ -285,7 +296,7 @@ const Services = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full mb-8 border border-white/30"
               >
-                <Stethoscope className="h-5 w-5 text-white mr-3" />
+                <FaStethoscope className="h-5 w-5 text-white mr-3" />
                 <span className="text-white font-semibold text-sm tracking-wide">COMPREHENSIVE HEALTHCARE SERVICES</span>
               </motion.div>
 
@@ -325,7 +336,7 @@ const Services = () => {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center px-8 py-4 bg-white text-mount-carmel-primary font-bold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  <Calendar className="mr-3 h-5 w-5" />
+                  <CalendarDays className="mr-3 h-5 w-5" />
                   Book Appointment
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </motion.a>
