@@ -307,7 +307,7 @@ const Emergency = () => {
                     <div className="position-absolute top-0 end-0" style={{
                       width: '40px',
                       height: '40px',
-                      background: '#dc3545',
+                      background: '#6f3348',
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',

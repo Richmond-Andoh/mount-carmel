@@ -30,42 +30,42 @@ const Maternity = () => {
       title: "Prenatal Care",
       description: "Comprehensive care throughout your pregnancy journey",
       features: ["Regular Checkups", "Ultrasound Scans", "Blood Tests", "Nutrition Counseling"],
-      color: "#e91e63"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-hospital",
       title: "Delivery Services",
       description: "Safe and comfortable delivery with experienced obstetricians",
       features: ["Natural Delivery", "Cesarean Section", "Pain Management", "24/7 Support"],
-      color: "#9c27b0"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-people-fill",
       title: "Postnatal Care",
       description: "Complete care for mother and baby after delivery",
       features: ["Newborn Care", "Breastfeeding Support", "Recovery Monitoring", "Family Planning"],
-      color: "#673ab7"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-shield-check",
       title: "High-Risk Pregnancy",
       description: "Specialized care for high-risk pregnancies and complications",
       features: ["Fetal Monitoring", "Specialist Consultations", "Advanced Diagnostics", "Emergency Care"],
-      color: "#3f51b5"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-gender-female",
       title: "Gynecology Services",
       description: "Comprehensive women's health and reproductive care",
       features: ["Annual Exams", "Family Planning", "Fertility Services", "Menopause Care"],
-      color: "#2196f3"
+      color: "#6f3348"
     },
     {
       icon: "bi bi-heart-fill",
       title: "Neonatal Care",
       description: "Specialized care for newborns and premature babies",
       features: ["NICU Services", "Premature Baby Care", "Developmental Monitoring", "Parent Education"],
-      color: "#00bcd4"
+      color: "#6f3348"
     }
   ];
 
@@ -312,7 +312,8 @@ const Maternity = () => {
                     <div className="mx-auto d-flex align-items-center justify-content-center" style={{
                       width: '100px',
                       height: '100px',
-                      background: 'linear-gradient(135deg, #e91e63, #6f3348)',
+                      // background: 'linear-gradient(135deg, #e91e63, #6f3348)',
+                      background: "#6f3348",
                       borderRadius: '50%',
                       color: 'white',
                       fontSize: '2rem',
@@ -333,7 +334,7 @@ const Maternity = () => {
                     <div className="position-absolute top-0 end-0" style={{
                       width: '40px',
                       height: '40px',
-                      background: '#9c27b0',
+                      background: '#6f3348',
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
@@ -466,8 +467,8 @@ const Maternity = () => {
       </section>
 
       {/* Maternity CTA */}
-      <section className="py-5" style={{ 
-        background: 'linear-gradient(135deg, #e91e63, #6f3348)',
+      <section className="py-5 bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary" style={{ 
+        // background: 'linear-gradient(135deg, #e91e63, #6f3348)',
         color: 'white'
       }}>
         <div className="container text-center">
