@@ -16,7 +16,11 @@ import {
   Phone, 
   MapPin, 
   FlaskConical, 
-  LineChart 
+  LineChart,
+  Hospital,
+  CreditCard,
+  Plane,
+  Stethoscope
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -155,6 +159,228 @@ const Partners = () => {
     }
   ];
 
+  const hospitalPartners = [
+    {
+      name: "Tema General Hospital",
+      logo: "/images/partners/tema-general.png",
+      type: 'hospital',
+      description: 'Leading healthcare facility serving the Tema community with comprehensive medical services',
+      website: '#'
+    },
+    {
+      name: "University of Ghana Medical Centre (UGMC)",
+      logo: "/images/partners/ugmc.png",
+      type: 'hospital',
+      description: 'Premier teaching hospital providing advanced medical care and training',
+      website: '#'
+    },
+    {
+      name: "Ridge Hospital",
+      logo: "/images/partners/ridge-hospital.png",
+      type: 'hospital',
+      description: 'Specialized medical center offering quality healthcare services',
+      website: '#'
+    },
+    {
+      name: "Greeville Hospital",
+      logo: "/images/partners/greeville.png",
+      type: 'hospital',
+      description: 'Community hospital dedicated to providing accessible healthcare',
+      website: '#'
+    },
+    {
+      name: "Tema Women Hospital",
+      logo: "/images/partners/tema-women.png",
+      type: 'hospital',
+      description: 'Specialized women\'s health facility offering comprehensive maternal care',
+      website: '#'
+    },
+    {
+      name: "AIMA Hospital",
+      logo: "/images/partners/aima.png",
+      type: 'hospital',
+      description: 'Modern healthcare facility with advanced medical technology',
+      website: '#'
+    },
+    {
+      name: "Mount Carmel Hospital (USA)",
+      logo: "/images/partners/mount-carmel-usa.png",
+      type: 'hospital',
+      description: 'International partner hospital providing knowledge exchange and best practices',
+      website: '#'
+    },
+    {
+      name: "37 Military Hospital",
+      logo: "/images/partners/37-military.png",
+      type: 'hospital',
+      description: 'Military medical facility providing specialized healthcare services',
+      website: '#'
+    },
+    {
+      name: "Brothers OAK Ventures",
+      logo: "/images/partners/brothers-oak.png",
+      type: 'hospital',
+      description: 'Healthcare venture providing innovative medical solutions',
+      website: '#'
+    },
+    {
+      name: "Wayne HealthCare",
+      logo: "/images/partners/wayne-healthcare.png",
+      type: 'hospital',
+      description: 'Comprehensive healthcare provider with multiple service offerings',
+      website: '#'
+    },
+    {
+      name: "Rowena Healthcare",
+      logo: "/images/partners/rowena-healthcare.png",
+      type: 'hospital',
+      description: 'Quality healthcare services with patient-centered approach',
+      website: '#'
+    }
+  ];
+
+  const bankPartners = [
+    {
+      name: "Stanbic Bank",
+      logo: "/images/partners/stanbic.png",
+      type: 'bank',
+      description: 'Leading financial institution providing healthcare financing solutions',
+      website: '#'
+    },
+    {
+      name: "Republic Bank",
+      logo: "/images/partners/republic-bank.png",
+      type: 'bank',
+      description: 'Trusted banking partner for healthcare payment solutions',
+      website: '#'
+    },
+    {
+      name: "Ecobank",
+      logo: "/images/partners/ecobank.png",
+      type: 'bank',
+      description: 'Pan-African bank offering comprehensive financial services',
+      website: '#'
+    },
+    {
+      name: "Access Bank",
+      logo: "/images/partners/access-bank.png",
+      type: 'bank',
+      description: 'Modern banking solutions for healthcare transactions',
+      website: '#'
+    },
+    {
+      name: "GCB Bank",
+      logo: "/images/partners/gcb-bank.png",
+      type: 'bank',
+      description: 'Ghana\'s premier bank providing reliable financial services',
+      website: '#'
+    },
+    {
+      name: "Demabe Rural Bank",
+      logo: "/images/partners/demabe.png",
+      type: 'bank',
+      description: 'Community-focused bank serving rural healthcare financing needs',
+      website: '#'
+    },
+    {
+      name: "ADB Bank",
+      logo: "/images/partners/adb-bank.png",
+      type: 'bank',
+      description: 'Agricultural Development Bank supporting healthcare initiatives',
+      website: '#'
+    }
+  ];
+
+  const airlinePartners = [
+    {
+      name: "British Airways",
+      logo: "/images/partners/british-airways.png",
+      type: 'airline',
+      description: 'International airline partner for medical tourism and emergency transport',
+      website: '#'
+    },
+    {
+      name: "GLM Airlines",
+      logo: "/images/partners/glm.png",
+      type: 'airline',
+      description: 'Regional airline providing medical transport services',
+      website: '#'
+    },
+    {
+      name: "United Airlines",
+      logo: "/images/partners/united-airlines.png",
+      type: 'airline',
+      description: 'Global airline partner for international medical referrals',
+      website: '#'
+    }
+  ];
+
+  const medicalCompanies = [
+    {
+      name: "Philips Healthcare",
+      logo: "/images/partners/philips.png",
+      type: 'medical_equipment',
+      description: 'Leading medical technology company providing advanced healthcare solutions',
+      website: '#'
+    },
+    {
+      name: "Samsung Healthcare",
+      logo: "/images/partners/samsung.png",
+      type: 'medical_equipment',
+      description: 'Innovative medical imaging and healthcare technology solutions',
+      website: '#'
+    },
+    {
+      name: "General Electric Healthcare",
+      logo: "/images/partners/ge-healthcare.png",
+      type: 'medical_equipment',
+      description: 'Global leader in medical technology and healthcare solutions',
+      website: '#'
+    },
+    {
+      name: "Mindray Medical",
+      logo: "/images/partners/mindray.png",
+      type: 'medical_equipment',
+      description: 'Medical equipment manufacturer providing diagnostic solutions',
+      website: '#'
+    },
+    {
+      name: "HP Healthcare",
+      logo: "/images/partners/hp.png",
+      type: 'medical_equipment',
+      description: 'Technology solutions for healthcare information systems',
+      website: '#'
+    },
+    {
+      name: "Dell Healthcare",
+      logo: "/images/partners/dell.png",
+      type: 'medical_equipment',
+      description: 'Healthcare IT infrastructure and technology solutions',
+      website: '#'
+    },
+    {
+      name: "Apple Healthcare",
+      logo: "/images/partners/apple.png",
+      type: 'medical_equipment',
+      description: 'Digital health solutions and medical device integration',
+      website: '#'
+    },
+    {
+      name: "Tesla Healthcare",
+      logo: "/images/partners/tesla.png",
+      type: 'medical_equipment',
+      description: 'Innovative healthcare technology and sustainable solutions',
+      website: '#'
+    },
+    {
+      name: "LG Healthcare",
+      logo: "/images/partners/lg.png",
+      type: 'medical_equipment',
+      description: 'Medical display technology and healthcare equipment',
+      website: '#'
+    }
+  ];
+
   const pharmaceuticalCompanies = [
     { 
       name: "Dosty Pharmacy", 
@@ -203,6 +429,34 @@ const Partners = () => {
       logo: "/images/partners/gokals.png",
       type: 'pharmaceutical',
       description: 'Trusted source for medications and health products',
+      website: '#'
+    },
+    {
+      name: "OA & G Pharmaceuticals",
+      logo: "/images/partners/oag.png",
+      type: 'pharmaceutical',
+      description: 'Pharmaceutical distributor providing quality medications',
+      website: '#'
+    },
+    {
+      name: "Osons Pharmacy",
+      logo: "/images/partners/osons.png",
+      type: 'pharmaceutical',
+      description: 'Community pharmacy chain with multiple locations',
+      website: '#'
+    },
+    {
+      name: "Capa Chemist",
+      logo: "/images/partners/capa.png",
+      type: 'pharmaceutical',
+      description: 'Trusted pharmaceutical partner with quality medications',
+      website: '#'
+    },
+    {
+      name: "Sanbao Pharmaceuticals",
+      logo: "/images/partners/sanbao.png",
+      type: 'pharmaceutical',
+      description: 'International pharmaceutical company with local presence',
       website: '#'
     }
   ];
@@ -278,6 +532,10 @@ const Partners = () => {
   // Combine all partners for filtering
   const allPartners = [
     ...insuranceCompanies.map(p => ({ ...p, category: 'insurance' })),
+    ...hospitalPartners.map(p => ({ ...p, category: 'hospital' })),
+    ...bankPartners.map(p => ({ ...p, category: 'bank' })),
+    ...airlinePartners.map(p => ({ ...p, category: 'airline' })),
+    ...medicalCompanies.map(p => ({ ...p, category: 'medical_equipment' })),
     ...pharmaceuticalCompanies.map(p => ({ ...p, category: 'pharmaceutical' })),
     ...governmentPartners
   ];
@@ -295,6 +553,10 @@ const Partners = () => {
   // Group partners by type for the grid view
   const partnersByType = {
     insurance: insuranceCompanies,
+    hospital: hospitalPartners,
+    bank: bankPartners,
+    airline: airlinePartners,
+    medical_equipment: medicalCompanies,
     pharmaceutical: pharmaceuticalCompanies,
     government: governmentPartners.filter(p => p.type === 'government'),
     regulatory: governmentPartners.filter(p => p.type === 'regulatory'),
@@ -412,6 +674,62 @@ const Partners = () => {
                 </button>
                 
                 <button
+                  onClick={() => setActiveFilter('hospital')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'hospital'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Hospital className="w-4 h-4 mr-2" />
+                    Hospitals
+                  </span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveFilter('bank')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'bank'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Banks
+                  </span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveFilter('airline')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'airline'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Plane className="w-4 h-4 mr-2" />
+                    Airlines
+                  </span>
+                </button>
+                
+                <button
+                  onClick={() => setActiveFilter('medical_equipment')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeFilter === 'medical_equipment'
+                      ? 'bg-mount-carmel-primary text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    <Stethoscope className="w-4 h-4 mr-2" />
+                    Medical Equipment
+                  </span>
+                </button>
+                
+                <button
                   onClick={() => setActiveFilter('government')}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeFilter === 'government'
@@ -441,6 +759,10 @@ const Partners = () => {
               {activeFilter === 'all' 
                 ? 'Our Valued Partners' 
                 : activeFilter === 'insurance' ? 'Insurance Partners'
+                : activeFilter === 'hospital' ? 'Hospital Partners'
+                : activeFilter === 'bank' ? 'Banking Partners'
+                : activeFilter === 'airline' ? 'Airline Partners'
+                : activeFilter === 'medical_equipment' ? 'Medical Equipment Partners'
                 : activeFilter === 'pharmaceutical' ? 'Pharmaceutical Partners'
                 : 'Government & Regulatory Partners'}
             </h2>
@@ -481,6 +803,10 @@ const Partners = () => {
                           ) : (
                             <div className="h-16 w-16 rounded-full bg-mount-carmel-primary/10 flex items-center justify-center">
                               {partner.type === 'insurance' && <Shield className="h-8 w-8 text-mount-carmel-primary" />}
+                              {partner.type === 'hospital' && <Hospital className="h-8 w-8 text-mount-carmel-primary" />}
+                              {partner.type === 'bank' && <CreditCard className="h-8 w-8 text-mount-carmel-primary" />}
+                              {partner.type === 'airline' && <Plane className="h-8 w-8 text-mount-carmel-primary" />}
+                              {partner.type === 'medical_equipment' && <Stethoscope className="h-8 w-8 text-mount-carmel-primary" />}
                               {partner.type === 'pharmaceutical' && <Pill className="h-8 w-8 text-mount-carmel-primary" />}
                               {(partner.type === 'government' || partner.type === 'regulatory') && <Building2 className="h-8 w-8 text-mount-carmel-primary" />}
                               {partner.type === 'research' && <FlaskConical className="h-8 w-8 text-mount-carmel-primary" />}
@@ -508,12 +834,20 @@ const Partners = () => {
                           <div className="mt-1">
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                               partner.type === 'insurance' ? 'bg-blue-100 text-blue-800' :
+                              partner.type === 'hospital' ? 'bg-red-100 text-red-800' :
+                              partner.type === 'bank' ? 'bg-indigo-100 text-indigo-800' :
+                              partner.type === 'airline' ? 'bg-sky-100 text-sky-800' :
+                              partner.type === 'medical_equipment' ? 'bg-teal-100 text-teal-800' :
                               partner.type === 'pharmaceutical' ? 'bg-green-100 text-green-800' :
                               partner.type === 'government' ? 'bg-purple-100 text-purple-800' :
                               partner.type === 'regulatory' ? 'bg-yellow-100 text-yellow-800' :
                               'bg-gray-100 text-gray-800'
                             }`}>
                               {partner.type === 'insurance' && 'Insurance'}
+                              {partner.type === 'hospital' && 'Hospital'}
+                              {partner.type === 'bank' && 'Bank'}
+                              {partner.type === 'airline' && 'Airline'}
+                              {partner.type === 'medical_equipment' && 'Medical Equipment'}
                               {partner.type === 'pharmaceutical' && 'Pharmaceutical'}
                               {partner.type === 'government' && 'Government'}
                               {partner.type === 'regulatory' && 'Regulatory'}
@@ -607,34 +941,64 @@ const Partners = () => {
           {/* Partnership Statistics */}
           <div className="bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary rounded-2xl p-8 mt-16 mb-12">
             <h3 className="text-2xl font-bold text-white text-center mb-8">Our Partnership Impact</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
-                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
-                  <Shield className="h-8 w-8 text-white" />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white/20 mb-3">
+                  <Shield className="h-6 w-6 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={10} suffix="+" /></h2>
-                <p className="text-white/90">Insurance Partners</p>
+                <h2 className="text-2xl font-bold mb-1"><AnimatedCounter end={10} suffix="+" /></h2>
+                <p className="text-white/90 text-sm">Insurance</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
-                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
-                  <Pill className="h-8 w-8 text-white" />
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white/20 mb-3">
+                  <Hospital className="h-6 w-6 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={14} suffix="+" /></h2>
-                <p className="text-white/90">Pharmaceutical Partners</p>
+                <h2 className="text-2xl font-bold mb-1"><AnimatedCounter end={11} suffix="+" /></h2>
+                <p className="text-white/90 text-sm">Hospitals</p>
               </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white/20 mb-3">
+                  <CreditCard className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-2xl font-bold mb-1"><AnimatedCounter end={7} suffix="+" /></h2>
+                <p className="text-white/90 text-sm">Banks</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white/20 mb-3">
+                  <Plane className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-2xl font-bold mb-1"><AnimatedCounter end={3} suffix="+" /></h2>
+                <p className="text-white/90 text-sm">Airlines</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white/20 mb-3">
+                  <Stethoscope className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-2xl font-bold mb-1"><AnimatedCounter end={9} suffix="+" /></h2>
+                <p className="text-white/90 text-sm">Medical Equipment</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center text-white">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white/20 mb-3">
+                  <Pill className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-2xl font-bold mb-1"><AnimatedCounter end={11} suffix="+" /></h2>
+                <p className="text-white/90 text-sm">Pharmaceutical</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
                 <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
                   <Building2 className="h-8 w-8 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={4} suffix="+" /></h2>
-                <p className="text-white/90">Government Partners</p>
+                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={6} suffix="+" /></h2>
+                <p className="text-white/90">Government & Regulatory Partners</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center text-white">
                 <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white/20 mb-4">
                   <Users className="h-8 w-8 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={10} suffix="K+" /></h2>
-                <p className="text-white/90">Patients Served</p>
+                <h2 className="text-4xl font-bold mb-2"><AnimatedCounter end={50} suffix="K+" /></h2>
+                <p className="text-white/90">Patients Served Through Partnerships</p>
               </div>
             </div>
           </div>
