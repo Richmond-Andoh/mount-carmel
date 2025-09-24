@@ -342,7 +342,7 @@ const Contact = () => {
                         <p className="text-gray-600">mountcarmelhospital@outlook.com</p>
                       </div>
                     </div>
-                    <div className="flex items-start">
+                    {/* <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
                         <Clock className="w-5 h-5 text-mount-carmel-primary" />
                       </div>
@@ -352,7 +352,7 @@ const Contact = () => {
                         <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
                         <p className="text-gray-600">Sunday: Emergency Only</p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
