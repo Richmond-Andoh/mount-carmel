@@ -64,14 +64,14 @@ const AppointmentSection = () => {
   ];
 
   return (
-    <div className="container-fluid py-5 position-relative overflow-hidden appointment-section">
+  <div className="container-fluid py-5 position-relative appointment-section">
       {/* Background Image with Overlay */}
       <div className="position-absolute top-0 start-0 w-100 h-100" style={{
         backgroundImage: 'url(https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: window.innerWidth > 768 ? 'fixed' : 'scroll',
         zIndex: 1
       }}></div>
       <div className="position-absolute top-0 start-0 w-100 h-100" style={{
