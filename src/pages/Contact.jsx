@@ -93,17 +93,17 @@ const Contact = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-28 md:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/contact-hero.jpg')] bg-cover bg-center"></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white min-h-[40vh] md:min-h-[55vh] lg:min-h-[75vh] flex items-center">
+        <div className="absolute inset-0 w-full h-full">
+          <div className="absolute inset-0 w-full h-full bg-[url('/images/bg2.jpg')] bg-cover bg-center bg-no-repeat"></div>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-mount-carmel-primary/70 to-mount-carmel-secondary/70 mix-blend-multiply"></div>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/30 to-transparent"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}

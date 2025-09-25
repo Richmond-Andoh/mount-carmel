@@ -77,9 +77,9 @@ const VisitationForm = () => {
           className="page-header py-5 d-flex align-items-center min-vh-75 wow fadeIn" 
           data-wow-delay="0.1s"
           style={{
-            background: `linear-gradient(rgba(75, 20, 56, 0.85), rgba(111, 51, 72, 0.85)), url('/images/gallery/room-facility.jpg') center/cover no-repeat fixed`,
+            background: `url('/images/visit.jpg') center/cover no-repeat fixed`,
             position: 'relative',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+            //boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
             minHeight: '75vh',
             display: 'flex',
             alignItems: 'center',
@@ -89,12 +89,19 @@ const VisitationForm = () => {
             backgroundSize: 'cover',
           }}
         >
-          <div className="container py-5 mt-5">
+          <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+            backgroundSize: '30px 30px',
+            maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+          }}/>
+
+          <div className="container py-5 mt-5 z-50">
             <div className="row justify-content-center">
               <div className="col-lg-8 text-center">
                 <nav aria-label="breadcrumb" className="mb-4">
                   <ol className="breadcrumb justify-content-center bg-transparent p-0">
-                    <li className="breadcrumb-item"><a className="text-white-50" href="/">Home</a></li>
+                    <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
                     <li className="breadcrumb-item text-white active" aria-current="page">Visitation Form</li>
                   </ol>
                 </nav>

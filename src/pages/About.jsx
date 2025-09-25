@@ -35,7 +35,6 @@ const About = () => {
       
 
       {/* Hero Section - Responsive with proper mobile handling */}
-
       <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Background Image - Always show image */}
         <div className="absolute inset-0">

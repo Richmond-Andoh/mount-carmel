@@ -249,8 +249,14 @@ const Services = () => {
               backgroundImage: `url('/images/gallery/fertility-center.jpg')`
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 via-mount-carmel-primary/80 to-mount-carmel-secondary/85" />
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 via-mount-carmel-primary/80 to-mount-carmel-secondary/85" /> */}
 
+          <div className="absolute inset-0 bg-black/50 z-10 pointer-events-none" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+            backgroundSize: '30px 30px',
+            maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+          }} />
           {/* Animated Background Elements */}
           <div className="absolute inset-0">
             <motion.div
@@ -430,8 +436,8 @@ const Services = () => {
                     key={category.key}
                     onClick={() => setActiveCategory(category.key)}
                     className={`${activeCategory === category.key
-                        ? "bg-mount-carmel-primary text-white"
-                        : "bg-white text-mount-carmel-primary border border-mount-carmel-primary"
+                      ? "bg-mount-carmel-primary text-white"
+                      : "bg-white text-mount-carmel-primary border border-mount-carmel-primary"
                       } rounded-pill px-4 py-2 fw-semibold shadow-sm transition-all hover:opacity-90`}
                     style={{ minWidth: "140px", whiteSpace: "nowrap" }}
                   >
