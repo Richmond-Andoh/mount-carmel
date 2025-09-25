@@ -35,17 +35,30 @@ const About = () => {
       
 
       {/* Hero Section - Responsive with proper mobile handling */}
+
       <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Background Image - Always show image */}
         <div className="absolute inset-0">
           <div 
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/images/hero9.jpg')`
+              backgroundImage: `url('/images/hero7.jpg')`
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/80 via-mount-carmel-primary/70 to-mount-carmel-secondary/80" />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/50 z-10 pointer-events-none" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+            backgroundSize: '30px 30px',
+            maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+          }}/>
         </div>
+
+          {/* <div className="absolute inset-0 z-0 opacity-10" style={{
+          backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+          backgroundSize: '30px 30px',
+          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+        }}></div> */}
         
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">

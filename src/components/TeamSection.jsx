@@ -4,7 +4,7 @@ const TeamSection = () => {
       name: "Dr. Philip Aning-Kuffour",
       role: "Chief Medical Officer",
       specialty: "Fertility Specialist",
-      image: "/images/head-team.jpg",
+      image: "",
       social: {
         facebook: "#",
         twitter: "#",
@@ -69,7 +69,7 @@ const TeamSection = () => {
         <div className="row g-5 align-items-center mb-5">
           <div className="col-md-6 wow fadeIn" data-wow-delay="0.2s">
             <div className="position-relative rounded-4 overflow-hidden shadow-lg team-feature-img">
-              <img className="img-fluid w-100" src="/images/head-team.jpg" alt="Dr. Sarah Johnson" />
+              <img className="img-fluid w-100" src="/images/doc3.jpg" alt="Dr. Sarah Johnson" />
               <div className="position-absolute top-0 start-0 w-100 h-100" style={{background:'linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35))'}}></div>
             </div>
           </div>

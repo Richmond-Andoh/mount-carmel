@@ -38,7 +38,7 @@ const Hero = () => {
     },
     {
       id: 3,
-      image: "/images/hero8.jpg",
+      image: "/images/doc4.jpg",
       title: "State-of-the-Art Medical Facilities",
       subtitle: "Modern Technology",
       description: "Experience healthcare at its finest with cutting-edge medical technology and world-class facilities designed for your comfort and recovery.",

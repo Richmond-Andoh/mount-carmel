@@ -7,7 +7,7 @@ const teamMembers = [
   {
     name: "Dr. Philip Aning-Kuffour",
     role: "Chief Medical Officer",
-    image: "/images/team-1.jpg"
+    image: "/images/doc3.jpg"
   },
   {
     name: "Dr. Philip Aning-Kuffour",
