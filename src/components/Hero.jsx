@@ -9,7 +9,7 @@ const Hero = () => {
     {
       id: 1,
       image: "/images/hero6.jpg",
-      title: "Award Winning Hospital & Fertility Centre",
+      title: "Reliable & High-Quality Healthcare Services",
       subtitle: "Excellence in Healthcare",
       description: "Providing exceptional healthcare with compassion and excellence. Advanced fertility treatments and comprehensive medical care in a state-of-the-art facility.",
       buttonText: "Explore More",
@@ -39,7 +39,7 @@ const Hero = () => {
     {
       id: 3,
       image: "/images/doc4.jpg",
-      title: "State-of-the-Art Medical Facilities",
+      title: "Modern Medical Facilities",
       subtitle: "Modern Technology",
       description: "Experience healthcare at its finest with cutting-edge medical technology and world-class facilities designed for your comfort and recovery.",
       buttonText: "View Facilities",
