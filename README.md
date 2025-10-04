@@ -48,8 +48,6 @@ npm run build
 - `/src/styles` - CSS and Tailwind configurations
 - `/public` - Public assets and index.html
 
-## Contributing
-
 ## License
 
 All rights reserved © Mount Carmel Hospital And Fertility Centre
