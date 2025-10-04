@@ -50,8 +50,6 @@ npm run build
 
 ## Contributing
 
-Please read our contributing guidelines before submitting any changes.
-
 ## License
 
 All rights reserved © Mount Carmel Hospital And Fertility Centre
