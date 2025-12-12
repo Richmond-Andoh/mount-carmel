@@ -18,7 +18,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
@@ -37,8 +38,97 @@ img {
   /* Improve image rendering on mobile */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
-  /* Prevent layout shift */
-  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Ultra-small screens: 300px - 400px */
+@media (max-width: 400px) {
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Ensure images don't cause horizontal scroll */
+  .img-fluid,
+  .w-100 {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Optimize hero images for very small screens */
+  .hero-slide {
+    min-height: 100svh !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+}
+
+/* Small screens: 400px - 768px */
+@media (min-width: 401px) and (max-width: 768px) {
+  img {
+    /* Reduce image quality slightly for faster loading on mobile */
+    image-rendering: auto;
+    /* Ensure images don't cause horizontal scroll */
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Lazy loading fallback for older browsers */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded,
+img.loaded {
+  opacity: 1;
+}
+
+/* Image error handling */
+img[src=""],
+img:not([src]) {
+  opacity: 0;
+  min-height: 50px;
+  background-color: #f8f9fa;
+}
+
+/* Prevent broken image icons on mobile */
+img[alt]:not([alt=""]) {
+  min-height: 50px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile carousel image optimizations */
+.carousel-item img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile gallery optimizations */
+.gallery img,
+.marquee img {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  img {
+    transition: none;
+  }
+}
+
+/* Ensure all components respect viewport width */
+.w-100 {
+  max-width: 100%;
 }
 
 /* Visitation Page Specific Styles */
@@ -72,11 +162,15 @@ img {
 }
 
 @keyframes bounce {
-  0%, 80%, 100% { 
+
+  0%,
+  80%,
+  100% {
     transform: translateY(0);
     opacity: 0.5;
   }
-  40% { 
+
+  40% {
     transform: translateY(-10px);
     opacity: 1;
   }
@@ -87,9 +181,11 @@ img {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
@@ -121,68 +217,6 @@ img {
   height: 300px;
   opacity: 1;
 }
-
-/* Mobile-specific image loading improvements */
-@media (max-width: 768px) {
-  img {
-    /* Reduce image quality slightly for faster loading on mobile */
-    image-rendering: auto;
-    /* Ensure images don't cause horizontal scroll */
-    max-width: 100%;
-    width: 100%;
-  }
-  
-  /* Lazy loading fallback for older browsers */
-  img[loading="lazy"] {
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  img[loading="lazy"].loaded {
-    opacity: 1;
-  }
-}
-
-/* Image error handling */
-img[src=""], img:not([src]) {
-  opacity: 0;
-}
-
-/* Prevent broken image icons on mobile */
-img[alt]:not([alt=""]) {
-  min-height: 50px;
-  background-color: #f8f9fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Mobile carousel image optimizations */
-.carousel-item img {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 100%;
-}
-
-/* Mobile gallery optimizations */
-.gallery img, .marquee img {
-  transition: transform 0.3s ease;
-  will-change: transform;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  img {
-    transition: none;
-  }
-}
-
-/* Ensure all components respect viewport width */
-.w-100 {
-  max-width: 100%;
-}
-
 
 /* Fix for any potential marquee overflow */
 .marquee-scene {
@@ -241,6 +275,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -252,6 +287,7 @@ body {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -263,6 +299,7 @@ body {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -270,20 +307,24 @@ body {
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -305,8 +346,7 @@ body {
 
 @layer base {
   .theme {
-    --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s)
-      infinite;
+    --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite;
   }
 }
 
@@ -314,6 +354,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -321,10 +362,12 @@ body {
 
 @theme inline {
   @keyframes ripple {
+
     0%,
     100% {
       transform: translate(-50%, -50%) scale(1);
     }
+
     50% {
       transform: translate(-50%, -50%) scale(0.9);
     }
@@ -336,16 +379,19 @@ body {
   border-color: #6f3348;
   color: #fff;
 }
+
 .brand-btn:hover {
   background: #4b1438;
   border-color: #4b1438;
   color: #fff;
 }
+
 .brand-outline-btn {
   background: transparent;
   border-color: #6f3348;
   color: #6f3348;
 }
+
 .brand-outline-btn:hover {
   background: #6f3348;
   color: #fff;
