@@ -24,6 +24,7 @@ import Laboratory from './pages/Laboratory';
 import AppointmentPreview from './pages/AppointmentPreview';
 
 
+
 import LoadingSpinner from './components/LoadingSpinner';
 import { Confetti } from './components/magicui/confetti';
 
@@ -73,6 +74,9 @@ function App() {
           <Route path="/visitation-form" element={<VisitationForm />} />
           <Route path="/partners" element={<Partners />} />
         </Routes>
+
+
+
       </div>
     </Router>
   );
