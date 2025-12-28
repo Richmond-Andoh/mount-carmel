@@ -5,7 +5,7 @@ import { CheckCircle, ArrowRight, Shield, Users, Handshake, BarChart2, Mail, Pho
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpwrdbyr';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwvklrno';
 
 const PartnerForm = () => {
   const [formData, setFormData] = useState({

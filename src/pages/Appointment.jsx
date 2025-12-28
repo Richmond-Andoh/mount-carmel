@@ -70,8 +70,8 @@ function Appointment() {
     setSubmitStatus(null);
     const endpoint =
       formData.patientType === 'New Patient'
-        ? 'https://formspree.io/f/xqabgoyl'
-        : 'https://formspree.io/f/xldnokpw';
+        ? 'https://formspree.io/f/xzdbejvl'
+        : 'https://formspree.io/f/xeeqarzy';
     const payload = new FormData();
     payload.append('Patient Type', formData.patientType);
     payload.append('Full Name', formData.name);
