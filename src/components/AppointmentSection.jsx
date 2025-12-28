@@ -4,13 +4,13 @@ import booking from '/images/booking.jpg';
 
 const AppointmentSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    service: '',
-    message: ''
-  });
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   email: '',
+  //   mobile: '',
+  //   service: '',
+  //   message: ''
+  // });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,13 +30,13 @@ const AppointmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [name]: value
+  //   }));
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();

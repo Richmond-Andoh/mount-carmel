@@ -18,7 +18,7 @@ const Team = () => {
       name: 'Dr. Philip Anning-Kuffour',
       position: 'Chief Medical Officer',
       specialty: 'Fertility Specialist',
-      image: '/images/team/doctor-1.jpg',
+      image: '/images/team/doc3.jpg',
       description: 'Dr. Philip Aning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
       education: 'MBChB, FRCOG',
       experience: '15+ Years',
@@ -33,7 +33,7 @@ const Team = () => {
       name: 'Dr. Gerald Osei-Owusu',
       position: 'Gynecology Specialist',
       specialty: 'Women\'s Health',
-      image: '/images/team/doctor-2.jpg',
+      image: '/images/team/doc2.jpg',
       description: 'Dr. Osei-Owusu specializes in women\'s health and gynecological surgery with expertise in minimally invasive procedures.',
       education: 'MBChB, MD',
       experience: '12+ Years',
@@ -48,7 +48,7 @@ const Team = () => {
       name: 'Dr. Abigail Danso',
       position: 'Pediatrician',
       specialty: 'Child Care Expert',
-      image: '/images/team/doctor-3.jpg',
+      image: '/images/team/doc3.jpg',
       description: 'Dr. Danso is dedicated to providing comprehensive care for children from birth through adolescence.',
       education: 'MBChB, DCH',
       experience: '10+ Years',
@@ -63,7 +63,7 @@ const Team = () => {
       name: 'Dr. Kazima Kwame Kpesese',
       position: 'Emergency Medicine',
       specialty: 'Emergency Care',
-      image: '/images/team/doctor-4.jpg',
+      image: '/images/team/doc4.jpg',
       description: 'Dr. Kpesese leads our emergency department with expertise in critical care and trauma medicine.',
       education: 'MBChB, FCEM',
       experience: '8+ Years',
@@ -78,7 +78,7 @@ const Team = () => {
       name: 'Dr. Bernard Seshie',
       position: 'General Surgeon',
       specialty: 'Surgical Care',
-      image: '/images/team/doctor-6.jpg',
+      image: '/images/team/doc5.jpg',
       description: 'Dr. Seshie provides comprehensive surgical care with a focus on minimally invasive techniques.',
       education: 'MBChB, FRCS',
       experience: '11+ Years',
@@ -93,7 +93,7 @@ const Team = () => {
       name: 'Dr. Selasie Mawuko',
       position: 'Anaesthesiologist',
       specialty: 'Anaesthesia',
-      image: '/images/team/doctor-6.jpg',
+      image: '/images/team/doc6.jpg',
       description: 'Dr. Mawuko provides comprehensive anaesthetic care with a focus on patient safety and comfort.',
       education: 'MBChB, FRCA',
       experience: '11+ Years',
@@ -108,7 +108,7 @@ const Team = () => {
       name: 'Mr. Isaac Addo',
       position: 'Laboratory Director',
       specialty: 'Pathology',
-      image: '/images/team/doctor-5.jpg',
+      image: '/images/team/doc5.jpg',
       description: 'Mr. Addo oversees our state-of-the-art laboratory services and diagnostic testing facilities.',
       education: 'MBChB, FRCPath',
       experience: '14+ Years',
@@ -123,7 +123,7 @@ const Team = () => {
       name: 'Dr. Robert Acquah',
       position: 'General Medicine',
       specialty: 'Internal Medicine',
-      image: '/images/team/doctor-6.jpg',
+      image: '/images/team/doc7.jpg',
       description: 'Dr. Acquah provides comprehensive medical care for adults with a focus on preventive medicine.',
       education: 'MBChB, MRCP',
       experience: '11+ Years',
@@ -138,7 +138,7 @@ const Team = () => {
       name: 'Dr. Lemuel Ato Bray',
       position: 'Urology Specialist',
       specialty: 'Urology',
-      image: '/images/team/doctor-6.jpg',
+      image: '/images/team/doc8.jpg',
       description: 'Dr. Bray specializes in urology and provides comprehensive care for patients with urinary tract disorders.',
       education: 'MBChB, FRCS',
       experience: '11+ Years',
@@ -294,7 +294,7 @@ const Team = () => {
               <div className="lg:w-1/2 relative group">
                 <div className="relative z-10 overflow-hidden shadow-2xl transform group-hover:-translate-y-2 transition-transform duration-500">
                   <img 
-                    src="/images/head-team.jpg" 
+                    src="/images/team/doc3.jpg" 
                     alt="Dr. Philip Anning-Kuffour" 
                     className="w-full h-full object-cover"
                     style={{ minHeight: '500px' }}

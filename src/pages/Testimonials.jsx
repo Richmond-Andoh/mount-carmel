@@ -221,7 +221,7 @@ export default function Testimonials() {
       <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white min-h-[60vh] md:min-h-[75vh] lg:min-h-[90vh] flex items-center">
         {/* Background Elements */}
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 w-full h-full bg-[url('/images/testimony.jpg')] bg-cover bg-center bg-no-repeat"></div>
+          <div className="absolute inset-0 w-full h-full bg-[url('/images/testimonial/testimonial-hero.jpg')] bg-cover bg-center bg-no-repeat"></div>
           <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
           <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/40 to-transparent"></div>
         </div>

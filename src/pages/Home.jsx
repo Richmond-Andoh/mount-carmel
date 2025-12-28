@@ -9,7 +9,7 @@ import TestimonialsSection from "../components/TestimonialsSection";
 import AppointmentSection from "../components/AppointmentSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
-import Marquee3D from "@/components/Marquee3D";
+//import Marquee3D from "@/components/Marquee3D";
 import Marquee from "@/components/magicui/marquee";
 
 const Home = () => {
@@ -61,7 +61,7 @@ const Home = () => {
       <TeamSection />
       <TestimonialsSection />
       <AppointmentSection />
-      <Marquee3D />
+      {/* <Marquee3D /> */}
       <ContactSection />
       <Footer />
     </>

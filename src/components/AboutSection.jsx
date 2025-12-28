@@ -105,34 +105,7 @@ const AboutSection = () => {
                   }}>
                     <img 
                       className="img-fluid w-100" 
-                      src="/images/about1.jpg" 
-                      alt="Hospital Building"
-                      style={{
-                        height: '250px',
-                        objectFit: 'cover',
-                        transition: 'transform 0.3s ease'
-                      }}
-                      loading="lazy"
-                      onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                      onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = '/images/feature.jpg';
-                      }}
-                    />
-                    <div className="position-absolute top-0 start-0 w-100 h-100" style={{
-                      background: 'linear-gradient(45deg, rgba(111, 51, 72, 0.3), transparent)'
-                    }}></div>
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="position-relative overflow-hidden rounded-4" style={{
-                    boxShadow: '0 10px 30px rgba(111, 51, 72, 0.2)',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    <img 
-                      className="img-fluid w-100" 
-                      src="/images/about2.jpg" 
+                      src="/images/about/about1.jpg" 
                       alt="Medical Equipment"
                       style={{
                         height: '250px',
@@ -154,7 +127,29 @@ const AboutSection = () => {
                   }}>
                     <img 
                       className="img-fluid w-100" 
-                      src="/images/about3.jpg" 
+                      src="/images/about/about2.jpg" 
+                      alt="Medical Equipment"
+                      style={{
+                        height: '250px',
+                        objectFit: 'cover',
+                        transition: 'transform 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                      onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                    />
+                    <div className="position-absolute top-0 start-0 w-100 h-100" style={{
+                      background: 'linear-gradient(45deg, rgba(218, 165, 32, 0.3), transparent)'
+                    }}></div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="position-relative overflow-hidden rounded-4" style={{
+                    boxShadow: '0 10px 30px rgba(111, 51, 72, 0.2)',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <img 
+                      className="img-fluid w-100" 
+                      src="/images/about/about3.jpg" 
                       alt="Medical Staff"
                       style={{
                         height: '250px',
@@ -176,7 +171,7 @@ const AboutSection = () => {
                   }}>
                     <img 
                       className="img-fluid w-100" 
-                      src="/images/about-4.jpg" 
+                      src="/images/about/about4.jpg" 
                       alt="Medical Staff"
                       style={{
                         height: '250px',
