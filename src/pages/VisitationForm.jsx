@@ -77,7 +77,7 @@ const VisitationForm = () => {
           className="page-header py-5 d-flex align-items-center min-vh-75 wow fadeIn" 
           data-wow-delay="0.1s"
           style={{
-            background: `url('/images/visit.jpg') center/cover no-repeat fixed`,
+            background: `url('/images/visit.png') center/cover no-repeat fixed`,
             position: 'relative',
             //boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
             minHeight: '75vh',

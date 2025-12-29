@@ -8,7 +8,7 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: "/images/hero6.jpg",
+      image: "/images/hero-img/home-hero1.png",
       title: "Reliable & High-Quality Healthcare Services",
       subtitle: "Excellence in Healthcare",
       description: "Providing exceptional healthcare with compassion and excellence. Advanced fertility treatments and comprehensive medical care in a state-of-the-art facility.",
@@ -23,7 +23,7 @@ const Hero = () => {
     },
     {
       id: 2,
-      image: "/images/hero5.jpg",
+      image: "/images/hero-img/home-hero2.png",
       title: "Expert Doctors & Medical Professionals",
       subtitle: "World-Class Care",
       description: "Our team of experienced healthcare professionals is dedicated to providing the highest quality medical care with personalized treatment plans.",
@@ -38,7 +38,7 @@ const Hero = () => {
     },
     {
       id: 3,
-      image: "/images/doc4.jpg",
+      image: "/images/hero-img/home-hero3.png",
       title: "Modern Medical Facilities",
       subtitle: "Modern Technology",
       description: "Experience healthcare at its finest with cutting-edge medical technology and world-class facilities designed for your comfort and recovery.",
@@ -80,6 +80,8 @@ const Hero = () => {
         zIndex: 1
       }}></div>
       
+      <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
       <div className="carousel slide carousel-fade position-relative" style={{ zIndex: 2 }}>
         <div className="carousel-inner">
           {slides.map((slide, index) => (

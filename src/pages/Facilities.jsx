@@ -176,7 +176,7 @@ const Facilities = () => {
       <section className="relative bg-gradient-to-r from-primary to-primary text-white py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-black/40 z-0">
           <img
-            src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+          src='/images/facilities/fac-hero.png'
             alt="Hospital Facilities"
             className="w-full h-full object-cover"
           />

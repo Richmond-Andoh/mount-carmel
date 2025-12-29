@@ -41,7 +41,7 @@ const About = () => {
           <div 
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url('/images/hero7.jpg')`
+              backgroundImage: `url('/images/about/about-hero.png')`
             }}
           />
           {/* Dark overlay */}
@@ -214,7 +214,7 @@ const About = () => {
                 {/* Main Image - Always visible with responsive sizing */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <img
-                    src="/images/hero9.jpg"
+                    src="/images/about/about5.png"
                     alt="Mount Carmel Hospital"
                     className="w-full h-[300px] xs:h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
                     style={{ minHeight: '300px' }}
@@ -386,7 +386,7 @@ const About = () => {
                 {/* Main Image - Always visible with responsive sizing */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <img
-                    src="/images/about/about4.jpg"
+                    src="/images/about/about6.png"
                     alt="Mission and Values"
                     className="w-full h-[350px] xs:h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] object-cover"
                     style={{ minHeight: '350px' }}
@@ -721,7 +721,7 @@ const About = () => {
               <div className="w-100 h-100 min-vh-50">
                 <img 
                   className="img-fluid w-100 h-100 object-cover" 
-                  src="/images/gallery/surgical.jpeg" 
+                  src="/images/about/about7.png" 
                   alt="Modern Healthcare Facilities" 
                   style={{ minHeight: '600px' }}
                 />

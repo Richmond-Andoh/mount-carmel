@@ -246,7 +246,7 @@ const Services = () => {
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-110"
             style={{
-              backgroundImage: `url('/images/gallery/fertility-center.jpg')`
+              backgroundImage: `url('/images/services/service-hero.png')`
             }}
           />
           {/* <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 via-mount-carmel-primary/80 to-mount-carmel-secondary/85" /> */}
