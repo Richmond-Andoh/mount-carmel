@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqzpyjw”';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqzpyjw';
 
 const VisitationForm = () => {
   const [formData, setFormData] = useState({
