@@ -40,7 +40,7 @@ const ContactSection = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://formspree.io/f/xzzaopzv", {
+      const response = await fetch("https://formspree.io/f/xnjqpgbb", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
