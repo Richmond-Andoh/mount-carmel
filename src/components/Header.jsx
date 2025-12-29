@@ -187,7 +187,7 @@ const Header = () => {
         style={{
           background: isScrolled
             ? "rgba(255, 255, 255, 0.95)"
-            : "rgba(255, 255, 255, 0.85)",
+            : "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(20px)",
           borderBottom: "1px solid rgba(111, 51, 72, 0.1)",
           boxShadow: isScrolled

@@ -80,8 +80,6 @@ const Hero = () => {
         zIndex: 1
       }}></div>
       
-      <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
       <div className="carousel slide carousel-fade position-relative" style={{ zIndex: 2 }}>
         <div className="carousel-inner">
           {slides.map((slide, index) => (
