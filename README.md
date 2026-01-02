@@ -44,7 +44,6 @@ npm run build
 ## Project Structure
 
 - `/src/components` - React components
-- `/src/assets` - Images and static assets
 - `/src/styles` - CSS and Tailwind configurations
 - `/public` - Public assets and index.html
 
