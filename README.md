@@ -41,11 +41,6 @@ npm run dev
 npm run build
 ```
 
-## Project Structure
-
-- `/src/components` - React components
-- `/src/styles` - CSS and Tailwind configurations
-- `/public` - Public assets and index.html
 
 ## License
 
