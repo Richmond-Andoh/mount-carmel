@@ -11,13 +11,6 @@ Welcome to the official website repository of Mount Carmel Hospital And Fertilit
 - Staff profiles and expertise
 - Contact information and location details
 
-## Technology Stack
-
-- React
-- Tailwind CSS
-- Framer Motion
-- React Router
-- Vite
 
 ## Getting Started
 
