@@ -30,22 +30,23 @@ const settings = {
   dots: true,
   infinite: true,
   speed: 800,
-  slidesToShow: 3,
+  slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2500,
   cssEase: "ease-in-out",
+  mobileFirst: true,
   responsive: [
     {
-      breakpoint: 1024,
+      breakpoint: 768,
       settings: {
         slidesToShow: 2,
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 1024,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 3,
       }
     }
   ]
@@ -55,8 +56,19 @@ const TeamCarousel = () => (
   <Slider {...settings}>
     {teamMembers.map((member, idx) => (
       <div key={idx} style={{padding: '24px 12px'}}>
-        <div className="card border-0 shadow-lg rounded-4 text-center p-4" style={{background: '#fff'}}>
-          <img src={member.image} alt={member.name} className="rounded-circle mx-auto mb-3" style={{width: '120px', height: '120px', objectFit: 'cover'}} />
+        <div className="card border-0 shadow-lg rounded-4 text-center p-4" style={{background: '#fff', minWidth: '280px'}}>
+          <img 
+            src={member.image} 
+            alt={member.name} 
+            className="rounded-circle mx-auto mb-3" 
+            style={{
+              width: '120px', 
+              height: '120px', 
+              minWidth: '120px',
+              minHeight: '120px',
+              objectFit: 'cover'
+            }} 
+          />
           <h5 className="mb-1" style={{color: '#6f2248'}}>{member.name}</h5>
           <span className="text-muted mb-2">{member.role}</span>
         </div>
