@@ -8,5 +8,3 @@ Welcome to the official website repository of Mount Carmel Hospital And Fertilit
 - Easy navigation
 - Online appointment booking
 - Detailed information about our services and departments
-- Staff profiles and expertise
-- Contact information and location details
