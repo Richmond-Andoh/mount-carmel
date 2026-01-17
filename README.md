@@ -6,4 +6,3 @@ Welcome to the official website repository of Mount Carmel Hospital And Fertilit
 
 - Modern, responsive design
 - Easy navigation
-- Online appointment booking
