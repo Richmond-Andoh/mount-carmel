@@ -68,29 +68,31 @@ function Appointment() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-    const endpoint =
-      formData.patientType === 'New Patient'
-        ? 'https://formspree.io/f/xzdbejvl'
-        : 'https://formspree.io/f/xeeqarzy';
-    const payload = new FormData();
-    payload.append('Patient Type', formData.patientType);
-    payload.append('Full Name', formData.name);
-    payload.append('Phone Number', formData.phone);
-    payload.append('Preferred Date', formData.date);
-    payload.append('Preferred Time', formData.time);
-    payload.append('Department', formData.department);
-    if (formData.patientType === 'New Patient') {
-      payload.append('Date of Birth', formData.dateOfBirth);
-      payload.append('Gender', formData.gender);
-      payload.append('Residence', formData.residence);
-    }
-    payload.append('Additional Message', formData.message || 'None');
+    const endpoint = '/api/send-email';
+    const payload = {
+      formType: 'Appointment Booking',
+      patientType: formData.patientType,
+      name: formData.name,
+      phone: formData.phone,
+      date: formData.date,
+      time: formData.time,
+      department: formData.department,
+      ...(formData.patientType === 'New Patient' && {
+        dateOfBirth: formData.dateOfBirth,
+        gender: formData.gender,
+        residence: formData.residence,
+      }),
+      message: formData.message || 'None',
+    };
 
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
-        body: payload,
-        headers: { Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
       });
 
       if (res.ok) {

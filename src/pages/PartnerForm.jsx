@@ -5,8 +5,6 @@ import { CheckCircle, ArrowRight, Shield, Users, Handshake, BarChart2, Mail, Pho
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwvklrno';
-
 const PartnerForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -109,17 +107,18 @@ const PartnerForm = () => {
     setError(null);
 
     try {
-      const formDataToSend = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataToSend.append(key, value);
-      });
+      const payload = {
+        formType: 'Partner Request',
+        ...formData
+      };
 
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
-        body: formDataToSend,
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify(payload)
       });
 
       const responseData = await response.json();

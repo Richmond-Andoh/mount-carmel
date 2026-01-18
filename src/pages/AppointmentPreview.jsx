@@ -23,30 +23,31 @@ const AppointmentPreview = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    const endpoint =
-      data.patientType === 'New Patient'
-        ? 'https://formspree.io/f/xzdbejvl'
-        : 'https://formspree.io/f/xeeqarzy';
-
-    const payload = new FormData();
-    payload.append('Patient Type', data.patientType);
-    payload.append('Full Name', data.name);
-    payload.append('Phone Number', data.phone);
-    payload.append('Preferred Date', data.date);
-    payload.append('Preferred Time', data.time);
-    payload.append('Department', data.department);
-    if (data.patientType === 'New Patient') {
-      payload.append('Date of Birth', data.dateOfBirth || '');
-      payload.append('Gender', data.gender || '');
-      payload.append('Residence', data.residence || '');
-    }
-    payload.append('Additional Message', data.message || 'None');
+    const endpoint = '/api/send-email';
+    const payload = {
+      formType: 'Appointment Booking (Preview Confirmation)',
+      patientType: data.patientType,
+      name: data.name,
+      phone: data.phone,
+      date: data.date,
+      time: data.time,
+      department: data.department,
+      ...(data.patientType === 'New Patient' && {
+        dateOfBirth: data.dateOfBirth,
+        gender: data.gender,
+        residence: data.residence,
+      }),
+      message: data.message || 'None',
+    };
 
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
-        body: payload,
-        headers: { Accept: 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
+        body: JSON.stringify(payload)
       });
 
       if (res.ok) {
