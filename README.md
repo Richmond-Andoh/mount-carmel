@@ -5,4 +5,3 @@ Welcome to the official website repository of Mount Carmel Hospital And Fertilit
 ## Features
 
 - Modern, responsive design
-- Easy navigation
