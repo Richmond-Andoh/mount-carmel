@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqzpyjw';
+const API_ENDPOINT = '/api/send-email';
 
 const VisitationForm = () => {
   const [formData, setFormData] = useState({
@@ -42,12 +42,16 @@ const VisitationForm = () => {
     setError(null);
 
     try {
-      const data = new FormData(e.target);
+      const payload = {
+        formType: 'Visitation Request',
+        ...formData
+      };
 
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(API_ENDPOINT, {
         method: 'POST',
-        body: data,
+        body: JSON.stringify(payload),
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       });
