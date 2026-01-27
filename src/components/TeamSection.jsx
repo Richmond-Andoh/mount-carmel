@@ -16,7 +16,7 @@ const TeamSection = () => {
       name: "Dr. Joseph Amonoo",
       role: "General Medicine",
       specialty: "General Health Care",
-      image: "/images/team/team11.webp",
+      image: "/images/team/doc1.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -28,7 +28,7 @@ const TeamSection = () => {
       name: "Dr. Abigail Danso",
       role: "Pediatrician",
       specialty: "Child Care Expert",
-      image: "/images/team/team8.png",
+      image: "/images/team/doc5.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -136,7 +136,7 @@ const TeamSection = () => {
                       transition: 'transform .4s ease',
                       width: '100%',
                       height: '320px', // Further increased height for all images
-                      objectFit: 'contain', // Show full image without cropping
+                      objectFit: 'cover', // Show full image without cropping
                       display: 'block',
                       background: '#f8fbff', // Optional: add a light background for images with transparency
                     }}
