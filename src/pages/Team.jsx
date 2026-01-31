@@ -160,7 +160,7 @@ const Team = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero1.jpg" 
+            src="/images/general_surgery.png" 
             alt="Medical professionals team"
             className="w-full h-full object-cover object-center"
           />

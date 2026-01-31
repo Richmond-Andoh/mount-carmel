@@ -13,70 +13,54 @@ import Footer from '../components/Footer';
 
 const Facilities = () => {
   const [activeTab, setActiveTab] = useState('departments');
-  const [activeCategory, setActiveCategory] = useState('All');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Facility images for gallery with categories (moved above usage)
+  // Facility images for gallery - using local assets from /images/facilities/
   const facilityImages = [
     {
-      src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-      caption: "Main Building",
-      category: "Facilities"
+      src: "/images/facilities/fac-hero.png",
+      caption: "Main Entrance",
+      span: "col-span-1 md:col-span-2 row-span-2"
     },
     {
-      src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd2e?auto=format&fit=crop&w=1200&q=80",
-      caption: "Reception Area",
-      category: "Facilities"
+      src: "/images/facilities/img1.jpg",
+      caption: "Modern Reception",
+      span: "col-span-1"
     },
     {
-      src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
-      caption: "Patient Room",
-      category: "Patient Care"
+      src: "/images/facilities/02.jpg",
+      caption: "Hospital Exterior",
+      span: "col-span-1"
     },
     {
-      src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80",
-      caption: "Diagnostic Centre",
-      category: "Diagnostics"
+      src: "/images/facilities/ambulance.png",
+      caption: "Emergency Response",
+      span: "col-span-1 md:col-span-2 row-span-1"
     },
     {
-      src: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80",
-      caption: "Emergency Department",
-      category: "Emergency"
+      src: "/images/facilities/icu.png",
+      caption: "Intensive Care Unit",
+      span: "col-span-1"
     },
     {
-      src: "https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=1200&q=80",
-      caption: "Fertility Centre",
-      category: "Specialty Care"
+      src: "/images/facilities/04.jpg",
+      caption: "Patient Care Units",
+      span: "col-span-1"
     },
     {
-      src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80",
-      caption: "Patient Facilities",
-      category: "Patient Care"
+      src: "/images/facilities/fertility.png",
+      caption: "Advanced Fertility Center",
+      span: "col-span-1 md:col-span-2 row-span-2"
     },
     {
-      src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
+      src: "/images/facilities/visit.png",
+      caption: "Patient Experience",
+      span: "col-span-1"
+    },
+    {
+      src: "/images/facilities/general_surgery.png",
       caption: "Surgical Theater",
-      category: "Surgical"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80",
-      caption: "Rehabilitation Center",
-      category: "Therapy"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=1200&q=80",
-      caption: "Modern Operating Room",
-      category: "Surgical"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1551076805-e4c612b6c3d7?auto=format&fit=crop&w=1200&q=80",
-      caption: "Cardiac Care Unit",
-      category: "Specialty Care"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1581539250439-c96689b516dd?auto=format&fit=crop&w=1200&q=80",
-      caption: "Neonatal ICU",
-      category: "Specialty Care"
+      span: "col-span-1"
     }
   ];
 
@@ -87,13 +71,7 @@ const Facilities = () => {
     }
   }, []);
 
-  // Get unique categories for gallery filtering
-  const categories = ['All', ...new Set(facilityImages.map(img => img.category))];
 
-  // Filter images by category
-  const filteredImages = activeCategory === 'All'
-    ? facilityImages
-    : facilityImages.filter(img => img.category === activeCategory);
 
   const departments = [
     {
@@ -276,7 +254,7 @@ const Facilities = () => {
 
       {/* Image Gallery Section */}
       <section id="gallery" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="w-full px-4 md:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Facilities Gallery</h2>
             <p className="text-lg text-gray-600">
@@ -284,48 +262,37 @@ const Facilities = () => {
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category
-                  ? 'bg-primary text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
-                  }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Image Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredImages.map((image, index) => (
+          {/* Modern Bento-style Image Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px] w-full">
+            {facilityImages.map((image, index) => (
               <motion.div
                 key={`${image.src}-${index}`}
-                className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
+                className={`group relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 bg-gray-100 ${image.span || ''}`}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
-                <div className="aspect-w-16 aspect-h-10">
-                  <img
-                    src={image.src}
-                    alt={image.caption}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div>
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-primary text-white rounded-full mb-2">
-                      {image.category}
-                    </span>
-                    <h3 className="text-xl font-bold text-white">{image.caption}</h3>
-                  </div>
+                <img
+                  src={image.src}
+                  alt={image.caption}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Clean Sleek Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-8">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <h3 className="text-2xl font-bold text-white tracking-tight">{image.caption}</h3>
+                    <div className="w-12 h-1 bg-primary mt-2 rounded-full overflow-hidden">
+                      <motion.div 
+                        className="w-full h-full bg-white"
+                        initial={{ x: '-100%' }}
+                        whileHover={{ x: '0%' }}
+                      />
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
