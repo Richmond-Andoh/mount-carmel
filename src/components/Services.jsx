@@ -30,7 +30,7 @@ const Services = () => {
       title: "Fertility Centre",
       shortDesc: "Advanced reproductive care",
       description: "State-of-the-art fertility treatments with cutting-edge technology and personalized care plans.",
-      image: "/images/services/fertility.jpg",
+      image: "/images/services/IVF.png",
       icon: "👶",
       color: "from-pink-500 to-purple-600",
       features: ["IVF Treatment", "Fertility Counseling", "Advanced Lab Services", "Specialized Care Teams"]
@@ -39,7 +39,7 @@ const Services = () => {
       title: "Maternity Care",
       shortDesc: "Complete pregnancy support",
       description: "Comprehensive maternity services from prenatal care to postpartum support.",
-      image: "/images/services/maternity.jpg",
+      image: "/images/services/gynecology.png",
       icon: "🤱",
       color: "from-blue-500 to-cyan-600",
       features: ["Prenatal Care", "Delivery Services", "Postpartum Support", "Neonatal Care"]
@@ -48,7 +48,7 @@ const Services = () => {
       title: "Gynecology",
       shortDesc: "Women's health excellence",
       description: "Specialized gynecological care with advanced diagnostic and treatment options.",
-      image: "/images/services/gynecology.jpg",
+      image: "/images/services/gynecology.png",
       icon: "🏥",
       color: "from-green-500 to-emerald-600",
       features: ["Preventive Care", "Diagnostic Services", "Surgical Procedures", "Health Education"]
@@ -57,7 +57,7 @@ const Services = () => {
       title: "Pediatrics",
       shortDesc: "Expert child care",
       description: "Comprehensive pediatric care from birth through adolescence.",
-      image: "/images/services/peditrics.jpg",
+      image: "/images/services/pediatric.png",
       icon: "👶",
       color: "from-yellow-500 to-orange-600",
       features: ["Well-child Visits", "Vaccinations", "Developmental Assessment", "Emergency Care"]
@@ -66,7 +66,7 @@ const Services = () => {
       title: "Laboratory Services",
       shortDesc: "Precise diagnostics",
       description: "Advanced laboratory testing with quick, accurate results.",
-      image: "/images/services/laboratory.jpg",
+      image: "/images/services/Laboratory.png",
       icon: "🔬",
       color: "from-indigo-500 to-purple-600",
       features: ["Blood Tests", "Imaging Services", "Quick Results", "Expert Analysis"]
@@ -75,7 +75,7 @@ const Services = () => {
       title: "Emergency Care",
       shortDesc: "24/7 emergency services",
       description: "Round-the-clock emergency medical care with rapid response teams.",
-      image: "/images/services/emergency.jpg",
+      image: "/images/services/ambulance.png",
       icon: "🚑",
       color: "from-red-500 to-pink-600",
       features: ["24/7 Emergency", "Rapid Response", "Critical Care", "Trauma Services"]

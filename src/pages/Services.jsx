@@ -58,7 +58,7 @@ const Services = () => {
         "Antenatal & Postnatal Care",
         "Immunization",
       ],
-      image: "/images/services/general-medicine.jpg",
+      image: "/images/services/general_in_and_out_patient.png",
     },
     {
       id: 2,
@@ -73,7 +73,7 @@ const Services = () => {
         "Embryo Transfer",
         "High Success Rates",
       ],
-      image: "/images/services/fertility.jpg",
+      image: "/images/services/IVF.png",
     },
     {
       id: 3,
@@ -88,7 +88,7 @@ const Services = () => {
         "Surgical Procedures",
         "Menopause Management",
       ],
-      image: "/images/services/gynecology.jpg",
+      image: "/images/services/gynecology.png",
     },
     {
       id: 4,
@@ -105,7 +105,7 @@ const Services = () => {
         "Emergency Surgery",
         "Post-operative Care",
       ],
-      image: "/images/services/general-surgery.jpg",
+      image: "/images/services/general_surgery.png",
     },
     {
       id: 5,
@@ -120,7 +120,7 @@ const Services = () => {
         "Sports Medicine",
         "Physical Therapy",
       ],
-      image: "/images/services/orthopedics.jpg",
+      image: "/images/services/Orthopedics.png",
     },
     {
       id: 6,
@@ -137,7 +137,7 @@ const Services = () => {
         "Sick-child Care",
         "Developmental Screenings",
       ],
-      image: "/images/services/peditrics.jpg",
+      image: "/images/services/pediatric.png",
     },
     {
       id: 7,
@@ -152,7 +152,7 @@ const Services = () => {
         "Visa Medicals",
         "Bi-annual Exams",
       ],
-      image: "/images/services/general-medicine.jpg",
+      image: "/images/services/health_screening.png",
     },
     {
       id: 8,
@@ -167,7 +167,7 @@ const Services = () => {
         "Qualified Professionals",
         "Confidential Services",
       ],
-      image: "/images/services/fertility.jpg",
+      image: "/images/services/family_planning.png",
     },
     {
       id: 9,
@@ -182,7 +182,7 @@ const Services = () => {
         "Ambulance Services",
         "Emergency Transportation",
       ],
-      image: "/images/services/general-medicine.jpg",
+      image: "/images/services/ambulance.png",
     },
     {
       id: 10,
@@ -197,7 +197,7 @@ const Services = () => {
         "Haematology",
         "Radiology & Imaging",
       ],
-      image: "/images/services/general-medicine.jpg",
+      image: "/images/services/Laboratory.png",
     },
     {
       id: 11,
@@ -212,7 +212,7 @@ const Services = () => {
         "Advanced Life Support",
         "Specialized Nursing",
       ],
-      image: "/images/services/general-medicine.jpg",
+      image: "/images/services/icu.png",
     },
     {
       id: 12,
@@ -227,7 +227,7 @@ const Services = () => {
         "Pharmaceutical Counseling",
         "Prescription Fulfillment",
       ],
-      image: "/images/services/general-medicine.jpg",
+      image: "/images/services/pharmacy.png",
     },
   ];
 
