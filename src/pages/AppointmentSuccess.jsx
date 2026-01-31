@@ -49,9 +49,9 @@ const AppointmentSuccess = () => {
                     <div className="col-md-6">
                       <h6 className="fw-bold mb-2"><i className="fa fa-calendar-check me-2"></i>What's Next?</h6>
                       <ul className="list-unstyled small mb-0">
-                        <li>• You'll receive a confirmation call within 24 hours</li>
-                        <li>• Please arrive 15 minutes before your scheduled time</li>
-                        <li>• Bring your  insurance card (if applicable)</li>
+                        <li>•<span className='my-1 text-md py-1'> You'll receive a confirmation call within 24 hours </span></li>
+                        <li>•<span className='my-1 text-md py-1'> Please arrive 15 minutes before your scheduled time </span></li>
+                        <li>•<span className='my-1 text-md py-1'> Bring your  insurance card (if applicable) </span></li>
                       </ul>
                     </div>
                     <div className="col-md-6">

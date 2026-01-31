@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import AboutSection from "../components/AboutSection";
 import FeaturesSection from "../components/FeaturesSection";
-import VideoSection from "../components/VideoSection";
+import HomeGallery from "../components/HomeGallery";
 import ServicesSection from "../components/ServicesSection";
 import TeamSection from "../components/TeamSection";
 import TestimonialsSection from "../components/TestimonialsSection";
@@ -56,7 +56,7 @@ const Home = () => {
       </div>
       <AboutSection />
       <FeaturesSection />
-      <VideoSection />
+      <HomeGallery />
       <ServicesSection />
       <TeamSection />
       <TestimonialsSection />
