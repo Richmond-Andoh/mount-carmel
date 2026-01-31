@@ -222,7 +222,7 @@ const PartnerForm = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br  from-mount-carmel-primary to-mount-carmel-secondary text-white py-28 md:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br  from-mount-carmel-primary to-mount-carmel-secondary text-white py-28 md:py-32 overflow-hidden min-h-[60vh] md:min-h-[75vh] lg:min-h-[70vh]">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('/images/hero-partners.jpg')] bg-cover bg-center"></div>
