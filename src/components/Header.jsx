@@ -145,7 +145,7 @@ const Header = () => {
               <div className="ml-3">
                 <h5 className="text-white mb-0">Call Now</h5>
                 <span className="text-mount-carmel-light">
-                  +233 592 411 108
+                  +233 592 411 108  ,  +233 242 160 557
                 </span>
               </div>
             </div>
