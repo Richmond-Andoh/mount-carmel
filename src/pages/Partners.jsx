@@ -36,7 +36,8 @@ import liberty from '../images/partners/liberty.png';
 import kaiser from '../images/partners/kaiser.png';
 import vitality from '../images/partners/vitality.png';
 import metropolitan from '../images/partners/metropolitan.png';
-
+import equity from '../images/partners/equity.jpg';
+import cosmopolitan from '../images/partners/cosmopolitan.png';
 
 
 // Small, self-contained count-up component that animates when visible
@@ -92,70 +93,84 @@ const Partners = () => {
       logo: apex,
       type: 'insurance',
       description: 'Comprehensive health insurance coverage with nationwide network access',
-      website: '#'
+      website: 'https://apexhealthghana.com/'
     },
     { 
       name: "Nationwide Insurance", 
       logo: nationwide,
       type: 'insurance',
       description: 'Reliable insurance solutions for individuals and families',
-      website: '#'
+      website: 'https://www.nationwidemh.com/'
     },
     { 
       name: "Acacia Insurance", 
       logo: acacia,
       type: 'insurance',
       description: 'Affordable health coverage with extensive benefits',
-      website: '#'
+      website: 'https://myenterprisegroup.io/acacia/'
     },
     { 
       name: "Phoenix Insurance", 
       logo: phoenix,
       type: 'insurance',
       description: 'Rising to meet all your healthcare coverage needs',
-      website: '#'
+      website: 'https://phoenixinsurancegh.com/'
     },
     { 
-      name: "Glico Insurance", 
+      name: "Glico Life Insurance", 
       logo: glico,
       type: 'insurance',
       description: 'Trusted insurance partner for comprehensive healthcare',
-      website: '#'
+      website: 'https://glicolife.com/'
     },
     { 
       name: "Premier Health Insurance", 
       logo: premier,
       type: 'insurance',
       description: 'Premium healthcare coverage with exceptional service',
-      website: '#'
+      website: 'https://premierhealthinsurance.org/'
     },
     { 
-      name: "Liberty Medical Health", 
+      name: "Liberty Medical Health Insurance", 
       logo: liberty,
       type: 'insurance',
       description: 'Freedom to choose your healthcare provider',
-      website: '#'
+      website: 'https://libertymhs.com/'
     },
     { 
       name: "Kaiser Global Health", 
       logo: kaiser,
       type: 'insurance',
       description: 'International healthcare coverage with global reach',
-      website: '#'
+      website: 'https://kaiserghana.com/'
     },
     { 
       name: "Vitality Health", 
       logo: vitality,
       type: 'insurance',
       description: 'Rewarding healthy living with better coverage',
-      website: '#'
+      website: 'https://vitalitymh.com/'
     },
     { 
-      name: "Metropolitan Health", 
+      name: "Emple Health Insurance", 
       logo: metropolitan,
       type: 'insurance',
+      description: 'Protection for today, Possibility for tomorrow',
+      website: 'https://emple.com.gh/'
+    },
+    { 
+      name: "Equity Health Insurance", 
+      logo: equity,
+      type: 'insurance',
       description: 'Comprehensive health plans for urban living',
-      website: '#'
+      website: 'https://equityhealthinsurance.com/'
+    },
+    { 
+      name: "Cosmopolitan Insurance", 
+      logo: cosmopolitan,
+      type: 'insurance',
+      description: 'Insurance for the better living life',
+      website: 'https://cosmopolitanmhi.com/'
     }
   ];
 
