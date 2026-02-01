@@ -405,7 +405,7 @@ const VisitationForm = () => {
                     <div className="rounded-0 shadow-sm py-4 px-2 h-100 d-flex flex-column align-items-center justify-content-center w-100" style={{marginBottom: 0, paddingBottom: 0}}>
                       <i className="fa fa-envelope fa-3x mb-3 text-white"></i>
                       <h5 className="mb-2 text-primary">Email Us</h5>
-                      <p className="mb-0 text-secondary">mountcarmelhospital@outlook.com</p>
+                      <p className="mb-0 text-secondary">frontdesk.mchfc@gmail.com</p>
                     </div>
                   </div>
                   <div className="col-12 col-md-4 px-0">

@@ -171,7 +171,7 @@ const Header = () => {
               <div className="ml-3">
                 <h5 className="text-white mb-0">Mail Now</h5>
                 <span className="text-mount-carmel-light">
-                  mountcarmelhospital@outlook.com
+                  frontdesk.mchfc@gmail.com
                 </span>
               </div>
             </div>

@@ -276,6 +276,7 @@ function Appointment() {
                     <div>
                       <h5 className="text-white font-semibold mb-1">Emergency</h5>
                       <p className="text-white/90 text-sm">+233 592 411 108</p>
+                      <p className="text-white/90 text-sm">+233 242 160 557</p>
                     </div>
                   </div>
                 </motion.div>

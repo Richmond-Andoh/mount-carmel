@@ -158,7 +158,8 @@ const Contact = () => {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Contact Us</h3>
             <p className="text-gray-600">+233 592 411 108</p>
-            <p className="text-gray-600">mountcarmelhospital@outlook.com</p>
+            <p className="text-gray-600">+233 242 160 557</p>
+            <p className="text-gray-600">frontdesk.mchfc@gmail.com</p>
           </motion.div>
 
           {/* Hours Card */}
@@ -172,9 +173,9 @@ const Contact = () => {
               <Clock className="w-8 h-8 text-mount-carmel-primary" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Working Hours</h3>
-            <p className="text-gray-600">Monday - Friday: 8:00 AM - 8:00 PM</p>
-            <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
-            <p className="text-gray-600">Sunday: Emergency Only</p>
+            <p className="text-gray-600">Monday - Sunday: 24/7</p>
+            {/* <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
+            <p className="text-gray-600">Sunday: Emergency Only</p> */}
           </motion.div>
         </div>
       </div>
@@ -193,7 +194,7 @@ const Contact = () => {
               <div className="p-8 md:p-12 md:w-1/2">
                 <div className="text-center md:text-left mb-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-2">Send Us a Message</h2>
-                  <p className="text-gray-600">We'll get back to you within 24 hours</p>
+                  {/* <p className="text-gray-600">We'll get back to you within 24 hours</p> */}
                 </div>
 
                 {isSubmitted ? (
@@ -338,6 +339,7 @@ const Contact = () => {
                       </div>
                       <div className="ml-3">
                         <p className="text-gray-600">+233 592 411 108</p>
+                        <p className="text-gray-600">+233 242 160 557</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -345,7 +347,7 @@ const Contact = () => {
                         <Mail className="w-5 h-5 text-mount-carmel-primary" />
                       </div>
                       <div className="ml-3">
-                        <p className="text-gray-600">mountcarmelhospital@outlook.com</p>
+                        <p className="text-gray-600">frontdesk.mchfc@gmail.com</p>
                       </div>
                     </div>
                 

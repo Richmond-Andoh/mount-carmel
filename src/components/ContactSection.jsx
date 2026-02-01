@@ -97,7 +97,7 @@ const ContactSection = () => {
     {
       icon: "bi bi-envelope",
       title: "Email Address",
-      details: "mountcarmelhospital@outlook.com",
+      details: "frontdesk.mchfc@gmail.com",
       color: "#4B1438",
     },
     {

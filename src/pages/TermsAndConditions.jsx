@@ -166,7 +166,7 @@ const TermsAndConditions = () => {
               </p>
               <p className="text-gray-700">
                 Mount Carmel Hospital — Email:{" "}
-                <a href="mailto:mountcarmelhospital@outlook.com" className="underline text-mount-carmel-primary">mountcarmelhospital@outlook.com</a>{" "}
+                <a href="mailto:frontdesk.mchfc@gmail.com" className="underline text-mount-carmel-primary">frontdesk.mchfc@gmail.com</a>{" "}
                 | Tel: +233 592 411 108
               </p>
               <p className="text-sm text-gray-500 mt-4">Effective date: {new Date().toISOString().slice(0, 10)}</p>
