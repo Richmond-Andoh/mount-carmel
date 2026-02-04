@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+
 
 const Team = () => {
   useEffect(() => {
@@ -15,141 +13,197 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: 'Dr. Philip Anning-Kuffour',
-      position: 'Chief Medical Officer',
-      specialty: 'Fertility Specialist',
-      image: '/images/team/doc3.jpg',
-      description: 'Dr. Philip Aning-Kuffour is a renowned fertility specialist with over 15 years of experience in reproductive medicine.',
-      education: 'MBChB, FRCOG',
-      experience: '15+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
+      name: 'Mrs. Emelia Ennin Kuffour',
+      position: 'Director',
+      specialty: 'Leadership',
+      image: '/images/team/placeholder.jpg',
+      description: 'Leading our institution with vision and dedication to patient-centered excellence.',
+      education: 'Administration Expert',
+      experience: '20+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
     },
     {
-      name: 'Dr. Gerald Osei-Owusu',
-      position: 'Gynecology Specialist',
-      specialty: 'Women\'s Health',
+      name: 'Gerald Osei Owusu',
+      position: 'OBGYN Specialist',
+      specialty: 'Obstetrics & Gynecology',
       image: '/images/team/doc2.jpg',
-      description: 'Dr. Osei-Owusu specializes in women\'s health and gynecological surgery with expertise in minimally invasive procedures.',
-      education: 'MBChB, MD',
+      description: 'Expert in women\'s reproductive health and advanced gynecological care.',
+      education: 'MBChB, Specialist',
       experience: '12+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Dr. Benard Seshie',
+      position: 'General Surgeon',
+      specialty: 'Surgical Care',
+      image: '/images/team/doc5.jpg',
+      description: 'Highly skilled in a wide range of general and specialized surgical procedures.',
+      education: 'MBChB, FRCS',
+      experience: '11+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
     },
     {
       name: 'Dr. Abigail Danso',
       position: 'Pediatrician',
       specialty: 'Child Care Expert',
       image: '/images/team/doc3.jpg',
-      description: 'Dr. Danso is dedicated to providing comprehensive care for children from birth through adolescence.',
+      description: 'Dedicated to providing comprehensive health care for infants and children.',
       education: 'MBChB, DCH',
       experience: '10+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
     },
     {
-      name: 'Dr. Kazima Kwame Kpesese',
-      position: 'Emergency Medicine',
-      specialty: 'Emergency Care',
-      image: '/images/team/doc4.jpg',
-      description: 'Dr. Kpesese leads our emergency department with expertise in critical care and trauma medicine.',
-      education: 'MBChB, FCEM',
+      name: 'Mrs. Vida Tetteh Annan',
+      position: 'Nursing Administrator',
+      specialty: 'Nursing Management',
+      image: '/images/team/placeholder.jpg',
+      description: 'Overseeing nursing excellence and patient care standards facility-wide.',
+      education: 'Nursing Expert',
+      experience: '15+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Dr. Joseph Amonoo',
+      position: 'Medical Officer',
+      specialty: 'General Medicine',
+      image: '/images/team/placeholder.jpg',
+      description: 'Providing essential primary care and medical support.',
+      education: 'MBChB',
       experience: '8+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
-    },
-        {
-      name: 'Dr. Bernard Seshie',
-      position: 'General Surgeon',
-      specialty: 'Surgical Care',
-      image: '/images/team/doc5.jpg',
-      description: 'Dr. Seshie provides comprehensive surgical care with a focus on minimally invasive techniques.',
-      education: 'MBChB, FRCS',
-      experience: '11+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
-    },
-        {
-      name: 'Dr. Selasie Mawuko',
-      position: 'Anaesthesiologist',
-      specialty: 'Anaesthesia',
-      image: '/images/team/doc6.jpg',
-      description: 'Dr. Mawuko provides comprehensive anaesthetic care with a focus on patient safety and comfort.',
-      education: 'MBChB, FRCA',
-      experience: '11+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
     },
     {
-      name: 'Mr. Isaac Addo',
-      position: 'Laboratory Director',
-      specialty: 'Pathology',
-      image: '/images/team/doc5.jpg',
-      description: 'Mr. Addo oversees our state-of-the-art laboratory services and diagnostic testing facilities.',
-      education: 'MBChB, FRCPath',
-      experience: '14+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
-    },
-    {
-      name: 'Dr. Robert Acquah',
-      position: 'General Medicine',
-      specialty: 'Internal Medicine',
-      image: '/images/team/doc7.jpg',
-      description: 'Dr. Acquah provides comprehensive medical care for adults with a focus on preventive medicine.',
-      education: 'MBChB, MRCP',
-      experience: '11+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
-    },
-        {
-      name: 'Dr. Lemuel Ato Bray',
-      position: 'Urology Specialist',
+      name: 'Dr. Lemuel Bray',
+      position: 'Urologist',
       specialty: 'Urology',
       image: '/images/team/doc8.jpg',
-      description: 'Dr. Bray specializes in urology and provides comprehensive care for patients with urinary tract disorders.',
-      education: 'MBChB, FRCS',
+      description: 'Specialist in treating conditions of the male and female urinary tract.',
+      education: 'MBChB, Urology Fellow',
       experience: '11+ Years',
-      social: {
-        facebook: '#',
-        twitter: '#',
-        linkedin: '#',
-        instagram: '#'
-      }
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
     },
+    {
+      name: 'Dr. Lenusia Alijah',
+      position: 'Consultant',
+      specialty: 'Family Health Medicine',
+      image: '/images/team/placeholder.jpg',
+      description: 'Providing comprehensive healthcare for individuals and families.',
+      education: 'MBChB, Consultant',
+      experience: '14+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Loretha Bredu Agyare',
+      position: 'Dietitian',
+      specialty: 'Nutrition & Dietetics',
+      image: '/images/team/placeholder.jpg',
+      description: 'Providing expert nutritional guidance for patient health.',
+      education: 'Nutrition Expert',
+      experience: '10+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Christian Amekuji Donkor',
+      position: 'Embryologist',
+      specialty: 'Reproductive Science',
+      image: '/images/team/placeholder.jpg',
+      description: 'Expert in embryological procedures for our ART department.',
+      education: 'MSc Embryology',
+      experience: '9+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Selasie Anthony Salakpi',
+      position: 'Anesthetist',
+      specialty: 'Anesthesiology',
+      image: '/images/team/placeholder.jpg',
+      description: 'Ensuring patient safety and comfort during surgical procedures.',
+      education: 'BSc Anesthesia',
+      experience: '11+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Ernestina Sonia Lawson',
+      position: 'Principal Nursing Officer (PNO)',
+      specialty: 'Clinical Nursing',
+      image: '/images/team/placeholder.jpg',
+      description: 'Leading nursing care with expertise and compassion.',
+      education: 'Senior Nursing Specialist',
+      experience: '18+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Sephas Akpe',
+      position: 'Biomedical Scientist',
+      specialty: 'Laboratory Medicine',
+      image: '/images/team/placeholder.jpg',
+      description: 'Ensuring accurate and timely diagnostic testing.',
+      education: 'Biomedical Expert',
+      experience: '12+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Chancellor Ansu Afriyie',
+      position: 'Medical Officer',
+      specialty: 'General Medicine',
+      image: '/images/team/placeholder.jpg',
+      description: 'Dedicated medical officer committed to patient wellness.',
+      education: 'MBChB',
+      experience: '7+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Dr. Isaac Asirifi',
+      position: 'Ophthalmologist',
+      specialty: 'Eye Care',
+      image: '/images/team/placeholder.jpg',
+      description: 'Specialist in eye and vision care.',
+      education: 'MBChB, MS Ophth',
+      experience: '13+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Dr. Desmond Addo',
+      position: 'Specialist',
+      specialty: 'ART Specialist (Fertility)',
+      image: '/images/team/placeholder.jpg',
+      description: 'Expert in Assisted Reproductive Technology and fertility treatments.',
+      education: 'MBChB, ART Fellow',
+      experience: '10+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Emmanuel Ennin Kuffour',
+      position: 'Administrator',
+      specialty: 'Hospital Operations',
+      image: '/images/team/placeholder.jpg',
+      description: 'Ensuring seamless operations and administrative efficiency.',
+      education: 'Management Expert',
+      experience: '10+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Mr. Evans Acquah',
+      position: 'Chief Account Officer',
+      specialty: 'Financial Management',
+      image: '/images/team/placeholder.jpg',
+      description: 'Managing financial strategies and hospital accounts.',
+      education: 'Accountancy Expert',
+      experience: '12+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    },
+    {
+      name: 'Mr. Godfred Boakye',
+      position: 'External Auditor',
+      specialty: 'Audit & Compliance',
+      image: '/images/team/placeholder.jpg',
+      description: 'Ensuring financial transparency and regulatory compliance.',
+      education: 'Audit Expert',
+      experience: '15+ Years',
+      social: { facebook: '#', twitter: '#', linkedin: '#', instagram: '#' }
+    }
   ];
+
 
   return (
     <>
@@ -325,7 +379,7 @@ const Team = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                   {[
-                    { icon: 'fa-award', title: '15+ Years Experience', desc: 'Specialized in reproductive medicine' },
+                    { icon: 'fa-award', title: '20+ Years Experience', desc: 'Specialized in reproductive medicine' },
                     { icon: 'fa-graduation-cap', title: 'Education', desc: 'MBChB, FRCOG, Subspecialty in Reproductive Medicine' },
                     { icon: 'fa-stethoscope', title: 'Specialties', desc: 'IVF, IUI, Reproductive Surgery' },
                     { icon: 'fa-hospital', title: 'Department', desc: 'Fertility & Reproductive Health' }
@@ -350,13 +404,6 @@ const Team = () => {
                     <i className="far fa-calendar-alt"></i>
                     <span>Book Consultation</span>
                   </a>
-                  {/* <a 
-                    href="#meet-our-team" 
-                    className="px-8 py-4 bg-white text-mount-carmel-primary font-semibold border border-mount-carmel-primary/20 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center space-x-2"
-                  >
-                    <i className="far fa-user-md"></i>
-                    <span>View All Doctors</span>
-                  </a> */}
                 </div>
               </div>
             </div>
@@ -365,212 +412,65 @@ const Team = () => {
       </section>
 
 
+
       {/* Team Grid Section */}
-      <section id="our-team" className="py-16 md:py-24 bg-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/5 to-transparent"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(#6f3348_0.5px,transparent_0.5px)] [background-size:16px_16px] opacity-5"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-mount-carmel-primary uppercase rounded-full bg-mount-carmel-primary/10">
-              Our Specialists
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Meet Our <span className="text-mount-carmel-primary">Expert Team</span></h2>
+      <section id="our-team" className="py-20 md:py-32 bg-white relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-mount-carmel-primary font-bold tracking-widest uppercase text-sm mb-4 block">Expert Team</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Highly Qualified <span className="text-mount-carmel-primary">Personnel</span></h2>
+            <div className="w-20 h-1.5 bg-mount-carmel-accent mx-auto rounded-full mb-8"></div>
             <p className="text-lg text-gray-600">
               Our team of board-certified specialists brings together decades of experience and a shared commitment to excellence in patient care.
             </p>
           </div>
           
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <button className="px-5 py-2.5 rounded-full bg-mount-carmel-primary text-white font-medium text-sm transition-all hover:bg-mount-carmel-primary-dark">
-              All Specialists
-            </button>
-            {/* {['Cardiology', 'Neurology', 'Pediatrics', 'Surgery', 'Radiology', 'Dermatology'].map((specialty, index) => (
-              <button 
-                key={index}
-                className="px-5 py-2.5 rounded-full bg-white text-gray-700 border border-gray-200 font-medium text-sm transition-all hover:bg-mount-carmel-primary hover:text-white hover:border-mount-carmel-primary"
-              >
-                {specialty}
-              </button>
-            ))} */}
-          </div>
-          
-          {/* Team Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
-              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="relative overflow-hidden h-80">
+              <div key={index} className="group flex flex-col h-full bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-50">
+                {/* Image Wrapper */}
+                <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
                   <img 
                     src={member.image} 
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-xl font-bold">{member.name}</h3>
-                    <p className="text-mount-carmel-accent font-medium">{member.position}</p>
-                    <div className="h-0.5 w-12 bg-mount-carmel-accent my-3"></div>
-                    <p className="text-sm text-white/90">{member.specialty}</p>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <p className="text-gray-600 mb-4 line-clamp-3">{member.description}</p>
-                  
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center">
-                      <i className="fas fa-graduation-cap mr-2 text-mount-carmel-primary"></i>
-                      <span>{member.education}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <i className="fas fa-briefcase mr-2 text-mount-carmel-primary"></i>
-                      <span>{member.experience}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                    <a 
-                      href="/appointment" 
-                      className="text-sm font-medium text-mount-carmel-primary hover:text-mount-carmel-primary-dark flex items-center"
-                    >
-                      <span>Book Appointment</span>
-                      <i className="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
-                    
-                    <div className="flex space-x-2">
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <p className="text-white text-sm mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      {member.description}
+                    </p>
+                    <div className="flex gap-3">
                       {Object.entries(member.social).map(([platform, url]) => (
-                        <a 
-                          key={platform}
-                          href={url} 
-                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-mount-carmel-primary text-gray-600 hover:text-white flex items-center justify-center transition-colors"
-                          aria-label={`${member.name}'s ${platform}`}
-                        >
-                          <i className={`fab fa-${platform} text-sm`}></i>
+                        <a key={platform} href={url} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-mount-carmel-accent transition-colors">
+                          <i className={`fab fa-${platform} text-xs`}></i>
                         </a>
                       ))}
                     </div>
                   </div>
-                </div>
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-mount-carmel-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="text-white">
-                    <h4 className="text-lg font-semibold mb-2">Specializations</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {['IVF', 'Fertility', 'Reproductive Health', 'IUI'].map((tag, i) => (
-                        <span key={i} className="px-3 py-1 bg-white/20 rounded-full text-xs font-medium">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Specialist Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-mount-carmel-primary text-[10px] font-bold uppercase tracking-wider rounded-lg shadow-sm">
+                      {member.specialty}
+                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* <div className="text-center mt-12">
-            <a 
-              href="/doctors" 
-              className="inline-flex items-center px-8 py-4 bg-mount-carmel-primary text-white font-semibold rounded-lg hover:bg-mount-carmel-primary-dark transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
-            >
-              <span>View All Doctors</span>
-              <i className="fas fa-arrow-right ml-2"></i>
-            </a>
-          </div> */}
-        </div>
-      </section>
 
-
-      {/* Support Team Section */}
-      <section className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/5 to-transparent"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(#6f3348_0.5px,transparent_0.5px)] [background-size:16px_16px] opacity-5"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider text-mount-carmel-primary uppercase rounded-full bg-mount-carmel-primary/10">
-              Our Support Team
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Exceptional <span className="text-mount-carmel-primary">Support Staff</span></h2>
-            <p className="text-lg text-gray-600">
-              Our dedicated support team works tirelessly behind the scenes to ensure every patient receives the highest standard of care.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: 'fa-user-nurse',
-                title: 'Nursing Staff',
-                description: 'Compassionate and highly skilled nurses providing around-the-clock care with expertise and empathy.',
-                stats: '50+ Registered Nurses'
-              },
-              {
-                icon: 'fa-user-tie',
-                title: 'Administrative Team',
-                description: 'Professional staff managing appointments, records, and ensuring smooth hospital operations.',
-                stats: '30+ Administrative Staff'
-              },
-              {
-                icon: 'fa-cogs',
-                title: 'Technical Staff',
-                description: 'Certified technicians maintaining our advanced medical equipment and technical infrastructure.',
-                stats: '24/7 Technical Support'
-              },
-              {
-                icon: 'fa-hands-helping',
-                title: 'Patient Care',
-                description: 'Dedicated professionals providing essential support services for patient comfort and care.',
-                stats: '40+ Care Specialists'
-              }
-            ].map((item, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
-              >
-                <div className="p-8 text-center">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-mount-carmel-primary/10 flex items-center justify-center text-3xl text-mount-carmel-primary group-hover:bg-mount-carmel-primary group-hover:text-white transition-colors duration-300">
-                    <i className={`fas ${item.icon}`}></i>
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-mount-carmel-primary transition-colors mb-1">{member.name}</h3>
+                    <p className="text-mount-carmel-accent font-semibold text-sm uppercase tracking-wide">{member.position}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600 mb-6">{item.description}</p>
-                  <div className="px-4 py-2 bg-gray-50 rounded-lg inline-flex items-center text-sm font-medium text-mount-carmel-primary">
-                    <i className="fas fa-chart-line mr-2"></i>
-                    <span>{item.stats}</span>
-                  </div>
-                </div>
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-8 text-center text-white">
-                  <div>
-                    <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                    <p className="mb-6">{item.description}</p>
-                    <div className="w-16 h-1 bg-white/30 mx-auto mb-6"></div>
-                    <p className="text-sm opacity-90 mb-6">{item.stats}</p>
-                    <div className="flex flex-col space-y-3">
-                      <a 
-                        href="/careers" 
-                        className="inline-block px-6 py-2.5 bg-white text-mount-carmel-primary rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors"
-                      >
-                        <i className="far fa-briefcase mr-2"></i>
-                        View Open Positions
-                      </a>
-                      <a 
-                        href="/contact" 
-                        className="inline-block px-6 py-2.5 bg-transparent border-2 border-white text-white rounded-full text-sm font-semibold hover:bg-white/10 transition-colors"
-                      >
-                        <i className="far fa-envelope mr-2"></i>
-                        Contact HR
-                      </a>
+                  
+                  <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+                    <div className="flex items-center text-gray-400 text-xs">
+                      <i className="fas fa-briefcase mr-2 text-mount-carmel-primary/40"></i>
+                      <span>{member.experience}</span>
                     </div>
+                    <a href="/appointment" className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-mount-carmel-primary hover:bg-mount-carmel-primary hover:text-white transition-all">
+                      <i className="fas fa-arrow-right text-xs"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -578,6 +478,8 @@ const Team = () => {
           </div>
         </div>
       </section>
+
+
 
       {/* CTA Section */}
       <section className="relative py-16 md:py-24 bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary overflow-hidden">
