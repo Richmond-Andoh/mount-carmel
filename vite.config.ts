@@ -44,6 +44,12 @@ export default defineConfig({
   },
   // Performance optimizations
   server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
     hmr: {
       overlay: true,
     },
