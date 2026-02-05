@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, StarHalf, ChevronLeft, ChevronRight, Plus, X } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Plus, X } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { db } from '../lib/firebase';
@@ -11,13 +11,12 @@ export default function Testimonials() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [hoverRating, setHoverRating] = useState(0);
   const [ratingFilter, setRatingFilter] = useState(0);
+  
   // Demo testimonials for fallback
   const demoTestimonials = [
     {
       id: 1,
       name: "Akosua Mensah",
-      profession: "Fertility Patient",
-      image: "/images/testimonial-1.jpg",
       text: "After years of trying to conceive, Mount Carmel Hospital gave us hope. The fertility treatment was successful and we now have beautiful twins. The doctors and staff were incredibly supportive throughout our journey.",
       rating: 5,
       date: "2023-10-15"
@@ -25,8 +24,6 @@ export default function Testimonials() {
     {
       id: 2,
       name: "Dr. Grace Mensah",
-      profession: "Pediatric Care",
-      image: "/images/testimonial-2.jpg",
       text: "As a fellow healthcare professional, I can attest to the exceptional quality of care at Mount Carmel Hospital. The pediatric department provided excellent care for my daughter when she was ill.",
       rating: 5,
       date: "2023-09-22"
@@ -34,8 +31,6 @@ export default function Testimonials() {
     {
       id: 3,
       name: "Kwame Addo",
-      profession: "Emergency Care",
-      image: "/images/testimonial-3.jpg",
       text: "The emergency care team at Mount Carmel Hospital saved my life. Their quick response and professional treatment made all the difference. I'm forever grateful for their expertise and compassion.",
       rating: 5,
       date: "2023-11-05"
@@ -43,8 +38,6 @@ export default function Testimonials() {
     {
       id: 4,
       name: "Ama Serwaa",
-      profession: "Maternity Care",
-      image: "/images/testimonial-4.jpg",
       text: "The maternity ward staff were absolutely amazing during the birth of my baby. Their care and support made the experience so much better. The facilities are top-notch and very clean.",
       rating: 4,
       date: "2023-10-30"
@@ -52,8 +45,6 @@ export default function Testimonials() {
     {
       id: 5,
       name: "Kofi Ansah",
-      profession: "General Surgery",
-      image: "/images/testimonial-5.jpg",
       text: "I had a successful surgery at Mount Carmel and the follow-up care was exceptional. The doctors took time to explain everything and made sure I was comfortable throughout my recovery.",
       rating: 5,
       date: "2023-11-12"
@@ -61,26 +52,25 @@ export default function Testimonials() {
     {
       id: 6,
       name: "Esi Boateng",
-      profession: "Dental Care",
-      image: "/images/testimonial-6.jpg",
       text: "The dental clinic is fantastic! The dentist was very gentle and professional. I used to be afraid of dental visits but not anymore. Highly recommend their services.",
       rating: 4,
       date: "2023-11-08"
     }
   ];
+  
   const [showModal, setShowModal] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    rating: 0,
-    title: '',
+    rating: 5,
     message: '',
-    profession: '',
     consent: false
   });
   // Testimonials state
   const [testimonials, setTestimonials] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   // Fetch testimonials from Firestore on mount
   useEffect(() => {
@@ -98,8 +88,9 @@ export default function Testimonials() {
   }, []);
 
   // Filter testimonials by rating and use database or demo data
-  const filteredTestimonials = (testimonials.length > 0 ? testimonials : demoTestimonials)
-    .filter(testimonial => ratingFilter === 0 || Math.floor(testimonial.rating) === ratingFilter);
+  const baseTestimonials = testimonials.length > 0 ? testimonials : demoTestimonials;
+  const filteredTestimonials = baseTestimonials.filter(testimonial => ratingFilter === 0 || Math.floor(testimonial.rating) === ratingFilter);
+  const displayedTestimonials = showAll ? filteredTestimonials : filteredTestimonials.slice(0, 3);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -122,15 +113,18 @@ export default function Testimonials() {
       alert('Please agree to the terms before submitting');
       return;
     }
+    if (formData.rating === 0) {
+      alert('Please provide a rating');
+      return;
+    }
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const newTestimony = {
         name: formData.name,
         email: formData.email,
         rating: formData.rating,
-        title: formData.title,
         message: formData.message,
-        profession: formData.profession,
         date: new Date().toISOString(),
       };
       const docRef = await addDoc(collection(db, 'testimonies'), newTestimony);
@@ -140,10 +134,8 @@ export default function Testimonials() {
       setFormData({
         name: '',
         email: '',
-        rating: 0,
-        title: '',
+        rating: 5,
         message: '',
-        profession: '',
         consent: false
       });
       setTimeout(() => {
@@ -152,6 +144,7 @@ export default function Testimonials() {
       }, 3000);
     } catch (error) {
       console.error('Error submitting testimonial:', error);
+      setSubmitError('Failed to submit testimonial. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -159,13 +152,13 @@ export default function Testimonials() {
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => 
-      prev === filteredTestimonials.length - 1 ? 0 : prev + 1
+      prev === baseTestimonials.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => 
-      prev === 0 ? filteredTestimonials.length - 1 : prev - 1
+      prev === 0 ? baseTestimonials.length - 1 : prev - 1
     );
   };
 
@@ -271,162 +264,209 @@ export default function Testimonials() {
 
       {/* Testimonial Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setShowModal(false)}></div>
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-4 sm:p-8 z-[10000] mx-2 my-4 max-h-screen overflow-y-auto">
-            {/* Modal Header - sticky close button for mobile usability */}
-            <div className="flex justify-between items-center mb-4 sticky top-0 bg-white z-10 py-2">
-              <h3 className="text-2xl font-bold text-gray-900">Share Your Experience</h3>
-              <button
-                onClick={() => setShowModal(false)}
-                className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
-                style={{ position: 'sticky', top: 0, right: 0 }}
-                aria-label="Close modal"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <p className="mb-6 text-gray-600 text-sm">
-              We'd love to hear about your experience at Mount Carmel Hospital
-            </p>
-            {/* Star Rating in Modal */}
-            <div className="mb-4 flex items-center">
-              <span className="mr-2 text-sm text-gray-700">Your Rating:</span>
-              {[1,2,3,4,5].map((star) => (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm" 
+            onClick={() => setShowModal(false)}
+          ></motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="relative w-full max-w-3xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden z-10 border border-white/20"
+          >
+            {/* Decorative Top Border */}
+            <div className="h-2 w-full bg-gradient-to-r from-mount-carmel-primary via-mount-carmel-secondary to-mount-carmel-primary"></div>
+
+            <div className="p-6 sm:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
+              {/* Modal Header */}
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 tracking-tight">
+                    Share Your <span className="text-mount-carmel-primary">Experience</span>
+                  </h3>
+                  <p className="mt-2 text-gray-500 text-lg">
+                    We value your feedback and journey with us.
+                  </p>
+                </div>
                 <button
-                  key={star}
-                  type="button"
-                  onClick={() => handleRating(star)}
-                  onMouseEnter={() => setHoverRating(star)}
-                  onMouseLeave={() => setHoverRating(0)}
-                  className="focus:outline-none"
-                  aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
+                  onClick={() => setShowModal(false)}
+                  className="p-2 rounded-full hover:bg-gray-100 transition-all duration-200 text-gray-400 hover:text-gray-900"
+                  aria-label="Close modal"
                 >
-                  {formData.rating >= star || hoverRating >= star ? (
-                    <Star className="w-6 h-6 text-yellow-400 fill-current" />
-                  ) : (
-                    <Star className="w-6 h-6 text-gray-300 fill-current" />
-                  )}
+                  <X className="h-6 w-6" />
                 </button>
-              ))}
-            </div>
-            {/* Modal Content */}
-            {submitSuccess ? (
-              <div className="text-center py-8">
-                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-50 mb-4">
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
-                    <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Thank You!</h3>
-                <p className="mt-2 text-gray-600">
-                  Your testimonial has been submitted successfully. We appreciate your feedback!
-                </p>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="block w-full rounded-lg border border-gray-300 py-3 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#6f3348] sm:text-sm transition-all duration-200 bg-white"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="block w-full rounded-lg border border-gray-300 py-3 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#6f3348] sm:text-sm transition-all duration-200 bg-white"
-                    placeholder="you@example.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="profession" className="block text-sm font-medium text-gray-700 mb-2">
-                    Profession / Role
-                  </label>
-                  <input
-                    type="text"
-                    id="profession"
-                    name="profession"
-                    value={formData.profession}
-                    onChange={handleInputChange}
-                    className="block w-full rounded-lg border border-gray-300 py-3 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#6f3348] sm:text-sm transition-all duration-200 bg-white"
-                    placeholder="e.g., Patient, Family Member, Healthcare Professional"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Experience <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="block w-full rounded-lg border border-gray-300 py-3 px-4 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-[#6f3348] sm:text-sm transition-all duration-200 bg-white min-h-[120px]"
-                    placeholder="Tell us about your experience at Mount Carmel Hospital..."
-                  />
-                  <div className="text-xs text-gray-400 text-right mt-1">
-                    {formData.message.length}/500
+
+              {submitSuccess ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-12"
+                >
+                  <div className="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-50 mb-6">
+                    <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center">
+                      <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start">
-                  <input
-                    id="consent"
-                    name="consent"
-                    type="checkbox"
-                    required
-                    checked={formData.consent}
-                    onChange={handleInputChange}
-                    className="h-4 w-4 rounded border-gray-300 text-[#6f3348] focus:ring-[#6f3348]"
-                  />
-                  <label htmlFor="consent" className="ml-2 text-sm text-gray-600">
-                    I agree to the{' '}
-                    <a href="/privacy" className="font-medium text-[#6f3348] hover:text-[#4b1438]">
-                      Privacy Policy
-                    </a>{' '}and consent to my testimonial being displayed on the website.
-                  </label>
-                </div>
-                <div>
-                  <button
+                  <h3 className="text-2xl font-bold text-gray-900">Thank You!</h3>
+                  <p className="mt-3 text-gray-600 max-w-sm mx-auto">
+                    Your testimonial has been submitted successfully. We appreciate your feedback!
+                  </p>
+                  <button 
+                    onClick={() => setShowModal(false)}
+                    className="mt-8 px-8 py-3 bg-mount-carmel-primary text-white font-bold rounded-full hover:bg-mount-carmel-primary-dark transition-all"
+                  >
+                    Close Window
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {submitError && (
+                    <motion.div 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-lg"
+                    >
+                      <p className="text-sm font-medium">{submitError}</p>
+                    </motion.div>
+                  )}
+
+                  {/* Rating Selector */}
+                  <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center">
+                    <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Overall Satisfaction</span>
+                    <div className="flex space-x-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => handleRating(star)}
+                          onMouseEnter={() => setHoverRating(star)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          className="focus:outline-none transform transition-transform hover:scale-125 duration-200"
+                        >
+                          <Star 
+                            className={`w-10 h-10 transition-colors duration-200 ${
+                              (formData.rating >= star || hoverRating >= star) 
+                                ? 'text-yellow-400 fill-current drop-shadow-sm' 
+                                : 'text-gray-300'
+                            }`}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    <span className="mt-3 text-sm font-medium text-gray-600">
+                      {formData.rating === 5 ? "Excellent!" : 
+                       formData.rating === 4 ? "Very Good" : 
+                       formData.rating === 3 ? "Good" : 
+                       formData.rating === 2 ? "Fair" : 
+                       formData.rating === 1 ? "Poor" : "Select a rating"}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2 ml-1">
+                        Full Name <span className="text-mount-carmel-primary">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="block w-full rounded-2xl border-gray-200 bg-white/50 py-4 px-5 text-gray-900 shadow-sm transition-all duration-200 focus:border-mount-carmel-primary focus:ring-4 focus:ring-mount-carmel-primary/10 placeholder:text-gray-400"
+                        placeholder="e.g. Ama Serwaa"
+                      />
+                    </div>
+
+                    <div className="relative">
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2 ml-1">
+                        Email Address <span className="text-mount-carmel-primary">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="block w-full rounded-2xl border-gray-200 bg-white/50 py-4 px-5 text-gray-900 shadow-sm transition-all duration-200 focus:border-mount-carmel-primary focus:ring-4 focus:ring-mount-carmel-primary/10 placeholder:text-gray-400"
+                        placeholder="ama@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2 ml-1">
+                      Your Story <span className="text-mount-carmel-primary">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      maxLength={500}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="block w-full rounded-2xl border-gray-200 bg-white/50 py-4 px-5 text-gray-900 shadow-sm transition-all duration-200 focus:border-mount-carmel-primary focus:ring-4 focus:ring-mount-carmel-primary/10 placeholder:text-gray-400 min-h-[150px] resize-none"
+                      placeholder="Share your experience with our services and staff..."
+                    />
+                    <div className={`absolute bottom-4 right-5 text-xs font-medium px-2 py-1 rounded-md transition-colors ${
+                      formData.message.length > 450 ? 'bg-red-50 text-red-500' : 'bg-gray-50 text-gray-400'
+                    }`}>
+                      {formData.message.length} / 500
+                    </div>
+                  </div>
+
+                  <div className="flex items-start bg-mount-carmel-primary/5 p-4 rounded-2xl border border-mount-carmel-primary/10">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="consent"
+                        name="consent"
+                        type="checkbox"
+                        required
+                        checked={formData.consent}
+                        onChange={handleInputChange}
+                        className="h-5 w-5 rounded border-gray-300 text-mount-carmel-primary focus:ring-mount-carmel-primary cursor-pointer"
+                      />
+                    </div>
+                    <label htmlFor="consent" className="ml-3 text-sm text-gray-600 leading-relaxed cursor-pointer select-none">
+                      I agree to the <a href="/privacy" className="text-mount-carmel-primary font-bold hover:underline">Privacy Policy</a> and consent to having my feedback displayed on the website.
+                    </label>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting || !formData.consent}
-                    className={`w-full flex justify-center items-center py-3 px-6 rounded-lg text-base font-medium text-white bg-[#6f3348] hover:bg-[#4b1438] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6f3348] transition-all duration-200 ${isSubmitting || !formData.consent ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    style={{ backgroundColor: '#6f3348' }}
+                    className={`w-full flex justify-center items-center py-4 px-8 rounded-2xl text-lg font-bold text-white shadow-xl transition-all duration-300 ${
+                      isSubmitting || !formData.consent 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-gradient-to-r from-mount-carmel-primary to-mount-carmel-secondary hover:shadow-mount-carmel-primary/25'
+                    }`}
                   >
                     {isSubmitting ? (
                       <>
-                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-3 h-6 w-6 text-white" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Submitting...
+                        Publishing Your Story...
                       </>
-                    ) : 'Submit Testimonial'}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
+                    ) : 'Publish Testimonial'}
+                  </motion.button>
+                </form>
+              )}
+            </div>
+          </motion.div>
         </div>
       )}
       
@@ -434,30 +474,18 @@ export default function Testimonials() {
       <div className="py-12 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-10 transform transition-all hover:shadow-2xl">
-            {filteredTestimonials.length > 0 ? (
+            {baseTestimonials.length > 0 ? (
               <>
                 <div className="flex items-center justify-center mb-6">
-                  {renderStars(filteredTestimonials[currentTestimonial].rating)}
+                  {renderStars(baseTestimonials[currentTestimonial].rating)}
                 </div>
-                <blockquote className="text-xl md:text-2xl text-center text-gray-700 mb-8 leading-relaxed">
-                  "{filteredTestimonials[currentTestimonial].text}"
+                <blockquote className="text-xl md:text-2xl text-center text-gray-700 mb-8 leading-relaxed italic">
+                  "{baseTestimonials[currentTestimonial].text || baseTestimonials[currentTestimonial].message}"
                 </blockquote>
-                <div className="flex items-center justify-center space-x-4 mb-8">
-                  <div className="h-16 w-16 rounded-full bg-gray-200 overflow-hidden">
-                    <img 
-                      src={filteredTestimonials[currentTestimonial].image} 
-                      alt={filteredTestimonials[currentTestimonial].name}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">
-                      {filteredTestimonials[currentTestimonial].name}
-                    </p>
-                    <p className="text-gray-600">
-                      {filteredTestimonials[currentTestimonial].profession}
-                    </p>
-                  </div>
+                <div className="text-center">
+                  <p className="font-bold text-lg text-mount-carmel-primary">
+                    {baseTestimonials[currentTestimonial].name}
+                  </p>
                 </div>
                 <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-100">
                   <button 
@@ -468,11 +496,11 @@ export default function Testimonials() {
                     <ChevronLeft className="w-6 h-6 text-gray-600" />
                   </button>
                   <div className="flex space-x-2">
-                    {filteredTestimonials.map((_, index) => (
+                    {baseTestimonials.slice(0, 5).map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentTestimonial(index)}
-                        className={`w-2.5 h-2.5 rounded-full transition-colors ${index === currentTestimonial ? 'bg-primary-600' : 'bg-gray-300'}`}
+                        className={`w-2.5 h-2.5 rounded-full transition-colors ${index === currentTestimonial ? 'bg-mount-carmel-primary' : 'bg-gray-300'}`}
                         aria-label={`Go to testimonial ${index + 1}`}
                       />
                     ))}
@@ -547,7 +575,7 @@ export default function Testimonials() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredTestimonials.length === 0 ? (
+            {displayedTestimonials.length === 0 ? (
               <div className="col-span-3 text-center py-12">
                 <div className="bg-white p-8 rounded-2xl shadow-lg">
                   <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -570,85 +598,56 @@ export default function Testimonials() {
                 </div>
               </div>
             ) : (
-              filteredTestimonials.map((testimonial, index) => (
+              displayedTestimonials.map((testimonial, index) => (
               <motion.div 
                 key={testimonial.id || index}
-                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col h-full"
+                className="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="relative h-48 bg-gray-100 overflow-hidden">
-                  <img 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    src={testimonial.image || '/images/avatar-placeholder.png'}
-                    alt={testimonial.name}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 p-6 w-full">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 -mb-6">
-                        <img 
-                          className="h-14 w-14 rounded-full border-2 border-white object-cover" 
-                          src={testimonial.image || '/images/avatar-placeholder.png'} 
-                          alt={testimonial.name} 
-                        />
-                      </div>
-                      <div className="ml-4 text-left">
-                        <h3 className="text-lg font-semibold text-white">{testimonial.name}</h3>
-                        <p className="text-sm text-white/90">{testimonial.profession}</p>
-                      </div>
+                <div className="p-8 flex flex-col h-full">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="bg-mount-carmel-primary/5 p-3 rounded-2xl">
+                      <svg className="w-8 h-8 text-mount-carmel-primary opacity-20" fill="currentColor" viewBox="0 0 32 32">
+                        <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
+                      </svg>
                     </div>
-                  </div>
-                </div>
-                
-                <div className="p-6 flex-grow flex flex-col">
-                  <div className="mb-4">
-                    <div className="flex items-center">
-                      {renderStars(testimonial.rating)}
-                      <span className="ml-2 text-sm text-gray-500">
-                        {testimonial.rating.toFixed(1)}
-                      </span>
-                    </div>
+                    {renderStars(testimonial.rating)}
                   </div>
                   
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">
-                    {testimonial.title || 'Amazing Experience'}
-                  </h4>
+                  <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 flex-grow italic">
+                    "{testimonial.text || testimonial.message}"
+                  </blockquote>
                   
-                  <p className="text-gray-600 mb-6 line-clamp-4 flex-grow">
-                    "{testimonial.text}"
-                  </p>
-                  
-                  <div className="mt-auto pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">
-                        {new Date(testimonial.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                        })}
-                      </span>
-                      <div className="flex space-x-2">
-                        <button className="p-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18 1l-6 4-6-4v16l6 4 6-4v-16zm-1.5 2.5l-4.5 3v9l4.5-3v-9zm-9 0v9l-4.5 3v-9l4.5-3z" />
-                          </svg>
-                        </button>
-                        <button className="p-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.59l3.54 7.27 7.91 1.15-5.73 5.59 1.35 7.88-7.07-3.72-7.07 3.72 1.35-7.88-5.73-5.59 7.91-1.15 3.54-7.27zm0 2.36l-2.74 5.64-6.13.89 4.44 4.33-1.05 6.12 5.48-2.88 5.48 2.88-1.05-6.12 4.44-4.33-6.13-.89-2.74-5.64z" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
+                  <div className="pt-6 border-t border-gray-50 mt-auto">
+                    <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-400 mt-1">
+                      {new Date(testimonial.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </p>
                   </div>
                 </div>
               </motion.div>
             ))
             )}
           </div>
+
+          {filteredTestimonials.length > 3 && (
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="inline-flex items-center px-8 py-3 bg-white text-mount-carmel-primary border-2 border-mount-carmel-primary font-bold rounded-full hover:bg-mount-carmel-primary hover:text-white transition-all duration-300 shadow-sm"
+              >
+                {showAll ? 'Show Less' : `Show All Testimonies (${filteredTestimonials.length})`}
+                <ChevronRight className={`ml-2 w-5 h-5 transition-transform ${showAll ? 'rotate-90' : ''}`} />
+              </button>
+            </div>
+          )}
           
           <div className="mt-16 text-center">
             <motion.button 
