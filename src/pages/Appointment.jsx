@@ -118,7 +118,7 @@ function Appointment() {
       <section className="relative bg-gradient-to-br from-mount-carmel-primary to-mount-carmel-secondary text-white py-24 md:py-32 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/booking.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-[url('/images/about/about4.png')] bg-cover bg-center"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
           {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> */}
         </div>
