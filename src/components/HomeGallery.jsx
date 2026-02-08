@@ -20,7 +20,37 @@ const HomeGallery = () => {
   ];
 
   return (
-    <section className="w-full bg-white overflow-hidden" aria-label="Hospital Gallery">
+    <section className="w-full bg-white overflow-hidden py-20" aria-label="Hospital Gallery">
+      <div className="container mx-auto px-4 mb-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative inline-block"
+        >
+          <h2 className="text-4xl md:text-6xl font-black text-[#4B1438] tracking-tighter mb-4">
+            OUR <span className="text-[#6f3348]">GALLERY</span>
+          </h2>
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '100%' }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="h-2 bg-gradient-to-r from-[#4B1438] to-[#6f3348] rounded-full mx-auto"
+          />
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-6 text-gray-500 uppercase tracking-[0.2em] text-sm font-semibold"
+          >
+            A Glimpse Into Our Excellence & Care
+          </motion.p>
+        </motion.div>
+      </div>
+
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 auto-rows-[250px] w-full px-0 grid-flow-dense">
           {images.map((image, index) => (
