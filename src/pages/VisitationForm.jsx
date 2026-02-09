@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -19,13 +21,6 @@ const VisitationForm = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    // Initialize WOW.js for animations
-    if (window.WOW) {
-      new window.WOW().init();
-    }
-  }, []);
-
   // Check if all fields are filled
   useEffect(() => {
     const allFilled = Object.values(formData).every(value => value.trim() !== '');
@@ -34,6 +29,26 @@ const VisitationForm = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const triggerConfetti = () => {
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+    }, 250);
   };
 
   const handleSubmit = async (e) => {
@@ -60,7 +75,7 @@ const VisitationForm = () => {
 
       if (response.ok) {
         setSubmitted(true);
-        e.target.reset();
+        triggerConfetti();
         setFormData({ name: '', email: '', organization: '', phone: '', message: '' });
       } else {
         throw new Error(responseData.error || 'Something went wrong. Please try again.');
@@ -72,358 +87,325 @@ const VisitationForm = () => {
     }
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
   return (
-    <>
+    <div className="overflow-hidden">
       <Header />
-      {/* Enhanced Hero Section with Improved Styling and Animations */}
-      <section className="position-relative overflow-hidden">
-        <div 
-          className="page-header py-5 d-flex align-items-center min-vh-75 wow fadeIn" 
-          data-wow-delay="0.1s"
+      
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <motion.div 
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 z-0"
           style={{
-            background: `url('/images/visit.png') center/cover no-repeat fixed`,
-            position: 'relative',
-            //boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
-            minHeight: '75vh',
-            display: 'flex',
-            alignItems: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/visit.png') center/cover no-repeat fixed`,
           }}
+        />
+        
+        <div className="container relative z-10 py-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <nav aria-label="breadcrumb" className="mb-6">
+              <ol className="flex justify-center space-x-2 text-white/80">
+                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li>/</li>
+                <li className="text-white">Visitation Form</li>
+              </ol>
+            </nav>
+            
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              Schedule Your <span className="text-primary-light">Visit</span>
+            </h1>
+            
+            <p className="max-w-2xl mx-auto text-xl text-white/90 leading-relaxed mb-10">
+              Experience our world-class healthcare facilities firsthand. Meet our compassionate team and see our state-of-the-at technology.
+            </p>
+            
+            <motion.a 
+              href="#visitation-form"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block bg-white text-[#6f3348] px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-opacity-90 transition-all"
+            >
+              Book Your Visit Now
+              <i className="fas fa-arrow-down ms-2 text-sm animate-bounce"></i>
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Brand Marquee */}
+      <div className="bg-[#4B1438] py-6 overflow-hidden border-y border-white/10">
+        <motion.div 
+          animate={{ x: [0, -1000] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="flex whitespace-nowrap gap-12"
         >
-          <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none" />
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
-            backgroundSize: '30px 30px',
-            maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
-          }}/>
-
-          <div className="container py-5 mt-5 z-50">
-            <div className="row justify-content-center">
-              <div className="col-lg-8 text-center">
-                <nav aria-label="breadcrumb" className="mb-4">
-                  <ol className="breadcrumb justify-content-center bg-transparent p-0">
-                    <li className="breadcrumb-item"><a className="text-white" href="/">Home</a></li>
-                    <li className="breadcrumb-item text-white active" aria-current="page">Visitation Form</li>
-                  </ol>
-                </nav>
-                
-                <h1 className="display-3 text-white fw-bold mb-4 wow fadeInUp" data-wow-delay="0.3s" style={{
-                  textShadow: '2px 2px 8px rgba(0,0,0,0.3)',
-                  letterSpacing: '1.5px',
-                  lineHeight: '1.2'
-                }}>
-                  Schedule Your Visit
-                </h1>
-                
-                <p className="lead text-white mb-5 wow fadeInUp" data-wow-delay="0.5s" style={{
-                  maxWidth: '700px',
-                  margin: '0 auto',
-                  fontSize: '1.25rem',
-                  textShadow: '1px 1px 4px rgba(0,0,0,0.2)'
-                }}>
-                  Experience our world-class healthcare facilities firsthand. Schedule a personalized tour to see our state-of-the-art medical equipment and meet our compassionate team of experts.
-                </p>
-                
-                <a 
-                  href="#visitation-form"
-                  className="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold text-primary wow fadeInUp cta-pulse" 
-                  data-wow-delay="0.7s"
-                  style={{
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-                    transition: 'all 0.3s ease',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    zIndex: 1,
-                    border: 'none',
-                    fontWeight: '600',
-                    letterSpacing: '0.5px',
-                    textTransform: 'uppercase',
-                    padding: '12px 30px',
-                    fontSize: '1rem'
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.transform = 'translateY(-3px)';
-                    e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.25)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-                  }}
-                >
-                  <span className="position-relative z-2">
-                    Book Your Visit Now
-                    <i className="fas fa-arrow-right ms-2"></i>
-                  </span>
-                </a>
-              </div>
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex gap-12 items-center">
+              <span className="text-white/80 text-lg font-medium uppercase tracking-widest">Compassionate Care</span>
+              <span className="text-white/80 text-lg font-medium uppercase tracking-widest">Trusted by Families</span>
+              <span className="text-white/80 text-lg font-medium uppercase tracking-widest">Expert Team</span>
+              <span className="text-white/80 text-lg font-medium uppercase tracking-widest">Patient First</span>
+              <span className="text-white/80 text-lg font-medium uppercase tracking-widest">World-Class Facilities</span>
             </div>
-          </div>
-          
-          {/* Scroll Indicator */}
-          <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4 text-center wow fadeInUp" data-wow-delay="1s">
-            <div className="text-white mb-2" style={{ fontSize: '0.875rem' }}>Scroll Down</div>
-            <div className="d-flex justify-content-center">
-              <div className="scroll-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Main Content */}
+      <section id="visitation-form" className="py-24 bg-gray-50">
+        <div className="container px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            
+            {/* Form Column */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100"
+            >
+              <div className="mb-10 text-center lg:text-left">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Book Your Tour</h2>
+                <p className="text-gray-600">Complete the form below and our team will get in touch with you shortly.</p>
               </div>
-            </div>
-          </div>
-          
-          {/* Animated Background Elements */}
-          <div className="position-absolute top-0 end-0 w-100 h-100" style={{
-            background: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23ffffff\' fill-opacity=\'0.08\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
-            opacity: 0.7,
-            zIndex: 0,
-            pointerEvents: 'none'
-          }}></div>
-        </div>
-      </section>
 
-      {/* Brand Marquee Section */}
-      <section className="container-fluid py-5" style={{
-        background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)',
-        color: '#fff',
-        margin: 0,
-        padding: 0
-      }}>
-        <div className="container overflow-hidden" style={{'--gap':'48px', '--duration':'22s'}}>
-          <div className="d-flex align-items-center gap-4 animate-marquee text-xl" style={{whiteSpace:'nowrap'}}>
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
-            {/* duplicate for seamless loop */}
-            <span className="fw-semibold" style={{opacity:0.95}}>Compassionate Care</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Trusted by Families</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Expert Team</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Patient First</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>World-Class Facilities</span>
-            <span className="fw-semibold" style={{opacity:0.95}}>Exceptional Outcomes</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Visitation Form Section */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxWidth: '600px'}}>
-            <h6 className="section-title bg-white text-center px-3" style={{color:'#6f3348'}}>Visit Us</h6>
-            <h1 className="display-6 mb-4">Schedule a Facility Tour</h1>
-            <p className="mb-0">Fill out the form below to book your visit and discover our hospital.</p>
-          </div>
-
-          <div className="row g-5 justify-content-center">
-            <div className="col-lg-8">
-              {submitted ? (
-                <div className="bg-light rounded-4 p-5 text-center shadow-lg wow fadeInUp" data-wow-delay="0.1s">
-                  <i className="fa fa-check-circle fa-4x mb-4" style={{color:'#6f3348'}}></i>
-                  <h2 className="mb-3" style={{color:'#6f3348'}}>Thank You!</h2>
-                  <p className="mb-4">Thank you for your interest in visiting our facility. We will contact you soon to arrange your tour.</p>
-                  <Link to="/" className="btn brand-btn rounded-pill px-4 py-2">
-                    <i className="fa fa-home me-2"></i>Go Back to Home
-                  </Link>
-                  <style>{`
-                    .brand-btn { background: #6f3348; border-color: #6f3348; color: #fff; }
-                    .brand-btn:hover { background: #4B1438; border-color: #4B1438; color: #fff; }
-                  `}</style>
-                </div>
-              ) : (
-                <div className="bg-white rounded-4 p-5 shadow-lg wow fadeInUp" data-wow-delay="0.1s">
-                  <form onSubmit={handleSubmit}>
-                    <div className="row g-4">
-                      {error && (
-                        <div className="col-12">
-                          <div className="alert alert-danger" role="alert">
-                            <i className="fa fa-exclamation-triangle me-2"></i>
-                            {error}
-                          </div>
-                        </div>
-                      )}
-                      {/* Modernized Form Fields */}
-                      <div className="col-md-6">
-                        <label htmlFor="name" className="form-label fw-semibold">Full Name</label>
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div 
+                    key="success"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-center py-12"
+                  >
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
+                      <i className="fa fa-check text-3xl"></i>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">Request Received!</h3>
+                    <p className="text-gray-600 mb-8">Thank you for your interest. We'll be in touch within 24 hours.</p>
+                    <button 
+                      onClick={() => setSubmitted(false)}
+                      className="text-[#6f3348] font-semibold flex items-center justify-center space-x-2 mx-auto hover:underline"
+                    >
+                      <i className="fa fa-arrow-left text-sm"></i>
+                      <span>Send another request</span>
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form 
+                    key="form"
+                    onSubmit={handleSubmit}
+                    variants={staggerContainer}
+                    initial="initial"
+                    animate="animate"
+                    className="space-y-6"
+                  >
+                    {error && (
+                      <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm">
+                        {error}
+                      </div>
+                    )}
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <motion.div variants={fadeInUp}>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
                         <input 
                           type="text" 
-                          className="form-control form-control-lg rounded-3 border-2" 
-                          id="name" 
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          placeholder="Your Name" 
+                          className="w-full px-4 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/20 focus:bg-white transition-all outline-none" 
+                          placeholder="John Doe"
                           required
                         />
-                      </div>
-                      <div className="col-md-6">
-                        <label htmlFor="email" className="form-label fw-semibold">Email Address</label>
+                      </motion.div>
+                      <motion.div variants={fadeInUp}>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                         <input 
                           type="email" 
-                          className="form-control form-control-lg rounded-3 border-2" 
-                          id="email" 
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="Your Email" 
+                          className="w-full px-4 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/20 focus:bg-white transition-all outline-none" 
+                          placeholder="john@example.com"
                           required
                         />
-                      </div>
-                      <div className="col-md-6">
-                        <label htmlFor="organization" className="form-label fw-semibold">Organization/Family/Individual</label>
+                      </motion.div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <motion.div variants={fadeInUp}>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Organization</label>
                         <input 
                           type="text" 
-                          className="form-control form-control-lg rounded-3 border-2" 
-                          id="organization" 
                           name="organization"
                           value={formData.organization}
                           onChange={handleChange}
-                          placeholder="Organization/Family/Individual" 
+                          className="w-full px-4 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/20 focus:bg-white transition-all outline-none" 
+                          placeholder="Organization Name"
                           required
                         />
-                      </div>
-                      <div className="col-md-6">
-                        <label htmlFor="phone" className="form-label fw-semibold">Phone Number</label>
+                      </motion.div>
+                      <motion.div variants={fadeInUp}>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
                         <input 
                           type="tel" 
-                          className="form-control form-control-lg rounded-3 border-2" 
-                          id="phone" 
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="Phone Number" 
+                          className="w-full px-4 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/20 focus:bg-white transition-all outline-none" 
+                          placeholder="+233..."
                           required
                         />
-                      </div>
-                      <div className="col-12">
-                        <label htmlFor="message" className="form-label fw-semibold">Purpose of Visit & Additional Information</label>
-                        <textarea 
-                          className="form-control form-control-lg rounded-3 border-2" 
-                          id="message" 
-                          name="message"
-                          value={formData.message}
-                          onChange={handleChange}
-                          placeholder="Purpose of Visit" 
-                          style={{height: '150px'}}
-                          required
-                        ></textarea>
-                      </div>
-                      <div className="col-12">
-                        <button 
-                          className="btn brand-btn w-100 py-3 rounded-pill fw-bold shadow" 
-                          type="submit"
-                          disabled={!isFormValid || loading}
-                        >
-                          {loading ? (
-                            <>
-                              <i className="fa fa-spinner fa-spin me-2"></i>
-                              Submitting...
-                            </>
-                          ) : (
-                            <>
-                              <i className="fa fa-calendar me-2"></i>
-                              Schedule Visit
-                            </>
-                          )}
-                        </button>
-                      </div>
+                      </motion.div>
                     </div>
-                  </form>
-                </div>
-              )}
-            </div>
-          </div>
 
-          {/* Visit Information - Modern Responsive Full Width Section */}
-          <div className="container-fluid px-0 mt-5" style={{width: '100vw', marginLeft: 'calc(-50vw + 50%)', background: 'linear-gradient(90deg, #F8FBFF 0%, #ffffff 100%)', borderRadius: '32px', boxShadow: '0 4px 24px rgba(111,51,72,0.10)', padding: '32px 0'}}>
-            <div className="container">
-              <div className="row g-4">
-                <div className="col-12">
-                  <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h3 className="mb-5 fw-bold text-primary">What to Expect During Your Visit</h3>
-                  </div>
-                </div>
-                {[
-                  {
-                    icon: 'fa-map-marker-alt',
-                    title: 'Facility Tour',
-                    desc: 'Guided tour of our modern facilities and medical equipment.',
-                    delay: '0.1s',
-                  },
-                  {
-                    icon: 'fa-users',
-                    title: 'Meet Our Team',
-                    desc: 'Introduction to our medical professionals and support staff.',
-                    delay: '0.3s',
-                  },
-                  {
-                    icon: 'fa-comments',
-                    title: 'Q&A Session',
-                    desc: 'Opportunity to ask questions about our services and facilities.',
-                    delay: '0.5s',
-                  },
-                ].map((info, idx) => (
-                  <div key={info.title} className="col-12 col-sm-6 col-lg-4 d-flex align-items-stretch wow fadeInUp" data-wow-delay={info.delay}>
-                    <div className="benefit-card bg-white rounded-4 shadow-lg p-4 w-100 d-flex flex-column align-items-center justify-content-center text-center h-100" style={{transition: 'transform .3s, box-shadow .3s'}}>
-                      <div className="rounded-circle d-flex align-items-center justify-content-center mb-3" style={{width: '64px', height: '64px', boxShadow: '0 2px 12px rgba(111,51,72,0.15)', background:'#6f3348'}}>
-                        <i className={`fa ${info.icon} text-white fa-2x`} loading="lazy"></i>
-                      </div>
-                      <h4 className="mb-2 fw-bold" style={{color:'#6f3348'}}>{info.title}</h4>
-                      <p className="mb-0 small" style={{color:'#4B1438'}}>{info.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <style>{`
-              .benefit-card:hover {
-                transform: translateY(-8px) scale(1.03);
-                box-shadow: 0 8px 32px rgba(111,34,72,0.18);
-              }
-            `}</style>
-          </div>
+                    <motion.div variants={fadeInUp}>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                      <textarea 
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/20 focus:bg-white transition-all outline-none min-h-[150px] resize-none" 
+                        placeholder="Tell us about your visit..."
+                        required
+                      />
+                    </motion.div>
 
-          {/* Contact Information - Full Width, No Margin, Responsive, Flush with Footer */}
-          <div className="container-fluid px-0" style={{ width: '100vw', height: "auto", marginLeft: 'calc(-50vw + 50%)', marginRight: 0, marginBottom: 0, paddingLeft: 0, paddingRight: 0, background: 'linear-gradient(90deg, #4B1438 0%, #6f3348 100%)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', boxSizing: 'border-box' }}>
-            <div className="row g-0 align-items-center justify-content-center text-center" style={{ margin: 0 }}>
-              <div className="col-12 py-5" style={{paddingBottom: 0, marginBottom: 0}}>
-                <h3 className="fw-bold text-white mb-3">Need Immediate Assistance?</h3>
-                <p className="mb-4 text-white">Contact us directly for urgent inquiries or to schedule an immediate visit.</p>
-                <div className="row g-0" style={{marginBottom: 0}}>
-                  <div className="col-12 col-md-4 mb-4 mb-md-0 px-0">
-                    <div className="rounded-0 shadow-sm py-4 px-2 h-100 d-flex flex-column align-items-center justify-content-center w-100" style={{marginBottom: 0, paddingBottom: 0}}>
-                      <i className="fa fa-phone fa-3x mb-3 text-white"></i>
-                      <h5 className="mb-2 text-primary">Call Us</h5>
-                      <p className="mb-0 text-secondary">+233 30 393 9896</p>
+                    <motion.button 
+                      variants={fadeInUp}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      disabled={!isFormValid || loading}
+                      className={`w-full py-4 rounded-2xl font-bold transition-all shadow-xl ${
+                        isFormValid && !loading 
+                        ? 'bg-[#6f3348] text-white hover:bg-[#4B1438] shadow-[#6f3348]/20' 
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      }`}
+                    >
+                      {loading ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Processing...
+                        </span>
+                      ) : 'Confirm Visitation'}
+                    </motion.button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Content Column */}
+            <div className="space-y-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-3xl font-bold text-gray-900 mb-8 px-4">What to Expect</h3>
+                <div className="space-y-6">
+                  {[
+                    {
+                      icon: 'fa-map-marked-alt',
+                      title: 'Personalized Facility Tour',
+                      desc: 'A guided walk through our departments, from maternity to modern labs.'
+                    },
+                    {
+                      icon: 'fa-user-md',
+                      title: 'Meet Our Specialists',
+                      desc: 'Brief introduction to medical professionals in your area of interest.'
+                    },
+                    {
+                      icon: 'fa-clipboard-check',
+                      title: 'Service Briefing',
+                      desc: 'Detailed explanation of our treatment protocols and patient care standards.'
+                    }
+                  ].map((item, idx) => (
+                    <motion.div 
+                      key={idx}
+                      whileHover={{ x: 10 }}
+                      className="group flex items-start gap-6 p-6 rounded-3xl hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-gray-50"
+                    >
+                      <div className="w-14 h-14 shrink-0 rounded-2xl bg-[#6f3348]/5 flex items-center justify-center text-[#6f3348] group-hover:bg-[#6f3348] group-hover:text-white transition-colors shadow-sm">
+                        <i className={`fa ${item.icon} text-xl`}></i>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-1">{item.title}</h4>
+                        <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Direct Info Card */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="bg-[#6f3348] rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl"
+              >
+                <div className="relative z-10">
+                  <h4 className="text-xl font-bold mb-6">Need Immediate Help?</h4>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                        <i className="fa fa-phone-alt text-sm"></i>
+                      </div>
+                      <span className="font-medium">+233 30 393 9896</span>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-4 mb-4 mb-md-0 px-0">
-                    <div className="rounded-0 shadow-sm py-4 px-2 h-100 d-flex flex-column align-items-center justify-content-center w-100" style={{marginBottom: 0, paddingBottom: 0}}>
-                      <i className="fa fa-envelope fa-3x mb-3 text-white"></i>
-                      <h5 className="mb-2 text-primary">Email Us</h5>
-                      <p className="mb-0 text-secondary">frontdesk.mchfc@gmail.com</p>
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-4 px-0">
-                    <div className="rounded-0 shadow-sm py-4 px-2 h-100 d-flex flex-column align-items-center justify-content-center w-100" style={{marginBottom: 0, paddingBottom: 0}}>
-                      <i className="fa fa-map-marker-alt fa-3x mb-3 text-white"></i>
-                      <h5 className="mb-2 text-primary">Visit Us</h5>
-                      <p className="mb-0 text-secondary">Ashfoam Junction, Tema Com.25, Accra, Ghana</p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                        <i className="fa fa-envelope text-sm"></i>
+                      </div>
+                      <span className="font-medium text-white/90">info@mountcarmel.com</span>
                     </div>
                   </div>
                 </div>
-              </div>
+                {/* Decorative Pattern */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12 blur-xl"></div>
+              </motion.div>
             </div>
+
           </div>
-         
         </div>
-      </div>
+      </section>
+
       <Footer />
-    </>
+      
+      <style>{`
+        .text-primary-light { color: #f8fbff; }
+        .bg-primary-dark { background: #4B1438; }
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
+    </div>
   );
 }
 
