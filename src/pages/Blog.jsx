@@ -328,153 +328,137 @@ function Blog() {
         {/* Moved New Post Button to hero section */}
 
         {/* Hero Section with Video Background */}
-        <section className="relative pt-20 md:pt-24 h-[calc(100vh-5rem)] min-h-[500px] max-h-[800px] overflow-hidden">
-          {/* Video Background */}
+        <section className="relative pt-20 md:pt-24 h-[70vh] min-h-[500px] flex items-center overflow-hidden">
+          {/* Video Background with refined overlay */}
           <div className="absolute inset-0 w-full h-full">
             <video
               autoPlay
               muted
               loop
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-105"
             >
               <source
                 src="/videos/5124290_Person_People_3840x2160.mp4"
                 type="video/mp4"
               />
-              Your browser does not support the video tag.
             </video>
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-mount-carmel-primary/90 to-mount-carmel-secondary/90 mix-blend-multiply"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-purple-900/50"></div>
+            {/* Multi-layered Overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-1"></div>
+            <div className="absolute inset-0 bg-[#6f3348]/20 mix-blend-overlay z-1"></div>
+            <div className="absolute inset-0 backdrop-blur-[2px] z-1"></div>
           </div>
 
-          {/* Content */}
-          <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="h-full flex flex-col justify-center items-center text-center pt-16 pb-8 sm:pt-24 sm:pb-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-4xl">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="max-w-4xl mx-auto"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <div className="w-full flex flex-col items-center">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight text-center">
-                    Mount Carmel Blog
-                  </h1>
-                  <button
-                    onClick={() => setShowNewPostModal(true)}
-                    className="flex items-center gap-2 bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    <Plus size={20} />
-                    Write a New Post
-                  </button>
-                </div>
-                <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0">
-                  Discover the latest insights, tips, and stories about
-                  fertility, wellness, and reproductive health.
+                <motion.span 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="inline-block px-4 py-1.5 rounded-full bg-[#6f3348]/30 border border-[#6f3348]/50 text-white text-sm font-medium mb-6 backdrop-blur-md"
+                >
+                  Insights & Health Stories
+                </motion.span>
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                  Wellness, Care & <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#6f3348] to-white animate-gradient-x">
+                    Expert Insights
+                  </span>
+                </h1>
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-8 leading-relaxed">
+                  Join our community of healthcare experts and discover the latest 
+                  breakthroughs in fertility, reproductive health, and holistic wellness.
                 </p>
 
-                {/* Search Bar */}
-                <div className="max-w-2xl w-full mx-auto px-2 sm:px-0">
-                  <div className="relative">
+                <div className="flex flex-wrap gap-4 items-center">
+                  <motion.button
+                    whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgb(111 51 72 / 0.4)" }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowNewPostModal(true)}
+                    className="flex items-center gap-2 bg-[#6f3348] text-white px-8 py-4 rounded-full font-semibold transition-all shadow-xl border border-white/10"
+                  >
+                    <Plus size={20} />
+                    Share Your Story
+                  </motion.button>
+                  
+                  {/* Search Bar Integrated into Hero */}
+                  <div className="relative flex-grow max-w-md group">
                     <input
                       type="text"
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                       placeholder="Search articles..."
-                      className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base rounded-full bg-white/10 backdrop-blur-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 pr-12"
+                      className="w-full px-6 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#6f3348] transition-all group-hover:bg-white/15"
                     />
-                    <Search className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 absolute right-4 sm:right-5 top-1/2 transform -translate-y-1/2" />
+                    <Search className="w-5 h-5 text-white/60 absolute right-6 top-1/2 transform -translate-y-1/2 group-hover:text-white transition-colors" />
                   </div>
                 </div>
               </motion.div>
             </div>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          {/* Scroll Progress Indicator (Visual only) */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <div className="w-[1px] h-12 bg-gradient-to-b from-[#6f3348] to-transparent"></div>
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.5 }}
-              className="flex flex-col items-center text-white/70 hover:text-white transition-colors cursor-pointer"
-              onClick={() => {
-                const mainContent = document.querySelector("main");
-                if (mainContent) {
-                  mainContent.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="text-white/40 text-[10px] uppercase tracking-[0.2em]"
             >
-              <span className="text-sm mb-2">Scroll to explore</span>
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </motion.div>
+              Scroll
             </motion.div>
           </div>
         </section>
 
         <div className="container mx-auto px-4 py-12 md:py-16">
-          {/* Categories Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
+          {/* Categories Filter - Modern Pills */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16 px-4">
             {allTags.map((tag) => (
-              <button
+              <motion.button
                 key={tag}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedTag(tag)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${
                   selectedTag === tag
-                    ? "bg-[var(--primary-color)] text-white"
-                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    ? "bg-[#6f3348] text-white shadow-[0_10px_20px_-5px_rgba(111,51,72,0.4)]"
+                    : "bg-white border border-gray-100 text-gray-500 hover:border-[#6f3348]/30 hover:text-[#6f3348] shadow-sm hover:shadow-md"
                 }`}
               >
                 {tag.charAt(0).toUpperCase() + tag.slice(1)}
-              </button>
+              </motion.button>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               {/* Latest Articles Section */}
-              <section className="py-16 px-4 sm:px-6 lg:px-8 w-full">
+              <section className="py-8 w-full">
                 <motion.div
-                  className="max-w-7xl mx-auto text-center mb-12"
+                  className="w-full text-center mb-12"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <span className="inline-block bg-primary-color/10 text-primary-color text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                  <span className="inline-block bg-[#6f3348]/10 text-[#6f3348] text-xs font-bold px-4 py-1 rounded-full mb-4">
                     Latest Updates
                   </span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                     Our Recent Articles
                   </h2>
-                  <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-                    Stay updated with our latest health insights and medical
-                    news
-                  </p>
 
                   <div className="flex justify-center gap-4 mb-12">
                     <button
                       onClick={() => setActiveTab("recent")}
                       className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         activeTab === "recent"
-                          ? "bg-primary-color text-white shadow-lg shadow-primary-color/30"
+                          ? "bg-[#6f3348] text-white shadow-lg shadow-[#6f3348]/30"
                           : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                       }`}
                     >
@@ -484,7 +468,7 @@ function Blog() {
                       onClick={() => setActiveTab("popular")}
                       className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         activeTab === "popular"
-                          ? "bg-primary-color text-white shadow-lg shadow-primary-color/30"
+                          ? "bg-[#6f3348] text-white shadow-lg shadow-[#6f3348]/30"
                           : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                       }`}
                     >
@@ -492,172 +476,81 @@ function Blog() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {currentPosts.map((post, index) => (
                       <motion.div
                         key={post.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.5, delay: (index % 2) * 0.2 }}
+                        className="group bg-white rounded-3xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 hover:shadow-[0_20px_60px_-15px_rgba(111,51,72,0.15)] transition-all duration-500 flex flex-col h-full"
                       >
-                        <div className="relative h-80 overflow-hidden">
+                        <div className="relative h-64 overflow-hidden">
                           <img
                             src={post.image}
                             alt={post.title}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             onError={(e) => {
                               e.target.onerror = null;
                               e.target.src = "/images/services/fertility.jpg";
                             }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                          <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <div className="flex flex-wrap gap-2 mb-3">
-                              {(post.tags || []).map((tag, index) => (
-                                <span
-                                  key={index}
-                                  className="px-3 py-1 bg-white/90 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 text-xs font-medium rounded-full backdrop-blur-sm"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                              {post.title}
-                            </h1>
-                            <div className="flex items-center text-sm text-white/90">
-                              <span className="flex items-center">
-                                <svg
-                                  className="w-4 h-4 mr-1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                  />
-                                </svg>
-                                {post.date || "Unknown date"}
-                              </span>
-                              <span className="mx-3">•</span>
-                              <span className="flex items-center">
-                                <svg
-                                  className="w-4 h-4 mr-1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                  />
-                                </svg>
-                                {post.readTime || "5 min"} read
-                              </span>
-                            </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          
+                          {/* Category Tag */}
+                          <div className="absolute top-4 left-4">
+                            <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md text-[#6f3348] text-xs font-bold rounded-full shadow-sm">
+                              {post.tag || "Health"}
+                            </span>
                           </div>
                         </div>
 
-                        {/* Article Content */}
-                        <div className="p-6">
-                          <div className="prose dark:prose-invert max-w-none">
-                            <div className="flex items-center mb-8">
-                              <div className="h-12 w-12 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mr-4">
+                        <div className="p-8 flex flex-col flex-grow text-left">
+                          <div className="flex items-center gap-4 mb-4 text-xs font-medium text-gray-500">
+                            <span className="flex items-center gap-1.5">
+                              <Search className="w-3.5 h-3.5 text-[#6f3348]" />
+                              {post.readTime || "5 min"} read
+                            </span>
+                            <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                            <span>{post.date || "Recent Post"}</span>
+                          </div>
+
+                          <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-[#6f3348] transition-colors line-clamp-2 leading-snug">
+                            {post.title}
+                          </h3>
+                          
+                          <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                            {post.excerpt || (post.content ? post.content.substring(0, 150) + "..." : "")}
+                          </p>
+
+                          <div className="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-white shadow-sm overflow-hidden p-0.5">
                                 <img
-                                  src={
-                                    post.author?.avatar || "/images/logo.png"
-                                  }
-                                  alt={post.author?.name || "Author"}
-                                  className="w-full h-full object-cover"
-                                  onError={(e) => {
-                                    e.target.onerror = null;
-                                    e.target.src = "/images/logo.png";
-                                  }}
+                                  src={post.author?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.author?.name || "A")}&background=6f3348&color=fff`}
+                                  alt={post.author?.name}
+                                  className="w-full h-full object-cover rounded-full"
                                 />
                               </div>
                               <div>
-                                <p className="font-medium text-gray-900 dark:text-white">
-                                  {post.author?.name || "Anonymous"}
-                                </p>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">
-                                  {post.author?.title || "Content Writer"}
-                                </p>
+                                <p className="text-xs font-bold text-gray-900 line-clamp-1">{post.author?.name || "Team Member"}</p>
+                                <p className="text-[10px] text-gray-500">{post.author?.title || "Specialist"}</p>
                               </div>
                             </div>
 
-                            <div className="prose-lg dark:prose-invert max-w-none">
-                              {post.content || post.excerpt}
-                            </div>
-
-                            {/* Social Sharing */}
-                            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-                              <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
-                                Share this article
-                              </h4>
-                              <div className="flex space-x-4">
-                                {[
-                                  "Twitter",
-                                  "Facebook",
-                                  "LinkedIn",
-                                  "Copy Link",
-                                ].map((platform) => (
-                                  <button
-                                    key={platform}
-                                    className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                                    onClick={() =>
-                                      handleShare(platform.toLowerCase())
-                                    }
-                                  >
-                                    <span className="sr-only">
-                                      Share on {platform}
-                                    </span>
-                                    <svg
-                                      className="w-5 h-5"
-                                      fill="currentColor"
-                                      viewBox="0 0 24 24"
-                                      aria-hidden="true"
-                                    >
-                                      {/* Icons would go here */}
-                                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                    </svg>
-                                  </button>
-                                ))}
+                            <motion.button
+                              onClick={() => openArticle(post)}
+                              whileHover={{ x: 5 }}
+                              className="flex items-center gap-2 text-[#6f3348] text-sm font-bold group/btn"
+                            >
+                              Details
+                              <div className="w-6 h-6 rounded-full bg-[#6f3348]/10 flex items-center justify-center group-hover/btn:bg-[#6f3348] group-hover/btn:text-white transition-all duration-300">
+                                <Plus size={14} />
                               </div>
-                            </div>
+                            </motion.button>
                           </div>
                         </div>
-                        <motion.button
-                          onClick={() => setSelectedArticle(post)}
-                          className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all transform hover:-translate-y-0.5 active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                          whileHover={{
-                            background:
-                              "linear-gradient(45deg, var(--primary-color), var(--secondary-color))",
-                          }}
-                        >
-                          <span className="relative z-10 flex items-center">
-                            Read Full Article
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M14 5l7 7m0 0l-7 7m7-7H3"
-                              />
-                            </svg>
-                          </span>
-                        </motion.button>
                       </motion.div>
                     ))}
                   </div>
@@ -667,96 +560,101 @@ function Blog() {
 
             {/* Sidebar */}
             <div className="space-y-8">
-              {/* Popular Posts */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-                  Popular Posts
+              {/* Popular Posts - Refined List */}
+              <div className="bg-white rounded-3xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-50 p-8">
+                <h3 className="text-lg font-bold mb-6 text-gray-900 flex items-center gap-2">
+                  <div className="w-1.5 h-6 bg-[#6f3348] rounded-full"></div>
+                  Trending Articles
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {popularPosts.map((post) => (
-                    <div
+                    <motion.div
                       key={post.id}
-                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
+                      whileHover={{ x: 5 }}
+                      className="flex items-start gap-4 group cursor-pointer"
                       onClick={() => openArticle(post)}
                     >
-                      <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden">
+                      <div className="w-20 h-20 flex-shrink-0 rounded-2xl overflow-hidden shadow-sm">
                         <img
                           src={post.image}
                           alt={post.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "/images/services/fertility.jpg";
                           }}
                         />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">
+                      <div className="flex-1 min-w-0 pt-1">
+                        <h4 className="font-bold text-sm text-gray-900 group-hover:text-[#6f3348] transition-colors line-clamp-2 leading-tight mb-2">
                           {post.title}
                         </h4>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          {post.readTime}
-                        </span>
+                        <div className="flex items-center gap-2 text-[10px] text-gray-500 font-medium">
+                          <span>{post.readTime}</span>
+                          <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                          <span>{post.tag}</span>
+                        </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Newsletter Signup */}
-              <div className="bg-gradient-to-br from-[var(--primary-color)] to-purple-600 rounded-xl p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">Stay Updated</h3>
-                <p className="text-white/90 text-sm mb-4">
-                  Subscribe to our newsletter for the latest articles and
-                  updates.
+              {/* Newsletter Signup - Modern Gradient Card */}
+              <div className="relative overflow-hidden bg-gradient-to-br from-[#6f3348] to-[#4b1438] rounded-3xl p-8 text-white shadow-xl">
+                {/* Decorative background circle */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                
+                <h3 className="text-xl font-bold mb-3 relative z-10">Stay in the Loop</h3>
+                <p className="text-white/80 text-sm mb-6 leading-relaxed relative z-10">
+                  Join 1,000+ subscribers and get health tips delivered to your inbox.
                 </p>
-                <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                <form onSubmit={handleNewsletterSubmit} className="space-y-3 relative z-10">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="name@email.com"
+                    className="w-full px-5 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm transition-all text-sm"
                     required
                   />
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,1)" }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full bg-white text-[var(--primary-color)] font-medium py-2.5 px-4 rounded-lg hover:bg-opacity-90 transition-colors"
+                    className="w-full bg-white text-[#6f3348] font-bold py-3 rounded-2xl shadow-lg transition-colors text-sm"
                   >
-                    Subscribe
-                  </button>
+                    Subscribe Now
+                  </motion.button>
                 </form>
               </div>
 
-              {/* Categories */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-                  Categories
+              {/* Categories Sidebar - List Style */}
+              <div className="bg-white rounded-3xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 p-8">
+                <h3 className="text-lg font-bold mb-6 text-gray-900 flex items-center gap-2">
+                  <div className="w-1.5 h-6 bg-[#6f3348]/30 rounded-full"></div>
+                  Browse by Topic
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {allTags
                     .filter((tag) => tag !== "all")
                     .map((tag) => (
                       <button
                         key={tag}
                         onClick={() => setSelectedTag(tag)}
-                        className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                        className={`w-full text-left px-4 py-3 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
                           selectedTag === tag
-                            ? "bg-[var(--primary-color)] text-white"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            ? "bg-[#6f3348]/5 text-[#6f3348] font-bold"
+                            : "text-gray-600 hover:bg-gray-50 hover:pl-6"
                         }`}
                       >
-                        <span className="flex items-center justify-between">
-                          <span>
-                            {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                          </span>
-                          <span className="bg-white/20 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-full">
-                            {
-                              blogs.filter(
-                                (b) => b.tags && b.tags.includes(tag)
-                              ).length
-                            }
-                          </span>
+                        <span className="text-sm capitalize">{tag}</span>
+                        <span className={`text-[10px] px-2.5 py-1 rounded-full ${
+                          selectedTag === tag 
+                            ? "bg-[#6f3348] text-white" 
+                            : "bg-gray-100 text-gray-500 group-hover:bg-[#6f3348]/10 group-hover:text-[#6f3348]"
+                        }`}>
+                          {blogs.filter((b) => b.tags && b.tags.includes(tag)).length}
                         </span>
                       </button>
                     ))}
@@ -791,324 +689,143 @@ function Blog() {
         </svg>
       </button>
 
-      {/* Article Modal */}
-      {selectedArticle && (
-        <div
-          className="fixed inset-0 z-[100] overflow-y-auto"
-          aria-labelledby="article-title"
-          role="dialog"
-          aria-modal="true"
-        >
-          {/* Backdrop */}
-          <motion.div
-            className="fixed inset-0 bg-black/70 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeArticle}
-            aria-hidden="true"
-          />
-
-          <div className="flex items-center justify-center min-h-screen p-4 sm:p-6">
+      {/* Article Modal - Premium Glassmorphism */}
+      <AnimatePresence>
+        {selectedArticle && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+            {/* Modal Backdrop */}
             <motion.div
-              className="relative w-[80vw] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeArticle}
+              className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              className="relative w-full max-w-5xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh] z-10 border border-white/20"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
-              <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-10">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-1 pr-4">
-                  {selectedArticle.title}
-                </h2>
+              {/* Header - Fixed */}
+              <div className="flex justify-between items-center px-8 py-6 border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-20">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-8 bg-[#6f3348] rounded-full"></div>
+                  <h2 className="text-xl font-bold text-gray-900 line-clamp-1">
+                    {selectedArticle.title}
+                  </h2>
+                </div>
                 <button
                   onClick={closeArticle}
-                  className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0"
-                  aria-label="Close"
+                  className="p-3 rounded-full bg-gray-50 text-gray-500 hover:bg-[#6f3348] hover:text-white transition-all duration-300"
                 >
-                  <svg
-                    className="w-6 h-6 text-gray-500 dark:text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                  <X size={20} />
                 </button>
               </div>
 
-              {/* Content */}
-              <div className="overflow-y-auto">
-                <div className="relative h-64 md:h-96 w-full">
+              {/* Scrollable Body */}
+              <div className="overflow-y-auto custom-scrollbar">
+                {/* Featured Image Header */}
+                <div className="relative h-[25rem] md:h-[35rem] w-full overflow-hidden">
                   <img
-                    src={
-                      selectedArticle.image || "/images/services/fertility.jpg"
-                    }
+                    src={selectedArticle.image || "/images/services/fertility.jpg"}
                     alt={selectedArticle.title}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/images/services/fertility.jpg";
-                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+                  
+                  {/* Floating Metadata */}
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {(selectedArticle.tags || [selectedArticle.tag]).map((tag, index) => (
+                        <span key={index} className="px-4 py-1.5 bg-[#6f3348] text-white text-xs font-bold rounded-full shadow-lg">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h1 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight drop-shadow-sm">
+                      {selectedArticle.title}
+                    </h1>
+                  </div>
                 </div>
 
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {(selectedArticle.tags || []).map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                    {selectedArticle.title}
-                  </h1>
-
-                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
-                    <div className="flex items-center mr-6">
-                      <svg
-                        className="w-4 h-4 mr-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                      {selectedArticle.date || "Unknown date"}
-                    </div>
-                    <div className="flex items-center">
-                      <svg
-                        className="w-4 h-4 mr-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      {selectedArticle.readTime || "5 min"} read
-                    </div>
-                  </div>
-
-                  <div className="prose dark:prose-invert max-w-none">
-                    {selectedArticle.content || selectedArticle.excerpt}
-                  </div>
-
-                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
-                    <div className="flex items-center">
-                      <div className="h-12 w-12 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden mr-4">
+                <div className="px-8 md:px-12 py-10">
+                  {/* Article Meta Info */}
+                  <div className="flex flex-wrap items-center justify-between gap-6 pb-10 mb-10 border-b border-gray-100">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#6f3348] to-[#4b1438] p-0.5 shadow-md">
                         <img
-                          src={
-                            selectedArticle.author?.avatar ||
-                            `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                              selectedArticle.author?.name || "A"
-                            )}&background=random`
-                          }
-                          alt={selectedArticle.author?.name || "Author"}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src =
-                              "https://ui-avatars.com/api/?name=A&background=random";
-                          }}
+                          src={selectedArticle.author?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedArticle.author?.name || "A")}&background=fff&color=6f3348`}
+                          alt={selectedArticle.author?.name}
+                          className="w-full h-full object-cover rounded-[calc(1rem-2px)]"
                         />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white">
-                          {selectedArticle.author?.name || "Anonymous"}
-                        </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {selectedArticle.author?.title || "Content Writer"}
-                        </p>
+                        <p className="font-bold text-gray-900 text-lg">{selectedArticle.author?.name || "Medical Expert"}</p>
+                        <p className="text-sm text-gray-500">{selectedArticle.author?.title || "Health Specialist"}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-6 text-sm text-gray-500 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="p-2 bg-gray-50 rounded-lg"><Search className="w-4 h-4 text-[#6f3348]" /></div>
+                        {selectedArticle.readTime || "5 min"} read
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="p-2 bg-gray-50 rounded-lg"><Plus className="w-4 h-4 text-[#6f3348]" /></div>
+                        {selectedArticle.date || "Just published"}
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
-                    <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
-                      Share this article
-                    </h4>
-                    <div className="flex space-x-4">
-                      {["Twitter", "Facebook", "LinkedIn", "Copy Link"].map(
-                        (platform) => (
-                          <button
+                  {/* Text Content */}
+                  <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed font-light">
+                    {selectedArticle.content ? (
+                      selectedArticle.content.split('\n\n').map((para, i) => (
+                        <p key={i} className="mb-6">{para}</p>
+                      ))
+                    ) : (
+                      <p>{selectedArticle.excerpt}</p>
+                    )}
+                  </div>
+
+                  {/* Share & Footer Actions */}
+                  <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="flex items-center gap-4">
+                      <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">Share Article</span>
+                      <div className="flex gap-2">
+                        {['twitter', 'facebook', 'linkedin'].map((platform) => (
+                          <motion.button
                             key={platform}
-                            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                            onClick={() => handleShare(platform.toLowerCase())}
+                            whileHover={{ y: -3 }}
+                            className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-[#6f3348] hover:text-white transition-all duration-300"
+                            onClick={() => handleShare(platform)}
                           >
-                            <span className="sr-only">Share on {platform}</span>
-                            <svg
-                              className="w-5 h-5"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                            </svg>
-                          </button>
-                        )
-                      )}
-                    </div>
-                  </div>
-                  {selectedArticle.content &&
-                    selectedArticle.content
-                      .split("\n\n")
-                      .map((paragraph, i) => (
-                        <p key={i} className="mb-4">
-                          {paragraph}
-                        </p>
-                      ))}
-                </div>
-
-                {/* Comments Section */}
-                <div className="mt-12 mb-8 pt-8 border-t border-white/10">
-                  <h3 className="text-2xl font-bold mb-8 text-center">
-                    Join the Conversation
-                  </h3>
-
-                  <form
-                    onSubmit={handleCommentSubmit}
-                    className="space-y-6 max-w-3xl mx-auto"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                        >
-                          Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          required
-                          value={commentForm.name}
-                          onChange={(e) =>
-                            setCommentForm({
-                              ...commentForm,
-                              name: e.target.value,
-                            })
-                          }
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200"
-                          placeholder="Your name"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          value={commentForm.email}
-                          onChange={(e) =>
-                            setCommentForm({
-                              ...commentForm,
-                              email: e.target.value,
-                            })
-                          }
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200"
-                          placeholder="your.email@example.com"
-                        />
+                            <Plus size={18} />
+                          </motion.button>
+                        ))}
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="comment"
-                        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                      >
-                        Your Comment <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        id="comment"
-                        rows="5"
-                        required
-                        value={commentForm.comment}
-                        onChange={(e) =>
-                          setCommentForm({
-                            ...commentForm,
-                            comment: e.target.value,
-                          })
-                        }
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent transition-all duration-200 resize-none"
-                        placeholder="Share your thoughts..."
-                      ></textarea>
-                    </div>
-                    <div className="flex justify-end">
-                      <button
-                        type="submit"
-                        className="px-8 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-color)]/90 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]"
-                      >
-                        Post Comment
-                      </button>
-                    </div>
-                  </form>
-
-                  {/* Comments List */}
-                  <div className="mt-12 space-y-6">
-                    <h4 className="text-lg font-semibold mb-6">
-                      {comments[selectedArticle.id]?.length || "No"} Comments
-                    </h4>
-
-                    {comments[selectedArticle.id]?.map((comment, i) => (
-                      <div
-                        key={i}
-                        className="bg-[var(--dark-color)] p-4 rounded-lg border border-[var(--primary-color)]/20"
-                      >
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-10 h-10 rounded-full bg-[var(--primary-color)]/80 flex items-center justify-center text-[var(--light-color)] font-bold">
-                            {comment.name.charAt(0).toUpperCase()}
-                          </div>
-                          <div>
-                            <h5 className="font-semibold">{comment.name}</h5>
-                            <span className="text-xs text-[var(--light-color)]/60">
-                              {comment.timestamp?.toDate
-                                ? formatDistance(
-                                    comment.timestamp.toDate(),
-                                    new Date(),
-                                    { addSuffix: true }
-                                  )
-                                : "Just now"}
-                            </span>
-                          </div>
-                        </div>
-                        <p className="text-[var(--light-color)]/80 pl-[52px]">
-                          {comment.comment}
-                        </p>
-                      </div>
-                    ))}
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={closeArticle}
+                      className="px-8 py-3 bg-gray-900 text-white font-bold rounded-2xl shadow-xl hover:bg-gray-800 transition-all"
+                    >
+                      Done Reading
+                    </motion.button>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
 
       <Footer />
 
