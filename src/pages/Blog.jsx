@@ -829,49 +829,73 @@ function Blog() {
 
       <Footer />
 
-      {/* New Post Modal */}
+      {/* New Post Modal - Modern Redesign */}
       <AnimatePresence>
         {showNewPostModal && (
           <div className="fixed inset-0 z-[9999] overflow-y-auto">
+            {/* Enhanced Backdrop with Glassmorphism */}
             <motion.div
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998]"
+              className="fixed inset-0 bg-gradient-to-br from-black/90 via-[#6f3348]/30 to-black/90 backdrop-blur-xl z-[9998]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
               onClick={() => setShowNewPostModal(false)}
             />
 
-            <div className="flex min-h-full items-center justify-center p-4">
+            <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
               <motion.div
-                className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden z-[9999] relative"
-                initial={{ y: 20, opacity: 0, scale: 0.98 }}
+                className="w-full max-w-4xl bg-white/95 backdrop-blur-2xl rounded-[2rem] shadow-[0_25px_80px_-15px_rgba(111,51,72,0.4)] overflow-hidden z-[9999] relative border border-white/20"
+                initial={{ y: 30, opacity: 0, scale: 0.95 }}
                 animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: 20, opacity: 0, scale: 0.98 }}
-                transition={{ type: "spring", damping: 25, stiffness: 400 }}
+                exit={{ y: 30, opacity: 0, scale: 0.95 }}
+                transition={{ type: "spring", damping: 30, stiffness: 350 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="p-6">
-                  <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900">
-                      Create New Blog Post
-                    </h2>
-                    <button
-                      onClick={() => setShowNewPostModal(false)}
-                      className="text-gray-400 hover:text-gray-500"
-                    >
-                      <X size={24} />
-                    </button>
-                  </div>
-
-                  <form onSubmit={handleNewPostSubmit}>
-                    <div className="space-y-6">
-                      {/* Title */}
+                {/* Decorative gradient header */}
+                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#6f3348] via-[#4b1438] to-[#6f3348]"></div>
+                
+                {/* Header Section */}
+                <div className="relative px-8 py-6 border-b border-gray-100 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-md">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#6f3348] to-[#4b1438] flex items-center justify-center shadow-lg shadow-[#6f3348]/20">
+                        <Plus className="w-6 h-6 text-white" />
+                      </div>
                       <div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+                          Share Your Story
+                        </h2>
+                        <p className="text-sm text-gray-500 mt-0.5">Create a new blog post for the community</p>
+                      </div>
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.1, rotate: 90 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => setShowNewPostModal(false)}
+                      className="p-3 rounded-2xl bg-gray-100 text-gray-500 hover:bg-[#6f3348] hover:text-white transition-all duration-300 shadow-sm"
+                    >
+                      <X size={20} />
+                    </motion.button>
+                  </div>
+                </div>
+
+                {/* Scrollable Form Content */}
+                <div className="max-h-[calc(90vh-180px)] overflow-y-auto custom-scrollbar">
+                  <form onSubmit={handleNewPostSubmit} className="p-8">
+                    <div className="space-y-8">
+                      {/* Title Input - Featured */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                      >
                         <label
                           htmlFor="title"
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"
                         >
-                          Title <span className="text-red-500">*</span>
+                          <div className="w-1.5 h-5 bg-[#6f3348] rounded-full"></div>
+                          Post Title <span className="text-[#6f3348]">*</span>
                         </label>
                         <input
                           type="text"
@@ -880,19 +904,23 @@ function Blog() {
                           onChange={(e) =>
                             setNewPost({ ...newPost, title: e.target.value })
                           }
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Enter post title"
+                          className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 text-lg font-medium placeholder-gray-400 bg-white/50 backdrop-blur-sm hover:border-gray-300"
+                          placeholder="Enter an engaging title..."
                           required
                         />
-                      </div>
+                      </motion.div>
 
                       {/* Excerpt */}
-                      <div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 }}
+                      >
                         <label
                           htmlFor="excerpt"
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-bold text-gray-700 mb-2"
                         >
-                          Excerpt
+                          Short Summary
                         </label>
                         <textarea
                           id="excerpt"
@@ -901,23 +929,29 @@ function Blog() {
                           onChange={(e) =>
                             setNewPost({ ...newPost, excerpt: e.target.value })
                           }
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="A short summary of your post"
+                          className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 placeholder-gray-400 bg-white/50 backdrop-blur-sm hover:border-gray-300 resize-none"
+                          placeholder="A compelling summary to hook your readers..."
                         />
-                      </div>
+                      </motion.div>
 
-                      {/* Author Information */}
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {/* Author Information Section */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-gradient-to-br from-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-100"
+                      >
+                        <label className="block text-sm font-bold text-gray-700 mb-4 flex items-center gap-2">
+                          <div className="w-1.5 h-5 bg-[#6f3348]/60 rounded-full"></div>
                           Author Information
                         </label>
                         <div className="space-y-4">
                           <div>
                             <label
                               htmlFor="authorName"
-                              className="block text-xs font-medium text-gray-500 mb-1"
+                              className="block text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wide"
                             >
-                              Full Name <span className="text-red-500">*</span>
+                              Full Name <span className="text-[#6f3348]">*</span>
                             </label>
                             <input
                               type="text"
@@ -932,8 +966,8 @@ function Blog() {
                                   },
                                 })
                               }
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              placeholder="Author's full name"
+                              className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 placeholder-gray-400 bg-white hover:border-gray-300"
+                              placeholder="Dr. Jane Smith"
                               required
                             />
                           </div>
@@ -941,7 +975,7 @@ function Blog() {
                             <div>
                               <label
                                 htmlFor="authorTitle"
-                                className="block text-xs font-medium text-gray-500 mb-1"
+                                className="block text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wide"
                               >
                                 Title/Role
                               </label>
@@ -958,20 +992,20 @@ function Blog() {
                                     },
                                   })
                                 }
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                placeholder="e.g. Fertility Specialist"
+                                className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 placeholder-gray-400 bg-white hover:border-gray-300"
+                                placeholder="Fertility Specialist"
                               />
                             </div>
                             <div>
                               <label
                                 htmlFor="authorAvatar"
-                                className="block text-xs font-medium text-gray-500 mb-1"
+                                className="block text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wide"
                               >
-                                Avatar URL (optional)
+                                Avatar URL
                               </label>
                               <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                  <ImageIcon className="h-4 w-4 text-gray-400" />
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                  <ImageIcon className="h-5 w-5 text-[#6f3348]/40" />
                                 </div>
                                 <input
                                   type="url"
@@ -986,27 +1020,33 @@ function Blog() {
                                       },
                                     })
                                   }
-                                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                                  placeholder="https://example.com/avatar.jpg"
+                                  className="w-full pl-12 pr-5 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 text-sm placeholder-gray-400 bg-white hover:border-gray-300"
+                                  placeholder="https://..."
                                 />
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Media & Metadata Grid */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.25 }}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                      >
                         {/* Image URL */}
                         <div>
                           <label
                             htmlFor="image"
-                            className="block text-sm font-medium text-gray-700 mb-1"
+                            className="block text-sm font-bold text-gray-700 mb-2"
                           >
-                            Image URL
+                            Featured Image
                           </label>
                           <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <ImageIcon className="h-5 w-5 text-gray-400" />
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                              <ImageIcon className="h-5 w-5 text-[#6f3348]/40" />
                             </div>
                             <input
                               type="url"
@@ -1018,43 +1058,48 @@ function Blog() {
                                   image: e.target.value,
                                 })
                               }
-                              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full pl-12 pr-5 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 placeholder-gray-400 bg-white/50 backdrop-blur-sm hover:border-gray-300"
                               placeholder="https://example.com/image.jpg"
                             />
                           </div>
                         </div>
 
-                        {/* Tag */}
+                        {/* Category */}
                         <div>
                           <label
                             htmlFor="tag"
-                            className="block text-sm font-medium text-gray-700 mb-1"
+                            className="block text-sm font-bold text-gray-700 mb-2"
                           >
                             Category
                           </label>
-                          <select
-                            id="tag"
-                            value={newPost.tag}
-                            onChange={(e) =>
-                              setNewPost({ ...newPost, tag: e.target.value })
-                            }
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                          >
-                            <option value="Fertility">Fertility</option>
-                            <option value="IVF">IVF</option>
-                            <option value="Wellness">Wellness</option>
-                            <option value="Men's Health">Men's Health</option>
-                            <option value="Family">Family</option>
-                          </select>
+                          <div className="relative">
+                            <select
+                              id="tag"
+                              value={newPost.tag}
+                              onChange={(e) =>
+                                setNewPost({ ...newPost, tag: e.target.value })
+                              }
+                              className="w-full px-5 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 bg-white hover:border-gray-300 appearance-none cursor-pointer font-medium"
+                            >
+                              <option value="Fertility">🌸 Fertility</option>
+                              <option value="IVF">🧬 IVF</option>
+                              <option value="Wellness">💚 Wellness</option>
+                              <option value="Men's Health">👨‍⚕️ Men's Health</option>
+                              <option value="Family">👨‍👩‍👧‍👦 Family</option>
+                            </select>
+                            <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                              <Filter className="h-4 w-4 text-[#6f3348]/40" />
+                            </div>
+                          </div>
                         </div>
 
                         {/* Read Time */}
                         <div>
                           <label
                             htmlFor="readTime"
-                            className="block text-sm font-medium text-gray-700 mb-1"
+                            className="block text-sm font-bold text-gray-700 mb-2"
                           >
-                            Read Time
+                            Estimated Read Time
                           </label>
                           <div className="relative">
                             <input
@@ -1067,80 +1112,102 @@ function Blog() {
                                   readTime: e.target.value,
                                 })
                               }
-                              className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              placeholder="e.g. 5 min read"
+                              className="w-full pl-5 pr-16 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 placeholder-gray-400 bg-white/50 backdrop-blur-sm hover:border-gray-300"
+                              placeholder="5 min read"
                             />
-                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500 text-sm">min</span>
+                            <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                              <span className="text-gray-500 text-sm font-medium bg-gray-50 px-2 py-1 rounded-lg">min</span>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
 
-                      {/* Content */}
-                      <div>
+                      {/* Content Editor */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
                         <label
                           htmlFor="content"
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"
                         >
-                          Content <span className="text-red-500">*</span>
+                          <div className="w-1.5 h-5 bg-[#6f3348] rounded-full"></div>
+                          Article Content <span className="text-[#6f3348]">*</span>
                         </label>
                         <textarea
                           id="content"
-                          rows="8"
+                          rows="10"
                           value={newPost.content}
                           onChange={(e) =>
                             setNewPost({ ...newPost, content: e.target.value })
                           }
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-sans"
-                          placeholder="Write your post content here..."
+                          className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#6f3348]/30 focus:border-[#6f3348] transition-all duration-300 font-sans placeholder-gray-400 bg-white/50 backdrop-blur-sm hover:border-gray-300 resize-none leading-relaxed"
+                          placeholder="Share your insights, experiences, and expertise with the community..."
                           required
                         />
-                      </div>
+                        <p className="mt-2 text-xs text-gray-500 flex items-center gap-1">
+                          <Search className="w-3 h-3" />
+                          Write in a clear, engaging style that resonates with readers
+                        </p>
+                      </motion.div>
                     </div>
 
-                    <div className="mt-8 flex justify-end space-x-3">
-                      <button
-                        type="button"
-                        onClick={() => setShowNewPostModal(false)}
-                        className="px-6 py-2.5 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-                        disabled={isSubmitting}
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        className="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors flex items-center"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <svg
-                              className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              ></circle>
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                              ></path>
-                            </svg>
-                            Publishing...
-                          </>
-                        ) : (
-                          "Publish Post"
-                        )}
-                      </button>
+                    {/* Action Buttons - Sticky Footer */}
+                    <div className="mt-10 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+                      <p className="text-xs text-gray-500 italic">
+                        All fields marked with <span className="text-[#6f3348] font-bold">*</span> are required
+                      </p>
+                      <div className="flex gap-3 w-full sm:w-auto">
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          type="button"
+                          onClick={() => setShowNewPostModal(false)}
+                          className="flex-1 sm:flex-none px-8 py-3.5 border-2 border-gray-300 rounded-xl font-bold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-all duration-300 shadow-sm"
+                          disabled={isSubmitting}
+                        >
+                          Cancel
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.02, boxShadow: "0 20px 25px -5px rgba(111, 51, 72, 0.3)" }}
+                          whileTap={{ scale: 0.98 }}
+                          type="submit"
+                          className="flex-1 sm:flex-none px-8 py-3.5 bg-gradient-to-r from-[#6f3348] to-[#4b1438] text-white font-bold rounded-xl hover:from-[#5a2a3a] hover:to-[#3a0f2a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6f3348] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-[#6f3348]/30"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <svg
+                                className="animate-spin h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                              </svg>
+                              Publishing...
+                            </>
+                          ) : (
+                            <>
+                              <Plus size={18} />
+                              Publish Post
+                            </>
+                          )}
+                        </motion.button>
+                      </div>
                     </div>
                   </form>
                 </div>
